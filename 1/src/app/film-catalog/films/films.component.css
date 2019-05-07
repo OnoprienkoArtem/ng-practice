@@ -1,6 +1,6 @@
 .example-card {
-    max-width: 400px;
-  }
+  max-width: 400px;
+}
 
 /* img {
   width: 90%;
@@ -9,7 +9,7 @@
 mat-card-content p:first-child {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;  
+  text-overflow: ellipsis;
 }
 
 .films {
@@ -26,26 +26,23 @@ mat-card-content p:first-child {
 
 .cards {
   width: 30%;
-  margin: 2% 1%;  
+  margin: 2% 1%;
   display: flex;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .cards div:first-child {
   width: 45%;
   display: flex;
-
 }
 
 .cards div:last-child {
   width: 55%;
 }
 
-
 .cards img {
   width: 100%;
   height: 100%;
-
 }
 
 .info {
@@ -55,7 +52,7 @@ mat-card-content p:first-child {
 
 h2 {
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1.4vw;
 }
 
 .year {
@@ -79,7 +76,3 @@ button {
   font-size: .7vw;
   margin: auto;
 }
-
-
-
-
