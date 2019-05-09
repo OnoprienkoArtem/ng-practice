@@ -18,12 +18,6 @@ export class AppComponent {
             label: 'Все фильмы',
             active: 'button-active',
             icon: 'list_alt'
-        },
-        {
-            path: '/details',
-            label: 'детали',
-            active: 'button-active',
-            icon: 'list_alt'
         }
     ];
 }

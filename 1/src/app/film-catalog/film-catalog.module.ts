@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
 import { FilmsComponent } from './films/films.component';
 import { FormsModule } from '@angular/forms';
-import { DetailsComponent } from './details/details.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -20,8 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
   ],
   declarations: [
     MainComponent, 
-    FilmsComponent, 
-    DetailsComponent
+    FilmsComponent 
   ]
 })
 export class FilmCatalogModule { }
