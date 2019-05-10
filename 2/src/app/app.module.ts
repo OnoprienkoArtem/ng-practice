@@ -22,7 +22,8 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule, 
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
