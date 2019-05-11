@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { Observable, Subject } from 'rxjs';
+import { Film } from './film';
 
-export class Films {
-  id: number
-  name: string; 
-  year: number; 
-  imgUrl: string;
-  description: string;
-}
 
 
 @Injectable({
@@ -16,7 +10,7 @@ export class Films {
 export class FilmService {
   constructor() {}
   
-  films: Films[] = [
+  films: Film[] = [
     {id: 1, name: "Тор: Рагнарёк", year: 2017, imgUrl: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/2NEzIdBAgm4kSYXF4OH86qs3a0u.jpg", description: "Вернувшись в Асгард в поисках таинственного врага, ведущего охоту на Камни Бесконечности, Тор обнаруживает, что действия его брата Локи, захватившего трон Асгарда, привели к приближению наиболее страшного события — Рагнарёка."},
     {id: 2, name: "Чудо-женщина ", year: 2017, imgUrl: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/fMnMonAyK3nzp1P1odIFzYoSvYe.jpg", description: "Перед тем как стать Чудо-Женщиной, она была Дианой — принцессой амазонок, обученной быть непобедимой воительницей. И когда на берегах огражденного ото внешнего мира райского острова, который служил ей родиной, терпит крушение американский пилот и рассказывает о серьезном конфликте, бушующем во внешнем мире, Диана покидает свой дом, чтобы справиться с этой угрозой"},
     {id: 3, name: "Звёздные Войны: Последние джеда", year: 2017, imgUrl: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/qP4gdqvE4KsFqkeY9EdVRCA8ahj.jpg", description: "Баланс Силы снова нарушен, и события развиваются с невероятной скоростью! Рей, Финну, вездесущему дроиду BB-8 и другим героям предстоит опасная схватка с могущественным Первым Орденом."},
