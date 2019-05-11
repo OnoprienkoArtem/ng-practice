@@ -2,11 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FilmService } from '../film.service';
 
 @Component({
-  selector: '.films',
-  templateUrl: './films.component.html',
-  styleUrls: ['./films.component.css']
+  selector: '.films-list',
+  templateUrl: './films-list.component.html',
+  styleUrls: ['./films-list.component.css']
 })
-export class FilmsComponent implements OnInit {
+export class FilmsListComponent implements OnInit {
   aditionalTitle: string;
   description: string = 'Parent component data';
   
