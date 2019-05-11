@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FilmService } from '../film.service';
+import { Film } from '../film';
 
 @Component({
   selector: '.films-list',
@@ -7,21 +8,24 @@ import { FilmService } from '../film.service';
   styleUrls: ['./films-list.component.css']
 })
 export class FilmsListComponent implements OnInit {
-  aditionalTitle: string;
-  description: string = 'Parent component data';
+
+  films: Film[];
+
+  // aditionalTitle: string;
+  // description: string = 'Parent component data';
   
   
-  constructor(public filmsService: FilmService) {   
+  constructor(private filmsService: FilmService) {   
   }
 
-  setUpdatedValue(eventParam){
-    this.filmsService
-    this.aditionalTitle = eventParam;
-    //console.log(event);
-  }
+  // setUpdatedValue(eventParam){
+  //   this.filmsService
+  //   this.aditionalTitle = eventParam;
+  //   //console.log(event);
+  // }
   
   ngOnInit() { 
-    
+    this.films = this.filmsService.getAll();
   }
   
 }

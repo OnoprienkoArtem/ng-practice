@@ -18,10 +18,12 @@
 </mat-card>
   
   
-  <mat-grid-list cols="4" rowHeight="600px">
+<mat-grid-list cols="4" rowHeight="600px">
+  <app-film-item
+    [data]="film" 
     
-
-      
-  </mat-grid-list>
+    *ngFor="let film of films">
+  </app-film-item>
+</mat-grid-list>
 
 

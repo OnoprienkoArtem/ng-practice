@@ -19,6 +19,10 @@ export class FilmService {
     {id: 6, name: "Чужой. Завет", year: 2017, imgUrl: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/5ff1DVsSL7CP5zIjr8ayHaaHScP.jpg", description: "Выжившие члены команды «Прометея» Элизабет и андроид Дэвид сделали первый шаг навстречу разгадке тайны инженеров. Теперь пришло время узнать остальную правду, которая укрыта на родной планете белесых великанов — Рай."},
   ];
 
+  getAll() {
+    return this.films;
+  }
+
 
 
   
