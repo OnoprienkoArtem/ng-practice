@@ -1,3 +1,9 @@
+.card-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .example-card {
     max-width: 300px;
 }

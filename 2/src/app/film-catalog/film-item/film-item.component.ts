@@ -13,6 +13,9 @@ export class FilmItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
+
+  
 
 }

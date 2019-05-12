@@ -17,16 +17,11 @@ mat-card-content p:first-child {
 }
 
 .block {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
+    max-width: 360px;
 }
 
-.cards {
-    width: 30%;
-    margin: 2% 1%;
+.cards {   
+    margin: 5%;
     display: flex;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -52,7 +47,7 @@ mat-card-content p:first-child {
 
 h2 {
     margin: 0;
-    font-size: 1.4vw;
+    font-size: 1vw;
 }
 
 .year {
@@ -61,7 +56,7 @@ h2 {
 }
 
 .info p {
-    font-size: 1vw;
+    font-size: .8vw;
 }
 
 .btn-block {
