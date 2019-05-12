@@ -9,18 +9,22 @@ import { Film } from '../film';
 export class FilmItemComponent implements OnInit {
 
   @Input('data') film: Film;
-  @Input() favorite;
-  @Output() favorEmit = new EventEmitter();
+  @Output() updateCounter = new EventEmitter<any>();
+  @Output() reduceCounter = new EventEmitter<any>();
+
+  filmId;
+  isFavor;
+
 
   constructor() { }
 
-  ngOnInit() { }
-
-  favoriteToggle() {
-    this.favorite = !this.favorite;
-    this.favorEmit.emit({ id: this.id, favorite: this.favorite });
+  addToFavorites(filmId) {
+    this.film.isFavorite = !this.film.isFavorite;
+    this.updateCounter.emit(filmId);
+    
+    console.log(filmId, 'filmObj from FilmItem');
   }
 
-  get id() { return this.film.id; }
+  ngOnInit() { } 
 
 }

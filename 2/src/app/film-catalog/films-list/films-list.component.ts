@@ -9,7 +9,9 @@ import { Film } from '../film';
 })
 export class FilmsListComponent implements OnInit {
 
+  countElement = 0;
   films: Film[];
+  filmFiltered: Film[];
 
   // aditionalTitle: string;
   // description: string = 'Parent component data';
@@ -28,18 +30,17 @@ export class FilmsListComponent implements OnInit {
     this.films = this.filmsService.getAll();
   }
 
-  favorCnt() {
-    return this.filmsService.getFavorites().length;
+
+  addFilmObj(filmObj) {
+    console.log(filmObj, 'film from FilmLists');
+    this.filmFiltered = this.films.filter(film => film.isFavorite);
+    console.log(this.filmFiltered, 'newArray - filmFiltered');
+
+    this.countElement = this.filmFiltered.length;
+    console.log(this.filmFiltered.length, 'filmFiltered.length');
+
   }
 
-  /* Check if favorite by id */
-  isFavorite(id) {
-    return this.filmsService.isFavorite(id);
-  }
 
-  /* set|remove from array of favorites */
-  filmFavorToggle(e) {
-    e.favorite ? this.filmsService.setFavor(e.id) : this.filmsService.removeFavor(e.id);
-  }
   
 }
