@@ -17,11 +17,11 @@ mat-card-content p:first-child {
 }
 
 .block {
-    max-width: 360px;
+    max-width: 330px;
+    margin: 5% 0;
 }
 
 .cards {   
-    margin: 5%;
     display: flex;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -43,6 +43,7 @@ mat-card-content p:first-child {
 .info {
     padding: 2%;
     position: relative;
+    text-align: left;
 }
 
 h2 {

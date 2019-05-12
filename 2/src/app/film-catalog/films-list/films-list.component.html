@@ -8,8 +8,8 @@
             <div>
                 <mat-form-field>
                   <mat-select placeholder="Сортировка">
-                    <mat-option [value]="ASC">По алфавиту: A-Z</mat-option>
-                    <mat-option [value]="DESC">По алфавиту: Z-A </mat-option>
+                    <mat-option *ngFor="let state of states" (click)="mySort(films, state.value)">{{state.choice}}
+                    </mat-option>                  
                   </mat-select>
                 </mat-form-field>
             </div>
@@ -18,15 +18,9 @@
 
 </mat-card>
   
-  
-<div class="container">
-  <div class="row card-wrap">
-    <app-film-item
-      [data]="film" 
-      (updateCounter)="addFilmObj()"
-      *ngFor="let film of films">
-    </app-film-item>
-  </div> 
+
+<div class="cards-section"> 
+  <app-film-item [data]="film" (updateCounter)="addFilmObj()" *ngFor="let film of films"></app-film-item>  
 </div>
 
 

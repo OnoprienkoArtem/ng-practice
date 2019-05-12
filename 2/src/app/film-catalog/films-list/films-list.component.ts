@@ -13,21 +13,29 @@ export class FilmsListComponent implements OnInit {
   films: Film[];
   filmFiltered: Film[];
 
-  // aditionalTitle: string;
-  // description: string = 'Parent component data';
-  
+  states = [
+    { value: 'ASC', choice: 'от А до Я' },
+    { value: 'DESC', choice: 'от Я до А' }
+  ];  
   
   constructor(private filmsService: FilmService) {   
   }
-
-  // setUpdatedValue(eventParam){
-  //   this.filmsService
-  //   this.aditionalTitle = eventParam;
-  //   //console.log(event);
-  // }
   
   ngOnInit() { 
     this.films = this.filmsService.getAll();
+  }
+
+  compare(current, next) {
+    const x: any = current.name.toLowerCase();
+    const y: any = next.name.toLowerCase();
+    return x > y ? 1 : -1;
+  }
+
+  mySort(films, value) {
+    if (value === 'ASC') {
+      return films.sort(this.compare);
+    }
+    return films.sort(this.compare).reverse();
   }
 
 
