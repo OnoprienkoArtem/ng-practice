@@ -2,7 +2,7 @@
     
     <mat-toolbar class="menu-toolbar">
         <mat-toolbar-row>
-          <span *ngIf="countElement; else noFavorits">В избранное добавлено: {{countElement}} элементов</span>
+          <span *ngIf="countElement; else noFavorits">В избранное добавлено: {{countElement}}</span>
           <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
           <span class="example-spacer"></span>
             <div>
@@ -23,7 +23,7 @@
   <div class="row card-wrap">
     <app-film-item
       [data]="film" 
-      (updateCounter)="addFilmObj($event)"
+      (updateCounter)="addFilmObj()"
       *ngFor="let film of films">
     </app-film-item>
   </div> 

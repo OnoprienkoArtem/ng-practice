@@ -10,19 +10,13 @@ export class FilmItemComponent implements OnInit {
 
   @Input('data') film: Film;
   @Output() updateCounter = new EventEmitter<any>();
-  @Output() reduceCounter = new EventEmitter<any>();
-
-  filmId;
-  isFavor;
 
 
   constructor() { }
 
-  addToFavorites(filmId) {
+  addToFavorites(film) {
     this.film.isFavorite = !this.film.isFavorite;
-    this.updateCounter.emit(filmId);
-    
-    console.log(filmId, 'filmObj from FilmItem');
+    this.updateCounter.emit(film);
   }
 
   ngOnInit() { } 

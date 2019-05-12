@@ -31,14 +31,9 @@ export class FilmsListComponent implements OnInit {
   }
 
 
-  addFilmObj(filmObj) {
-    console.log(filmObj, 'film from FilmLists');
+  addFilmObj() {    
     this.filmFiltered = this.films.filter(film => film.isFavorite);
-    console.log(this.filmFiltered, 'newArray - filmFiltered');
-
     this.countElement = this.filmFiltered.length;
-    console.log(this.filmFiltered.length, 'filmFiltered.length');
-
   }
 
 
