@@ -72,3 +72,8 @@ mat-card {
         max-width: 1140px;
     }
 }
+
+
+.mat-toolbar {
+    font-size: 14px;
+}

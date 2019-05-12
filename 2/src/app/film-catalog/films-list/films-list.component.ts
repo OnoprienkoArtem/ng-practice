@@ -27,5 +27,19 @@ export class FilmsListComponent implements OnInit {
   ngOnInit() { 
     this.films = this.filmsService.getAll();
   }
+
+  favorCnt() {
+    return this.filmsService.getFavorites().length;
+  }
+
+  /* Check if favorite by id */
+  isFavorite(id) {
+    return this.filmsService.isFavorite(id);
+  }
+
+  /* set|remove from array of favorites */
+  filmFavorToggle(e) {
+    e.favorite ? this.filmsService.setFavor(e.id) : this.filmsService.removeFavor(e.id);
+  }
   
 }
