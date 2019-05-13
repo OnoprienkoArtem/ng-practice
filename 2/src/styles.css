@@ -13,65 +13,9 @@ mat-card {
 
 
 
-/*mat-card {*/
-/*max-width: 80%;*/
-/*margin: 2em auto;*/
-/*text-align: center;*/
-/*}*/
 
-.container,
-.row,
-.coll {
-    box-sizing: border-box;
-}
 
-.container {
-    width: 100%;
-    box-sizing: border-box;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
-.col {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-@media (min-width: 576px) {
-    .container {
-        max-width: 540px;
-    }
-}
-
-@media (min-width: 768px) {
-    .container {
-        max-width: 720px;
-    }
-}
-
-@media (min-width: 992px) {
-    .container {
-        max-width: 960px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1140px;
-    }
-}
 
 
 .mat-toolbar {
