@@ -1,0 +1,18 @@
+.menu-card {
+  padding: 0px;
+}
+
+.menu-toolbar {
+  background-color: white;
+  min-height: 50px;
+  height: 50px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.cards-section {
+  max-width: 80%;
+  margin: 2em auto;  
+}
