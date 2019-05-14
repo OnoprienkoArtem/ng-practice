@@ -1,0 +1,26 @@
+<mat-card class="menu-card">
+    
+    <mat-toolbar class="menu-toolbar">
+        <mat-toolbar-row>
+          <span *ngIf="countElement; else noFavorits">В избранное добавлено: {{countElement}}</span>
+          <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
+          <span class="example-spacer"></span>
+            <div>
+                <mat-form-field>
+                  <mat-select placeholder="Сортировка">
+                    <mat-option *ngFor="let state of states" (click)="mySort(films, state.value)">{{state.choice}}
+                    </mat-option>                  
+                  </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+</mat-card>
+  
+
+<div class="cards-section"> 
+  <app-film-item [data]="film" (updateCounter)="addFilmObj()" *ngFor="let film of films"></app-film-item>  
+</div>
+
+

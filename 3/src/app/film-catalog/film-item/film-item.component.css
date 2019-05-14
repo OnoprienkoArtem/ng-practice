@@ -1,0 +1,74 @@
+.example-card {
+    max-width: 400px;
+}
+
+/* img {
+  width: 90%;
+} */
+
+mat-card-content p:first-child {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.films {
+    padding: 5%;
+}
+
+.block {
+    max-width: 330px;
+    margin: 5% 0;
+}
+
+.cards {   
+    display: flex;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cards div:first-child {
+    width: 45%;
+    display: flex;
+}
+
+.cards div:last-child {
+    width: 55%;
+}
+
+.cards img {
+    width: 100%;
+    height: 100%;
+}
+
+.info {
+    padding: 2%;
+    position: relative;
+    text-align: left;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1vw;
+}
+
+.year {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.info p {
+    font-size: .8vw;
+}
+
+.btn-block {
+    width: 100% !important;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    display: flex;
+}
+
+button {
+    font-size: .7vw;
+    margin: auto;
+}
