@@ -25,17 +25,17 @@ export class FilmsListComponent implements OnInit {
     this.films = this.filmsService.getAll();
   }
 
-  compare(current, next) {
-    const currentItem: any = current.name.toLowerCase();
-    const nextItem: any = next.name.toLowerCase();
+  compareSorting(current, next) {
+    const currentItem = current.name.toLowerCase();
+    const nextItem = next.name.toLowerCase();
     return currentItem > nextItem ? 1 : -1;
   }
 
   mySort(films, value) {
     if (value === 'ASC') {
-      return films.sort(this.compare);
+      return films.sort(this.compareSorting);
     }
-    return films.sort(this.compare).reverse();
+    return films.sort(this.compareSorting).reverse();
   }
 
 

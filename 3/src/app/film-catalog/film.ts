@@ -1,7 +1,7 @@
 export class Film {
     id: number;
     name: string;
-    year: number;
+    year: string;
     imgUrl: string;
     description: string;
     isFavorite: boolean;

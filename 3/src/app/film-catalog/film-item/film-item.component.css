@@ -16,8 +16,7 @@ mat-card-content p:first-child {
     padding: 5%;
 }
 
-.block {
-    max-width: 330px;
+.block {   
     margin: 5% 0;
 }
 
