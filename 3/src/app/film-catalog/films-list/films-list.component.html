@@ -1,10 +1,8 @@
-<mat-card class="menu-card">
-    
+<mat-card class="menu-card">    
     <mat-toolbar class="menu-toolbar">
-        <mat-toolbar-row>
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
           <span *ngIf="countElement; else noFavorits">В избранное добавлено: {{countElement}}</span>
-          <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
-          <span class="example-spacer"></span>
+          <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>          
             <div>
                 <mat-form-field>
                   <mat-select placeholder="Сортировка">
@@ -15,12 +13,9 @@
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
+</mat-card>  
 
-</mat-card>
-  
-
-<div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-between"
-  fxLayoutAlign.lt-sm="center">
+<div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
   <app-film-item fxFlex="32%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film" (updateCounter)="addFilmObj()"
     *ngFor="let film of films"></app-film-item>
 </div>

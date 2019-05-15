@@ -8,8 +8,7 @@
       <p class='year'>{{film.year}}</p>
       <p>{{ (film.description.length > 150) ? (film.description | slice:0:150) + '...' : (film.description) }}</p>
       <div class='btn-block'>
-        <button mat-button
-          (click)="addToFavorites(film)">{{film.isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}}</button>
+        <button mat-button (click)="addToFavorites(film)">{{film.isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}}</button>
       </div>
     </div>
   </div>

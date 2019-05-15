@@ -1,21 +1,3 @@
-.example-card {
-    max-width: 400px;
-}
-
-/* img {
-  width: 90%;
-} */
-
-mat-card-content p:first-child {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.films {
-    padding: 5%;
-}
-
 .block {   
     margin: 5% 0;
 }
