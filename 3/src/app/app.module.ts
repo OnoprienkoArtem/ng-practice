@@ -4,7 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FilmCatalogModule } from './film-catalog/film-catalog.module';
+import { MainModule } from './modules/main/main.module';
+import { FilmsCatalogModule } from './modules/films-catalog/films-catalog.module';
 import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MaterialModule } from './modules/material/material.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FilmCatalogModule,
+    MainModule,
+    FilmsCatalogModule,
     MaterialModule    
   ],
   providers: [],

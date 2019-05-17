@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FilmService } from '../../services/film.service';
-import { Film } from '../../models/film';
+import { FilmService } from '../../../services/film.service';
+import { Film } from '../../../models/film';
 
 @Component({
   selector: '.films-list',
