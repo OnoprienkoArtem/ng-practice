@@ -17,8 +17,18 @@
 </mat-card>  
 
 <div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-  <app-film-item fxFlex="32%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film" (updateCounter)="addFilmToFavorit()"
-    *ngFor="let film of films"></app-film-item>
+  <app-film-item 
+    fxFlex="32%" 
+    fxFlex.lt-sm="100%" 
+    fxFlex.lt-md="45%" 
+    [data]="film" 
+    (updateCounter)="addFilmToFavorit()"
+    *ngFor="let film of films"
+  ></app-film-item>
+
+  <div class="row" fxLayout="row" fxLayoutAlign="center">
+    <button mat-raised-button color="primary">Показать еще</button>
+  </div>
 </div>
 
 
