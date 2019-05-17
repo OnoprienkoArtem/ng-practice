@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FilmService } from '../film.service';
-import { Film } from '../film';
+import { FilmService } from '../../services/film.service';
+import { Film } from '../../models/film';
 
 @Component({
   selector: '.films-list',
@@ -12,10 +12,10 @@ export class FilmsListComponent implements OnInit {
   countElement = 0;
   films: Film[];
   filmFiltered: Film[];
-  states = [
+  sortingTypes = [
     { value: 'ASC', choice: 'от А до Я' },
     { value: 'DESC', choice: 'от Я до А' },
-    { value: 'Def', choice: 'По умолчанию' },
+    { value: 'DEFAULT', choice: 'По умолчанию' },
   ];  
   
   constructor(private filmsService: FilmService) {   
@@ -25,7 +25,7 @@ export class FilmsListComponent implements OnInit {
     switch (value) {
       case 'ASC': return this.films.sort(this.filmsService.compareSorting);
       case 'DESC': return this.films.sort(this.filmsService.compareSorting).reverse();
-      case 'Def': return this.films = this.filmsService.getAll();
+      case 'DEFAULT': return this.films = this.filmsService.getAll();
     }   
   }
 

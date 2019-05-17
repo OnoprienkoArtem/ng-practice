@@ -6,7 +6,8 @@
             <div>
                 <mat-form-field>
                   <mat-select placeholder="Сортировка">
-                    <mat-option *ngFor="let state of states" (click)="mySort(state.value)">{{state.choice}}
+                    <mat-option *ngFor="let sortingType of sortingTypes" (click)="mySort(sortingType.value)">
+                      {{sortingType.choice}}
                     </mat-option>                  
                   </mat-select>
                 </mat-form-field>
