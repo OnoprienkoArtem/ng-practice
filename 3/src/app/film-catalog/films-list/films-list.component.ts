@@ -15,7 +15,8 @@ export class FilmsListComponent implements OnInit {
 
   states = [
     { value: 'ASC', choice: 'от А до Я' },
-    { value: 'DESC', choice: 'от Я до А' }
+    { value: 'DESC', choice: 'от Я до А' },
+    { value: 'Def', choice: 'По умолчанию' },
   ];  
   
   constructor(private filmsService: FilmService) {   
@@ -25,21 +26,18 @@ export class FilmsListComponent implements OnInit {
     this.films = this.filmsService.getAll();
   }
 
-  compareSorting(current, next) {
-    const currentItem = current.name.toLowerCase();
-    const nextItem = next.name.toLowerCase();
-    return currentItem > nextItem ? 1 : -1;
-  }
 
-  mySort(films, value) {
-    if (value === 'ASC') {
-      return films.sort(this.compareSorting);
-    }
-    return films.sort(this.compareSorting).reverse();
+
+  mySort(value) { 
+    switch (value) {
+      case 'ASC': return this.films.sort(this.filmsService.compareSorting);
+      case 'DESC': return this.films.sort(this.filmsService.compareSorting).reverse();
+      case 'Def': return this.films = this.filmsService.getAll();
+    }   
   }
 
 
-  addFilmObj() {    
+  addFilmToFavorit() {    
     this.filmFiltered = this.films.filter(film => film.isFavorite);
     this.countElement = this.filmFiltered.length;
   }

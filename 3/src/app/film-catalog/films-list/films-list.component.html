@@ -6,7 +6,7 @@
             <div>
                 <mat-form-field>
                   <mat-select placeholder="Сортировка">
-                    <mat-option *ngFor="let state of states" (click)="mySort(films, state.value)">{{state.choice}}
+                    <mat-option *ngFor="let state of states" (click)="mySort(state.value)">{{state.choice}}
                     </mat-option>                  
                   </mat-select>
                 </mat-form-field>
@@ -16,7 +16,7 @@
 </mat-card>  
 
 <div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-  <app-film-item fxFlex="32%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film" (updateCounter)="addFilmObj()"
+  <app-film-item fxFlex="32%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film" (updateCounter)="addFilmToFavorit()"
     *ngFor="let film of films"></app-film-item>
 </div>
 

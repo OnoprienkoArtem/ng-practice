@@ -26,7 +26,13 @@ export class FilmService {
 
 
   getAll() {
-    return this.films;
+    return [...this.films];
+  }
+
+  compareSorting(current, next) {
+    const currentItem = current.name.toLowerCase();
+    const nextItem = next.name.toLowerCase();
+    return currentItem > nextItem ? 1 : -1;
   }
 
 
