@@ -9,14 +9,13 @@ import { Film } from '../film';
 export class FilmItemComponent implements OnInit {
 
   @Input('data') film: Film;
-  @Output() updateCounter = new EventEmitter<any>();
-
+  @Output() updateCounter = new EventEmitter<Film>();
 
   constructor() { }
 
-  addToFavorites(film) {
+  addToFavorites() {
     this.film.isFavorite = !this.film.isFavorite;
-    this.updateCounter.emit(film);
+    this.updateCounter.emit();
   }
 
   ngOnInit() { } 

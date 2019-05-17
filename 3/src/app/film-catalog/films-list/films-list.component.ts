@@ -12,7 +12,6 @@ export class FilmsListComponent implements OnInit {
   countElement = 0;
   films: Film[];
   filmFiltered: Film[];
-
   states = [
     { value: 'ASC', choice: 'от А до Я' },
     { value: 'DESC', choice: 'от Я до А' },
@@ -20,13 +19,7 @@ export class FilmsListComponent implements OnInit {
   ];  
   
   constructor(private filmsService: FilmService) {   
-  }
-  
-  ngOnInit() { 
-    this.films = this.filmsService.getAll();
-  }
-
-
+  }  
 
   mySort(value) { 
     switch (value) {
@@ -36,12 +29,12 @@ export class FilmsListComponent implements OnInit {
     }   
   }
 
-
   addFilmToFavorit() {    
-    this.filmFiltered = this.films.filter(film => film.isFavorite);
+    this.filmFiltered = this.films.filter(film => film.isFavorite);    
     this.countElement = this.filmFiltered.length;
   }
 
-
-  
+  ngOnInit() { 
+    this.films = this.filmsService.getAll();
+  }  
 }
