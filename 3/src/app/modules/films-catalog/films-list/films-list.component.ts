@@ -18,6 +18,8 @@ export class FilmsListComponent implements OnInit {
     { value: 'DEFAULT', choice: 'По умолчанию' },
   ];  
   
+  countPage = 6;
+  
   constructor(private filmsService: FilmService) {   
   }  
 
@@ -25,7 +27,7 @@ export class FilmsListComponent implements OnInit {
     switch (value) {
       case 'ASC': return this.films.sort(this.filmsService.compareSorting);
       case 'DESC': return this.films.sort(this.filmsService.compareSorting).reverse();
-      case 'DEFAULT': return this.films = this.filmsService.getAll();
+      case 'DEFAULT': return this.films = this.filmsService.getAll().slice(0, this.countPage);
     }   
   }
 
@@ -35,6 +37,14 @@ export class FilmsListComponent implements OnInit {
   }
 
   ngOnInit() { 
-    this.films = this.filmsService.getAll();
+    this.films = this.filmsService.getAll().slice(0, 6);   
+    console.log(this.films.length);
   }  
+
+  nextPage() {
+    this.countPage += 3;
+    this.films = this.filmsService.getAll().slice(0, this.countPage);
+  }
+
+
 }
