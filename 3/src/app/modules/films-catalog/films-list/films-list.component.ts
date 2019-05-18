@@ -20,8 +20,7 @@ export class FilmsListComponent implements OnInit {
   
   countPage = 6;
   
-  constructor(private filmsService: FilmService) {   
-  }  
+  constructor(private filmsService: FilmService) {}  
 
   mySort(value) { 
     switch (value) {
@@ -37,14 +36,11 @@ export class FilmsListComponent implements OnInit {
   }
 
   ngOnInit() { 
-    this.films = this.filmsService.getAll().slice(0, 6);   
+    this.films = this.filmsService.getAll().slice(0, this.countPage);   
   }  
 
   isDisabled() {
-    if (this.countPage === this.filmsService.getAll().length) {
-      return true;
-    }
-    return false;
+    if (this.countPage === this.filmsService.getAll().length) return true;
   }
 
   nextPage() {
