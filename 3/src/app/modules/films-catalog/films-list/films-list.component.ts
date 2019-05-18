@@ -38,8 +38,14 @@ export class FilmsListComponent implements OnInit {
 
   ngOnInit() { 
     this.films = this.filmsService.getAll().slice(0, 6);   
-    console.log(this.films.length);
   }  
+
+  isDisabled() {
+    if (this.countPage === this.filmsService.getAll().length) {
+      return true;
+    }
+    return false;
+  }
 
   nextPage() {
     this.countPage += 3;
