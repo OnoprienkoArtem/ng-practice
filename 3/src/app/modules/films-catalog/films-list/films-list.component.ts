@@ -32,7 +32,7 @@ export class FilmsListComponent implements OnInit {
   }
 
   changeSearchValue() {
-    this.films = this.searchValue.length > 2
+    this.films = this.searchValue.length > 3
       ? this.filmsService.getAll().slice(0, this.countPage).filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase())) : this.filmsService.getAll().slice(0, this.countPage);
   }
 
