@@ -1,6 +1,8 @@
 <mat-card class="menu-card">
   <mat-toolbar class="menu-toolbar">
-    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-toolbar-row 
+      fxLayout="row" 
+      fxLayoutAlign="space-between center">
       <div class="favorite-section">
         <span *ngIf="countElement; else noFavorits">В избранное добавлено: {{countElement}}</span>
         <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
@@ -15,8 +17,8 @@
       </mat-form-field>
 
       <mat-form-field class="sort-section">
-        <mat-select placeholder="Сортировка">
-          <mat-option *ngFor="let sortingType of sortingTypes" (click)="mySort(sortingType.value)">
+        <mat-select placeholder="Сортировка" (selectionChange)="mySort($event)">
+          <mat-option *ngFor="let sortingType of sortingTypes" [value]="sortingType.value">
             {{sortingType.choice}}
           </mat-option>
         </mat-select>

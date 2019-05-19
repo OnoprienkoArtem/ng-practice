@@ -21,9 +21,10 @@ export class FilmsListComponent implements OnInit {
   countPage = 6;
   
   
-  constructor(private filmsService: FilmService) {}  
+  constructor(private filmsService: FilmService) {  
+  }  
 
-  mySort(value) { 
+  mySort({value}) {    
     switch (value) {
       case 'ASC': return this.films.sort(this.filmsService.compareSorting);
       case 'DESC': return this.films.sort(this.filmsService.compareSorting).reverse();
@@ -32,8 +33,10 @@ export class FilmsListComponent implements OnInit {
   }
 
   changeSearchValue() {
-    this.films = this.searchValue.length > 3
-      ? this.filmsService.getAll().slice(0, this.countPage).filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase())) : this.filmsService.getAll().slice(0, this.countPage);
+    const curentFilmList = this.filmsService.getAll().slice(0, this.countPage);
+    this.films = this.searchValue.length > 3 
+      ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase())) 
+      : curentFilmList;
   }
 
   addFilmToFavorit() {    
