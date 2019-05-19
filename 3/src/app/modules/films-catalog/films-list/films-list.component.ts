@@ -11,7 +11,7 @@ export class FilmsListComponent implements OnInit {
 
   countElement = 0;
   films: Film[];
-  filmFiltered: Film[];
+  filmFavorite: Film[];
   sortingTypes = [
     { value: 'ASC', choice: 'от А до Я' },
     { value: 'DESC', choice: 'от Я до А' },
@@ -31,12 +31,13 @@ export class FilmsListComponent implements OnInit {
   }
 
   addFilmToFavorit() {    
-    this.filmFiltered = this.films.filter(film => film.isFavorite);    
-    this.countElement = this.filmFiltered.length;
+    this.filmFavorite = this.films.filter(film => film.isFavorite);    
+    this.countElement = this.filmFavorite.length;
   }
 
   ngOnInit() { 
-    this.films = this.filmsService.getAll().slice(0, this.countPage);   
+    this.films = this.filmsService.getAll().slice(0, this.countPage);  
+    this.addFilmToFavorit();
   }  
 
   isDisabled() {
