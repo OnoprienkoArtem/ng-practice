@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../../services/film.service';
 import { Film } from '../../../models/film';
 
@@ -17,8 +17,9 @@ export class FilmsListComponent implements OnInit {
     { value: 'DESC', choice: 'от Я до А' },
     { value: 'DEFAULT', choice: 'По умолчанию' },
   ];  
-  
+  searchValue = '';  
   countPage = 6;
+  
   
   constructor(private filmsService: FilmService) {}  
 
@@ -28,6 +29,11 @@ export class FilmsListComponent implements OnInit {
       case 'DESC': return this.films.sort(this.filmsService.compareSorting).reverse();
       case 'DEFAULT': return this.films = this.filmsService.getAll().slice(0, this.countPage);
     }   
+  }
+
+  changeSearchValue() {
+    this.films = this.searchValue.length > 2
+      ? this.filmsService.getAll().slice(0, this.countPage).filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase())) : this.filmsService.getAll().slice(0, this.countPage);
   }
 
   addFilmToFavorit() {    

@@ -1,34 +1,36 @@
-<mat-card class="menu-card">    
-    <mat-toolbar class="menu-toolbar">
-        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-          <span *ngIf="countElement; else noFavorits">В избранное добавлено: {{countElement}}</span>
-          <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>          
-            <div>
-                <mat-form-field>
-                  <mat-select placeholder="Сортировка">
-                    <mat-option *ngFor="let sortingType of sortingTypes" (click)="mySort(sortingType.value)">
-                      {{sortingType.choice}}
-                    </mat-option>                  
-                  </mat-select>
-                </mat-form-field>
-            </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
-</mat-card>  
+<mat-card class="menu-card">
+  <mat-toolbar class="menu-toolbar">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="favorite-section">
+        <span *ngIf="countElement; else noFavorits">В избранное добавлено: {{countElement}}</span>
+        <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
+      </div>
+
+      <mat-form-field class="search-form-field">
+        <input matInput type="text" placeholder="Поиск по названию фильма" [(ngModel)]="searchValue"
+          (keyup)="changeSearchValue()">
+        <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field class="sort-section">
+        <mat-select placeholder="Сортировка">
+          <mat-option *ngFor="let sortingType of sortingTypes" (click)="mySort(sortingType.value)">
+            {{sortingType.choice}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</mat-card>
 
 <div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-  <app-film-item 
-    fxFlex="32%" 
-    fxFlex.lt-sm="100%" 
-    fxFlex.lt-md="45%" 
-    [data]="film" 
-    (updateCounter)="addFilmToFavorit()"
-    *ngFor="let film of films"
-  ></app-film-item>
+  <app-film-item fxFlex="32%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film" (updateCounter)="addFilmToFavorit()"
+    *ngFor="let film of films"></app-film-item>
 
   <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
     <button mat-raised-button color="primary" (click)="nextPage()" [disabled]='isDisabled()'>Показать еще</button>
   </div>
 </div>
-
-

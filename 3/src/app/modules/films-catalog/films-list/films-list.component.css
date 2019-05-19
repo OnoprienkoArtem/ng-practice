@@ -4,8 +4,18 @@
 
 .menu-toolbar {
   background-color: white;
-  min-height: 50px;
-  height: 50px;
+  min-height: 65px;
+  height: 65px;
+}
+
+.favorite-section {
+  width: 185px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sort-section {
+  width: 185px;
 }
 
 .cards-section {
@@ -13,3 +23,6 @@
   margin: 2em auto;  
 }
 
+.search-form-field {
+  width: 185px;
+}
