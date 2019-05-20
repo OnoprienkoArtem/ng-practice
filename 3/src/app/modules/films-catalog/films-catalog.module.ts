@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
 import { FilmsListComponent } from './films-list/films-list.component';
-import { FilmItemComponent } from '../../shared/film-item/film-item.component';
+import { FilmItemComponent } from '../../shared/components/film-item/film-item.component';
 
 
 @NgModule({
