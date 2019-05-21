@@ -9,13 +9,13 @@ import { Film } from '../../../models/film';
 export class FilmItemComponent implements OnInit {
 
   @Input('data') film: Film;
-  @Output() updateCounter = new EventEmitter<Film>();
+  @Output() updateListOfFavorite = new EventEmitter<Film>();
 
   constructor() { }
 
   addToFavorites() {
-    this.film.isFavorite = !this.film.isFavorite;
-    this.updateCounter.emit();
+    this.film.isFavorite = !this.film.isFavorite;    
+    this.updateListOfFavorite.emit();
   }
 
   ngOnInit() { } 
