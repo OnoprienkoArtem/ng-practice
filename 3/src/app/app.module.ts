@@ -8,6 +8,7 @@ import { MainModule } from './modules/main/main.module';
 import { FilmsCatalogModule } from './modules/films-catalog/films-catalog.module';
 import { MaterialModule } from './modules/material/material.module';
 
+
 @NgModule({
   declarations: [
     AppComponent

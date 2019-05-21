@@ -6,12 +6,13 @@ import { MaterialModule } from '../material/material.module';
 
 import { FilmsListComponent } from './films-list/films-list.component';
 import { FilmItemComponent } from '../../shared/components/film-item/film-item.component';
-
+import { SearchComponent } from '../../shared/components/search/search.component';
 
 @NgModule({
   declarations: [
     FilmsListComponent,
-    FilmItemComponent
+    FilmItemComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

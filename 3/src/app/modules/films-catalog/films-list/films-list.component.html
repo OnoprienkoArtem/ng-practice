@@ -8,13 +8,15 @@
         <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
       </div>
 
-      <mat-form-field class="search-form-field">
+      <app-search (updateSearchData)="updateData($event)"></app-search>
+
+      <!-- <mat-form-field class="search-form-field">
         <input matInput type="text" placeholder="Поиск по названию фильма" [(ngModel)]="searchValue"
           (keyup)="changeSearchValue()">
         <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
           <mat-icon>close</mat-icon>
         </button>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field class="sort-section">
         <mat-select placeholder="Сортировка" (selectionChange)="mySort($event)">

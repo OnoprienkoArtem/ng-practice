@@ -17,7 +17,7 @@ export class FilmsListComponent implements OnInit {
     { value: 'DESC', choice: 'от Я до А' },
     { value: 'DEFAULT', choice: 'По умолчанию' },
   ];  
-  searchValue = '';  
+  
   countPage = 6;
   
   
@@ -32,12 +32,16 @@ export class FilmsListComponent implements OnInit {
     }   
   }
 
-  changeSearchValue() {
-    const curentFilmList = this.filmsService.getAll().slice(0, this.countPage);
-    this.films = this.searchValue.length > 3 
-      ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase())) 
-      : curentFilmList;
+  updateData(data) {
+    this.films = data;    
   }
+
+  // changeSearchValue() {
+  //   const curentFilmList = this.filmsService.getAll().slice(0, this.countPage);
+  //   this.films = this.searchValue.length > 3 
+  //     ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase())) 
+  //     : curentFilmList;
+  // }
 
   addFilmToFavorit() {    
     this.filmFavorite = this.films.filter(film => film.isFavorite);    
