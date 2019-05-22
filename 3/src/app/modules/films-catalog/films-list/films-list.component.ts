@@ -9,7 +9,7 @@ import { Film } from '../../../models/film';
 })
 export class FilmsListComponent implements OnInit {
 
-  countElement = 0;
+  countFavorite = 0;
   films: Film[];
   filmFavorite: Film[];
   sortingTypes = [
@@ -32,12 +32,12 @@ export class FilmsListComponent implements OnInit {
   }
 
   updateData(data) {
-    this.films = data;       
+    this.films = data;
   }
 
   addFilmToFavorit() {    
     this.filmFavorite = this.films.filter(film => film.isFavorite);    
-    this.countElement = this.filmFavorite.length;
+    this.countFavorite = this.filmFavorite.length;
   }
 
   ngOnInit() { 
