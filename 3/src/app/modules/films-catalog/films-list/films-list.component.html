@@ -8,7 +8,7 @@
         <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
       </div>
 
-      <app-search (updateSearchData)="updateData($event)"></app-search>
+      <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
 
       <!-- <mat-form-field class="search-form-field">
         <input matInput type="text" placeholder="Поиск по названию фильма" [(ngModel)]="searchValue"

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FilmService } from '../../../services/film.service';
 import { Film } from '../../../models/film';
 
@@ -13,15 +13,15 @@ export class SearchComponent implements OnInit {
 
   films: Film[];
 
-  countPage = 6;
+ 
 
+  @Input('page') countPage;
   @Output() updateSearchData = new EventEmitter<Film[]>();
 
   constructor(private filmsService: FilmService) { }
 
   changeSearchValue() {    
-    const curentFilmList = this.filmsService.getAll().slice(0, this.countPage);
-    console.log(curentFilmList);
+    const curentFilmList = this.filmsService.getAll().slice(0, this.countPage);    
     this.films = this.searchValue.length > 3
       ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase()))
       : curentFilmList;
