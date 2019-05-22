@@ -34,10 +34,11 @@ h2 {
 
 .year {
     font-size: 1em;
-    font-weight: 700;
+    font-weight: 900;
+    margin: .25em 0;
 }
 
-.info p {
+.description {
     font-size: .8vw;
 }
 
