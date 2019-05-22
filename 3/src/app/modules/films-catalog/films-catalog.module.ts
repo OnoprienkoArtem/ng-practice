@@ -7,12 +7,14 @@ import { MaterialModule } from '../material/material.module';
 import { FilmsListComponent } from './films-list/films-list.component';
 import { FilmItemComponent } from '../../shared/components/film-item/film-item.component';
 import { SearchComponent } from '../../shared/components/search/search.component';
+import { FavotiteCountComponent } from '../../shared/components/favotite-count/favotite-count.component';
 
 @NgModule({
   declarations: [
     FilmsListComponent,
     FilmItemComponent,
-    SearchComponent
+    SearchComponent,
+    FavotiteCountComponent
   ],
   imports: [
     CommonModule,

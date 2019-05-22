@@ -5,11 +5,11 @@
       fxLayoutAlign="space-between center"
     >
 
-      <div class="favorite-section">
+      <!-- <div class="favorite-section">
         <span *ngIf="countFavorite; else noFavorits">В избранное добавлено: {{countFavorite}}</span>
         <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
-      </div>
-
+      </div> -->
+      <app-favotite-count [favotite]="countFavorite"></app-favotite-count>
       <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
 
       <mat-form-field class="sort-section">
