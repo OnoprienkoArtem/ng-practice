@@ -16,8 +16,7 @@ export class FilmsListComponent implements OnInit {
     { value: 'ASC', choice: 'от А до Я' },
     { value: 'DESC', choice: 'от Я до А' },
     { value: 'DEFAULT', choice: 'По умолчанию' },
-  ];  
-  
+  ];
   countPage = 6;
   
   
@@ -36,13 +35,6 @@ export class FilmsListComponent implements OnInit {
     this.films = data;    
   }
 
-  // changeSearchValue() {
-  //   const curentFilmList = this.filmsService.getAll().slice(0, this.countPage);
-  //   this.films = this.searchValue.length > 3 
-  //     ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase())) 
-  //     : curentFilmList;
-  // }
-
   addFilmToFavorit() {    
     this.filmFavorite = this.films.filter(film => film.isFavorite);    
     this.countElement = this.filmFavorite.length;
@@ -50,7 +42,7 @@ export class FilmsListComponent implements OnInit {
 
   ngOnInit() { 
     this.films = this.filmsService.getAll().slice(0, this.countPage);  
-    this.addFilmToFavorit();
+    this.addFilmToFavorit();  
   }  
 
   isDisabled() {

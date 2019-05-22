@@ -9,11 +9,8 @@ import { Film } from '../../../models/film';
 })
 export class SearchComponent implements OnInit {
 
-  searchValue = '';  
-
-  films: Film[];
-
- 
+  searchValue: string;  
+  films: Film[]; 
 
   @Input('page') countPage;
   @Output() updateSearchData = new EventEmitter<Film[]>();
@@ -22,11 +19,13 @@ export class SearchComponent implements OnInit {
 
   changeSearchValue() {    
     const curentFilmList = this.filmsService.getAll().slice(0, this.countPage);    
+    console.log(this.searchValue);
     this.films = this.searchValue.length > 3
       ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase()))
-      : curentFilmList;
+      : curentFilmList;  
     this.updateSearchData.emit(this.films);
   }
+
 
   ngOnInit() {
   }
