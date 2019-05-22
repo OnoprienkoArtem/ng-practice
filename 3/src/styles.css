@@ -16,11 +16,13 @@ mat-card {
     text-align: center;
 }
 
-app-film-item {
-    margin-bottom: 2em;
-}
+
 
 .mat-toolbar {
     font-size: 14px;
+}
+
+.mb-2em {
+    margin-bottom: 2em;
 }
 

@@ -10,14 +10,6 @@
 
       <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
 
-      <!-- <mat-form-field class="search-form-field">
-        <input matInput type="text" placeholder="Поиск по названию фильма" [(ngModel)]="searchValue"
-          (keyup)="changeSearchValue()">
-        <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field> -->
-
       <mat-form-field class="sort-section">
         <mat-select placeholder="Сортировка" (selectionChange)="mySort($event)">
           <mat-option *ngFor="let sortingType of sortingTypes" [value]="sortingType.value">
@@ -37,6 +29,7 @@
   fxLayoutAlign.lt-sm="center"
  >
   <app-film-item 
+    class="mb-2em"
     fxFlex="30%" 
     fxFlex.lt-sm="100%" 
     fxFlex.lt-md="45%" 
@@ -44,6 +37,10 @@
     (updateListOfFavorite)="addFilmToFavorit()"    
     *ngFor="let film of films"
   ></app-film-item>
+  <ng-container *ngIf="films.length === 0">
+    <div class="mb-2em">Результат поиска не дал результата.</div>
+  </ng-container>
+  
 
   <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
     <button mat-raised-button color="primary" (click)="nextPage()" [disabled]='isDisabled()'>Показать еще</button>

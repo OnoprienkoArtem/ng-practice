@@ -32,7 +32,7 @@ export class FilmsListComponent implements OnInit {
   }
 
   updateData(data) {
-    this.films = data;    
+    this.films = data;       
   }
 
   addFilmToFavorit() {    
