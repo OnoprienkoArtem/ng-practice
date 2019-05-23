@@ -5,9 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './favotite-count.component.html',
   styleUrls: ['./favotite-count.component.css']
 })
-export class FavotiteCountComponent implements OnInit {
-
-  
+export class FavotiteCountComponent implements OnInit {  
 
   @Input('favotite') countFavorite;
 

@@ -4,16 +4,11 @@
       fxLayout="row" 
       fxLayoutAlign="space-between center"
     >
-
-      <!-- <div class="favorite-section">
-        <span *ngIf="countFavorite; else noFavorits">В избранное добавлено: {{countFavorite}}</span>
-        <ng-template #noFavorits><span>У вас нет избранного</span></ng-template>
-      </div> -->
       <app-favotite-count [favotite]="countFavorite"></app-favotite-count>
       <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
 
       <mat-form-field class="sort-section">
-        <mat-select placeholder="Сортировка" (selectionChange)="mySort($event)">
+        <mat-select placeholder="Сортировка" (selectionChange)="sortByType($event)">
           <mat-option *ngFor="let sortingType of sortingTypes" [value]="sortingType.value">
             {{sortingType.choice}}
           </mat-option>

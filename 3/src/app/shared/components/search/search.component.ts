@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   constructor(private filmsService: FilmService) { }
 
   changeSearchValue() {    
-    const curentFilmList = this.filmsService.getAll().slice(0, this.countPage); 
+    const curentFilmList = this.filmsService.getPartData(this.countPage); 
     this.films = this.searchValue.length > 3
       ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase()))
       : curentFilmList;  

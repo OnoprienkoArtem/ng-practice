@@ -26,7 +26,11 @@ export class FilmService {
 
 
   getAll() {
-    return [...this.films];
+    return this.films.slice();
+  }
+
+  getPartData(amount) {
+    return this.films.slice(0, amount);
   }
 
   compareSorting(current, next) {
