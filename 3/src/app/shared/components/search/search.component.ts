@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
 
   @Input('page') countPage;
   @Output() updateSearchData = new EventEmitter<Film[]>();
+  
 
   constructor(private filmsService: FilmService) { }
 

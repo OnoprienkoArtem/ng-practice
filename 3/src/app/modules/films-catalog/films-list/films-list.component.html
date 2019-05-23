@@ -6,14 +6,15 @@
     >
       <app-favotite-count [favotite]="countFavorite"></app-favotite-count>
       <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
+      <app-sorting-items [page]="countPage" [data]="films" (updateSortingData)="sortingData($event)"></app-sorting-items>
 
-      <mat-form-field class="sort-section">
+      <!-- <mat-form-field class="sort-section">
         <mat-select placeholder="Сортировка" (selectionChange)="sortByType($event)">
           <mat-option *ngFor="let sortingType of sortingTypes" [value]="sortingType.value">
             {{sortingType.choice}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
     </mat-toolbar-row>
   </mat-toolbar>
