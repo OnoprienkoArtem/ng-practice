@@ -1,21 +1,9 @@
 <mat-card class="menu-card">
   <mat-toolbar class="menu-toolbar">
-    <mat-toolbar-row 
-      fxLayout="row" 
-      fxLayoutAlign="space-between center"
-    >
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <app-favotite-count [favotite]="countFavorite"></app-favotite-count>
       <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
       <app-sorting-items [page]="countPage" [data]="films" (updateSortingData)="sortingData($event)"></app-sorting-items>
-
-      <!-- <mat-form-field class="sort-section">
-        <mat-select placeholder="Сортировка" (selectionChange)="sortByType($event)">
-          <mat-option *ngFor="let sortingType of sortingTypes" [value]="sortingType.value">
-            {{sortingType.choice}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
-
     </mat-toolbar-row>
   </mat-toolbar>
 </mat-card>
@@ -37,8 +25,7 @@
   ></app-film-item>
   <ng-container *ngIf="films.length === 0">
     <div class="mb-2em">Результат поиска не дал результата.</div>
-  </ng-container>
-  
+  </ng-container>  
 
   <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
     <button mat-raised-button color="primary" (click)="nextPage()"
