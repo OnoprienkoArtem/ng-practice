@@ -21,8 +21,7 @@ export class SortingItemsComponent implements OnInit {
 
   constructor(private filmsService: FilmService) { }
 
-  ngOnInit() {
-    // this.films = this.filmsService.getPartData(this.countPage);
+  ngOnInit() {   
   }
 
   sortByType({ value }) {    

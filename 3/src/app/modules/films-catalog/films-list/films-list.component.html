@@ -3,7 +3,7 @@
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <app-favotite-count [favotite]="countFavorite"></app-favotite-count>
       <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
-      <app-sorting-items [page]="countPage" [data]="films" (updateSortingData)="sortingData($event)"></app-sorting-items>
+      <app-sorting-items [page]="countPage" [data]="films" (updateSortingData)="updateData($event)"></app-sorting-items>
     </mat-toolbar-row>
   </mat-toolbar>
 </mat-card>

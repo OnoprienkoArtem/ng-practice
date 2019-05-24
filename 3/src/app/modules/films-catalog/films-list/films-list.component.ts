@@ -12,28 +12,10 @@ export class FilmsListComponent implements OnInit {
   countFavorite = 0;
   films: Film[];
   filmFavorite: Film[];
-  // sortingTypes = [
-  //   { value: 'ASC', choice: 'от А до Я' },
-  //   { value: 'DESC', choice: 'от Я до А' },
-  //   { value: 'DEFAULT', choice: 'По умолчанию' },
-  // ];
-  countPage = 6;
-  
+  countPage = 6; 
   
   constructor(private filmsService: FilmService) {  
   }  
-
-  // sortByType({value}) {    
-  //   switch (value) {
-  //     case 'ASC': return this.films.sort(this.filmsService.compareSorting);
-  //     case 'DESC': return this.films.sort(this.filmsService.compareSorting).reverse();
-  //     case 'DEFAULT': return this.films = this.filmsService.getPartData(this.countPage);
-  //   }   
-  // }
-
-  sortingData(data) {
-    this.films = data;
-  }
 
   updateData(data) {
     this.films = data;
@@ -44,11 +26,6 @@ export class FilmsListComponent implements OnInit {
     this.countFavorite = this.filmFavorite.length;
   }
 
-  ngOnInit() { 
-    this.films = this.filmsService.getPartData(this.countPage);
-    this.addFilmToFavorit();  
-  }  
-
   isDisabled() {
     if (this.countPage === this.filmsService.getAll().length) return true;
   }
@@ -58,5 +35,9 @@ export class FilmsListComponent implements OnInit {
     this.films = this.filmsService.getPartData(this.countPage);
   }
 
+  ngOnInit() { 
+    this.films = this.filmsService.getPartData(this.countPage);
+    this.addFilmToFavorit();  
+  }  
 
 }
