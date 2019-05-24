@@ -10,6 +10,11 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { FilmsCatalogModule } from './films-catalog/films-catalog.module';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FilmsCatalogModule,
+    FlexLayoutModule,
     MatButtonModule, 
     MatCheckboxModule,
     MatToolbarModule,

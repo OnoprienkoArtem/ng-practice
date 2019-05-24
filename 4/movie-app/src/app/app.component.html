@@ -1,10 +1,13 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
+  <mat-toolbar-row fxLayout="row wrap" fxLayoutAlign="space-between center">
     <span>Film Catalog</span>
-    <span class="example-spacer"></span>
-    <a mat-button *ngFor="let link of links" [routerLink]="link.path" [routerLinkActive]="link.active">
-      <mat-icon class="example-icon">{{link.icon}}</mat-icon>{{link.label}}
-    </a>
+    <div>
+      <a mat-button *ngFor="let link of links" [routerLink]="link.path" [routerLinkActive]="link.active">
+        <mat-icon class="icon">{{link.icon}}</mat-icon>
+        <span class="nav">{{link.label}}</span>
+      </a>
+    </div>
+
   </mat-toolbar-row>
 </mat-toolbar>
 
