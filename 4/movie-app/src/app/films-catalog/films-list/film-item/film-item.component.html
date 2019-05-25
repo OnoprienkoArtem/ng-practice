@@ -1,3 +1,17 @@
-<p>
-  film-item works!
-</p>
+<div class='block'>
+  <div class='cards'>
+    <div>
+      <img src="https://image.tmdb.org/t/p/w500{{film.poster_path}}" alt="">
+    </div>
+    <div class='info'>
+      <h2>{{film.original_title}}</h2>
+      <p class='year'>{{film.release_date}}</p>
+      <!-- <p class="description">
+        {{ (film.description.length > 150) ? (film.description | slice:0:180) + '...' : (film.description) }}</p> -->
+      <div class='btn-block'>
+        <!-- <button mat-button
+          (click)="addToFavorites()">{{film.isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}}</button> -->
+      </div>
+    </div>
+  </div>
+</div>

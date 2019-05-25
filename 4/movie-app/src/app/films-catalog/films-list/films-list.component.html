@@ -1,3 +1,21 @@
-<p>
-  films-list works!
-</p>
+<mat-card class="menu-card">
+  <mat-toolbar class="menu-toolbar">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <!-- <app-favotite-count [favotite]="countFavorite"></app-favotite-count>
+      <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>
+      <app-sorting-items [page]="countPage" [data]="films" (updateSortingData)="updateData($event)"></app-sorting-items> -->
+    </mat-toolbar-row>
+  </mat-toolbar>
+</mat-card>
+
+<div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center">
+  <app-film-item class="mb-2em" fxFlex="30%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film"
+    (updateListOfFavorite)="addFilmToFavorit()" *ngFor="let film of films"></app-film-item>
+  <ng-container *ngIf="films.length === 0">
+    <div class="mb-2em">Результат поиска не дал результата.</div>
+  </ng-container>
+
+  <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
+    <button mat-raised-button color="primary" (click)="nextPage()" [disabled]='isDisabled()'>Показать еще</button>
+  </div>
+</div>
