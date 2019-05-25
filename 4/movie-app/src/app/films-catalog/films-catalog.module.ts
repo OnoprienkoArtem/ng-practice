@@ -4,10 +4,16 @@ import { FilmsListComponent } from './films-list/films-list.component';
 import { MainComponent } from './main/main.component';
 import { FilmItemComponent } from './films-list/film-item/film-item.component';
 
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [FilmsListComponent, MainComponent, FilmItemComponent],
+  declarations: [
+    FilmsListComponent, 
+    MainComponent, 
+    FilmItemComponent
+    ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ]
 })
 export class FilmsCatalogModule { }
