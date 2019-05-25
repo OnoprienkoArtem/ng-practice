@@ -9,6 +9,7 @@ import { Film } from '../../models/film';
 export class FilmsListComponent implements OnInit {
 
   films: Film[];
+  
 
   constructor(public filmsService: FilmService) { }
 

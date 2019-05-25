@@ -4,6 +4,8 @@ import { FilmsListComponent } from './films-list/films-list.component';
 import { MainComponent } from './main/main.component';
 import { FilmItemComponent } from './films-list/film-item/film-item.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 
@@ -18,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    FlexLayoutModule
   ]
 })
 export class FilmsCatalogModule { }

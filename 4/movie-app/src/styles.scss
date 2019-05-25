@@ -6,3 +6,32 @@ body {
   font-family: 'Montserrat', sans-serif;
   overflow: overlay;
 }
+
+.row {
+  width: 100%;
+}
+
+mat-card {
+  max-width: 90%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.mat-toolbar,
+.mat-toolbar-row,
+.mat-button,
+.mat-form-field,
+.mat-option,
+.mat-raised-button {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+
+.mat-toolbar {
+  font-size: 14px;
+}
+
+.mb-2em {
+  margin-bottom: 2em;
+}
