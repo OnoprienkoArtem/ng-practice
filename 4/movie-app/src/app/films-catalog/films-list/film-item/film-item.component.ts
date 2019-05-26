@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FilmService } from '../../../services/film.service';
 import { Film } from '../../../models/film';
 @Component({
@@ -8,14 +8,23 @@ import { Film } from '../../../models/film';
 })
 export class FilmItemComponent implements OnInit {
 
-  @Input('data') film: any;
   imgUrl: string = this.filmsService.midImgPath;
+
+ 
+
+  @Input('data') film: any;
+  @Output() updateListOfFavorite = new EventEmitter<Object>();
   
 
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() {
-    console.log(this.film);
+    // console.log(this.film);
+  }
+
+  addToFavorites() {
+    this.film.isFavorite = !this.film.isFavorite;
+    this.updateListOfFavorite.emit(this.film.id);
   }
 
 }

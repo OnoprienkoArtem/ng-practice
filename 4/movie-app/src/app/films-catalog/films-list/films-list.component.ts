@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
+import { log } from 'util';
 @Component({
   selector: 'app-films-list',
   templateUrl: './films-list.component.html',
@@ -8,22 +9,28 @@ import { Film } from '../../models/film';
 })
 export class FilmsListComponent implements OnInit {
 
-  films: Film[];
-  
+  public films: Film[];
+  private favoriteFilms: any = new Set();
+  public countFavorite: number;
 
   constructor(public filmsService: FilmService) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
-        console.log(filmList.results);
+        // console.log(filmList.results);
 
         this.films = filmList.results;
-        console.log(`${this.filmsService.midImgPath}${filmList.results[2].poster_path}`)
+        // console.log(`${this.filmsService.midImgPath}${filmList.results[2].poster_path}`)
       },
       err => {
         console.log("error", err);
       })
+  }
+
+  addFilmToFavorit(id) { 
+    this.favoriteFilms.has(id) ? this.favoriteFilms.delete(id) : this.favoriteFilms.add(id);    
+    this.countFavorite = this.favoriteFilms.size;      
   }
 
 }

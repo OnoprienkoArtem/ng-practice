@@ -10,12 +10,12 @@
 
 <div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center">
   <app-film-item class="mb-2em" fxFlex="30%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film"
-    (updateListOfFavorite)="addFilmToFavorit()" *ngFor="let film of films"></app-film-item>
-  <ng-container *ngIf="films.length === 0">
+    (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films"></app-film-item>
+  <!-- <ng-container *ngIf="films.length === 0">
     <div class="mb-2em">Результат поиска не дал результата.</div>
-  </ng-container>
+  </ng-container> -->
 
-  <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
+  <!-- <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
     <button mat-raised-button color="primary" (click)="nextPage()" [disabled]='isDisabled()'>Показать еще</button>
-  </div>
+  </div> -->
 </div>

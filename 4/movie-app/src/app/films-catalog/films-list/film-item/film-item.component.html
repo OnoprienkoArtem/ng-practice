@@ -4,13 +4,13 @@
       <img src="{{imgUrl + film.poster_path}}" alt="">
     </div>
     <div class='info'>
-      <h2>{{film.original_title}}</h2>
+      <h2>{{film.title}}</h2>
       <p class='year'>{{film.release_date}}</p>
-      <!-- <p class="description">
-        {{ (film.description.length > 150) ? (film.description | slice:0:180) + '...' : (film.description) }}</p> -->
+      <p class="description">
+        {{ (film.overview.length > 180) ? (film.overview | slice:0:180) + '...' : (film.overview) }}</p>
       <div class='btn-block'>
-        <!-- <button mat-button
-          (click)="addToFavorites()">{{film.isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}}</button> -->
+        <button mat-button
+          (click)="addToFavorites()">{{film.isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}}</button>
       </div>
     </div>
   </div>
