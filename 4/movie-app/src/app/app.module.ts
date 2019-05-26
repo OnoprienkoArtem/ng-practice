@@ -15,9 +15,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FilmsCatalogModule } from './films-catalog/films-catalog.module';
 
 
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent    
   ],
   imports: [
     BrowserModule,
