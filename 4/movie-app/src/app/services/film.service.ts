@@ -22,9 +22,23 @@ export class FilmService {
   midBackPath: string = `${this.imgPath}/w780`
   smallBackPath: string = `${this.imgPath}/w300`
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.getPopularFilms().subscribe(
+      (filmList: any) => {
+        console.log(filmList.results);
+
+        // this.films = filmList.results;
+        // console.log(`${this.filmsService.midImgPath}${filmList.results[2].poster_path}`)
+      },
+      err => {
+        console.log("error", err);
+      })
+
+
+  }
 
   getPopularFilms(page?: number) {
     return this.http.get(`${this.movieUrl}/popular?page=${page}${this.params}`)
   }
+
 }
