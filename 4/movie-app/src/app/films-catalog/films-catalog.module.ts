@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatCardModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class FilmsCatalogModule { }

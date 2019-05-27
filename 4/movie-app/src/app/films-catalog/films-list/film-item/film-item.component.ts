@@ -13,7 +13,7 @@ export class FilmItemComponent implements OnInit {
  
 
   @Input('data') film: any;
-  @Output() updateListOfFavorite = new EventEmitter<Object>();
+  @Output() updateListOfFavorite = new EventEmitter<number>();
   
 
   constructor(public filmsService: FilmService) { }

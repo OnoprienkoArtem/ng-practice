@@ -8,10 +8,28 @@
       <p class='year'>{{film.release_date}}</p>
       <p class="description">
         {{ (film.overview.length > 180) ? (film.overview | slice:0:180) + '...' : (film.overview) }}</p>
-      <div class='btn-block'>
-        <button mat-button
-          (click)="addToFavorites()">{{film.isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}}</button>
-      </div>
+      <mat-card-actions>
+        <button mat-icon-button>
+          <i class="material-icons">
+            play_arrow
+          </i>
+        </button>
+        <button mat-icon-button>
+          <i class="material-icons">
+            menu
+          </i>
+        </button>
+        <button *ngIf="!film.isFavorite; else marked" mat-icon-button (click)="addToFavorites()">
+          <i class="material-icons">favorite</i>
+        </button>
+        <ng-template #marked>
+          <button mat-icon-button (click)="addToFavorites()" color="accent">
+            <i class="material-icons">
+              favorite
+            </i>
+          </button>
+        </ng-template>
+      </mat-card-actions>
     </div>
   </div>
 </div>
