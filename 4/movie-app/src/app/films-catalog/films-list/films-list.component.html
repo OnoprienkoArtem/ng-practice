@@ -10,10 +10,11 @@
 </mat-card>
 
 <div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center">
-  <app-film-item class="mb-2em" fxFlex="30%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film"
-    (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films"></app-film-item>
+  <!-- <app-film-item class="mb-2em" fxFlex="30%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="film"
+    (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films"></app-film-item> -->
+  <app-actor-item class="mb-2em" fxFlex="22%" fxFlex.lt-sm="100%" fxFlex.lt-md="45%" [data]="actor"
+    *ngFor="let actor of actors"></app-actor-item>
 
-    
   <!-- <ng-container *ngIf="films.length === 0">
     <div class="mb-2em">Результат поиска не дал результата.</div>
   </ng-container> -->

@@ -10,6 +10,7 @@ import { log } from 'util';
 export class FilmsListComponent implements OnInit {
 
   public films: Film[];
+  public actors: any[];
   private favoriteFilms: any = new Set();
   public countFavorite: number;
 
@@ -24,7 +25,19 @@ export class FilmsListComponent implements OnInit {
       },
       err => {
         console.log("error", err);
-      })
+      }
+    );
+
+    this.filmsService.getPopularActors().subscribe(
+      (actorsList: any) => {
+        // console.log(filmList.results);
+        this.actors = actorsList.results;
+        // console.log(`${this.filmsService.midImgPath}${filmList.results[2].poster_path}`)
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 
   addFilmToFavorit(id) { 
@@ -33,6 +46,6 @@ export class FilmsListComponent implements OnInit {
   }
 
 
-  
+
 
 }

@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FilmsListComponent } from './films-list/films-list.component';
 import { MainComponent } from './main/main.component';
 import { FilmItemComponent } from './films-list/film-item/film-item.component';
-
+import { ActorItemComponent } from '../shared/components/actor-item/actor-item.component';
 import { FavoriteCountComponent } from '../shared/components/favorite-count/favorite-count.component';
 import { SortingComponent } from '../shared/components/sorting/sorting.component';
+
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainComponent, 
     FilmItemComponent,
     FavoriteCountComponent,
-    SortingComponent
+    SortingComponent,
+    ActorItemComponent
     ],
   imports: [
     CommonModule,
