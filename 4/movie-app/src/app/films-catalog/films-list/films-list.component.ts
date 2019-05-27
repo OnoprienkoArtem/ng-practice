@@ -13,6 +13,7 @@ export class FilmsListComponent implements OnInit {
   public actors: any[];
   private favoriteFilms: any = new Set();
   public countFavorite: number;
+  public visibleContent: boolean = true;
 
   constructor(public filmsService: FilmService) { }
 
@@ -20,7 +21,7 @@ export class FilmsListComponent implements OnInit {
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         // console.log(filmList.results);
-        this.films = filmList.results.splice(0, 6);
+        this.films = filmList.results;
         // console.log(`${this.filmsService.midImgPath}${filmList.results[2].poster_path}`)
       },
       err => {
@@ -43,6 +44,10 @@ export class FilmsListComponent implements OnInit {
   addFilmToFavorit(id) { 
     this.favoriteFilms.has(id) ? this.favoriteFilms.delete(id) : this.favoriteFilms.add(id);    
     this.countFavorite = this.favoriteFilms.size;      
+  }
+
+  updateData(data) {
+    this.visibleContent = data === 'Actors' ? false : true;    
   }
 
 
