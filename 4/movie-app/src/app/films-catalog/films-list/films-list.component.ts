@@ -9,26 +9,46 @@ import { log } from 'util';
 })
 export class FilmsListComponent implements OnInit {
 
-  isDisabled: boolean = false;
+  public isDisabledFilmsBtn: boolean = false;
+
   public films: Film[];
   private filmsClone;
-  private actorsClone;
+
+  private firstFilmsPage: number = 9;
+  private currentFilmsPage: number = this.firstFilmsPage;
+  private nextPageFilms: number;
+  private stepFilmsPage: number = 3;
+
+
+  public isDisabledActorsBtn: boolean = false;
+
   public actors: any[];
-  private favoriteFilms: any = new Set();
-  public countFavorite: number;
+  private actorsClone;
+
+  private firstActorsPage: number = 8;
+  private currentActorsPage: number = this.firstActorsPage;
+  private nextPageActors: number;
+  private stepActorsPage: number = 4;
+
+
   public visibleContent: boolean = true;
 
-  firstPage: number = 9;
-  currentPage: number = this.firstPage;
-  nextPageData: number;
-  stepPage: number = 3;
+
+  private favoriteFilms: any = new Set();
+  public countFavorite: number;
+
+
+
+
+
+
 
   constructor(public filmsService: FilmService) {
 
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         this.filmsClone = [...filmList.results];
-        this.films = this.filmsClone.slice(0, this.firstPage);
+        this.films = this.filmsClone.slice(0, this.firstFilmsPage);        
       },
       err => console.log("error", err)
     ),
@@ -36,7 +56,7 @@ export class FilmsListComponent implements OnInit {
     this.filmsService.getPopularActors().subscribe(
       (actorsList: any) => {        
         this.actorsClone = [...actorsList.results];   
-        this.actors = this.actorsClone.slice(0, this.firstPage);    
+        this.actors = this.actorsClone.slice(0, this.firstActorsPage);    
       },
       err => {
         console.log("error", err);
@@ -46,12 +66,22 @@ export class FilmsListComponent implements OnInit {
 
   ngOnInit() {}
 
-  nextPage() {   
-    this.nextPageData = this.currentPage + this.stepPage;    
-    this.films = this.films.concat(this.filmsClone.slice(this.currentPage, this.nextPageData));
-    this.currentPage += this.stepPage;        
-    this.isDisabled = this.films.length  === this.filmsClone.length ? true : false; 
+  nextFilmsPage() {   
+    this.nextPageFilms = this.currentFilmsPage + this.stepFilmsPage;    
+    this.films = this.films.concat(this.filmsClone.slice(this.currentFilmsPage, this.nextPageFilms));   
+    this.currentFilmsPage += this.stepFilmsPage;        
+    this.isDisabledFilmsBtn = this.films.length  === this.filmsClone.length ? true : false; 
   }
+
+  nextActorsPage() {
+    this.nextPageActors = this.currentActorsPage + this.stepActorsPage;
+    this.actors = this.actors.concat(this.actorsClone.slice(this.currentActorsPage, this.nextPageActors));
+    this.currentActorsPage += this.stepActorsPage;
+    this.isDisabledActorsBtn = this.actors.length === this.actorsClone.length ? true : false;
+  }
+  
+
+ 
 
   addFilmToFavorit(id) { 
     this.favoriteFilms.has(id) ? this.favoriteFilms.delete(id) : this.favoriteFilms.add(id);    
