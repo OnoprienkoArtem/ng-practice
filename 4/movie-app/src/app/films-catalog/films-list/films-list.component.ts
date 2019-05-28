@@ -11,8 +11,8 @@ export class FilmsListComponent implements OnInit {
 
   isDisabled: boolean = false;
   public films: Film[];
-  filmsClone;
-  actorsClone;
+  private filmsClone;
+  private actorsClone;
   public actors: any[];
   private favoriteFilms: any = new Set();
   public countFavorite: number;
@@ -24,6 +24,7 @@ export class FilmsListComponent implements OnInit {
   stepPage: number = 3;
 
   constructor(public filmsService: FilmService) {
+
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         this.filmsClone = [...filmList.results];
@@ -31,6 +32,7 @@ export class FilmsListComponent implements OnInit {
       },
       err => console.log("error", err)
     ),
+
     this.filmsService.getPopularActors().subscribe(
       (actorsList: any) => {        
         this.actorsClone = [...actorsList.results];   
@@ -40,7 +42,6 @@ export class FilmsListComponent implements OnInit {
         console.log("error", err);
       }
     )
-
    }
 
   ngOnInit() {}
