@@ -9,36 +9,47 @@ import { log } from 'util';
 })
 export class FilmsListComponent implements OnInit {
 
+  isDisabled: boolean = false;
   public films: Film[];
+  filmsClone;
+  actorsClone;
   public actors: any[];
   private favoriteFilms: any = new Set();
   public countFavorite: number;
   public visibleContent: boolean = true;
 
-  constructor(public filmsService: FilmService) { }
+  firstPage: number = 9;
+  currentPage: number = this.firstPage;
+  nextPageData: number;
+  stepPage: number = 3;
 
-  ngOnInit() {    
+  constructor(public filmsService: FilmService) {
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
-        // console.log(filmList.results);
-        this.films = filmList.results;
-        // console.log(`${this.filmsService.midImgPath}${filmList.results[2].poster_path}`)
+        this.filmsClone = [...filmList.results];
+        this.films = this.filmsClone.slice(0, this.firstPage);
       },
-      err => {
-        console.log("error", err);
-      }
-    );
-
+      err => console.log("error", err)
+    ),
     this.filmsService.getPopularActors().subscribe(
-      (actorsList: any) => {
-        // console.log(filmList.results);
-        this.actors = actorsList.results;
-        // console.log(`${this.filmsService.midImgPath}${filmList.results[2].poster_path}`)
+      (actorsList: any) => {        
+        this.actorsClone = [...actorsList.results];   
+        this.actors = this.actorsClone.slice(0, this.firstPage);    
       },
       err => {
         console.log("error", err);
       }
     )
+
+   }
+
+  ngOnInit() {}
+
+  nextPage() {   
+    this.nextPageData = this.currentPage + this.stepPage;    
+    this.films = this.films.concat(this.filmsClone.slice(this.currentPage, this.nextPageData));
+    this.currentPage += this.stepPage;        
+    this.isDisabled = this.films.length  === this.filmsClone.length ? true : false; 
   }
 
   addFilmToFavorit(id) { 
@@ -49,6 +60,8 @@ export class FilmsListComponent implements OnInit {
   updateData(data) {
     this.visibleContent = data === 'Actors' ? false : true;    
   }
+
+ 
 
 
 
