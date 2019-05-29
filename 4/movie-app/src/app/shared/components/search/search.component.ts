@@ -25,8 +25,6 @@ export class SearchComponent implements OnInit {
   constructor(private filmsService: FilmService) { }
 
   changeSearchValue() {
-
-    console.log(this.currentFilmsPage);
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         this.filmsClone = [...filmList.results];
@@ -36,7 +34,8 @@ export class SearchComponent implements OnInit {
     )
 
     if (this.searchValue.length > 2) {
-      this.films = this.films.filter(film => film.title.toLowerCase().includes(this.searchValue.toLowerCase()));      
+      this.films = this.films.filter(film => film.title.toLowerCase().includes(this.searchValue.toLowerCase()));
+      this.updateBtnShowElse.emit(true);      
     } else {
       this.films;
     }

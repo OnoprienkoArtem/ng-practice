@@ -91,7 +91,9 @@ export class FilmsListComponent implements OnInit {
     this.films = data;
   }
 
-
+  updateBtn(event) {
+    this.isDisabledFilmsBtn = event;
+  }
 
 
 
