@@ -15,7 +15,7 @@ export class FilmsListComponent implements OnInit {
   private filmsClone;
 
   private firstFilmsPage: number = 9;
-  private currentFilmsPage: number = this.firstFilmsPage;
+  public currentFilmsPage: number = this.firstFilmsPage;
   private nextPageFilms: number;
   private stepFilmsPage: number = 3;
 
@@ -91,7 +91,7 @@ export class FilmsListComponent implements OnInit {
     this.films = data;
   }
 
- 
+
 
 
 

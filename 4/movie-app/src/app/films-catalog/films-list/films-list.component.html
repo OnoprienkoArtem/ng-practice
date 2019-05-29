@@ -2,7 +2,8 @@
   <mat-toolbar class="menu-toolbar">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <app-favorite-count [favorite]="countFavorite"></app-favorite-count>
-      <app-search [data]="films" [page]="currentFilmsPage" (updateSearchData)="searchData($event)"></app-search>
+      <app-search [data]="films" [page]="currentFilmsPage"
+        (updateSearchData)="searchData($event)"></app-search>
       <app-sorting (updateSortingData)="updateData($event)"></app-sorting>
     </mat-toolbar-row>
   </mat-toolbar>

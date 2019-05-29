@@ -16,10 +16,11 @@ export class SearchComponent implements OnInit {
   filmsClone;
 
   @Input('page') currentFilmsPage;
-
   @Input('data') films;
-  @Output() updateSearchData = new EventEmitter<Film[]>();
+ 
 
+  @Output() updateSearchData = new EventEmitter<Film[]>();
+  @Output() updateBtnShowElse = new EventEmitter<boolean>();
 
   constructor(private filmsService: FilmService) { }
 
@@ -35,7 +36,7 @@ export class SearchComponent implements OnInit {
     )
 
     if (this.searchValue.length > 2) {
-      this.films = this.films.filter(film => film.title.toLowerCase().includes(this.searchValue.toLowerCase()))
+      this.films = this.films.filter(film => film.title.toLowerCase().includes(this.searchValue.toLowerCase()));      
     } else {
       this.films;
     }
