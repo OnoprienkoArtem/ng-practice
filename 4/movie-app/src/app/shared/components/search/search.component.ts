@@ -11,23 +11,35 @@ export class SearchComponent implements OnInit {
 
 
   searchValue: string;
-  films: Film[];
+  // films: Film[];
 
-  @Input('page') countPage;
+  filmsClone;
+
+  @Input('page') currentFilmsPage;
+
+  @Input('data') films;
   @Output() updateSearchData = new EventEmitter<Film[]>();
 
 
   constructor(private filmsService: FilmService) { }
 
   changeSearchValue() {
-    // const curentFilmList = this.filmsService.getPartData(this.countPage);
 
-    if (this.searchValue.length > 3) {
-      console.log(this.searchValue);
+    console.log(this.currentFilmsPage);
+    this.filmsService.getPopularFilms().subscribe(
+      (filmList: any) => {
+        this.filmsClone = [...filmList.results];
+        this.films = this.filmsClone.slice(0, this.currentFilmsPage);
+      },
+      err => console.log("error", err)
+    )
+
+    if (this.searchValue.length > 2) {
+      this.films = this.films.filter(film => film.title.toLowerCase().includes(this.searchValue.toLowerCase()))
+    } else {
+      this.films;
     }
-    // this.films = this.searchValue.length > 3
-      // ? curentFilmList.filter(film => film.name.toLowerCase().includes(this.searchValue.toLowerCase()))
-      // : curentFilmList;
+
     this.updateSearchData.emit(this.films);
   }
 

@@ -87,6 +87,10 @@ export class FilmsListComponent implements OnInit {
     this.visibleContent = data === 'Actors' ? false : true;    
   }
 
+  searchData(data) {    
+    this.films = data;
+  }
+
  
 
 
