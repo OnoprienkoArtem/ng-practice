@@ -93,6 +93,9 @@ export class FilmsListComponent implements OnInit {
 
   updateBtn(event) {
     this.isDisabledFilmsBtn = event;
+    if (this.films.length === this.filmsClone.length) {
+      this.isDisabledFilmsBtn = true;
+    }    
   }
 
 

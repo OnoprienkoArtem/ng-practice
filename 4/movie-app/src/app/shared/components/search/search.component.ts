@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   filmsClone;
 
   @Input('page') currentFilmsPage;
-  @Input('data') films;
+  @Input('data') films: Film[];
  
 
   @Output() updateSearchData = new EventEmitter<Film[]>();
@@ -38,6 +38,10 @@ export class SearchComponent implements OnInit {
       this.updateBtnShowElse.emit(true);      
     } else {
       this.films;
+      this.updateBtnShowElse.emit(false);
+      if (this.films.length === this.filmsClone.length) {
+        this.updateBtnShowElse.emit(true);   
+      }
     }
 
     this.updateSearchData.emit(this.films);
