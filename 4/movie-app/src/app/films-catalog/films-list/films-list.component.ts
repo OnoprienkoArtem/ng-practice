@@ -38,11 +38,6 @@ export class FilmsListComponent implements OnInit {
   public countFavorite: number;
 
 
-
-
-
-
-
   constructor(public filmsService: FilmService) {
 
     this.filmsService.getPopularFilms().subscribe(

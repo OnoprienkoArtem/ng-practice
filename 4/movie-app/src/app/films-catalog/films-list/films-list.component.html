@@ -2,8 +2,7 @@
   <mat-toolbar class="menu-toolbar">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <app-favorite-count [favorite]="countFavorite"></app-favorite-count>
-      <!--   <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>-->
-      <!-- <app-sorting [page]="countPage" [data]="films" (updateSortingData)="updateData($event)"></app-sorting>  -->
+      <app-search [page]="countPage" (updateSearchData)="updateData($event)"></app-search>      
       <app-sorting (updateSortingData)="updateData($event)"></app-sorting>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -34,8 +33,5 @@
     <div class="mb-2em">Результат поиска не дал результата.</div>
   </ng-container> -->
 
-  <!-- <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-    <button mat-raised-button color="primary" (click)="nextPage($event)" *ngIf="visibleContent"
-      [disabled]='isDisabled'>Показать еще</button>
-  </div> -->
+
 </div>
