@@ -48,17 +48,13 @@ export class FilmsListComponent implements OnInit {
         this.films = this.filmsClone.slice(0, this.firstFilmsPage);   
 
         if (this.filmsClone) {
-          // setTimeout(() => {
+          setTimeout(() => {
             this.spiner = false;
-          // }, 2000);         
-        }
+          }, 2000);         
+        }        
       },
       err => console.log("error", err)
     ),
-
-      
-
-
 
     this.filmsService.getPopularActors().subscribe(
       (actorsList: any) => {        
@@ -69,9 +65,11 @@ export class FilmsListComponent implements OnInit {
         console.log("error", err);
       }
     )
-   }
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   nextFilmsPage() {   
     this.nextPageFilms = this.currentFilmsPage + this.stepFilmsPage;    
