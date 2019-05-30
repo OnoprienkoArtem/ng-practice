@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
-
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-films-list',
@@ -41,33 +41,35 @@ export class FilmsListComponent implements OnInit {
   public countFavorite: number;
 
 
-  constructor(public filmsService: FilmService) {
-    this.filmsService.getPopularFilms().subscribe(
-      (filmList: any) => {
-        this.filmsClone = [...filmList.results];
-        this.films = this.filmsClone.slice(0, this.firstFilmsPage);   
+  constructor(public filmsService: FilmService) { }
 
-        if (this.filmsClone) {
-          setTimeout(() => {
-            this.spiner = false;
-          }, 2000);         
-        }        
-      },
-      err => console.log("error", err)
+  ngOnInit() { 
+    this.filmsService.getPopularFilms()
+      .pipe(map((data: any) => data.results))  
+      .subscribe(
+        (filmList: any) => {
+          this.filmsClone = filmList;
+          // this.filmsClone = filmList.results;
+          this.films = this.filmsClone.slice(0, this.firstFilmsPage);
+  
+          if (this.filmsClone) {
+            setTimeout(() => {
+              this.spiner = false;
+            }, 2000);
+          }
+        },
+        err => console.log("error", err)
     ),
 
     this.filmsService.getPopularActors().subscribe(
-      (actorsList: any) => {        
-        this.actorsClone = [...actorsList.results];   
-        this.actors = this.actorsClone.slice(0, this.firstActorsPage);    
+      (actorsList: any) => {
+        this.actorsClone = actorsList.results;
+        this.actors = this.actorsClone.slice(0, this.firstActorsPage);
       },
       err => {
         console.log("error", err);
       }
-    )
-  }
-
-  ngOnInit() {    
+    )   
   }
 
   nextFilmsPage() {   
