@@ -14,8 +14,8 @@ export class FilmsListComponent implements OnInit {
 
   public isDisabledFilmsBtn: boolean = false;
 
-  public films: Film[];
-  private filmsClone;
+  public films: any[] = [];
+  private filmsClone: any[] = [];
 
   private firstFilmsPage: number = 9;
   public currentFilmsPage: number = this.firstFilmsPage;
@@ -26,7 +26,7 @@ export class FilmsListComponent implements OnInit {
   public isDisabledActorsBtn: boolean = false;
 
   public actors: any[];
-  private actorsClone;
+  private actorsClone: any[] = [];
 
   private firstActorsPage: number = 8;
   private currentActorsPage: number = this.firstActorsPage;
@@ -67,8 +67,7 @@ export class FilmsListComponent implements OnInit {
     )
   }
 
-  ngOnInit() {
-    
+  ngOnInit() {    
   }
 
   nextFilmsPage() {   
@@ -83,10 +82,7 @@ export class FilmsListComponent implements OnInit {
     this.actors = this.actors.concat(this.actorsClone.slice(this.currentActorsPage, this.nextPageActors));
     this.currentActorsPage += this.stepActorsPage;
     this.isDisabledActorsBtn = this.actors.length === this.actorsClone.length ? true : false;
-  }
-  
-
- 
+  } 
 
   addFilmToFavorit(id) { 
     this.favoriteFilms.has(id) ? this.favoriteFilms.delete(id) : this.favoriteFilms.add(id);    
@@ -107,8 +103,6 @@ export class FilmsListComponent implements OnInit {
       this.isDisabledFilmsBtn = true;
     }    
   }
-
-
 
 
 }
