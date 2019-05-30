@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
   searchValue: string;
   // films: Film[];
 
-  filmsClone;
+  filmsClone = [];
 
   @Input('page') currentFilmsPage;
   @Input('data') films: Film[];
@@ -32,6 +32,8 @@ export class SearchComponent implements OnInit {
       },
       err => console.log("error", err)
     )
+
+ 
 
     if (this.searchValue.length > 2) {
       this.films = this.films.filter(film => film.title.toLowerCase().includes(this.searchValue.toLowerCase()));

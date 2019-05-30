@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
-import { log } from 'util';
+
+
 @Component({
   selector: 'app-films-list',
   templateUrl: './films-list.component.html',
   styleUrls: ['./films-list.component.scss']
 })
 export class FilmsListComponent implements OnInit {
+
+  public spiner: boolean = true;
 
   public isDisabledFilmsBtn: boolean = false;
 
@@ -39,14 +42,23 @@ export class FilmsListComponent implements OnInit {
 
 
   constructor(public filmsService: FilmService) {
-
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         this.filmsClone = [...filmList.results];
-        this.films = this.filmsClone.slice(0, this.firstFilmsPage);        
+        this.films = this.filmsClone.slice(0, this.firstFilmsPage);   
+
+        if (this.filmsClone) {
+          // setTimeout(() => {
+            this.spiner = false;
+          // }, 2000);         
+        }
       },
       err => console.log("error", err)
     ),
+
+      
+
+
 
     this.filmsService.getPopularActors().subscribe(
       (actorsList: any) => {        
