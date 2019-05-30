@@ -45,11 +45,19 @@ export class FilmsListComponent implements OnInit {
 
   ngOnInit() { 
     this.filmsService.getPopularFilms()
-      .pipe(map((data: any) => data.results))  
+      .pipe(map((data: any) => {
+        data.results.title
+        // data.results.forEach(element => {
+   
+        //     console.log(element.title); 
+      
+        // });
+
+      }))  
       .subscribe(
         (filmList: any) => {
-          this.filmsClone = filmList;
-          // this.filmsClone = filmList.results;
+          console.log(filmList);
+          this.filmsClone = filmList;          
           this.films = this.filmsClone.slice(0, this.firstFilmsPage);
   
           if (this.filmsClone) {
@@ -66,9 +74,7 @@ export class FilmsListComponent implements OnInit {
         this.actorsClone = actorsList.results;
         this.actors = this.actorsClone.slice(0, this.firstActorsPage);
       },
-      err => {
-        console.log("error", err);
-      }
+      err => console.log("error", err)    
     )   
   }
 
