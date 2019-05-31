@@ -1,8 +1,13 @@
 <mat-form-field class="search-form-field">
   <input matInput type="text" placeholder="Поиск по названию фильма" [(ngModel)]="searchValue"
     (keyup)="changeSearchValue()">
-  <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear"
-    (click)="searchValue=''; changeSearchValue()">
+  <button mat-button 
+    matSuffix 
+    mat-icon-button 
+    *ngIf="searchValue" 
+    aria-label="Clear"
+    (click)="searchValue=''; changeSearchValue()"
+  >
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>

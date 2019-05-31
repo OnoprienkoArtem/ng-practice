@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FilmService } from '../../../services/film.service';
 import { Film } from '../../../models/film';
 
 @Component({
@@ -9,31 +8,19 @@ import { Film } from '../../../models/film';
 })
 export class SearchComponent implements OnInit {
 
-
-  searchValue: string;
-  // films: Film[];
-
-  filmsClone = [];
+  searchValue: string; 
 
   @Input('page') currentFilmsPage;
-  @Input('data') films: Film[];
- 
+  @Input('films') films: Film[];
+  @Input('filmsClone') filmsClone: [];
 
   @Output() updateSearchData = new EventEmitter<Film[]>();
   @Output() updateBtnShowElse = new EventEmitter<boolean>();
 
-  constructor(private filmsService: FilmService) { }
+  constructor() { }
 
   changeSearchValue() {
-    this.filmsService.getPopularFilms().subscribe(
-      (filmList: any) => {
-        this.filmsClone = [...filmList.results];
-        this.films = this.filmsClone.slice(0, this.currentFilmsPage);
-      },
-      err => console.log("error", err)
-    )
-
- 
+    this.films = this.filmsClone.slice(0, this.currentFilmsPage);
 
     if (this.searchValue.length > 2) {
       this.films = this.films.filter(film => film.title.toLowerCase().includes(this.searchValue.toLowerCase()));
@@ -45,7 +32,6 @@ export class SearchComponent implements OnInit {
         this.updateBtnShowElse.emit(true);   
       }
     }
-
     this.updateSearchData.emit(this.films);
   }
 

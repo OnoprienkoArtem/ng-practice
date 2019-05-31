@@ -15,7 +15,7 @@ export class FilmsListComponent implements OnInit {
   public isDisabledFilmsBtn: boolean = false;
 
   public films: any[] = [];
-  private filmsClone: any[] = [];
+  public filmsClone: any[] = [];
 
   private firstFilmsPage: number = 9;
   public currentFilmsPage: number = this.firstFilmsPage;
