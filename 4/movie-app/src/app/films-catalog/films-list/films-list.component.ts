@@ -40,18 +40,27 @@ export class FilmsListComponent implements OnInit {
   private favoriteFilms: any = new Set();
   public countFavorite: number;
 
-
+  
+  filmsObj = [];
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() { 
     this.filmsService.getPopularFilms()
       .pipe(map((data: any) => {
-        data.results.title
-        // data.results.forEach(element => {
-   
-        //     console.log(element.title); 
-      
-        // });
+
+        console.log(data);
+        
+        this.filmsObj = data.results.map(res => {
+          return {
+            id: res.id,
+            title: res.title,
+            overview: res.overview,
+            date: res.release_date,
+            poster: res.poster_path,
+          }
+          
+        })
+        console.log(this.filmsObj);       
 
       }))  
       .subscribe(
