@@ -41,32 +41,28 @@ export class FilmsListComponent implements OnInit {
   public countFavorite: number;
 
   
-  filmsObj = [];
+  
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() { 
     this.filmsService.getPopularFilms()
-      .pipe(map((data: any) => {
-
-        console.log(data);
-        
-        this.filmsObj = data.results.map(res => {
-          return {
-            id: res.id,
-            title: res.title,
-            overview: res.overview,
-            date: res.release_date,
-            poster: res.poster_path,
-          }
-          
-        })
-        console.log(this.filmsObj);       
-
-      }))  
+      // .pipe(
+      //   map((data: any) => data.results),  
+      //   map(results => {          
+      //     return results.map((item: any) => {            
+      //       id: item.id,
+      //       title: item.title,
+      //       overview: item.overview,
+      //       date: item.release_date,
+      //       poster: item.poster_path
+      //     })            
+      //   })
+      // ) 
       .subscribe(
         (filmList: any) => {
-          console.log(filmList);
-          this.filmsClone = filmList;          
+          console.log(filmList.results);
+          
+          this.filmsClone = filmList.results;          
           this.films = this.filmsClone.slice(0, this.firstFilmsPage);
   
           if (this.filmsClone) {
