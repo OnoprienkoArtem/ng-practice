@@ -107,35 +107,38 @@ export class FilmsListComponent implements OnInit {
     this.visibleContent = data === 'Actors' ? false : true;    
   }
 
-  searchData(dataSearch) {  
-    console.log(dataSearch);
-    console.log(this.visibleContent);
-    
-    if (this.visibleContent) {
-      this.films = this.filmsClone.slice(0, this.currentFilmsPage);
-      if (dataSearch.length > 2) {
-        this.films = this.films.filter(film => film.title.toLowerCase().includes(dataSearch.toLowerCase()));
-        this.isDisabledFilmsBtn = true;
-      } else {
-        this.isDisabledFilmsBtn = false;
-        if (this.films.length === this.filmsClone.length) {
-          this.isDisabledFilmsBtn = true;
-        }
-      }
+  searchDataByFilms(dataSearch) {
+    this.films = this.filmsClone.slice(0, this.currentFilmsPage);
+    if (dataSearch.length > 2) {
+      this.films = this.films.filter(film => film.title.toLowerCase().includes(dataSearch.toLowerCase()));
+      this.isDisabledFilmsBtn = true;
     } else {
-      this.actors = this.actorsClone.slice(0, this.currentActorsPage);
-      if (dataSearch.length > 2) {
-        this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
+      this.isDisabledFilmsBtn = false;
+      if (this.films.length === this.filmsClone.length) {
         this.isDisabledFilmsBtn = true;
-      } else {
-        this.isDisabledFilmsBtn = false;
-        if (this.actors.length === this.actorsClone.length) {
-          this.isDisabledFilmsBtn = true;
-        }
       }
     }
+  }
 
-   
+  searchDataByActors(dataSearch) {
+    this.actors = this.actorsClone.slice(0, this.currentActorsPage);
+    if (dataSearch.length > 2) {
+      this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
+      this.isDisabledActorsBtn = true;
+    } else {
+      this.isDisabledActorsBtn = false;
+      if (this.actors.length === this.actorsClone.length) {
+        this.isDisabledActorsBtn = true;
+      }
+    }
+  }
+
+  searchData(dataSearch) {  
+    if (this.visibleContent) {
+      this.searchDataByFilms(dataSearch);
+    } else {
+      this.searchDataByActors(dataSearch);
+    }   
   }
 
   updateBtn(event) {
