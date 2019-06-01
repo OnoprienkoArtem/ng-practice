@@ -77,6 +77,7 @@ export class FilmsListComponent implements OnInit {
     this.filmsService.getPopularActors().subscribe(
       (actorsList: any) => {
         this.actorsClone = actorsList.results;
+        // console.log(this.actorsClone);
         this.actors = this.actorsClone.slice(0, this.firstActorsPage);
       },
       err => console.log("error", err)    
@@ -108,16 +109,33 @@ export class FilmsListComponent implements OnInit {
 
   searchData(dataSearch) {  
     console.log(dataSearch);
-    this.films = this.filmsClone.slice(0, this.currentFilmsPage);
-    if (dataSearch.length > 2) {
-      this.films = this.films.filter(film => film.title.toLowerCase().includes(dataSearch.toLowerCase()));
-      this.isDisabledFilmsBtn = true;
-    } else {
-      this.isDisabledFilmsBtn = false;
-      if (this.films.length === this.filmsClone.length) {
-        this.isDisabledFilmsBtn = true; 
+    console.log(this.visibleContent);
+    
+    if (this.visibleContent) {
+      this.films = this.filmsClone.slice(0, this.currentFilmsPage);
+      if (dataSearch.length > 2) {
+        this.films = this.films.filter(film => film.title.toLowerCase().includes(dataSearch.toLowerCase()));
+        this.isDisabledFilmsBtn = true;
+      } else {
+        this.isDisabledFilmsBtn = false;
+        if (this.films.length === this.filmsClone.length) {
+          this.isDisabledFilmsBtn = true;
+        }
       }
-    }   
+    } else {
+      this.actors = this.actorsClone.slice(0, this.currentActorsPage);
+      if (dataSearch.length > 2) {
+        this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
+        this.isDisabledFilmsBtn = true;
+      } else {
+        this.isDisabledFilmsBtn = false;
+        if (this.actors.length === this.actorsClone.length) {
+          this.isDisabledFilmsBtn = true;
+        }
+      }
+    }
+
+   
   }
 
   updateBtn(event) {
