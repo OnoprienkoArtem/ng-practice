@@ -2,7 +2,7 @@
   <mat-toolbar class="menu-toolbar">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <app-favorite-count [favorite]="countFavorite"></app-favorite-count>
-      <app-search (updateSearchData)="searchData($event)"></app-search>
+      <app-search [searchTitle]="searchTitle" (updateSearchData)="searchData($event)"></app-search>
       <app-sorting (updateSortingData)="updateData($event)"></app-sorting>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -15,7 +15,7 @@
       (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">
     </app-film-item>
     <ng-container *ngIf="films.length === 0">
-      <div class="mb-2em">Результат поиска не дал результата.</div>
+      <div class="mb-2em">Результат поиска фильмов не дал результата.</div>
     </ng-container>
     <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
       <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]='isDisabledFilmsBtn'
@@ -27,6 +27,9 @@
     <app-actor-item class="mb-2em" fxFlex="22%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="actor"
       *ngFor="let actor of actors">
     </app-actor-item>
+        <ng-container *ngIf="actors.length === 0">
+          <div class="mb-2em">Результат поиска актеров не дал результата.</div>
+        </ng-container>
     <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
       <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>Показать
         еще</button>

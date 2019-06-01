@@ -9,15 +9,15 @@ export class SearchComponent implements OnInit {
 
   searchValue: string; 
 
-  @Output() updateSearchData = new EventEmitter<string>();
+  @Output() updateSearchData = new EventEmitter<string>();  
+  @Input('searchTitle') searchTitle: string;
   
-
   constructor() { }
 
   changeSearchValue() {    
     this.updateSearchData.emit(this.searchValue);
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
 }

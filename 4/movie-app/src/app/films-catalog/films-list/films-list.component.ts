@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
 })
 export class FilmsListComponent implements OnInit {
 
+  public searchTitle: string = 'Поиск по фильмам';
+
   public spiner: boolean = true;
 
   public isDisabledFilmsBtn: boolean = false;
@@ -104,7 +106,13 @@ export class FilmsListComponent implements OnInit {
   }
 
   updateData(data) {
-    this.visibleContent = data === 'Actors' ? false : true;    
+    if (data === 'Actors') {
+      this.visibleContent = false;
+      this.searchTitle = 'Поиск по актерам';
+    } else {
+      this.visibleContent = true; 
+      this.searchTitle = 'Поиск по фильмам';
+    }        
   }
 
   searchDataByFilms(dataSearch) {
