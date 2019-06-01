@@ -1,7 +1,8 @@
 <mat-form-field class="search-form-field">
   <input matInput type="text" [placeholder]="searchTitle" [(ngModel)]="searchValue"
     (keyup)="changeSearchValue()">
-  <button mat-button 
+  <button 
+    mat-button 
     matSuffix 
     mat-icon-button 
     *ngIf="searchValue" 

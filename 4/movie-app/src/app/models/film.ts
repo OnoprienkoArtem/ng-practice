@@ -4,4 +4,5 @@ export class Film {
     overview: string;
     date: string;
     poster: string;  
+    isFavorite: boolean;
 }

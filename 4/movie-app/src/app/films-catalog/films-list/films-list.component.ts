@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
-import { map } from 'rxjs/operators';
+import { Actor } from '../../models/actor';
+
 
 @Component({
   selector: 'app-films-list',
@@ -16,7 +17,7 @@ export class FilmsListComponent implements OnInit {
 
   public isDisabledFilmsBtn: boolean = false;
 
-  public films: any[] = [];
+  public films: Film[] = [];
   public filmsClone: any[] = [];
 
   private firstFilmsPage: number = 9;
@@ -27,7 +28,7 @@ export class FilmsListComponent implements OnInit {
 
   public isDisabledActorsBtn: boolean = false;
 
-  public actors: any[];
+  public actors: Actor[] = [];
   private actorsClone: any[] = [];
 
   private firstActorsPage: number = 8;
@@ -40,33 +41,15 @@ export class FilmsListComponent implements OnInit {
 
 
   private favoriteFilms: any = new Set();
-  public countFavorite: number;
-
-  
+  public countFavorite: number;  
   
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() { 
-    this.filmsService.getPopularFilms()
-      // .pipe(
-      //   map((data: any) => data.results),  
-      //   map(results => {          
-      //     return results.map((item: any) => {            
-      //       id: item.id,
-      //       title: item.title,
-      //       overview: item.overview,
-      //       date: item.release_date,
-      //       poster: item.poster_path
-      //     })            
-      //   })
-      // ) 
-      .subscribe(
-        (filmList: any) => {
-          console.log(filmList.results);
-          
+    this.filmsService.getPopularFilms().subscribe(
+        (filmList: any) => {   
           this.filmsClone = filmList.results;          
-          this.films = this.filmsClone.slice(0, this.firstFilmsPage);
-  
+          this.films = this.filmsClone.slice(0, this.firstFilmsPage);  
           if (this.filmsClone) {
             setTimeout(() => {
               this.spiner = false;
@@ -78,8 +61,7 @@ export class FilmsListComponent implements OnInit {
 
     this.filmsService.getPopularActors().subscribe(
       (actorsList: any) => {
-        this.actorsClone = actorsList.results;
-        // console.log(this.actorsClone);
+        this.actorsClone = actorsList.results;      
         this.actors = this.actorsClone.slice(0, this.firstActorsPage);
       },
       err => console.log("error", err)    
@@ -105,7 +87,7 @@ export class FilmsListComponent implements OnInit {
     this.countFavorite = this.favoriteFilms.size;      
   }
 
-  updateData(data) {
+  updateData(data) {    
     if (data === 'Actors') {
       this.visibleContent = false;
       this.searchTitle = 'Поиск по актерам';
@@ -149,12 +131,7 @@ export class FilmsListComponent implements OnInit {
     }   
   }
 
-  updateBtn(event) {
-    this.isDisabledFilmsBtn = event;
-    if (this.films.length === this.filmsClone.length) {
-      this.isDisabledFilmsBtn = true;
-    }    
-  }
+
 
 
 }
