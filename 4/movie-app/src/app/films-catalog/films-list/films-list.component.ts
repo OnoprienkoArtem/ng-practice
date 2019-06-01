@@ -106,8 +106,14 @@ export class FilmsListComponent implements OnInit {
     this.visibleContent = data === 'Actors' ? false : true;    
   }
 
-  searchData(data) {    
-    this.films = data;
+  searchData(data) {  
+    console.log(data);
+    this.films = this.filmsClone.slice(0, this.currentFilmsPage);
+    if (data.length > 2) {
+      this.films = this.films.filter(film => film.title.toLowerCase().includes(data.toLowerCase()));
+    }
+
+    // this.films = data;
   }
 
   updateBtn(event) {
