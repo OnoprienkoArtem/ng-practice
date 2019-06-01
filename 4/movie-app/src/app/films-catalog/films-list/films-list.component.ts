@@ -106,14 +106,18 @@ export class FilmsListComponent implements OnInit {
     this.visibleContent = data === 'Actors' ? false : true;    
   }
 
-  searchData(data) {  
-    console.log(data);
+  searchData(dataSearch) {  
+    console.log(dataSearch);
     this.films = this.filmsClone.slice(0, this.currentFilmsPage);
-    if (data.length > 2) {
-      this.films = this.films.filter(film => film.title.toLowerCase().includes(data.toLowerCase()));
-    }
-
-    // this.films = data;
+    if (dataSearch.length > 2) {
+      this.films = this.films.filter(film => film.title.toLowerCase().includes(dataSearch.toLowerCase()));
+      this.isDisabledFilmsBtn = true;
+    } else {
+      this.isDisabledFilmsBtn = false;
+      if (this.films.length === this.filmsClone.length) {
+        this.isDisabledFilmsBtn = true; 
+      }
+    }   
   }
 
   updateBtn(event) {
