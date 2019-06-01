@@ -12,9 +12,6 @@ import { SearchComponent } from '../shared/components/search/search.component';
 import { SpinerComponent } from '../shared/components/spiner/spiner.component';
 
 import { MaterialModule } from '../material/material.module';
-
-
-
 import { HttpClientModule } from '@angular/common/http';
 
 
