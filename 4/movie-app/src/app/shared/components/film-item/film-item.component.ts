@@ -18,9 +18,7 @@ export class FilmItemComponent implements OnInit {
 
   constructor(public filmsService: FilmService) { }
 
-  ngOnInit() {
-    // console.log(this.film);
-  }
+  ngOnInit() {}
 
   addToFavorites() {
     this.film.isFavorite = !this.film.isFavorite;
