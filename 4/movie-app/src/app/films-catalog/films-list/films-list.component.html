@@ -15,7 +15,7 @@
       (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">
     </app-film-item>
     <ng-container *ngIf="films.length === 0">
-      <div class="mb-2em">Результат поиска фильмов не дал результата.</div>
+      <div class="mb-2em">Поиск фильмов не дал результата.</div>
     </ng-container>
     <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
       <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]='isDisabledFilmsBtn'
@@ -28,7 +28,7 @@
       *ngFor="let actor of actors">
     </app-actor-item>
         <ng-container *ngIf="actors.length === 0">
-          <div class="mb-2em">Результат поиска актеров не дал результата.</div>
+          <div class="mb-2em">Поиск актеров не дал результата.</div>
         </ng-container>
     <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
       <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>Показать

@@ -66,6 +66,8 @@ export class FilmsListComponent implements OnInit {
       },
       err => console.log("error", err)    
     )   
+
+    
   }
 
   nextFilmsPage() {   
