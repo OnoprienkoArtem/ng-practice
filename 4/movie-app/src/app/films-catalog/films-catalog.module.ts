@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { FilmsListComponent } from './films-list/films-list.component';
 import { MainComponent } from './main/main.component';
-import { FilmItemComponent } from '../shared/components/film-item/film-item.component';
+
+
+import { SharedModule } from '../shared/shared.module';
+
 import { ActorItemComponent } from '../shared/components/actor-item/actor-item.component';
 import { FavoriteCountComponent } from '../shared/components/favorite-count/favorite-count.component';
 import { SortingComponent } from '../shared/components/sorting/sorting.component';
@@ -20,7 +23,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     FilmsListComponent, 
     MainComponent, 
-    FilmItemComponent,
     FavoriteCountComponent,
     SortingComponent,
     ActorItemComponent,
@@ -31,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ]
 })
 export class FilmsCatalogModule { }
