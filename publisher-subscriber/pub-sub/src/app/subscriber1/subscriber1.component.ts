@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppService } from '../app.service';
 @Component({
   selector: 'app-subscriber1',
   templateUrl: './subscriber1.component.html',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Subscriber1Component implements OnInit {
 
-  constructor() { }
+  counter: number;
+
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
+    this.appService.getCounter().subscribe( (c: number) => {
+      this.counter = c;
+    });
   }
 
 }
