@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-publisher',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublisherComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
+  }
+
+  incrementCounter() {
+    this.appService.increment();
+  }
+
+  decrementtCounter() {
+    this.appService.decrement();
   }
 
 }
