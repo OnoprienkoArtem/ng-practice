@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'; 
-import { Observable, Subject } from 'rxjs';
 import { Film } from './film';
 
 
@@ -21,12 +20,6 @@ export class FilmService {
 
   getAll() {
     return this.films;
-  }
-
-
-
-
-
-  
+  }  
 
 }
