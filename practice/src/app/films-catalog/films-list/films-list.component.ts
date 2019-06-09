@@ -84,9 +84,29 @@ export class FilmsListComponent implements OnInit {
     this.isDisabledActorsBtn = this.actors.length === this.actorsClone.length ? true : false;
   } 
 
-  addFilmToFavorit(id) { 
-    this.favoriteFilms.has(id) ? this.favoriteFilms.delete(id) : this.favoriteFilms.add(id);    
-    this.countFavorite = this.favoriteFilms.size;      
+
+  getFavorite() {
+    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: any[]) => {
+      const favoriteList = favorites.map(favorite => favorite._id);
+      this.films.map(item => {
+        item.isFavorite = favoriteList.indexOf(item.id) > -1;
+      })
+    })
+    console.log(this.films);
+  }
+
+  addFilmToFavorit(id: number) { 
+
+    const favoriteFilms = this.films.find(item => {
+      return item.id === id;
+    });
+
+    if (favoriteFilms.isFavorite) {
+      this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
+    } else {
+      this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
+    }      
+    // this.countFavorite = this.favoriteFilms.size;      
   }
 
   updateData(data) {    
