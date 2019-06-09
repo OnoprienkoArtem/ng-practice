@@ -22,6 +22,11 @@ export class FilmService {
   midBackPath: string = `${this.imgPath}/w780`
   smallBackPath: string = `${this.imgPath}/w300`
 
+  localApiUrl = 'http://localhost:3000';
+  favoriteApiUrl = `${this.localApiUrl}/films/favorites`;
+  bookmarkApiUrl = `${this.localApiUrl}/films/bookmarks`;
+
+
   constructor(private http: HttpClient) {}
 
   getPopularFilms(page?: number) {
@@ -31,5 +36,35 @@ export class FilmService {
   getPopularActors(page?: number) {
     return this.http.get(`${this.personUrl}/popular?page=${page}${this.params}`)
   }
+
+
+
+  getFavorite(filmIds: Array<number>) {
+    return this.http.get(`${this.favoriteApiUrl}?filmIds=${filmIds.join(',')}`);
+  }
+
+  addToFavorite(id: number) {
+    return this.http.post(this.favoriteApiUrl, {filmIds: id});
+  }
+
+  removeFromFavorite(id: number) {
+    return this.http.delete(`${this.localApiUrl}/films/${id}/favorites`);
+  }
+
+
+
+  getBookmark(filmIds: Array<number>) {
+    return this.http.get(`${this.bookmarkApiUrl}?filmIds=${filmIds.join(',')}`);
+  }
+
+  addToBookmark(id: number) {
+    return this.http.post(this.bookmarkApiUrl, { filmIds: id });
+  }
+
+  removeFromBookmark(id: number) {
+    return this.http.delete(`${this.localApiUrl}/films/${id}/bookmarks`);
+  }
+
+
 
 }

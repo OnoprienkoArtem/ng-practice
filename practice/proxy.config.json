@@ -1,0 +1,7 @@
+{   
+    "/films/*": {
+        "target": "http://localhost:3000",
+        "secore": false,
+        "logLevel": "debug"
+    }  
+}
