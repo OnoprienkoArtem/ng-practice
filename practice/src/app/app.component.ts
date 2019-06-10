@@ -10,6 +10,6 @@ export class AppComponent {
 
   links: any[] = [
     { path: '/main', label: 'Главная', active: 'button-active', icon: 'home' },
-    { path: '/films-list', label: 'Все фильмы', active: 'button-active', icon: 'list_alt' }
+    { path: '/films', label: 'Все фильмы', active: 'button-active', icon: 'list_alt' }
   ];
 }
