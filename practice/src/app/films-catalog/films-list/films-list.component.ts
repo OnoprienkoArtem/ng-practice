@@ -87,7 +87,7 @@ export class FilmsListComponent implements OnInit {
 
 
   getFavorite() {
-    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Favorite[]) => {
+    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {    
       const favoriteList = favorites.map(favorite => favorite._id);
       this.films.map(item => {
         item.isFavorite = favoriteList.indexOf(item.id) > -1;
@@ -96,7 +96,6 @@ export class FilmsListComponent implements OnInit {
   }
 
   addFilmToFavorit(id: number) { 
-
     const favoriteFilms = this.films.find(item => {
       return item.id === id;
     });
@@ -105,8 +104,7 @@ export class FilmsListComponent implements OnInit {
       this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
     } else {
       this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
-    }      
-    // this.countFavorite = this.favoriteFilms.size;      
+    }           
   }
 
   updateData(data) {    
