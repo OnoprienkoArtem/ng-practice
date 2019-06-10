@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { Actor } from '../../models/actor';
-
+import { Favorite } from '../../models/favorites';
 
 @Component({
   selector: 'app-films-list',
@@ -49,7 +49,8 @@ export class FilmsListComponent implements OnInit {
     this.filmsService.getPopularFilms().subscribe(
         (filmList: any) => {   
           this.filmsClone = filmList.results;          
-          this.films = this.filmsClone.slice(0, this.firstFilmsPage);  
+          this.films = [...this.filmsClone];  
+          this.getFavorite();
           if (this.filmsClone) {
             setTimeout(() => {
               this.spiner = false;
@@ -86,13 +87,12 @@ export class FilmsListComponent implements OnInit {
 
 
   getFavorite() {
-    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: any[]) => {
+    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Favorite[]) => {
       const favoriteList = favorites.map(favorite => favorite._id);
       this.films.map(item => {
         item.isFavorite = favoriteList.indexOf(item.id) > -1;
       })
-    })
-    console.log(this.films);
+    })  
   }
 
   addFilmToFavorit(id: number) { 
@@ -120,7 +120,7 @@ export class FilmsListComponent implements OnInit {
   }
 
   searchDataByFilms(dataSearch) {
-    this.films = this.filmsClone.slice(0, this.currentFilmsPage);
+    this.films = this.filmsClone;
     if (dataSearch.length > 2) {
       this.films = this.films.filter(film => film.title.toLowerCase().includes(dataSearch.toLowerCase()));
       this.isDisabledFilmsBtn = true;
@@ -133,7 +133,7 @@ export class FilmsListComponent implements OnInit {
   }
 
   searchDataByActors(dataSearch) {
-    this.actors = this.actorsClone.slice(0, this.currentActorsPage);
+    this.actors = this.actorsClone;
     if (dataSearch.length > 2) {
       this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
       this.isDisabledActorsBtn = true;
@@ -153,7 +153,9 @@ export class FilmsListComponent implements OnInit {
     }   
   }
 
-
+  ngOnDestroy() {
+    // this.subscription.unsubscribe();
+  }
 
 
 }
