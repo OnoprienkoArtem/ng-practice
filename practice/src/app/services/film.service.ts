@@ -22,9 +22,9 @@ export class FilmService {
   midBackPath: string = `${this.imgPath}/w780`
   smallBackPath: string = `${this.imgPath}/w300`
 
-  localApiUrl = 'http://localhost:3000';
-  favoriteApiUrl = `${this.localApiUrl}/films/favorites`;
-  bookmarkApiUrl = `${this.localApiUrl}/films/bookmarks`;
+  localApiUrl: string = 'http://localhost:3000';
+  favoriteApiUrl: string = `${this.localApiUrl}/films/favorites`;
+  bookmarkApiUrl: string = `${this.localApiUrl}/films/bookmarks`;
 
 
   constructor(private http: HttpClient) {}
