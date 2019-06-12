@@ -22,7 +22,7 @@ export class FilmService {
   midBackPath: string = `${this.imgPath}/w780`
   smallBackPath: string = `${this.imgPath}/w300`
 
-  localApiUrl: string = 'http://localhost:3000';
+  localApiUrl: string = 'http://localhost:3001';
   favoriteApiUrl: string = `${this.localApiUrl}/films/favorites`;
   bookmarkApiUrl: string = `${this.localApiUrl}/films/bookmarks`;
 
@@ -44,7 +44,7 @@ export class FilmService {
   }
 
   addToFavorite(id: number) {
-    return this.http.post(this.favoriteApiUrl, {filmIds: id});
+    return this.http.post(this.favoriteApiUrl, {filmId: id});
   }
 
   removeFromFavorite(id: number) {
