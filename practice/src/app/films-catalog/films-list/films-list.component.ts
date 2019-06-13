@@ -107,6 +107,32 @@ export class FilmsListComponent implements OnInit {
     }           
   }
 
+  getBookmark() {
+    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {
+      const favoriteList = favorites.map(favorite => favorite._id);
+      this.films.map(item => {
+        item.isFavorite = favoriteList.indexOf(item.id) > -1;
+      })
+    })
+  }
+
+  addFilmToBookmark(id: number) {
+    const favoriteFilms = this.films.find(item => {
+      return item.id === id;
+    });
+
+    if (favoriteFilms.isFavorite) {
+      this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
+    } else {
+      this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
+    }
+  }
+
+
+
+
+
+
   updateData(data) {    
     if (data === 'Actors') {
       this.visibleContent = false;

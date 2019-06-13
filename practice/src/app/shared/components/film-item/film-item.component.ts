@@ -14,6 +14,7 @@ export class FilmItemComponent implements OnInit {
 
   @Input('data') film: Film;
   @Output() updateListOfFavorite = new EventEmitter<number>();
+  @Output() updateListOfBooked = new EventEmitter<number>();
   
 
   constructor(public filmsService: FilmService) { }
@@ -22,6 +23,10 @@ export class FilmItemComponent implements OnInit {
 
   addToFavorites() {   
     this.updateListOfFavorite.emit(this.film.id);
+  }
+
+  addToBooked() {
+    this.updateListOfBooked.emit(this.film.id);
   }
 
 }
