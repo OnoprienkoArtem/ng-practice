@@ -58,7 +58,7 @@ export class FilmService {
   }
 
   addToBookmark(id: number) {
-    return this.http.post(this.bookmarkApiUrl, { filmIds: id });
+    return this.http.post(this.bookmarkApiUrl, { filmId: id });
   }
 
   removeFromBookmark(id: number) {

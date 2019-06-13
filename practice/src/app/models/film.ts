@@ -5,4 +5,5 @@ export class Film {
     release_date: string;
     poster_path: string;  
     isFavorite: boolean;
+    isBooked: boolean;
 }
