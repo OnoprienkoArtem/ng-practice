@@ -3,6 +3,7 @@ import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { Actor } from '../../models/actor';
 import { Favorite } from '../../models/favorites';
+import { Bookmark } from '../../models/bookmark';
 
 @Component({
   selector: 'app-films-list',
@@ -51,6 +52,7 @@ export class FilmsListComponent implements OnInit {
           this.filmsClone = filmList.results;          
           this.films = [...this.filmsClone];  
           this.getFavorite();
+          this.getBookmark();
           if (this.filmsClone) {
             setTimeout(() => {
               this.spiner = false;
@@ -108,23 +110,24 @@ export class FilmsListComponent implements OnInit {
   }
 
   getBookmark() {
-    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {
-      const favoriteList = favorites.map(favorite => favorite._id);
+    this.filmsService.getBookmark(this.films.map(item => item.id)).subscribe((bookmarks: Array<Bookmark>) => {
+      const bookedList = bookmarks.map(bookmark => bookmark._id);
       this.films.map(item => {
-        item.isFavorite = favoriteList.indexOf(item.id) > -1;
+        item.isBooked = bookedList.indexOf(item.id) > -1;
       })
     })
   }
 
   addFilmToBookmark(id: number) {
-    const favoriteFilms = this.films.find(item => {
+    console.log(id);
+    const bookmarkFilms = this.films.find(item => {
       return item.id === id;
     });
 
-    if (favoriteFilms.isFavorite) {
-      this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
+    if (bookmarkFilms.isBooked) {
+      this.filmsService.removeFromBookmark(id).subscribe(() => this.getBookmark());
     } else {
-      this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
+      this.filmsService.addToBookmark(id).subscribe(() => this.getBookmark());
     }
   }
 
