@@ -118,8 +118,7 @@ export class FilmsListComponent implements OnInit {
     })
   }
 
-  addFilmToBookmark(id: number) {
-    console.log(id);
+  addFilmToBookmark(id: number) {  
     const bookmarkFilms = this.films.find(item => {
       return item.id === id;
     });

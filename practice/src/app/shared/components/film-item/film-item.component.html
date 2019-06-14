@@ -10,7 +10,7 @@
         {{ (film.overview.length > 200) ? (film.overview | slice:0:200) + '...' : (film.overview) }}</p>
       <mat-card-actions>
         <button mat-icon-button *ngIf="!film.isBooked; else booked" (click)="addToBooked()">
-          <i class="material-icons">bookmark</i>
+          <i class="material-icons">bookmark_border</i>
         </button>
         <ng-template #booked>
           <button mat-icon-button (click)="addToBooked()" color="primary">
