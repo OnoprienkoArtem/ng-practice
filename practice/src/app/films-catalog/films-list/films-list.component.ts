@@ -50,7 +50,7 @@ export class FilmsListComponent implements OnInit {
     this.filmsService.getPopularFilms().subscribe(
         (filmList: any) => {   
           this.filmsClone = filmList.results;          
-          this.films = [...this.filmsClone];  
+          this.films = this.filmsClone.slice(0, this.firstFilmsPage);  
           this.getFavorite();
           this.getBookmark();
           if (this.filmsClone) {
@@ -75,9 +75,11 @@ export class FilmsListComponent implements OnInit {
 
   nextFilmsPage() {   
     this.nextPageFilms = this.currentFilmsPage + this.stepFilmsPage;    
-    this.films = this.films.concat(this.filmsClone.slice(this.currentFilmsPage, this.nextPageFilms));   
+    this.films = this.films.concat(this.filmsClone.slice(this.currentFilmsPage, this.nextPageFilms)); 
     this.currentFilmsPage += this.stepFilmsPage;        
     this.isDisabledFilmsBtn = this.films.length  === this.filmsClone.length ? true : false; 
+    this.getFavorite();
+    this.getBookmark();
   }
 
   nextActorsPage() {

@@ -8,14 +8,11 @@ import { Film } from '../../../models/film';
 })
 export class FilmItemComponent implements OnInit {
 
-  imgUrl: string = this.filmsService.midImgPath;
-
- 
+  imgUrl: string = this.filmsService.midImgPath; 
 
   @Input('data') film: Film;
   @Output() updateListOfFavorite = new EventEmitter<number>();
-  @Output() updateListOfBooked = new EventEmitter<number>();
-  
+  @Output() updateListOfBooked = new EventEmitter<number>();  
 
   constructor(public filmsService: FilmService) { }
 
