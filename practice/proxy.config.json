@@ -1,7 +1,7 @@
 {   
     "/films/*": {
-        "target": "http://localhost:3000",
-        "secore": false,
+        "target": "http://localhost:3001",
+        "secure": false,
         "logLevel": "debug"
     }  
 }
