@@ -22,9 +22,9 @@ export class FilmService {
   midBackPath: string = `${this.imgPath}/w780`
   smallBackPath: string = `${this.imgPath}/w300`
 
-  localApiUrl: string = 'http://localhost:3001';
-  favoriteApiUrl: string = `${this.localApiUrl}/films/favorites`;
-  bookmarkApiUrl: string = `${this.localApiUrl}/films/bookmarks`;
+  localApiUrl: string = '/films';
+  favoriteApiUrl: string = `${this.localApiUrl}/favorites`;
+  bookmarkApiUrl: string = `${this.localApiUrl}/bookmarks`;
 
 
   constructor(private http: HttpClient) {}
@@ -48,7 +48,7 @@ export class FilmService {
   }
 
   removeFromFavorite(id: number) {
-    return this.http.delete(`${this.localApiUrl}/films/${id}/favorites`);
+    return this.http.delete(`${this.localApiUrl}/${id}/favorites`);
   }
 
 
@@ -62,7 +62,7 @@ export class FilmService {
   }
 
   removeFromBookmark(id: number) {
-    return this.http.delete(`${this.localApiUrl}/films/${id}/bookmarks`);
+    return this.http.delete(`${this.localApiUrl}/${id}/bookmarks`);
   }
 
 

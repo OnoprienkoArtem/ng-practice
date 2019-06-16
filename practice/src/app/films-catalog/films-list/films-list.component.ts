@@ -53,10 +53,8 @@ export class FilmsListComponent implements OnInit {
           this.films = this.filmsClone.slice(0, this.firstFilmsPage);  
           this.getFavorite();
           this.getBookmark();
-          if (this.filmsClone) {
-            setTimeout(() => {
-              this.spiner = false;
-            }, 2000);
+          if (this.filmsClone) {          
+              this.spiner = false;       
           }
         },
         err => console.log("error", err)
