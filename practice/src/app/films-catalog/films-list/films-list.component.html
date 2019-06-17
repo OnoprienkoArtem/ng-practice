@@ -32,8 +32,14 @@
   </ng-container>
 
   <ng-template #actorsVisible>  
-    <app-actor-item class="mb-2em" fxFlex="22%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="actor"
-      *ngFor="let actor of actors">
+    <app-actor-item 
+      class="mb-2em" 
+      fxFlex="22%" 
+      fxFlex.lt-md="45%" 
+      fxFlex.lt-sm="100%" 
+      [data]="actor"
+      *ngFor="let actor of actors"
+    >
     </app-actor-item>
         <ng-container *ngIf="actors.length === 0">
           <div class="mb-2em">Поиск актеров не дал результата.</div>

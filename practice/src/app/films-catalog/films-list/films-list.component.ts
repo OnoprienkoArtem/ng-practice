@@ -66,9 +66,7 @@ export class FilmsListComponent implements OnInit {
         this.actors = this.actorsClone.slice(0, this.firstActorsPage);
       },
       err => console.log("error", err)    
-    )   
-
-    
+    )       
   }
 
   nextFilmsPage() {   
@@ -86,7 +84,6 @@ export class FilmsListComponent implements OnInit {
     this.currentActorsPage += this.stepActorsPage;
     this.isDisabledActorsBtn = this.actors.length === this.actorsClone.length ? true : false;
   } 
-
 
   getFavorite() {    
     this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {         
@@ -129,11 +126,6 @@ export class FilmsListComponent implements OnInit {
       this.filmsService.addToBookmark(id).subscribe(() => this.getBookmark());
     }
   }
-
-
-
-
-
 
   updateData(data) {    
     if (data === 'Actors') {
