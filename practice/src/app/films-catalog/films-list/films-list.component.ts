@@ -66,7 +66,14 @@ export class FilmsListComponent implements OnInit {
         this.actors = this.actorsClone.slice(0, this.firstActorsPage);
       },
       err => console.log("error", err)    
-    )       
+    )   
+
+    this.filmsService.getItemsBySearch('weak').subscribe(  
+      (res: any) => {
+        console.log(res.results);      
+      },
+      err => console.log("error", err)
+    ) 
   }
 
   nextFilmsPage() {   
