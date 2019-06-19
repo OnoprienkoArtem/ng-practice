@@ -26,7 +26,15 @@ mat-card {
   font-family: 'Montserrat', sans-serif;
 }
 
+.mat-toolbar {
+  background: #454a62;
+  color: #fff;
+}
 
+.mat-toolbar-row {
+  width: 90% !important;
+  margin: auto;
+}
 
 .mat-toolbar {
   font-size: 14px;
