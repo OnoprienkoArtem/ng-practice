@@ -1,0 +1,7 @@
+<mat-form-field class="sort-section">
+  <mat-select placeholder="Сортировка" (selectionChange)="sortByType($event)">
+    <mat-option *ngFor="let sortingType of sortingTypes" [value]="sortingType.value">
+      {{sortingType.choice}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

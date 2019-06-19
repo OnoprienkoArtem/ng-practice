@@ -1,0 +1,46 @@
+<div class='block'>
+  <div class='cards'>
+    <div>
+      <img src="{{imgUrl + film.poster_path}}" alt="">
+    </div>
+    <div class='info'>
+      <h2>{{film.title}}</h2>
+      <p class='year'>{{film.release_date}}</p>
+      <p class="description">
+        {{ (film.overview.length > 200) ? (film.overview | slice:0:200) + '...' : (film.overview) }}</p>
+      <mat-card-actions>
+        <button 
+          mat-icon-button 
+          *ngIf="!film.isBooked; else booked" 
+          (click)="addToBooked()"
+        >
+          <i class="material-icons">bookmark_border</i>
+        </button>
+        <ng-template #booked>
+          <button 
+            mat-icon-button 
+            (click)="addToBooked()" 
+            color="primary"
+          >
+            <i class="material-icons">bookmark</i>
+          </button>
+        </ng-template>
+        <button mat-icon-button>
+          <i class="material-icons">menu</i>
+        </button>
+        <button 
+          mat-icon-button 
+          *ngIf="!film.isFavorite; else marked" 
+          (click)="addToFavorites()"
+        >
+          <i class="material-icons">favorite_border</i>
+        </button>
+        <ng-template #marked>
+          <button mat-icon-button (click)="addToFavorites()" color="accent">
+            <i class="material-icons">favorite</i>
+          </button>
+        </ng-template>
+      </mat-card-actions>
+    </div>
+  </div>
+</div>
