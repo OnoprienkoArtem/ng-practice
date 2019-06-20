@@ -37,9 +37,17 @@ export class FilmService {
     return this.http.get(`${this.personUrl}/popular?page=${page}${this.params}`)
   }
 
+
+
+
   getItemsBySearch(value?: string) {
-    return this.http.get(`${this.searchUrl}/movie?query=${value}`)
+    return this.http.get(`${this.searchUrl}/multi?query=${value}${this.params}`)
   }
+
+
+
+
+  
 
 
 
