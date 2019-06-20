@@ -9,7 +9,7 @@
 }
 
 .sort-section {
-  width: 185px;
+  width: 185px;  
 }
 
 .cards-section {
@@ -20,4 +20,18 @@
   overflow-x: hidden;
   padding: 2.5% 0;
 }
+
+
+// .cards-section {
+//   opacity: 0;
+//   animation: appear 1s 0s ease forwards;
+// }
+
+// @keyframes appear {
+//   to {
+//     opacity: 1;
+//   }
+// }
+
+
 
