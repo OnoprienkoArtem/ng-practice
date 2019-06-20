@@ -27,7 +27,7 @@ mat-card {
 }
 
 .mat-toolbar {
-  background: #454a62;
+  background: rgb(69, 74, 98);
   color: #fff;
 }
 
@@ -42,4 +42,18 @@ mat-card {
 
 .mb-2em {
   margin-bottom: 2em;
+}
+
+
+.cards-section::-webkit-scrollbar {
+  width: .5em;
+}
+
+.cards-section::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.cards-section::-webkit-scrollbar-thumb {
+  background: rgba(69, 74, 98, .5);
+  outline: 1px solid rgba(69, 74, 98, .2);
 }
