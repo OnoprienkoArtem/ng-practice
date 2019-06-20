@@ -1,3 +1,18 @@
-<p>
-  actors-list works!
-</p>
+<div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center">
+
+
+
+
+    <app-actor-item class="mb-2em" fxFlex="22%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="actor"
+      *ngFor="let actor of actors">
+    </app-actor-item>
+
+    <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
+      <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>Показать
+        еще</button>
+    </div>
+ 
+
+</div>
+
+<!-- <app-spiner *ngIf="spiner"></app-spiner> -->

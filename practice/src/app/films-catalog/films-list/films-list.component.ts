@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
-import { Actor } from '../../models/actor';
+
 import { Favorite } from '../../models/favorites';
 import { Bookmark } from '../../models/bookmark';
 
@@ -27,15 +27,9 @@ export class FilmsListComponent implements OnInit {
   private stepFilmsPage: number = 3;
 
 
-  public isDisabledActorsBtn: boolean = false;
+  
 
-  public actors: Actor[] = [];
-  private actorsClone: any[] = [];
 
-  private firstActorsPage: number = 8;
-  private currentActorsPage: number = this.firstActorsPage;
-  private nextPageActors: number;
-  private stepActorsPage: number = 4;
 
 
   public visibleContent: boolean = true;
@@ -60,13 +54,7 @@ export class FilmsListComponent implements OnInit {
         err => console.log("error", err)
     ),
 
-    this.filmsService.getPopularActors().subscribe(
-      (actorsList: any) => {
-        this.actorsClone = actorsList.results;      
-        this.actors = this.actorsClone.slice(0, this.firstActorsPage);
-      },
-      err => console.log("error", err)    
-    )   
+  
 
     this.filmsService.getItemsBySearch('weak').subscribe(  
       (res: any) => {
@@ -85,12 +73,7 @@ export class FilmsListComponent implements OnInit {
     this.getBookmark();
   }
 
-  nextActorsPage() {
-    this.nextPageActors = this.currentActorsPage + this.stepActorsPage;
-    this.actors = this.actors.concat(this.actorsClone.slice(this.currentActorsPage, this.nextPageActors));
-    this.currentActorsPage += this.stepActorsPage;
-    this.isDisabledActorsBtn = this.actors.length === this.actorsClone.length ? true : false;
-  } 
+
 
   getFavorite() {    
     this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {         
@@ -157,26 +140,15 @@ export class FilmsListComponent implements OnInit {
     }
   }
 
-  searchDataByActors(dataSearch) {
-    this.actors = this.actorsClone;
-    if (dataSearch.length > 2) {
-      this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
-      this.isDisabledActorsBtn = true;
-    } else {
-      this.isDisabledActorsBtn = false;
-      if (this.actors.length === this.actorsClone.length) {
-        this.isDisabledActorsBtn = true;
-      }
-    }
-  }
 
-  searchData(dataSearch) {  
-    if (this.visibleContent) {
-      this.searchDataByFilms(dataSearch);
-    } else {
-      this.searchDataByActors(dataSearch);
-    }   
-  }
+
+  // searchData(dataSearch) {  
+  //   if (this.visibleContent) {
+  //     this.searchDataByFilms(dataSearch);
+  //   } else {
+  //     this.searchDataByActors(dataSearch);
+  //   }   
+  // }
 
   ngOnDestroy() {
     // this.subscription.unsubscribe();
