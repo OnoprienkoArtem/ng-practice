@@ -13,7 +13,12 @@
 }
 
 .cards-section {
-  max-width: 90%;
-  margin: 2em auto;
+  max-width: 100%;
+  margin: 0 auto;
+
+      overflow-y: scroll;
+      height: 93vh;
+      overflow-x: hidden;
+      padding: 2.5% 0;
 }
 
