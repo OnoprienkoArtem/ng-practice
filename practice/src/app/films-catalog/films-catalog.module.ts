@@ -9,12 +9,13 @@ import { MaterialModule } from '../material/material.module';
 import { FilmsListComponent } from './films-list/films-list.component';
 import { MainComponent } from './main/main.component';
 import { ActorsListComponent } from './actors-list/actors-list.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 @NgModule({
   declarations: [
     FilmsListComponent, 
-    MainComponent, ActorsListComponent
+    MainComponent, ActorsListComponent, SearchResultComponent
   ],
   imports: [
     CommonModule,
