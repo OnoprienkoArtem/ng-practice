@@ -11,6 +11,8 @@ import { MainComponent } from './main/main.component';
 import { ActorsListComponent } from './actors-list/actors-list.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     HttpClientModule,
     MaterialModule,
     SharedModule

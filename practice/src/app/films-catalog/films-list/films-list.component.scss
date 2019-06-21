@@ -1,16 +1,4 @@
-.menu-card {
-  padding: 0px;
-}
 
-.menu-toolbar {
-  background-color: white;
-  min-height: 65px;
-  height: 65px;
-}
-
-.sort-section {
-  width: 185px;  
-}
 
 .cards-section {
   max-width: 100%;
@@ -21,17 +9,11 @@
   padding: 2.5% 10%;
 }
 
+button { 
+  margin: auto;
+}
 
-// .cards-section {
-//   opacity: 0;
-//   animation: appear 1s 0s ease forwards;
-// }
 
-// @keyframes appear {
-//   to {
-//     opacity: 1;
-//   }
-// }
 
 
 

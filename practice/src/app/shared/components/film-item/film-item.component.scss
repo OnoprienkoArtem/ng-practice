@@ -5,8 +5,8 @@
 
 .cards {
   display: flex;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);  
+  height: 200px;
 }
 
 .cards div:first-child {
@@ -43,7 +43,7 @@ h2 {
 }
 
 .description {
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .btn-block {
@@ -54,10 +54,7 @@ h2 {
   display: flex;
 }
 
-button {
-  font-size: .7vw;
-  margin: auto;
-}
+
 
 .mat-card-actions {
   position: absolute;

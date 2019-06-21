@@ -1,14 +1,25 @@
-<div *ngIf="!spiner" class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly"
-  fxLayoutAlign.lt-sm="center">
-  <app-film-item class="mb-2em" fxFlex="30%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="film"
-    (updateListOfFavorite)="addFilmToFavorit($event)" (updateListOfBooked)="addFilmToBookmark($event)"
-    *ngFor="let film of films">
-  </app-film-item>
+<div *ngIf="!spiner" class="cards-section" >
 
-  <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-    <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]='isDisabledFilmsBtn'>Показать
-      еще</button>
+  <div>
+    <div class="section-header" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+      <h2>Популярные фильмы</h2>
+      <button mat-raised-button routerLink="/films-list">Посмотреть все</button>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+      <mat-card
+        class="mb-2em" 
+        fxFlex="15%" 
+        fxFlex.lt-md="45%" 
+        fxFlex.lt-sm="100%"      
+        *ngFor="let film of films">
+        <div>
+          <img src="{{imgUrl + film.poster_path}}" alt="">
+        </div>
+      </mat-card>
+    </div>  
   </div>
+
+
 
 </div>
 
