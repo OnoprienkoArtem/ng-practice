@@ -8,7 +8,7 @@
   </mat-toolbar>
 </mat-card> -->
 
-<div class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center">
+<div *ngIf="!spiner" class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center">
 
  
     <app-film-item 
