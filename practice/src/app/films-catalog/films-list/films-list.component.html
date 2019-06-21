@@ -8,31 +8,28 @@
   </mat-toolbar>
 </mat-card> -->
 
-<div *ngIf="!spiner" class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center">
+<div *ngIf="!spiner" class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center"> 
+  <app-film-item 
+    class="mb-2em" 
+    fxFlex="30%" 
+    fxFlex.lt-md="45%" 
+    fxFlex.lt-sm="100%" 
+    [data]="film"
+    (updateListOfFavorite)="addFilmToFavorit($event)" 
+    (updateListOfBooked)="addFilmToBookmark($event)"
+    *ngFor="let film of films"
+  >
+  </app-film-item>
 
- 
-    <app-film-item 
-      class="mb-2em" 
-      fxFlex="30%" 
-      fxFlex.lt-md="45%" 
-      fxFlex.lt-sm="100%" 
-      [data]="film"
-      (updateListOfFavorite)="addFilmToFavorit($event)" 
-      (updateListOfBooked)="addFilmToBookmark($event)"
-      *ngFor="let film of films"
-    >
-    </app-film-item>
-
-    <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-      <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]='isDisabledFilmsBtn'
-        >Показать еще</button>
-    </div>
-  
-
-
+  <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="nextFilmsPage()" 
+      [disabled]='isDisabledFilmsBtn'
+    >Показать еще</button>
+  </div>
 
 </div>
 
 <app-spiner *ngIf="spiner"></app-spiner>
-
-

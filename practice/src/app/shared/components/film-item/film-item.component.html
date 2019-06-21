@@ -7,7 +7,7 @@
       <h2>{{film.title}}</h2>
       <p class='year'>{{film.release_date}}</p>
       <p class="description">
-        {{ (film.overview.length > 200) ? (film.overview | slice:0:200) + '...' : (film.overview) }}</p>
+        {{ (film.overview.length > 180) ? (film.overview | slice:0:180) + '...' : (film.overview) }}</p>
       <mat-card-actions>
         <button 
           mat-icon-button 
