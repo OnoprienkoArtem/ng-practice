@@ -1,14 +1,17 @@
-<mat-form-field class="search-form-field">
-  <input matInput type="text" [placeholder]="searchTitle" [(ngModel)]="searchValue"
-    (keyup)="changeSearchValue()">
-  <button 
-    mat-button 
-    matSuffix 
-    mat-icon-button 
-    *ngIf="searchValue" 
-    aria-label="Clear"
-    (click)="searchValue=''; changeSearchValue()"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
+<div fxLayout="row wrap">
+  <mat-form-field class="search-form-field">
+    <input matInput type="text" placeholder="Поиск" [(ngModel)]="searchValue"
+      (keyup)="changeSearchValue()">
+    <button 
+      mat-button 
+      matSuffix 
+      mat-icon-button 
+      *ngIf="searchValue" 
+      aria-label="Clear"
+      (click)="searchValue=''; changeSearchValue()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>  
+  </mat-form-field>
+  <button mat-flat-button>Поиск</button>
+</div>
