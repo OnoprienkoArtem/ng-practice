@@ -1,7 +1,7 @@
 
 
 .section-header {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 
@@ -30,5 +30,8 @@ button {
   overflow-y: overlay;
   height: 93vh;
   overflow-x: hidden;
-  padding: 5% 5% 2.5% 5%;
+  padding: 2.5%;
+  > div {
+      margin-bottom: 30px;
+  }
 }
