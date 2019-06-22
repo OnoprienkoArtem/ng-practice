@@ -27,6 +27,9 @@ export class FilmService {
   bookmarkApiUrl: string = `${this.localApiUrl}/films/bookmarks`;
 
 
+  searchValue: string;
+
+
   constructor(private http: HttpClient) {}
 
   getPopularFilms(page?: number) {
@@ -42,6 +45,14 @@ export class FilmService {
 
   getItemsBySearch(value?: string) {
     return this.http.get(`${this.searchUrl}/multi?query=${value}${this.params}`)
+  }
+
+  set search(value) {
+    this.searchValue = value;
+  }
+
+  get search() {
+    return this.searchValue;
   }
 
 

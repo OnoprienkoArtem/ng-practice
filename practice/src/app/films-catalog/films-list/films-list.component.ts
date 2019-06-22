@@ -26,12 +26,6 @@ export class FilmsListComponent implements OnInit {
   private nextPageFilms: number;
   private stepFilmsPage: number = 3;
 
-
-  
-
-
-
-
   public visibleContent: boolean = true;
 
 

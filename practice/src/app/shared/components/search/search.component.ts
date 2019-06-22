@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { FilmService } from '../../../services/film.service';
 
 @Component({
   selector: 'app-search',
@@ -12,10 +14,18 @@ export class SearchComponent implements OnInit {
   @Output() updateSearchData = new EventEmitter<string>();  
  
   
-  constructor() { }
+  constructor(public filmsService: FilmService, private router: Router) { }
 
   changeSearchValue() {    
-    this.updateSearchData.emit(this.searchValue);
+    console.log(this.searchValue);
+    if (!this.searchValue ) {    
+      this.router.navigate(['/main']);
+    } else {
+      this.router.navigate(['/search-result']);
+      // this.updateSearchData.emit(this.searchValue);
+      this.filmsService.search = this.searchValue;
+
+    }    
   }
 
   ngOnInit() {}

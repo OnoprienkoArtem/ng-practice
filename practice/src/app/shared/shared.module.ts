@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
+import { RouterModule } from '@angular/router';
 
 import { FilmItemComponent } from './components/film-item/film-item.component';
 import { ActorItemComponent } from '../shared/components/actor-item/actor-item.component';
@@ -23,7 +24,8 @@ import { SpinerComponent } from '../shared/components/spiner/spiner.component';
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     FilmItemComponent,
