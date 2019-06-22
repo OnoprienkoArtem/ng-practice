@@ -43,7 +43,7 @@ export class FilmService {
 
 
 
-  getItemsBySearch(value?: string, page?: number) {
+  getItemsBySearch(value: string, page: number) {
     return this.http.get(`${this.searchUrl}/multi?query=${value}${this.params}&page=${page}`)
   }
 

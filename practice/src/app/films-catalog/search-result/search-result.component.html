@@ -2,7 +2,8 @@
 
 
     <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-      <h2>Результат поиска: {{totalResalt}} </h2>     
+      <h2>Результат поиска: {{totalResalt}} </h2>  
+      <p>Страница: {{pageCount}} из {{totalPages}}</p>
     </div>
 
     <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
@@ -15,7 +16,7 @@
 
 
       <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-        <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>Показать
+        <button mat-raised-button color="primary" (click)="nextPage()" [disabled]='isDisabledActorsBtn'>Показать
           еще</button>
       </div>
     </div>
