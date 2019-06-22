@@ -1,3 +1,33 @@
-<p>
-  search-result works!
-</p>
+<div *ngIf="!spiner" class="cards-section">
+
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+      <h2>Результат поиска</h2>
+     
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+      <mat-card class="mb-2em" fxFlex="18%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" *ngFor="let searchItem of searchItems">
+        <!-- <ng-component *ngIf="searchItem.poster_path; else profile_path"> -->
+          <div class="img-wrapp">
+            <img *ngIf="searchItem.poster_path" [src]="imgUrl + searchItem.poster_path" alt="">
+            <img *ngIf="!searchItem.poster_path" [src]="imgUrl + searchItem.profile_path" alt="">
+          </div>  
+        <!-- </ng-component> -->
+        <!-- <ng-template #profile_path>
+          <div class="img-wrapp">
+            <img src="{{imgUrl + searchItem.profile_path}}" alt="">
+          </div>          
+        </ng-template> -->
+        
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+
+<app-spiner *ngIf="spiner"></app-spiner>
+

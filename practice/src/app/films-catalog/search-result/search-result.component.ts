@@ -8,10 +8,25 @@ import { FilmService } from '../../services/film.service';
 })
 export class SearchResultComponent implements OnInit {
 
+  public spiner: boolean = true;
+  public searchItems: any[] = [];
+  public imgUrl: string = this.filmsService.midImgPath;
+
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() {
-    console.log('search component', this.filmsService.search);
+    this.filmsService.getItemsBySearch(this.filmsService.search).subscribe(  
+      (res: any) => {
+        console.log(res.results); 
+        console.log(res); 
+        this.searchItems = res.results;
+
+        if (this.searchItems) {
+          this.spiner = false;
+        }    
+      },
+      err => console.log("error", err)
+    )
 
   }
 

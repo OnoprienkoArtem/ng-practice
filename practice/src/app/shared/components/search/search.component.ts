@@ -11,7 +11,7 @@ export class SearchComponent implements OnInit {
 
   searchValue: string; 
 
-  @Output() updateSearchData = new EventEmitter<string>();  
+  
  
   
   constructor(public filmsService: FilmService, private router: Router) { }
@@ -21,10 +21,8 @@ export class SearchComponent implements OnInit {
     if (!this.searchValue ) {    
       this.router.navigate(['/main']);
     } else {
-      this.router.navigate(['/search-result']);
-      // this.updateSearchData.emit(this.searchValue);
+      this.router.navigate(['/search-result']);     
       this.filmsService.search = this.searchValue;
-
     }    
   }
 

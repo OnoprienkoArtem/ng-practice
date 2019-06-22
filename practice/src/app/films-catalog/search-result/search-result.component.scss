@@ -1,0 +1,34 @@
+.mat-card {
+  padding: .5%;
+  margin: 0;
+  height: 280px;
+  margin-bottom: 20px;
+
+  .img-wrapp {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+button {
+  margin: auto 0;
+}
+
+.cards-section {
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-y: overlay;
+  height: 93vh;
+  overflow-x: hidden;
+  padding: 2.5% 10%;
+
+  >div {
+    margin-bottom: 40px;
+  }
+}

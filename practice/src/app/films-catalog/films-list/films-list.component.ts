@@ -46,16 +46,7 @@ export class FilmsListComponent implements OnInit {
           }
         },
         err => console.log("error", err)
-    )
-
-  
-
-    // this.filmsService.getItemsBySearch('weak').subscribe(  
-    //   (res: any) => {
-    //     console.log(res.results);      
-    //   },
-    //   err => console.log("error", err)
-    // ) 
+    ) 
   }
 
   nextFilmsPage() {   
