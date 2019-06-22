@@ -27,6 +27,7 @@ mat-card {
 }
 
 .mat-toolbar {
+  font-size: 14px;
   background: rgb(68, 68, 73);
   color: #fff;
   box-shadow: 0px 1px 10px 0px rgba(68, 68, 73, .5);
@@ -37,9 +38,7 @@ mat-card {
   margin: auto;
 }
 
-.mat-toolbar {
-  font-size: 14px;
-}
+
 
 .mb-2em {
   margin-bottom: 2em;
@@ -60,6 +59,7 @@ mat-card {
 }
 
 h2 {
-  color: #46454b;
+  font-size: 20px;
+  color: rgb(68, 68, 73);
 }
 
