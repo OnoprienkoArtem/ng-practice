@@ -11,6 +11,7 @@ export class SearchResultComponent implements OnInit {
   public spiner: boolean = true;
   public searchItems: any[] = [];
   public imgUrl: string = this.filmsService.midImgPath;
+  public totalResalt: number;
 
   constructor(public filmsService: FilmService) { }
 
@@ -20,14 +21,15 @@ export class SearchResultComponent implements OnInit {
         console.log(res.results); 
         console.log(res); 
         this.searchItems = res.results;
-
+        this.totalResalt = res.total_results;
         if (this.searchItems) {
           this.spiner = false;
         }    
       },
       err => console.log("error", err)
     )
-
   }
+
+  
 
 }

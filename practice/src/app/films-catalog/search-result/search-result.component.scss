@@ -21,14 +21,12 @@ button {
 }
 
 .cards-section {
-  max-width: 100%;
-  margin: 0 auto;
-  overflow-y: overlay;
-  height: 93vh;
-  overflow-x: hidden;
-  padding: 2.5% 10%;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-y: overlay;
+    height: 93vh;
+    overflow-x: hidden;
+    padding: 2.5% 10%;
 
-  >div {
-    margin-bottom: 40px;
-  }
 }
