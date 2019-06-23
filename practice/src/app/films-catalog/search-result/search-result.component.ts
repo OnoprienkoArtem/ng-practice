@@ -12,6 +12,7 @@ export class SearchResultComponent implements OnInit {
   public searchItems: any[] = [];
   public imgUrl: string = this.filmsService.midImgPath;
   public totalResalt: number;
+  public isDisabledActorsBtn: boolean = false;
 
   constructor(public filmsService: FilmService) { }
 
@@ -35,16 +36,11 @@ export class SearchResultComponent implements OnInit {
   }
 
   nextPage() {
-    this.pageCount++;
+    this.pageCount++; 
+    if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
     this.filmsService.getItemsBySearch(this.filmsService.search, this.pageCount).subscribe(
-      (res: any) => {
-        console.log(res.results);
-        console.log(res);
+      (res: any) => {    
         this.searchItems = res.results;
-        this.totalResalt = res.total_results;
-        if (this.searchItems) {
-          this.spiner = false;
-        }
       },
       err => console.log("error", err)
     )
