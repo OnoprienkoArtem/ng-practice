@@ -3,7 +3,7 @@
     <div class="logo-wrapp" routerLink="/main">
       <img src="assets/logo.jpg" alt="">
     </div> 
-    <div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
       <a 
         mat-button 
         *ngFor="let link of links" 
@@ -11,8 +11,9 @@
         [routerLinkActive]="link.active">       
         <span class="nav">{{link.label}}</span>
       </a>
+       <app-search></app-search>
     </div>
-    <app-search></app-search>
+   
   </mat-toolbar-row>
 </mat-toolbar>
 

@@ -1,5 +1,6 @@
 <div *ngIf="!spiner" class="cards-section">
 
+  <ng-container *ngIf="searchItems.length > 0; else emptyRes">
 
     <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
       <h2>Результат поиска: {{totalResalt}} </h2>  
@@ -9,21 +10,40 @@
     <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
       <mat-card class="mb-2em" fxFlex="18%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" *ngFor="let searchItem of searchItems">       
         <div class="img-wrapp">
-          <img *ngIf="searchItem.poster_path" [src]="imgUrl + searchItem.poster_path" alt="">
-          <img *ngIf="!searchItem.poster_path" [src]="imgUrl + searchItem.profile_path" alt="">
+          <ng-container *ngIf="searchItem.poster_path || searchItem.profile_path; else notImg">
+            <img *ngIf="searchItem.poster_path" [src]="imgUrl + searchItem.poster_path" alt="">
+            <img *ngIf="!searchItem.poster_path" [src]="imgUrl + searchItem.profile_path" alt="">
+          </ng-container> 
+          <ng-template #notImg>
+            <div class="not-img" fxLayout="row wrap" fxLayoutAlign="center center">
+              <img src="assets/logo.jpg" alt="">
+            </div>            
+          </ng-template>          
         </div>
       </mat-card>
 
-
       <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-        <button mat-raised-button color="primary" (click)="nextPage()" [disabled]='isDisabledActorsBtn'>Показать
-          еще</button>
-      </div>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="nextPage()" 
+          [disabled]='isDisabledActorsBtn'
+        >
+          Показать еще
+        </button>
+      </div>      
     </div>
-
-
-
   
+</ng-container>
+
+<ng-template #emptyRes>
+  <div class="not-found" fxLayout="column wrap" fxLayoutAlign="center center">
+    <div class="icon">
+      <img src="assets/icon_scare.svg" alt="">
+    </div>    
+    <h2>По Вашему запросу ни чего не найдено.</h2>     
+  </div>
+</ng-template>
 
 
 
