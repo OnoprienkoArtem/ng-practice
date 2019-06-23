@@ -12,10 +12,10 @@ export class ActorsListComponent implements OnInit {
   public actors: Actor[] = [];
   private actorsClone: any[] = [];
 
-  private firstActorsPage: number = 8;
+  private firstActorsPage: number = 10;
   private currentActorsPage: number = this.firstActorsPage;
   private nextPageActors: number;
-  private stepActorsPage: number = 4;
+  private stepActorsPage: number = 5;
 
   public isDisabledActorsBtn: boolean = false;
 
