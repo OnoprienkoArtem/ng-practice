@@ -27,6 +27,7 @@ export class SearchResultComponent implements OnInit {
         this.searchItems = res.results;
         this.totalResalt = res.total_results;
         this.totalPages = res.total_pages;
+        if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
         if (this.searchItems) {
           this.spiner = false;
         }    

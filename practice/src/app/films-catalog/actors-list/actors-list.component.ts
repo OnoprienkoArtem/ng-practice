@@ -11,7 +11,7 @@ export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
   private actorsClone: any[] = [];
-
+  public spiner: boolean = true;
   private firstActorsPage: number = 10;
   private currentActorsPage: number = this.firstActorsPage;
   private nextPageActors: number;
@@ -26,6 +26,9 @@ export class ActorsListComponent implements OnInit {
       (actorsList: any) => {
         this.actorsClone = actorsList.results;
         this.actors = this.actorsClone.slice(0, this.firstActorsPage);
+        if (this.actorsClone) {
+          this.spiner = false;
+        }
       },
       err => console.log("error", err)
     ) 
