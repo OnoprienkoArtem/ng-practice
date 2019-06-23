@@ -1,23 +1,23 @@
 .mat-card {
-  padding: .5%;
-  margin: 0;
-  height: 280px;
-  margin-bottom: 20px;
+	padding: .5%;
+	margin: 0;
+	height: 280px;
+	margin-bottom: 20px;
 
-  .img-wrapp {
-    width: 100%;
-    height: 100%;
+	.img-wrapp {
+		width: 100%;
+		height: 100%;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
+		img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		}
+  	}
 }
 
 button {
-  margin: auto 0;
+  	margin: auto 0;
 }
 
 .cards-section {
@@ -27,7 +27,7 @@ button {
     overflow-y: overlay;
     height: 93vh;
     overflow-x: hidden;
-    padding: 2.5% 10%;
+    padding: 2.5% 10% 20px;
 }
 
 .not-found {
@@ -44,8 +44,8 @@ button {
     height: 100%;   
     background: #fdfffa;
     img {
-        width: 60% !important;
-        height: 60% !important;
+        width: 50% !important;
+        height: 50% !important;
         object-fit: contain !important;
     }
 }

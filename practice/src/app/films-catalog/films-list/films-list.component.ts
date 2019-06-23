@@ -11,25 +11,17 @@ import { Bookmark } from '../../models/bookmark';
   styleUrls: ['./films-list.component.scss']
 })
 export class FilmsListComponent implements OnInit {
-
-  public searchTitle: string = 'Поиск по фильмам';
-
-  public spiner: boolean = true;
-
-  public isDisabledFilmsBtn: boolean = false;
-
-  public films: Film[] = [];
-  public filmsClone: any[] = [];
-
+  
   private firstFilmsPage: number = 9;
-  public currentFilmsPage: number = this.firstFilmsPage;
   private nextPageFilms: number;
   private stepFilmsPage: number = 3;
 
+  public spiner: boolean = true;
+  public isDisabledFilmsBtn: boolean = false;
+  public films: Film[] = [];
+  public filmsClone: any[] = [];
+  public currentFilmsPage: number = this.firstFilmsPage;
   public visibleContent: boolean = true;
-
-
-  private favoriteFilms: any = new Set();
   public countFavorite: number;  
   
   constructor(public filmsService: FilmService) { }
@@ -49,7 +41,7 @@ export class FilmsListComponent implements OnInit {
     ) 
   }
 
-  nextFilmsPage() {   
+  public nextFilmsPage() {   
     this.nextPageFilms = this.currentFilmsPage + this.stepFilmsPage;    
     this.films = this.films.concat(this.filmsClone.slice(this.currentFilmsPage, this.nextPageFilms)); 
     this.currentFilmsPage += this.stepFilmsPage;        
@@ -58,9 +50,7 @@ export class FilmsListComponent implements OnInit {
     this.getBookmark();
   }
 
-
-
-  getFavorite() {    
+  private getFavorite() {    
     this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {         
       const favoriteList = favorites.map(favorite => favorite._id);      
       this.films.map(item => {
@@ -69,7 +59,7 @@ export class FilmsListComponent implements OnInit {
     })  
   }
 
-  addFilmToFavorit(id: number) { 
+  public addFilmToFavorit(id: number) { 
     const favoriteFilms = this.films.find(item => {
       return item.id === id;
     });
@@ -81,7 +71,7 @@ export class FilmsListComponent implements OnInit {
     }           
   }
 
-  getBookmark() {
+  private getBookmark() {
     this.filmsService.getBookmark(this.films.map(item => item.id)).subscribe((bookmarks: Array<Bookmark>) => {
       const bookedList = bookmarks.map(bookmark => bookmark._id);
       this.films.map(item => {
@@ -90,7 +80,7 @@ export class FilmsListComponent implements OnInit {
     })
   }
 
-  addFilmToBookmark(id: number) {  
+  public addFilmToBookmark(id: number) {  
     const bookmarkFilms = this.films.find(item => {
       return item.id === id;
     });
@@ -102,41 +92,8 @@ export class FilmsListComponent implements OnInit {
     }
   }
 
-  updateData(data) {    
-    if (data === 'Actors') {
-      this.visibleContent = false;
-      this.searchTitle = 'Поиск по актерам';
-    } else {
-      this.visibleContent = true; 
-      this.searchTitle = 'Поиск по фильмам';
-    }        
-  }
-
-  searchDataByFilms(dataSearch) {
-    this.films = this.filmsClone;
-    if (dataSearch.length > 2) {
-      this.films = this.films.filter(film => film.title.toLowerCase().includes(dataSearch.toLowerCase()));
-      this.isDisabledFilmsBtn = true;
-    } else {
-      this.isDisabledFilmsBtn = false;
-      if (this.films.length === this.filmsClone.length) {
-        this.isDisabledFilmsBtn = true;
-      }
-    }
-  }
-
-
-
-  // searchData(dataSearch) {  
-  //   if (this.visibleContent) {
-  //     this.searchDataByFilms(dataSearch);
-  //   } else {
-  //     this.searchDataByActors(dataSearch);
-  //   }   
-  // }
-
   ngOnDestroy() {
-    // this.subscription.unsubscribe();
+   
   }
 
 

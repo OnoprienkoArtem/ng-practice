@@ -1,13 +1,3 @@
-<!-- <mat-card class="menu-card">
-  <mat-toolbar class="menu-toolbar">
-    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-      <app-favorite-count [favorite]="countFavorite"></app-favorite-count>
-      <app-search [searchTitle]="searchTitle" (updateSearchData)="searchData($event)"></app-search>
-      <app-sorting (updateSortingData)="updateData($event)"></app-sorting>
-    </mat-toolbar-row>
-  </mat-toolbar>
-</mat-card> -->
-
 <div *ngIf="!spiner" class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center"> 
   <app-film-item 
     class="mb-2em" 
