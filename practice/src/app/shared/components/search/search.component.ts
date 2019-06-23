@@ -10,14 +10,10 @@ import { FilmService } from '../../../services/film.service';
 export class SearchComponent implements OnInit {
 
   searchValue: string; 
-
-  
- 
   
   constructor(public filmsService: FilmService, private router: Router) { }
 
-  changeSearchValue() {    
-    console.log(this.searchValue);
+  changeSearchValue() { 
     if (!this.searchValue ) {    
       this.router.navigate(['/main']);
     } else {
