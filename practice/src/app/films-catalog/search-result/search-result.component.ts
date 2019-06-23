@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FilmService } from '../../services/film.service';
+import { SearchService } from '../../services/search.service';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { Router } from '@angular/router';
@@ -17,19 +17,19 @@ export class SearchResultComponent implements OnInit {
   public totalResalt: number;
   public isDisabledActorsBtn: boolean = false;
 
-  constructor(
-    public filmsService: FilmService, 
+  constructor(    
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
-    private router: Router
+    private router: Router,
+    public searchServic: SearchService
   ) { }
 
   pageCount: number = 1; 
   totalPages: number;
 
   ngOnInit() {
-    if (!this.filmsService.search) this.router.navigate(['/main']);    
+    if (!this.searchServic.search) this.router.navigate(['/main']);    
 
-    this.filmsService.getItemsBySearch(this.filmsService.search, this.pageCount).subscribe(  
+    this.searchServic.getItemsBySearch(this.searchServic.search, this.pageCount).subscribe(  
       (res: any) => {    
         this.searchItems = res.results;
         this.totalResalt = res.total_results;
@@ -46,7 +46,7 @@ export class SearchResultComponent implements OnInit {
   nextPage() {
     this.pageCount++; 
     if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
-    this.filmsService.getItemsBySearch(this.filmsService.search, this.pageCount).subscribe(
+    this.searchServic.getItemsBySearch(this.searchServic.search, this.pageCount).subscribe(
       (res: any) => {    
         this.searchItems = res.results;
       },

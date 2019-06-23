@@ -8,9 +8,6 @@ import { ApiConfig } from '../models/api';
 })
 export class FilmService {
 
-  private searchValue: string;
-
-
   constructor(private http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {}
 
 
@@ -21,20 +18,6 @@ export class FilmService {
   getPopularActors(page?: number) {
     return this.http.get(`${this.localConfig.personUrl}/popular?page=${page}${this.localConfig.params}`)
   }
-
-
-
-  getItemsBySearch(value: string, page: number) {
-    return this.http.get(`${this.localConfig.searchUrl}/multi?query=${value}${this.localConfig.params}&page=${page}`)
-  }
-
-  set search(value) {
-    this.searchValue = value;
-  }
-
-  get search() {
-    return this.searchValue;
-  }  
 
 
 
