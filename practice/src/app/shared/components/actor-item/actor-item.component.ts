@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FilmService } from '../../../services/film.service';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Actor } from '../../../models/actor';
+import { LOCAL_CONFIG } from '../../../config/config-api';
+import { ApiConfig } from '../../../models/api';
 @Component({
   selector: 'app-actor-item',
   templateUrl: './actor-item.component.html',
@@ -8,11 +9,11 @@ import { Actor } from '../../../models/actor';
 })
 export class ActorItemComponent implements OnInit {
 
-  imgUrl: string = this.filmsService.midImgPath;
+  imgUrl: string = this.localConfig.midImgPath;
 
   @Input('data') actor: Actor;
 
-  constructor(public filmsService: FilmService) { }
+  constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
 
   ngOnInit() {
   }

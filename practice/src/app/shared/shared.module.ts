@@ -7,8 +7,6 @@ import { RouterModule } from '@angular/router';
 
 import { FilmItemComponent } from './components/film-item/film-item.component';
 import { ActorItemComponent } from '../shared/components/actor-item/actor-item.component';
-import { FavoriteCountComponent } from '../shared/components/favorite-count/favorite-count.component';
-import { SortingComponent } from '../shared/components/sorting/sorting.component';
 import { SearchComponent } from '../shared/components/search/search.component';
 import { SpinerComponent } from '../shared/components/spiner/spiner.component';
 
@@ -16,8 +14,6 @@ import { SpinerComponent } from '../shared/components/spiner/spiner.component';
   declarations: [
     FilmItemComponent,
     ActorItemComponent,
-    FavoriteCountComponent,
-    SortingComponent,
     SearchComponent,
     SpinerComponent
   ],
@@ -30,8 +26,6 @@ import { SpinerComponent } from '../shared/components/spiner/spiner.component';
   exports: [
     FilmItemComponent,
     ActorItemComponent,
-    FavoriteCountComponent,
-    SortingComponent,
     SearchComponent,
     SpinerComponent
   ]

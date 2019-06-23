@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FilmService } from '../../services/film.service';
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
 
 @Component({
   selector: 'app-search-result',
@@ -10,11 +12,11 @@ export class SearchResultComponent implements OnInit {
 
   public spiner: boolean = true;
   public searchItems: any[] = [];
-  public imgUrl: string = this.filmsService.midImgPath;
+  public imgUrl: string = this.localConfig.midImgPath;
   public totalResalt: number;
   public isDisabledActorsBtn: boolean = false;
 
-  constructor(public filmsService: FilmService) { }
+  constructor(public filmsService: FilmService, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
 
   pageCount: number = 1; 
   totalPages: number;

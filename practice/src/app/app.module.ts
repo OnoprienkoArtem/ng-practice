@@ -9,6 +9,8 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 
+import { LOCAL_CONFIG, localConfig } from './config/config-api';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AppComponent } from './app.component';
     MaterialModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCAL_CONFIG, useValue: localConfig}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

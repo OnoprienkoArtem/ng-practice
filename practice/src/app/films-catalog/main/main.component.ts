@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { Actor } from '../../models/actor';
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
+
 
 @Component({
   selector: 'app-main',
@@ -11,13 +14,13 @@ import { Actor } from '../../models/actor';
 export class MainComponent implements OnInit {
 
   public spiner: boolean = true;
-  public imgUrl: string = this.filmsService.midImgPath; 
+  public imgUrl: string = this.localConfig.midImgPath; 
   public films: Film[] = [];
   public filmsClone: any[] = [];
   public actors: Actor[] = [];
   private actorsClone: any[] = [];
 
-  constructor(private filmsService: FilmService) { }
+  constructor(private filmsService: FilmService, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
 
   ngOnInit() {
     this.filmsService.getPopularFilms().subscribe(

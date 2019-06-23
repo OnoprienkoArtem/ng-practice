@@ -4,13 +4,16 @@
       <img src="assets/logo.jpg" alt="">
     </div> 
     <div fxLayout="row wrap" fxLayoutAlign="center center">
-      <a 
-        mat-button 
-        *ngFor="let link of links" 
-        [routerLink]="link.path" 
-        [routerLinkActive]="link.active">       
-        <span class="nav">{{link.label}}</span>
-      </a>
+      <div class="nav-section">
+        <a 
+          mat-button 
+          *ngFor="let link of links" 
+          [routerLink]="link.path" 
+          [routerLinkActive]="link.active">       
+          <span>{{link.label}}</span>
+        </a>
+      </div>
+
        <app-search></app-search>
     </div>
    
