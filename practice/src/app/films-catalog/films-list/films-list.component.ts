@@ -12,40 +12,40 @@ import { Bookmark } from '../../models/bookmark';
 })
 export class FilmsListComponent implements OnInit {
   
-  private firstFilmsPage: number = 9;
-  private nextPageFilms: number;
-  private stepFilmsPage: number = 3;
-
+  private totalPages: number;
+  private page: number = 1;
   public spiner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
-  public filmsClone: any[] = [];
-  public currentFilmsPage: number = this.firstFilmsPage;
-  public visibleContent: boolean = true;
-  public countFavorite: number;  
+ 
+  
+    
   
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() { 
-    this.filmsService.getPopularFilms().subscribe(
-        (filmList: any) => {   
-          this.filmsClone = filmList.results;          
-          this.films = this.filmsClone.slice(0, this.firstFilmsPage);  
-          this.getFavorite();
-          this.getBookmark();
-          if (this.filmsClone) {          
-              this.spiner = false;       
-          }
-        },
-        err => console.log("error", err)
-    ) 
+    this.getOnePagePopularFilms(this.page);
+  }
+
+  getOnePagePopularFilms(page) {
+    this.filmsService.getPopularFilms(page).subscribe(
+      (filmList: any) => { 
+        this.totalPages = filmList.total_pages;       
+        this.films = filmList.results;
+        this.getFavorite();
+        this.getBookmark();
+        if (this.films) {
+          this.spiner = false;
+        }
+      },
+      err => console.log("error", err)
+    )
   }
 
   public nextFilmsPage() {   
-    this.nextPageFilms = this.currentFilmsPage + this.stepFilmsPage;    
-    this.films = this.films.concat(this.filmsClone.slice(this.currentFilmsPage, this.nextPageFilms)); 
-    this.currentFilmsPage += this.stepFilmsPage;        
-    this.isDisabledFilmsBtn = this.films.length  === this.filmsClone.length ? true : false; 
+    this.page++;
+    this.getOnePagePopularFilms(this.page);
+    this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false; 
     this.getFavorite();
     this.getBookmark();
   }
