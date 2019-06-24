@@ -1,14 +1,14 @@
-<div *ngIf="!spiner" class="cards-section" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+<div *ngIf="!spiner" class="cards-section">
+  <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+      <app-actor-item class="actor-item mb-2em" fxFlex="17%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="actor"
+        *ngFor="let actor of actors">
+      </app-actor-item>
 
-    <app-actor-item class="actor-item mb-2em" fxFlex="17%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="actor"
-      *ngFor="let actor of actors">
-    </app-actor-item>
-
-    <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-      <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>Показать
-        еще</button>
-    </div> 
-
+      <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
+        <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>Показать
+          еще</button>
+      </div> 
+  </div>
 </div>
 
 <app-spiner *ngIf="spiner"></app-spiner>
