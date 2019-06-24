@@ -27,7 +27,9 @@ export class SearchResultComponent implements OnInit {
   totalPages: number;
 
   ngOnInit() {
-    if (!this.searchServic.search) this.router.navigate(['/main']);    
+    if (!this.searchServic.search) this.router.navigate(['/main']);        
+
+
 
     this.searchServic.getItemsBySearch(this.searchServic.search, this.pageCount).subscribe(  
       (res: any) => {    

@@ -24,8 +24,8 @@ export class ActorsListComponent implements OnInit {
   ngOnInit() {
     this.filmsService.getPopularActors().subscribe(
       (actorsList: any) => {
-        this.actorsClone = actorsList.results;
-        this.actors = this.actorsClone.slice(0, this.firstActorsPage);
+        // this.actorsClone = actorsList.results;
+        this.actors = actorsList.results;
         if (this.actorsClone) {
           this.spiner = false;
         }
@@ -41,17 +41,17 @@ export class ActorsListComponent implements OnInit {
     this.isDisabledActorsBtn = this.actors.length === this.actorsClone.length ? true : false;
   } 
 
-  searchDataByActors(dataSearch) {
-    this.actors = this.actorsClone;
-    if (dataSearch.length > 2) {
-      this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
-      this.isDisabledActorsBtn = true;
-    } else {
-      this.isDisabledActorsBtn = false;
-      if (this.actors.length === this.actorsClone.length) {
-        this.isDisabledActorsBtn = true;
-      }
-    }
-  }
+  // searchDataByActors(dataSearch) {
+  //   this.actors = this.actorsClone;
+  //   if (dataSearch.length > 2) {
+  //     this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
+  //     this.isDisabledActorsBtn = true;
+  //   } else {
+  //     this.isDisabledActorsBtn = false;
+  //     if (this.actors.length === this.actorsClone.length) {
+  //       this.isDisabledActorsBtn = true;
+  //     }
+  //   }
+  // }
 
 }

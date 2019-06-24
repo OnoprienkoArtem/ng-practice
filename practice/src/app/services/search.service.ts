@@ -16,7 +16,7 @@ export class SearchService {
   getItemsBySearch(value: string, page: number) {
     return this.http.get(`${this.localConfig.searchUrl}/multi?query=${value}${this.localConfig.params}&page=${page}`)
   }
-
+  
   set search(value) {
     this.searchValue = value;
   }
