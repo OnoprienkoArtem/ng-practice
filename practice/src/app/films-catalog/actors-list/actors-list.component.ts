@@ -10,23 +10,23 @@ import { Actor } from '../../models/actor';
 export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
-  private actorsClone: any[] = [];
+  private totalPages: number;
+  private pages: number = 1;
   public spiner: boolean = true;
-  private firstActorsPage: number = 10;
-  private currentActorsPage: number = this.firstActorsPage;
-  private nextPageActors: number;
-  private stepActorsPage: number = 5;
-
   public isDisabledActorsBtn: boolean = false;
 
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() {
-    this.filmsService.getPopularActors().subscribe(
+    this.getOnePagePopularActors(this.pages);
+  }
+
+  getOnePagePopularActors(page) {
+    this.filmsService.getPopularActors(page).subscribe(
       (actorsList: any) => {
-        // this.actorsClone = actorsList.results;
+        this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
-        if (this.actorsClone) {
+        if (this.actors) {
           this.spiner = false;
         }
       },
@@ -35,10 +35,9 @@ export class ActorsListComponent implements OnInit {
   }
 
   nextActorsPage() {
-    this.nextPageActors = this.currentActorsPage + this.stepActorsPage;
-    this.actors = this.actors.concat(this.actorsClone.slice(this.currentActorsPage, this.nextPageActors));
-    this.currentActorsPage += this.stepActorsPage;
-    this.isDisabledActorsBtn = this.actors.length === this.actorsClone.length ? true : false;
+    this.pages++;    
+    this.getOnePagePopularActors(this.pages); 
+    this.isDisabledActorsBtn = this.pages === this.totalPages ? true : false;
   } 
 
   // searchDataByActors(dataSearch) {
