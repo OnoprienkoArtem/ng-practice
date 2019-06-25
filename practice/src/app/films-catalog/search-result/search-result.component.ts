@@ -17,7 +17,7 @@ export class SearchResultComponent implements OnInit {
   public imgUrl: string = this.localConfig.midImgPath;
   public totalResalt: number;
   public isDisabledActorsBtn: boolean = false;
-  private searchFor: string;
+  public searchFor: string;
 
   constructor(    
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -32,34 +32,22 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {    
     if (!this.searchServic.search.searchValue) this.router.navigate(['/main']); 
 
-    if (this.searchServic.search.currentRoute === '/films-list') {            
-      this.searchFor = 'movie'; 
-      this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount); 
+    switch (this.searchServic.search.currentRoute) {
+      case '/films-list':
+        this.typeOfSearch('movie');
+        break;
+      case '/actors-list':
+        this.typeOfSearch('person');
+        break;        
+      default:
+        this.typeOfSearch('multi');
+        break;
     }
+  }
 
-    if (this.searchServic.search.currentRoute === '/actors-list') {      
-      this.searchFor = 'person';
-      this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount); 
-    }
-
-
-
-
-
-    // this.searchServic.getItemsBySearch(this.searchServic.search, this.pageCount).subscribe(  
-    //   (res: any) => {    
-    //     this.searchItems = res.results;
-    //     this.totalResalt = res.total_results;
-    //     this.totalPages = res.total_pages;
-    //     if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
-    //     if (this.searchItems) {
-    //       this.spiner = false;
-    //     }    
-    //   },
-    //   err => console.log("error", err)
-    // )
-
-
+  typeOfSearch(type) {    
+    this.searchFor = type;
+    this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount);   
   }
 
   getSearchedList(searchFor, searchValue, page) {

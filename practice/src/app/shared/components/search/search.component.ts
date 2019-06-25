@@ -3,9 +3,6 @@ import { SearchService } from '../../../services/search.service';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { FilmService } from '../../../services/film.service';
 
-
-import { map } from 'rxjs/operators';
-import { log } from 'util';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -52,15 +49,12 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  // search = new Subject<any>();
-  // searchObserver$ = this.search.asObservable();
+ 
 
-  // resetSearch = new Subject<any>();
-  // resetSearchObserver$ = this.resetSearch.asObservable();
+
 
 
   ngOnInit() {
-    
     this.router.events.subscribe(
       (event: any) => {
       if (event instanceof NavigationEnd) {  
