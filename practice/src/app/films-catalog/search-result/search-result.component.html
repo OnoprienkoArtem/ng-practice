@@ -1,6 +1,6 @@
 <div *ngIf="!spiner" class="cards-section">
 
-  <ng-container *ngIf="searchItems.length > 0; else emptyRes">
+  <ng-container *ngIf="searchItems.length > 0; else emptyRes" class="cards">
 
     <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
       <h2>Результат поиска: {{totalResalt}} </h2>  
@@ -34,6 +34,8 @@
         </button>
       </div>      
     </div> -->
+
+    </ng-container>
 
     <ng-container *ngIf='searchFor === "movie"'>
       <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutAlign.lt-sm="center">
@@ -70,10 +72,18 @@
 
 
     <ng-container *ngIf='searchFor === "person"'>
-      <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutAlign.lt-sm="center">
+     
+        <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
 
-        <mat-card class="mb-2em" fxFlex="18%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%"
+              <app-actor-item class="actor-item mb-2em" fxFlex="17%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%"
+                [data]="actor" *ngFor="let actor of searchItems">
+              </app-actor-item>
+
+        <!-- <mat-card class="mb-2em" fxFlex="18%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%"
           *ngFor="let searchItem of searchItems">
+          <div>
+            <h2>{{searchItem.name}}</h2>
+          </div>
           <div class="img-wrapp">
             <ng-container *ngIf="searchItem.poster_path || searchItem.profile_path; else notImg">
              <img *ngIf="searchItem.profile_path" [src]="imgUrl + searchItem.profile_path" alt="">
@@ -84,7 +94,7 @@
               </div>
             </ng-template>
           </div>
-        </mat-card>
+        </mat-card> -->
 
         <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
           <button 
@@ -101,7 +111,7 @@
     </ng-container>
     
   
-</ng-container>
+
 
 
 
