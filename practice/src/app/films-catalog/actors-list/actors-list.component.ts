@@ -17,7 +17,7 @@ export class ActorsListComponent implements OnInit {
 
   constructor(public filmsService: FilmService) {
 
-    
+
    }
 
   ngOnInit() {
@@ -27,6 +27,7 @@ export class ActorsListComponent implements OnInit {
   getOnePagePopularActors(page) {
     this.filmsService.getPopularActors(page).subscribe(
       (actorsList: any) => {
+        console.log(actorsList);
         this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
         if (this.actors) {

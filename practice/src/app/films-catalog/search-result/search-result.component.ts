@@ -17,6 +17,7 @@ export class SearchResultComponent implements OnInit {
   public imgUrl: string = this.localConfig.midImgPath;
   public totalResalt: number;
   public isDisabledActorsBtn: boolean = false;
+  private searchFor: string;
 
   constructor(    
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -28,38 +29,20 @@ export class SearchResultComponent implements OnInit {
   pageCount: number = 1; 
   totalPages: number;
 
-  ngOnInit() {
+  ngOnInit() {    
     if (!this.searchServic.search.searchValue) this.router.navigate(['/main']); 
 
-    if (this.searchServic.search.currentRoute === '/films-list') {      
-      this.searchServic.getSearchFilms('movie', this.searchServic.search.searchValue, this.pageCount).subscribe(
-        (res: any) => {
-          this.searchItems = res.results;
-          this.totalResalt = res.total_results;
-          this.totalPages = res.total_pages;
-          if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
-          if (this.searchItems) {
-            this.spiner = false;
-          }
-        },
-        err => console.log("error", err)
-      )
+    if (this.searchServic.search.currentRoute === '/films-list') {            
+      this.searchFor = 'movie'; 
+      this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount); 
     }
 
-    if (this.searchServic.search.currentRoute === '/actors-list') {
-      this.searchServic.getSearchFilms('person', this.searchServic.search.searchValue, this.pageCount).subscribe(
-        (res: any) => {
-          this.searchItems = res.results;
-          this.totalResalt = res.total_results;
-          this.totalPages = res.total_pages;
-          if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
-          if (this.searchItems) {
-            this.spiner = false;
-          }
-        },
-        err => console.log("error", err)
-      )
+    if (this.searchServic.search.currentRoute === '/actors-list') {      
+      this.searchFor = 'person';
+      this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount); 
     }
+
+
 
 
 
@@ -79,17 +62,25 @@ export class SearchResultComponent implements OnInit {
 
   }
 
-  nextPage() {
-    this.pageCount++; 
-    if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
-
-    this.searchServic.getItemsBySearch(this.searchServic.search, this.pageCount).subscribe(
-      (res: any) => {    
+  getSearchedList(searchFor, searchValue, page) {
+    this.searchServic.getSearchFilms(searchFor, searchValue, page).subscribe(
+      (res: any) => {
         this.searchItems = res.results;
+        this.totalResalt = res.total_results;
+        this.totalPages = res.total_pages;
+        if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
+        if (this.searchItems) {
+          this.spiner = false;
+        }
       },
       err => console.log("error", err)
     )
-    
+  }
+
+  nextPage() {
+    this.pageCount++; 
+    if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;    
+    this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount);
   }
 
 

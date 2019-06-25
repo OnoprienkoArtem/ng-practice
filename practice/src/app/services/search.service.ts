@@ -22,12 +22,15 @@ export class SearchService {
   getSearchFilms(searchFor: string, value: string, page: number) {
     return this.http.get(`${this.localConfig.searchUrl}/${searchFor}?query=${value}${this.localConfig.params}&page=${page}`)
   }
+
+
+
   
   set search(value: any) {
     this.searchValue = value;
   }
 
   get search() {
-    return this.searchValue;
+    return this.searchValue || false;
   }
 }
