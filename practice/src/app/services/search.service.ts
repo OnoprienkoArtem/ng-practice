@@ -10,7 +10,9 @@ export class SearchService {
 
   private searchValue: string;
 
-  constructor(private http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
+  constructor(private http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {
+    
+   }
 
 
   getItemsBySearch(value: string, page: number) {

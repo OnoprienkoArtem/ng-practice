@@ -1,7 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchService } from '../../../services/search.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { FilmService } from '../../../services/film.service';
+
+
+import { map } from 'rxjs/operators';
+import { log } from 'util';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -11,12 +16,18 @@ import { FilmService } from '../../../services/film.service';
 export class SearchComponent implements OnInit {
 
   searchValue: string; 
+  currentUrl: string;
+  placeholder: string;
   
   constructor(
     public filmsService: FilmService, 
     private router: Router,
-    public searchServic: SearchService
-  ) { }
+    public searchServic: SearchService,
+    public activatedRoute: ActivatedRoute    
+  ) {
+    console.log(this.router.url);
+    
+   }
 
   changeSearchValue() { 
     if (!this.searchValue ) {    
@@ -27,6 +38,39 @@ export class SearchComponent implements OnInit {
     }    
   }
 
-  ngOnInit() {}
+  setPlaseholder(path) {
+    switch (path) {
+      case '/films-list':
+        this.placeholder = 'Поиск фильмов'
+        break;
+      case '/actors-list':
+        this.placeholder = 'Поиск актеров'
+        break;
+      default:
+        this.placeholder = 'Поиск ...'
+        break;
+    }
+  }
+
+  search = new Subject<any>();
+  searchObserver$ = this.search.asObservable();
+
+  resetSearch = new Subject<any>();
+  resetSearchObserver$ = this.resetSearch.asObservable();
+
+
+  ngOnInit() {
+    
+    // this.router.events.subscribe(
+    //   (event: any) => {
+    //   if (event instanceof NavigationEnd) {  
+    //     this.setPlaseholder(event.url);  
+    //     this.search.next(this.searchValue);
+    //   }      
+    // });
+ 
+
+ 
+  }
 
 }

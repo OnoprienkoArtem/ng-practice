@@ -15,7 +15,10 @@ export class ActorsListComponent implements OnInit {
   public spiner: boolean = true;
   public isDisabledActorsBtn: boolean = false;
 
-  constructor(public filmsService: FilmService) { }
+  constructor(public filmsService: FilmService) {
+
+    
+   }
 
   ngOnInit() {
     this.getOnePagePopularActors(this.pages);
