@@ -1,8 +1,8 @@
 <div *ngIf="!spiner" class="cards-section">
 
-  <ng-container *ngIf="searchItems.length > 0; else emptyRes" class="cards">
+  <ng-container *ngIf="searchItems.length > 0; else emptyRes">     
 
-    <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+    <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
       <h2>Результат поиска: {{totalResalt}} </h2>  
       <p>Страница: {{pageCount}} из {{totalPages}}</p>
     </div>

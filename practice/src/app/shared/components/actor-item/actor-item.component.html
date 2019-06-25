@@ -1,28 +1,27 @@
-<div class='block'>
-  <div class='cards' >
-    <h2>{{actor.name}}</h2>
-    <div fxLayout="row" class="img-wrapp">
-      <img src="{{imgUrl + actor.profile_path}}" alt="">
-    </div>
-    <!-- <div class='info'>     
- 
-      <mat-card-actions>
-        <button mat-icon-button>
-          <i class="material-icons">
-            play_arrow
-          </i>
-        </button>
-        <button mat-icon-button>
-          <i class="material-icons">
-            menu
-          </i>
-        </button>
-        <button mat-icon-button>
-          <i class="material-icons">favorite</i>
-        </button>
+    <!-- <div class='block'> -->
+      <div class='cards' >
 
-      </mat-card-actions>
-    </div> -->
-  </div>
-</div>
+        <div class="name">
+          <h2>{{actor.name}}</h2>
+        </div>
+        
+        <div class="img-wrapp">
+
+          <ng-container *ngIf="actor.profile_path; else notImg">
+            <img src="{{imgUrl + actor.profile_path}}" alt="">
+          </ng-container>
+
+          <ng-template #notImg>
+            <div class="not-img">
+              <img src="assets/logo.jpg" alt="">
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
+
+    <!-- </div> -->
+
+
+
 
