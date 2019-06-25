@@ -21,6 +21,8 @@ export class FilmService {
 
 
 
+
+
   getFavorite(filmIds: Array<number>) {
     return this.http.get(`${this.localConfig.favoriteApiUrl}?filmIds=${filmIds.join(',')}`);
   }

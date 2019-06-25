@@ -16,9 +16,9 @@ import { Subject } from 'rxjs';
 export class SearchComponent implements OnInit {
 
   searchValue: string; 
-  currentUrl: string;
+  currentRoute: string;
   placeholder: string;
-  
+
   constructor(
     public filmsService: FilmService, 
     private router: Router,
@@ -33,8 +33,8 @@ export class SearchComponent implements OnInit {
     if (!this.searchValue ) {    
       this.router.navigate(['/main']);
     } else {
-      this.router.navigate(['/search-result']);     
-      this.searchServic.search = this.searchValue;
+      this.router.navigate(['/search-result']);  
+      this.searchServic.search = { searchValue: this.searchValue, currentRoute: this.currentRoute };
     }    
   }
 
@@ -52,22 +52,23 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  search = new Subject<any>();
-  searchObserver$ = this.search.asObservable();
+  // search = new Subject<any>();
+  // searchObserver$ = this.search.asObservable();
 
-  resetSearch = new Subject<any>();
-  resetSearchObserver$ = this.resetSearch.asObservable();
+  // resetSearch = new Subject<any>();
+  // resetSearchObserver$ = this.resetSearch.asObservable();
 
 
   ngOnInit() {
     
-    // this.router.events.subscribe(
-    //   (event: any) => {
-    //   if (event instanceof NavigationEnd) {  
-    //     this.setPlaseholder(event.url);  
-    //     this.search.next(this.searchValue);
-    //   }      
-    // });
+    this.router.events.subscribe(
+      (event: any) => {
+      if (event instanceof NavigationEnd) {  
+        this.currentRoute = event.url;
+        this.setPlaseholder(this.currentRoute);  
+        // this.search.next(this.searchValue);
+      }      
+    });
  
 
  
