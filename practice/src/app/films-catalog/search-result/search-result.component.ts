@@ -3,7 +3,7 @@ import { SearchService } from '../../services/search.service';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { Router } from '@angular/router';
-import { log } from 'util';
+
 
 @Component({
   selector: 'app-search-result',
