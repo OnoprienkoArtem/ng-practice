@@ -2,21 +2,35 @@
   <form class="login" (ngSubmit)="login()">
     <section class="title">
       <h3 class="welcome">Приветствуем Вас</h3>
-      в системе учета сотрудников компании
+      на сайте о кино CINEMA
       <h5 class="hint">Для работы с системой необходимо авторизоваться</h5>
     </section>
     <div class="login-group">
 
-      <!-- <input class="username" type="text" id="login_username" placeholder="Логин" name="name"
-        [(ngModel)]="credentials.username">
-      <input class="password" type="password" id="login_password" placeholder="Пароль" name="password"
-        [(ngModel)]="credentials.password"> -->
+      <input 
+        class="username" 
+        type="text" 
+        id="login_username" 
+        placeholder="Логин" 
+        name="name"
+        [(ngModel)]="credentials.username"
+      >
+
+      <input 
+        class="password" 
+        type="password" 
+        id="login_password" 
+        placeholder="Пароль" 
+        name="password"
+        [(ngModel)]="credentials.password"
+      >
 
       <div class="error active" *ngIf="errorMessage">
         {{ errorMessage }}
       </div>
+
       <button type="submit" class="btn btn-primary">Войти</button>
-      <button class="btn btn-info" (click)="goToRegistration()">Регистрация</button>
+      <!-- <button class="btn btn-info" (click)="goToRegistration()">Регистрация</button> -->
     </div>
   </form>
 </div>
