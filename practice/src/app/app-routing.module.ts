@@ -7,11 +7,27 @@ import { ActorsListComponent } from './films-catalog/actors-list/actors-list.com
 import { SearchResultComponent } from './films-catalog/search-result/search-result.component';
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "main" },
-  { path: "main", component: MainComponent },
-  { path: "films-list", component: FilmsListComponent },
-  { path: "actors-list", component: ActorsListComponent },
-  { path: "search-result", component: SearchResultComponent }
+  { 
+    path: "", 
+    pathMatch: "full", 
+    redirectTo: "main" 
+  },
+  { 
+    path: "main", 
+    component: MainComponent 
+  },
+  { 
+    path: "films-list", 
+    component: FilmsListComponent 
+  },
+  { 
+    path: "actors-list", 
+    component: ActorsListComponent 
+  },
+  { 
+    path: "search-result", 
+    component: SearchResultComponent 
+  }
 ];
 
 @NgModule({
