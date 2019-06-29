@@ -1,29 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 // import { MessagesService } from '../shared/services/messages.service';
+
+import { FilmService } from '../../services/film.service';
+import { Film } from '../../models/film';
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   credentials = { username: '', password: '' };
   errorMessage = '';
+  public films: Film[] = [];
+  public imgUrl: string = this.localConfig.bigBackPath; 
+  public background: string; 
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    public filmsService: FilmService,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
     // private msgService: MessagesService
   ) {
   }
+
+  public emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  public passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
   ngOnInit() {
     const isLogin = this.authService.isLoggedIn();
     if (isLogin) {
       this.router.navigate(['/users']);
     }
+
+    this.filmsService.getPopularFilms().subscribe(
+      (filmList: any) => {       
+        this.films = filmList.results.slice(0, 10); ;           
+        console.log(this.films);  
+      },
+      err => console.log("error", err)
+    )
 
   }
 
@@ -54,6 +82,8 @@ export class LoginComponent implements OnInit {
   goToRegistration() {
     this.router.navigate(['registration']);
   }
+
+
 
 }
 

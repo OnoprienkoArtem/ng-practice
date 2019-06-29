@@ -17,7 +17,9 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     FilmsListComponent, 
-    MainComponent, ActorsListComponent, SearchResultComponent
+    MainComponent, 
+    ActorsListComponent, 
+    SearchResultComponent
   ],
   imports: [
     CommonModule,
