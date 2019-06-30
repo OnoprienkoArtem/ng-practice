@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
-// import { MessagesService } from '../shared/services/messages.service';
+import { MessagesService } from '../../services/messages.service';
 
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
