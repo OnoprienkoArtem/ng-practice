@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     public filmsService: FilmService,
-    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
-    // private msgService: MessagesService
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    private msgService: MessagesService
   ) {
   }
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     const isLogin = this.authService.isLoggedIn();
     if (isLogin) {
-      this.router.navigate(['/users']);
+      this.router.navigate(['/main']);
     }
 
     this.filmsService.getPopularFilms().subscribe(
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
             body: `${this.credentials.username}, Вы успешно вошли в систему. Добро пожаловать!`
           });
           setTimeout(() => {
-            this.router.navigate(['/users']);
+            this.router.navigate(['/main']);
           }, 2000);
         },
         err => {
