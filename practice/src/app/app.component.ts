@@ -15,4 +15,8 @@ export class AppComponent {
     { path: '/films-list', label: 'Все фильмы', active: 'button-active' },
     { path: '/actors-list', label: 'Все актеры', active: 'button-active' }
   ];
+
+
+
+  
 }

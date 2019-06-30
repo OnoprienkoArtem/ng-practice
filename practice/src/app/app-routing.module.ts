@@ -21,19 +21,23 @@ const routes: Routes = [
   },
   { 
     path: "main", 
-    component: MainComponent 
+    component: MainComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: "films-list", 
-    component: FilmsListComponent 
+    component: FilmsListComponent,
+    canActivate: [AuthGuard] 
   },
   { 
     path: "actors-list", 
-    component: ActorsListComponent 
+    component: ActorsListComponent,
+    canActivate: [AuthGuard] 
   },
   { 
     path: "search-result", 
-    component: SearchResultComponent 
+    component: SearchResultComponent,
+    canActivate: [AuthGuard] 
   }
 ];
 
