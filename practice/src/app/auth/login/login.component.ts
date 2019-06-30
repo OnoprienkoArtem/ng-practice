@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   public films: Film[] = [];
   public imgUrl: string = this.localConfig.bigBackPath; 
-  public background: string; 
+  public backgrounds: string; 
 
   constructor(
     private authService: AuthService,
@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
 
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {       
-        this.films = filmList.results.slice(0, 10); ;           
+        this.films = filmList.results.slice(0, 10); 
+        this.backgrounds = filmList.results.slice(0, 5);           
         console.log(this.films);  
       },
       err => console.log("error", err)
