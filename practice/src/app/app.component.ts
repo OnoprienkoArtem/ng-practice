@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from './animations';
-import { AuthService } from './services/auth.service';
-import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
+import { Router, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,10 @@ import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
 })
 export class AppComponent {
   title = 'movie-app';
-  isLogin = false;
+  isLogin = true;
+  currentRoute: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router) {}
 
   links: any[] = [
     { path: '/main', label: 'Главная', active: 'button-active' },
@@ -22,7 +23,13 @@ export class AppComponent {
   ];
 
   ngOnInit() {
-    this.isLogin = this.authService.isLoggedIn();
+    this.router.events.subscribe(
+      (event: any) => {
+        if (event instanceof NavigationEnd) {
+          this.currentRoute = event.url;
+          this.isLogin = this.currentRoute === '/login' ? false : true;               
+        }
+      });
     
   }
 
