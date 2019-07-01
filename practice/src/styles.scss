@@ -47,6 +47,16 @@ mat-card {
 }
 
 
+
+.cards-section {
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-y: overlay;
+  height: -webkit-fill-available;
+  overflow-x: hidden;  
+  padding-top: 64px;
+}
+
 .cards-section::-webkit-scrollbar {
   width: .5em;
 }
