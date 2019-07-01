@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from './animations';
 import { Router, NavigationEnd } from '@angular/router';
-
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent {
   isLogin = true;
   currentRoute: string;
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, public router: Router) {}
 
   links: any[] = [
     { path: '/main', label: 'Главная', active: 'button-active' },
@@ -33,7 +33,10 @@ export class AppComponent {
     
   }
 
-
+  logout() {           
+    // this.isLogin = false;
+    this.authService.logout();
+  }
 
 
 }

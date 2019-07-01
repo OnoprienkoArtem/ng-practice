@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   private authUrl = 'https://reqres.in/api';
   private loggedIn = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public router: Router) {
     // при обновлении страницы смотрим в localStorage чтоб проверить есть ли токен
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
@@ -34,6 +35,8 @@ export class AuthService {
   }
 
   logout() {
+    this.loggedIn = false;
+    this.router.navigate(['/login']); 
     localStorage.removeItem('auth_token');    
   }
 }
