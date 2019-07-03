@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   public imgUrl: string = this.localConfig.bigBackPath; 
   public backgrounds: string; 
 
+  public formSection: boolean = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -66,7 +68,8 @@ export class LoginComponent implements OnInit {
             type: 'success',
             body: `${this.credentials.username}, Вы успешно вошли в систему. Добро пожаловать!`
           });
-          setTimeout(() => {
+          this.formSection = true;
+          setTimeout(() => {            
             this.router.navigate(['/main']);
           }, 2000);
         },

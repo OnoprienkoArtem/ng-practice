@@ -12,8 +12,7 @@ export class AuthService {
   private authUrl = 'https://reqres.in/api';
   private loggedIn = false;
 
-  constructor(private http: HttpClient, public router: Router) {
-    // при обновлении страницы смотрим в localStorage чтоб проверить есть ли токен
+  constructor(private http: HttpClient, public router: Router) {   
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 

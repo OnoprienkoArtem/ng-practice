@@ -11,11 +11,7 @@
   </div>
 
 
-   <mat-card class="auth-form">
-  
-
-
-
+   <mat-card class="auth-form" [ngClass]="{'disaperForm': formSection}">
       <section class="title">
         <div class="logo">
           <img src="assets/logo.jpg" alt="">
@@ -23,10 +19,6 @@
         <h3 class="welcome">Приветствуем Вас на сайте о кино</h3>        
         <h5 class="hint">Для работы с сайтом необходимо авторизоваться</h5>
       </section>
-
-
-
-
       <form (ngSubmit)="login()">
         <div class="form-section">
 
@@ -58,11 +50,8 @@
           </mat-form-field>
 
         </div>
-
-
         <button mat-raised-button color="accent">Войти</button>
-      </form>
-      
+      </form>  
 
      
 
@@ -76,7 +65,7 @@
           {{ errorMessage }}
         </div> -->
 
-        <!-- <button class="btn btn-info" (click)="goToRegistration()">Регистрация</button> -->
+       
 
   
   </mat-card>
