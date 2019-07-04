@@ -12,6 +12,7 @@ import { ActorsListComponent } from './actors-list/actors-list.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 
 import { RouterModule } from '@angular/router';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { RouterModule } from '@angular/router';
     FilmsListComponent, 
     MainComponent, 
     ActorsListComponent, 
-    SearchResultComponent
+    SearchResultComponent, DetailsComponent
   ],
   imports: [
     CommonModule,
