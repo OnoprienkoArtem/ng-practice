@@ -24,9 +24,9 @@
             <i class="material-icons">bookmark</i>
           </button>
         </ng-template>
-        <button mat-icon-button>
-          <i class="material-icons">menu</i>
-        </button>
+        <a mat-icon-button routerLink="/details">
+          <i class="material-icons">menu</i>          
+        </a>
         <button 
           mat-icon-button 
           *ngIf="!film.isFavorite; else marked" 
