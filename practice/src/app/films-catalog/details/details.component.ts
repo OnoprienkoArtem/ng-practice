@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
+  public spiner: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
+    this.spiner = false;
+ 
   }
 
 }
