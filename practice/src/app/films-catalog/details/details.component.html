@@ -3,7 +3,8 @@
     <div>
 
       <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-        <h2>Фильм</h2>
+        <h2 *ngIf="filmDetails">Фильм</h2>
+        <h2 *ngIf="!filmDetails">Актер</h2>
        
       </div>
       <!-- <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
@@ -28,14 +29,9 @@
         </mat-card>
       </div> -->
 
-      <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-        <h2>Актер</h2>
-
-      </div>
 
 
-
-    </div>
+    <!-- </div> -->
 
   </div>
 
