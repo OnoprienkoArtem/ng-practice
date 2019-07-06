@@ -10,7 +10,8 @@ export class DetailsComponent implements OnInit {
 
   public spiner: boolean = true;
   public currentRoute: string;
-  public filmDetails: boolean = true;
+  public filmDetails: boolean;
+  public actorDetails: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -19,14 +20,34 @@ export class DetailsComponent implements OnInit {
 
     this.router.events.subscribe(
       (event: any) => {
+        console.log(event);
         if (event instanceof NavigationEnd) {
-          this.currentRoute = event.url;          
-          if (this.currentRoute === '/films/details') {
-            this.filmDetails = false;
-          }
+          this.currentRoute = event.url; 
+          console.log(this.currentRoute);
+          this.showDetailCard(this.currentRoute);    
         }
       });
+      
+
+     
  
   }
+
+
+  showDetailCard(route) {
+    console.log(route);
+    // this.filmDetails = (route === '/films/details') ? true : false;
+    if (route === '/films/details') {
+      this.filmDetails = true;
+      console.log(this.filmDetails);
+    } else {
+      this.filmDetails = false;
+      console.log(this.filmDetails);
+    }
+
+    // this.actorDetails = route === '/actors/details' ? true : false;
+  }
+
+  
 
 }

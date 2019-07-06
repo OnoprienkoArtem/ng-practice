@@ -44,6 +44,11 @@ const routes: Routes = [
     path: "films/details",
     component: DetailsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: "actors/details",
+    component: DetailsComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
