@@ -26,12 +26,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { 
-    path: "films-list", 
+    path: "films", 
     component: FilmsListComponent,
     canActivate: [AuthGuard] 
   },
   { 
-    path: "actors-list", 
+    path: "actors", 
     component: ActorsListComponent,
     canActivate: [AuthGuard] 
   },
@@ -41,7 +41,7 @@ const routes: Routes = [
     canActivate: [AuthGuard] 
   },
   {
-    path: "details",
+    path: "films/details",
     component: DetailsComponent,
     canActivate: [AuthGuard]
   }

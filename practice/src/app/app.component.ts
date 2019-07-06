@@ -18,8 +18,8 @@ export class AppComponent {
 
   links: any[] = [
     { path: '/main', label: 'Главная', active: 'button-active' },
-    { path: '/films-list', label: 'Все фильмы', active: 'button-active' },
-    { path: '/actors-list', label: 'Все актеры', active: 'button-active' }
+    { path: '/films', label: 'Все фильмы', active: 'button-active' },
+    { path: '/actors', label: 'Все актеры', active: 'button-active' }
   ];
 
   ngOnInit() {

@@ -20,7 +20,8 @@ import { DetailsComponent } from './details/details.component';
     FilmsListComponent, 
     MainComponent, 
     ActorsListComponent, 
-    SearchResultComponent, DetailsComponent
+    SearchResultComponent, 
+    DetailsComponent
   ],
   imports: [
     CommonModule,

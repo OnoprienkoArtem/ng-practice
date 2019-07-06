@@ -35,10 +35,10 @@ export class SearchResultComponent implements OnInit {
     if (!this.searchServic.search.searchValue) this.router.navigate(['/main']); 
 
     switch (this.searchServic.search.currentRoute) {
-      case '/films-list':
+      case '/films':
         this.typeOfSearch('movie');
         break;
-      case '/actors-list':
+      case '/actors':
         this.typeOfSearch('person');
         break;        
       default:

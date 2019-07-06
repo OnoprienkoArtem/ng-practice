@@ -59,11 +59,9 @@ export class SearchComponent implements OnInit {
       (event: any) => {
       if (event instanceof NavigationEnd) {  
         this.currentRoute = event.url;
-        this.setPlaseholder(this.currentRoute);  
-        // this.search.next(this.searchValue);
+        this.setPlaseholder(this.currentRoute);        
       }      
     });
- 
 
  
   }
