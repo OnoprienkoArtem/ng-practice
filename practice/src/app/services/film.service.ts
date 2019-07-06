@@ -49,6 +49,16 @@ export class FilmService {
     return this.http.delete(`${this.localConfig.localApiUrl}/films/${id}/bookmarks`);
   }
 
+  public currentRouteValue: string;
+
+  set currentRoute(value: any) {
+    this.currentRouteValue = value;
+  }
+
+  get currentRoute() {
+    return this.currentRouteValue;
+  }
+
 
 
 }

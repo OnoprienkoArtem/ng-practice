@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
-
+import { FilmService } from '../../services/film.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -8,45 +8,21 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class DetailsComponent implements OnInit {
 
-  public spiner: boolean = true;
-  public currentRoute: string;
-  public filmDetails: boolean;
-  public actorDetails: boolean = false;
+  public spiner: boolean = true;  
+  public showDetails: boolean; 
 
-  constructor(private router: Router) { }
+  constructor(public filmsService: FilmService, private router: Router) { }
 
   ngOnInit() {
-    this.spiner = false;
+    this.spiner = false;     
 
-    this.router.events.subscribe(
-      (event: any) => {
-        console.log(event);
-        if (event instanceof NavigationEnd) {
-          this.currentRoute = event.url; 
-          console.log(this.currentRoute);
-          this.showDetailCard(this.currentRoute);    
-        }
-      });
-      
-
-     
- 
-  }
-
-
-  showDetailCard(route) {
-    console.log(route);
-    // this.filmDetails = (route === '/films/details') ? true : false;
-    if (route === '/films/details') {
-      this.filmDetails = true;
-      console.log(this.filmDetails);
-    } else {
-      this.filmDetails = false;
-      console.log(this.filmDetails);
+    if (this.filmsService.currentRoute === undefined) {
+      this.router.navigate(['/main']);
     }
-
-    // this.actorDetails = route === '/actors/details' ? true : false;
+    
+    this.showDetails = this.filmsService.currentRoute === '/films/details' ? true : false;  
   }
+
 
   
 
