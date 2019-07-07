@@ -12,7 +12,7 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class FilmItemComponent implements OnInit {
 
-  imgUrl: string = this.localConfig.midImgPath; 
+  public imgUrl: string = this.localConfig.midImgPath; 
   public currentRoute: string;
 
   @Input('data') film: Film;

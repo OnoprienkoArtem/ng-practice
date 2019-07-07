@@ -12,17 +12,17 @@ export class FilmService {
 
 
   getPopularFilms(page?: number) {
-    return this.http.get(`${this.localConfig.movieUrl}/popular?page=${page}${this.localConfig.params}`)
+    return this.http.get(`${this.localConfig.movieUrl}/popular${this.localConfig.params}&page=${page}`)
   }
 
   getFilmById(id?: number) {
-    return this.http.get(`${this.localConfig.movieUrl}/${id}${this.localConfig.paramsForId}`)
+    return this.http.get(`${this.localConfig.movieUrl}/${id}${this.localConfig.params}`)
   }
 
 
 
   getPopularActors(page?: number) {
-    return this.http.get(`${this.localConfig.personUrl}/popular?page=${page}${this.localConfig.params}`)
+    return this.http.get(`${this.localConfig.personUrl}/popular${this.localConfig.params}&page=${page}`)
   }
 
 

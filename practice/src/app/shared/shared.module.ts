@@ -9,13 +9,15 @@ import { FilmItemComponent } from './components/film-item/film-item.component';
 import { ActorItemComponent } from '../shared/components/actor-item/actor-item.component';
 import { SearchComponent } from '../shared/components/search/search.component';
 import { SpinerComponent } from '../shared/components/spiner/spiner.component';
+import { FilmDetailsComponent } from './components/film-details/film-details.component';
 
 @NgModule({
   declarations: [
     FilmItemComponent,
     ActorItemComponent,
     SearchComponent,
-    SpinerComponent
+    SpinerComponent,
+    FilmDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SpinerComponent } from '../shared/components/spiner/spiner.component';
     FilmItemComponent,
     ActorItemComponent,
     SearchComponent,
-    SpinerComponent
+    SpinerComponent,
+    FilmDetailsComponent
   ]
 })
 export class SharedModule { }

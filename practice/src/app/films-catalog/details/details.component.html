@@ -2,10 +2,12 @@
   <div>
     <div>
 
-      <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+      <div>
 
-        
-        <h2 *ngIf="showDetails">Фильм</h2>        
+     
+        <ng-container *ngIf="showDetails">                 
+          <app-film-details [data]="film"></app-film-details>
+        </ng-container>
         
         <h2 *ngIf="!showDetails">Актер</h2>
       </div>
@@ -40,4 +42,4 @@
 </div>
 
 <app-spiner *ngIf="spiner"></app-spiner>
->
+

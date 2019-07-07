@@ -1,18 +1,19 @@
 .cards-section {
   padding: 2.5%;
-  padding-top: 5%;
+  padding-top: 7.5%;
   display: flex;
+  height: 85%;
 
   >div {
     margin: auto;
 
-    >div {
-      margin-bottom: 40px;
-    }
+  
 
     >div:last-child {
       margin-bottom: 0;
     }
+
+  
   }
 
 }

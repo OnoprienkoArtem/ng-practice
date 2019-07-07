@@ -3,8 +3,7 @@ export class ApiConfig {
     movieUrl: string;
     searchUrl: string;
     personUrl: string;
-    params: string;  
-    paramsForId:string; 
+    params: string;     
     midImgPath: string;
     smallImgPath: string;
     bigBackPath: string;
