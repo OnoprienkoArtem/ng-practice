@@ -2,7 +2,6 @@
     <div>
       <img src="{{imgUrl + film.poster_path}}" alt="">
     </div>
-
     <div class='info'>
       <h2>{{film.title}}</h2>
       <p class='year'>{{film.release_date}}</p>
@@ -11,7 +10,6 @@
           <span>{{genre.name}} / </span>          
         </span>
       </p>
-
       <p class="description">
         {{ (film.overview.length > 300) ? (film.overview | slice:0:300) + '...' : (film.overview) }}</p>
 
@@ -23,10 +21,8 @@
           <img src="{{smallImgPath + production_companie.logo_path}}" alt="">
         </span>
       </div>
-
       <div class="backdrop">
         <img src="{{midBackPath + film.backdrop_path}}" alt="">
       </div>
-
     </div>
  </div>

@@ -10,6 +10,7 @@ import { ActorItemComponent } from '../shared/components/actor-item/actor-item.c
 import { SearchComponent } from '../shared/components/search/search.component';
 import { SpinerComponent } from '../shared/components/spiner/spiner.component';
 import { FilmDetailsComponent } from './components/film-details/film-details.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FilmDetailsComponent } from './components/film-details/film-details.com
     ActorItemComponent,
     SearchComponent,
     SpinerComponent,
-    FilmDetailsComponent
+    FilmDetailsComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   public emailFormControl = new FormControl('', [
     Validators.required,
-    Validators.email,
+    Validators.email
   ]);
 
   public passwordFormControl = new FormControl('', [
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.errorMessage = '';
-
+    
     this.authService.login(this.credentials.username, this.credentials.password)
       .subscribe(
         () => {

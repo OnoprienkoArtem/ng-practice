@@ -49,11 +49,6 @@ export class SearchComponent implements OnInit {
     }
   }
 
- 
-
-
-
-
   ngOnInit() {
     this.router.events.subscribe(
       (event: any) => {

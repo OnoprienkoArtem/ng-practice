@@ -16,9 +16,7 @@ export class DetailsComponent implements OnInit {
   public spiner: boolean = true;  
   public showDetails: boolean; 
   public id: number;
-  public film: any;
-
-   
+  public film: any;   
 
   constructor(
     public filmsService: FilmService, 
@@ -42,9 +40,7 @@ export class DetailsComponent implements OnInit {
           this.spiner = false;
         }
       });      
-    });
-
-    
+    });    
     
     this.showDetails = this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;  
   }  

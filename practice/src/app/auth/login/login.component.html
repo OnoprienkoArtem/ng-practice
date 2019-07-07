@@ -9,67 +9,44 @@
       <img src="{{imgUrl + background.poster_path}}" alt="">
     </div>
   </div>
-
-
-   <mat-card class="auth-form" [ngClass]="{'disaperForm': formSection}">
-      <section class="title">
-        <div class="logo">
-          <img src="assets/logo.jpg" alt="">
-        </div>
-        <h3 class="welcome">Приветствуем Вас на сайте о кино</h3>        
-        <h5 class="hint">Для работы с сайтом необходимо авторизоваться</h5>
-      </section>
-      <form (ngSubmit)="login()">
-        <div class="form-section">
-
-          <mat-form-field class="example-full-width">
-            <input 
-              matInput 
-              placeholder="Адрес электронной почты" 
-              [formControl]="emailFormControl"
-              [(ngModel)]="credentials.username"
-            >
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              Email is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width">
-            <input 
-              matInput 
-              placeholder="Пароль"    
-              [formControl]="passwordFormControl"
-              [(ngModel)]="credentials.password"
-            >   
-            <mat-error *ngIf="passwordFormControl.hasError('required')">
-              Password is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-        </div>
-        <button mat-raised-button color="accent">Войти</button>
-      </form>  
-
-     
-
-        <!-- <input class="username" type="text" id="login_username" placeholder="Логин" name="name"
-          [(ngModel)]="credentials.username">
-
-        <input class="password" type="password" id="login_password" placeholder="Пароль" name="password"
-          [(ngModel)]="credentials.password"> -->
-
-        <div class="error active" *ngIf="errorMessage">
-          {{ errorMessage }}
-        </div>
-
-       
-
   
+  <mat-card class="auth-form" [ngClass]="{'disaperForm': formSection}">
+    <section class="title">
+      <div class="logo">
+        <img src="assets/logo.jpg" alt="">
+      </div>
+      <h3 class="welcome">Приветствуем Вас на сайте о кино</h3>
+      <h5 class="hint">Для работы с сайтом необходимо авторизоваться</h5>
+    </section>
+    <form (ngSubmit)="login()">
+      <div class="form-section">
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Адрес электронной почты" [formControl]="emailFormControl"
+            [(ngModel)]="credentials.username">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Адрес электронной почты заполнить <strong>обязательно!</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Пароль" [formControl]="passwordFormControl" [(ngModel)]="credentials.password">
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Пароль заполнить <strong>обязательно</strong>
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+      <button mat-raised-button color="accent">Войти</button>
+    </form>
+
+    <div class="error active" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
   </mat-card>
 
 </div>
-
-
