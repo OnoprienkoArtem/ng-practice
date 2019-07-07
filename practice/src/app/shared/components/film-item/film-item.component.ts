@@ -35,18 +35,11 @@ export class FilmItemComponent implements OnInit {
     this.updateListOfBooked.emit(this.film.id);
   }
 
-  clickEventHandler(e) {
-   
-
-    this.router.events.subscribe(
-      (event: any) => {
-        
-        if (event instanceof NavigationEnd) {
-          this.currentRoute = event.url;
-          // console.log(this.currentRoute);
-          this.filmsService.currentRoute = this.currentRoute;
-        }
-      });
+  getDetails() { 
+    this.router.navigate(['/films/details', this.film.id]);
+    this.router.events.subscribe((event: any) => {        
+      if (event instanceof NavigationEnd) this.filmsService.currentRoute = event.url;
+    });
   }
 
 }

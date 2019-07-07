@@ -15,6 +15,12 @@ export class FilmService {
     return this.http.get(`${this.localConfig.movieUrl}/popular?page=${page}${this.localConfig.params}`)
   }
 
+  getFilmById(id?: number) {
+    return this.http.get(`${this.localConfig.movieUrl}/${id}${this.localConfig.paramsForId}`)
+  }
+
+
+
   getPopularActors(page?: number) {
     return this.http.get(`${this.localConfig.personUrl}/popular?page=${page}${this.localConfig.params}`)
   }
