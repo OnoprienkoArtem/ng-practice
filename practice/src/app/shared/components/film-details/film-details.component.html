@@ -13,12 +13,20 @@
       </p>
 
       <p class="description">
-        {{ (film.overview.length > 400) ? (film.overview | slice:0:400) + '...' : (film.overview) }}</p>
+        {{ (film.overview.length > 300) ? (film.overview | slice:0:300) + '...' : (film.overview) }}</p>
+
+      <a class="homepage" [href]="film.homepage" target="_blank">{{film.homepage}}</a>
       <p class="budget">Бюджет фильма: {{film.budget}}$ </p>
 
-      <div>
-
-        <img src="{{imgUrl + film.backdrop_path}}" alt="">
+      <div class="production_companies">
+        <span *ngFor="let production_companie of film.production_companies">
+          <img src="{{smallImgPath + production_companie.logo_path}}" alt="">
+        </span>
       </div>
+
+      <div class="backdrop">
+        <img src="{{midBackPath + film.backdrop_path}}" alt="">
+      </div>
+
     </div>
  </div>

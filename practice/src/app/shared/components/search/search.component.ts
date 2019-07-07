@@ -37,10 +37,10 @@ export class SearchComponent implements OnInit {
 
   setPlaseholder(path) {
     switch (path) {
-      case '/films-list':
+      case '/films':
         this.placeholder = 'Поиск фильмов'
         break;
-      case '/actors-list':
+      case '/actors':
         this.placeholder = 'Поиск актеров'
         break;
       default:

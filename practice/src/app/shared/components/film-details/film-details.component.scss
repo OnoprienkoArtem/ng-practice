@@ -5,8 +5,7 @@
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2),
     0 1px 1px 0 rgba(0, 0, 0, .14),
     0 1px 3px 0 rgba(0, 0, 0, .12);
-//   height: 200px;
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
 
@@ -15,7 +14,7 @@
   display: flex;
 }
 
-.cards div:last-child {
+.cards >div:last-child {
   width: 55%;
 }
 
@@ -29,6 +28,9 @@
     padding: 2%;
     position: relative;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
         h2 {
             margin: 0;
@@ -53,6 +55,30 @@
         .budget {
             font-weight: 300;
             text-transform: uppercase;
+        }
+
+        .backdrop {
+            // height: 100%;
+        }
+
+        .homepage {
+            font-size: .8em;
+        }
+
+        .production_companies {
+            display: flex;   
+            margin-bottom: 20px;
+            justify-content: center;
+            span {               
+                height: 75px;
+                width: 125px;
+                img {
+                    object-fit: contain;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
         }
 
 }

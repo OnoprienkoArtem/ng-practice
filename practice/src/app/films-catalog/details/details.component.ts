@@ -18,6 +18,8 @@ export class DetailsComponent implements OnInit {
   public id: number;
   public film: any;
 
+   
+
   constructor(
     public filmsService: FilmService, 
     private router: Router,
@@ -26,9 +28,7 @@ export class DetailsComponent implements OnInit {
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
-  ngOnInit() {
-    this.spiner = false;     
-
+  ngOnInit() {  
     if (this.filmsService.currentRoute === undefined) {
       this.router.navigate(['/main']);
     }
@@ -38,6 +38,9 @@ export class DetailsComponent implements OnInit {
       this.filmsService.getFilmById(this.id).subscribe(film => {
         this.film = film;
         console.log(this.film);
+        if (this.film) {
+          this.spiner = false;
+        }
       });      
     });
 

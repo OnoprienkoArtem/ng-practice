@@ -10,7 +10,9 @@ import { ApiConfig } from '../../../models/api';
 export class FilmDetailsComponent implements OnInit {
 
   public imgUrl: string = this.localConfig.midImgPath; 
-
+  public midBackPath: string = this.localConfig.midBackPath; 
+  public smallImgPath: string = this.localConfig.smallImgPath;
+   
   @Input('data') film: any;
 
   constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {

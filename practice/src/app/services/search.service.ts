@@ -19,11 +19,11 @@ export class SearchService {
 
 
   getItemsBySearch(value: string, page: number) {
-    return this.http.get(`${this.localConfig.searchUrl}/multi?query=${value}${this.localConfig.params}&page=${page}`)
+    return this.http.get(`${this.localConfig.searchUrl}/multi${this.localConfig.params}&page=${page}&query=${value}`)
   }
 
   getSearchFilms(searchFor: string, value: string, page: number) {
-    return this.http.get(`${this.localConfig.searchUrl}/${searchFor}?query=${value}${this.localConfig.params}&page=${page}`)
+    return this.http.get(`${this.localConfig.searchUrl}/${searchFor}${this.localConfig.params}&page=${page}&query=${value}`)
   }
 
 
