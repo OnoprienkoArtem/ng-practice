@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MessagesService } from '../../services/messages.service';
 
 import { FilmService } from '../../services/film.service';
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   public films: Film[] = [];
   public imgUrl: string = this.localConfig.bigBackPath; 
   public backgrounds: string; 
+  authForm: FormGroup;
 
   public formSection: boolean = false;
 
@@ -28,20 +29,28 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public filmsService: FilmService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
-    private msgService: MessagesService
+    private msgService: MessagesService,
+    private fb: FormBuilder
   ) {
   }
 
-  public emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
+  // public emailFormControl = new FormControl('', [
+  //   Validators.required,
+  //   Validators.email
+  // ]);
 
-  public passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  // public passwordFormControl = new FormControl('', [
+  //   Validators.required
+  // ]);
 
   ngOnInit() {
+
+    this.authForm = new FormGroup({
+      emailFormControl: new FormControl('', [Validators.required, Validators.email]),
+      passwordFormControl: new FormControl('', [Validators.required])
+    });
+
+
     const isLogin = this.authService.isLoggedIn();
     if (isLogin) {
       this.router.navigate(['/main']);
@@ -59,7 +68,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.errorMessage = '';
+    this.errorMessage = '';   
     
     this.authService.login(this.credentials.username, this.credentials.password)
       .subscribe(
