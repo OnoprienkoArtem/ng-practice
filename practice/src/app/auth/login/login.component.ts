@@ -20,9 +20,11 @@ export class LoginComponent implements OnInit {
   public films: Film[] = [];
   public imgUrl: string = this.localConfig.bigBackPath; 
   public backgrounds: string; 
-  authForm: FormGroup;
+  
 
   public formSection: boolean = false;
+
+  public loginForm: FormGroup;
 
   constructor(
     private authService: AuthService,
@@ -30,24 +32,22 @@ export class LoginComponent implements OnInit {
     public filmsService: FilmService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
     private msgService: MessagesService,
-    private fb: FormBuilder
+   
   ) {
   }
 
-  // public emailFormControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.email
-  // ]);
 
-  // public passwordFormControl = new FormControl('', [
-  //   Validators.required
-  // ]);
+  ngOnInit() {  ;
 
-  ngOnInit() {
-
-    this.authForm = new FormGroup({
-      emailFormControl: new FormControl('', [Validators.required, Validators.email]),
-      passwordFormControl: new FormControl('', [Validators.required])
+    this.loginForm = new FormGroup({
+      email: new FormControl("", [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+        // Validators.minLength(8)
+      ])
     });
 
 
@@ -69,6 +69,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.errorMessage = '';   
+
+    if (this.loginForm.invalid) {      
+      return;
+    }  
     
     this.authService.login(this.credentials.username, this.credentials.password)
       .subscribe(
@@ -90,6 +94,20 @@ export class LoginComponent implements OnInit {
           });
         }
       );
+  }
+
+  get f() {
+    return this.loginForm.controls;
+  }
+
+  public getEmailErrorMessage() {
+    return this.f.email.hasError("required") ? "Пожалуйста, заполните это поле!"
+        : this.f.email.hasError("email") ? "Не валидный Email." : "";
+  }
+
+  public getErrorMessageForPassword() {
+    return this.f.password.hasError("required") ? "Пожалуйста, заполните это поле!"
+        : this.f.password.hasError("minlength") ? "Это поле должно содержать не менее 8 символов." : "";
   }
 
 

@@ -18,25 +18,18 @@
       <h3 class="welcome">Приветствуем Вас на сайте о кино</h3>
       <h5 class="hint">Для работы с сайтом необходимо авторизоваться</h5>
     </section>
-    <form [formGroup]="authForm" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-section">
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Адрес электронной почты" formControlName="emailFormControl"
+          <input matInput placeholder="Адрес электронной почты" formControlName="email"
             [(ngModel)]="credentials.username">
-          <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            Адрес электронной почты заполнить <strong>обязательно!</strong>
-          </mat-error> -->
+          <mat-error *ngIf="f.email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Пароль" formControlName="passwordFormControl" [(ngModel)]="credentials.password">
-          <!-- <mat-error *ngIf="passwordFormControl.hasError('required')">
-            Пароль заполнить <strong>обязательно</strong>
-          </mat-error> -->
+          <input matInput placeholder="Пароль" formControlName="password" [(ngModel)]="credentials.password">
+          <mat-error *ngIf="f.password.invalid">{{getErrorMessageForPassword()}} </mat-error>
         </mat-form-field>
 
       </div>
