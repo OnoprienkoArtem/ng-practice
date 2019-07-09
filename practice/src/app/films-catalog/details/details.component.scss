@@ -1,21 +1,9 @@
 .cards-section {
-  padding: 2.5%;
-  padding-top: 7.5%;
-  display: flex;
-  height: 85%;
-
-
-
+  display: flex; 
   >div {
     margin: auto;
-
-  
-
     >div:last-child {
       margin-bottom: 0;
-    }
-
-  
+    }  
   }
-
 }
