@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   public films: Film[] = [];
   public imgUrl: string = this.localConfig.bigBackPath; 
   public backgrounds: string; 
-  
+  public successMessage: string;
 
   public formSection: boolean = false;
 
@@ -68,7 +68,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.errorMessage = '';   
+    this.errorMessage = '';  
+    this.successMessage = ''; 
 
     if (this.loginForm.invalid) {      
       return;
@@ -77,6 +78,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         () => {
+          this.successMessage = 'вы авторизовались'; 
           this.msgService.setMessage({
             type: 'success',
             body: `${this.loginForm.value.email}, Вы успешно вошли в систему. Добро пожаловать!`
