@@ -38,9 +38,13 @@ mat-card {
 .mat-toolbar-row {
   width: 90% !important;
   margin: auto;
+  height: 7vh;
 }
 
 
+.mat-toolbar-multiple-rows {
+  min-height: 7vh;
+}
 
 .mb-2em {
   margin-bottom: 2em;
@@ -48,13 +52,14 @@ mat-card {
 
 
 
+
 .cards-section {
   max-width: 100%;
   margin: 0 auto;
   overflow-y: overlay;
-  height: -webkit-fill-available;
+  height: 93vh;
   overflow-x: hidden;  
-  padding-top: 64px;
+  margin-top: 64px;
 }
 
 .cards-section::-webkit-scrollbar {

@@ -1,9 +1,11 @@
 <div class="login-wrapper">
+
   <div class="background">
     <div *ngFor="let film of films">
       <img src="{{imgUrl + film.poster_path}}" alt="">
     </div>
   </div>
+  
   <div class="background-back">
     <div *ngFor="let background of backgrounds">
       <img src="{{imgUrl + background.poster_path}}" alt="">

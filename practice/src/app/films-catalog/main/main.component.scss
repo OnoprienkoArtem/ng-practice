@@ -18,13 +18,15 @@ button {
 }
 
 .cards-section {
-  padding: 2.5%;
-  padding-top: 5%;
   display: flex;
   > div {
     margin: auto;
+    max-width: 1200px;
     > div {
       margin-bottom: 40px;
+      > div:first-child {
+        margin-bottom: 10px;
+      }
     }
     > div:last-child {
       margin-bottom: 0;
