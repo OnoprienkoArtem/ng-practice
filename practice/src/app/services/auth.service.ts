@@ -21,6 +21,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
+    console.log(email, password);
     return this.http.post(`${this.authUrl}/login`, { email, password })
       .pipe(
         retry(2),

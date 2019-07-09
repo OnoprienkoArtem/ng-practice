@@ -22,13 +22,12 @@
       <div class="form-section">
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Адрес электронной почты" formControlName="email"
-            [(ngModel)]="credentials.username">
+          <input matInput placeholder="Адрес электронной почты" formControlName="email">
           <mat-error *ngIf="f.email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Пароль" formControlName="password" [(ngModel)]="credentials.password">
+          <input matInput placeholder="Пароль" formControlName="password">
           <mat-error *ngIf="f.password.invalid">{{getErrorMessageForPassword()}} </mat-error>
         </mat-form-field>
 

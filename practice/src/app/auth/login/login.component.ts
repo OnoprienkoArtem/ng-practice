@@ -15,7 +15,7 @@ import { ApiConfig } from '../../models/api';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  credentials = { username: '', password: '' };
+  // credentials = { username: '', password: '' };
   errorMessage = '';
   public films: Film[] = [];
   public imgUrl: string = this.localConfig.bigBackPath; 
@@ -72,14 +72,14 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.invalid) {      
       return;
-    }  
+    }      
     
-    this.authService.login(this.credentials.username, this.credentials.password)
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         () => {
           this.msgService.setMessage({
             type: 'success',
-            body: `${this.credentials.username}, Вы успешно вошли в систему. Добро пожаловать!`
+            body: `${this.loginForm.value.email}, Вы успешно вошли в систему. Добро пожаловать!`
           });
           this.formSection = true;
           setTimeout(() => {            
