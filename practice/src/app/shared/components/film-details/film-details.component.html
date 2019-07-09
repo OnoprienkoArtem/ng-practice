@@ -11,7 +11,7 @@
         </span>
       </p>
       <p class="description">
-        {{ (film.overview.length > 300) ? (film.overview | slice:0:300) + '...' : (film.overview) }}</p>
+        {{ (film.overview.length > 700) ? (film.overview | slice:0:700) + '...' : (film.overview) }}</p>
 
       <a class="homepage" [href]="film.homepage" target="_blank">{{film.homepage}}</a>
       <p class="budget">Бюджет фильма: {{film.budget}}$ </p>

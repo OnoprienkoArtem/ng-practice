@@ -100,14 +100,22 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  public getEmailErrorMessage() {
-    return this.f.email.hasError("required") ? "Пожалуйста, заполните это поле!"
-        : this.f.email.hasError("email") ? "Не валидный Email." : "";
+  public getEmailErrorMessage() {  
+      if (this.f.email.hasError("required")) {
+        return "Пожалуйста, заполните это поле!";
+      } else if (this.f.email.hasError("email")) {
+        return "Не валидный Email."
+      } else {
+        return "";
+      }
   }
 
   public getErrorMessageForPassword() {
-    return this.f.password.hasError("required") ? "Пожалуйста, заполните это поле!"
-        : this.f.password.hasError("minlength") ? "Это поле должно содержать не менее 8 символов." : "";
+    if (this.f.password.hasError("required")) {
+      return "Пожалуйста, заполните это поле!";
+    } else {
+      return "";
+    }
   }
 
 
