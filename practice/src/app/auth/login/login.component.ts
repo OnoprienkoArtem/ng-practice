@@ -8,6 +8,7 @@ import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -26,18 +27,26 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
+  durationInSeconds = 5;
+
   constructor(
     private authService: AuthService,
     private router: Router,
     public filmsService: FilmService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
     private msgService: MessagesService,
-   
+    private snackBar: MatSnackBar
   ) {
   }
 
+  openSnackBar() {
+    this.snackBar.open('Message archived');
+  }
 
-  ngOnInit() {  ;
+
+  ngOnInit() {  
+
+
 
     this.loginForm = new FormGroup({
       email: new FormControl("", [
