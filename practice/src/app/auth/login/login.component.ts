@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
       this.snackBar.openFromComponent(SnackBarComponent, {
         duration: this.durationInSeconds * 1000,    
         data: message,
-        panelClass: status 
+        panelClass: status,
+        verticalPosition: 'top' 
       });
   }
 
