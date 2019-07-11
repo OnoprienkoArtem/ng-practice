@@ -20,13 +20,12 @@ export class AuthService {
     return this.loggedIn;
   }
 
-  login(email: string, password: string): Observable<any> {
-    console.log(email, password);
+  login(email: string, password: string): Observable<any> {   
     return this.http.post(`${this.authUrl}/login`, { email, password })
       .pipe(
         retry(2),
         tap(res => {
-          if (res.token) {
+          if (res.token) {            
             localStorage.setItem('auth_token', res.token);
             this.loggedIn = true;
           }

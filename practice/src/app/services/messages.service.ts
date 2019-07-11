@@ -11,6 +11,7 @@ export class MessagesService {
   private submit$ = new Subject<boolean>();
 
   constructor() { }
+  
 
   getMessages() {
     return this.messages$.asObservable();

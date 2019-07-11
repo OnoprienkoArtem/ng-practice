@@ -11,6 +11,7 @@ import { SearchComponent } from '../shared/components/search/search.component';
 import { SpinerComponent } from '../shared/components/spiner/spiner.component';
 import { FilmDetailsComponent } from './components/film-details/film-details.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     SearchComponent,
     SpinerComponent,
     FilmDetailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SnackBarComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     SearchComponent,
     SpinerComponent,
     FilmDetailsComponent
+  ],
+  entryComponents: [
+    SnackBarComponent
   ]
 })
 export class SharedModule { }

@@ -10,6 +10,8 @@ import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { SnackBarComponent } from '../../shared/components/snack-bar/snack-bar.component';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  durationInSeconds = 5;
+  durationInSeconds = 2;
 
   constructor(
     private authService: AuthService,
@@ -40,16 +42,22 @@ export class LoginComponent implements OnInit {
   }
 
   openSnackBar(message) {
-    this.snackBar.open(message,'', {
-      duration: 2000
-    });
+
+
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: this.durationInSeconds * 1000,    
+        data: message   
+      });
+
+    // this.snackBar.open(message, '', {
+    //   // duration: this.durationInSeconds * 1000
+    // });
   }
 
 
+
+
   ngOnInit() {  
-
-
-
     this.loginForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
@@ -63,6 +71,7 @@ export class LoginComponent implements OnInit {
 
 
     const isLogin = this.authService.isLoggedIn();
+
     if (isLogin) {
       this.router.navigate(['/main']);
     }
@@ -91,10 +100,12 @@ export class LoginComponent implements OnInit {
         () => {
           this.successMessage = 'вы авторизовались'; 
           this.openSnackBar(this.successMessage);
-          this.msgService.setMessage({
-            type: 'success',
-            body: `${this.loginForm.value.email}, Вы успешно вошли в систему. Добро пожаловать!`
-          });
+
+          // this.msgService.setMessage({
+          //   type: 'success',
+          //   body: `${this.loginForm.value.email}, Вы успешно вошли в систему. Добро пожаловать!`
+          // });
+
           this.formSection = true;
           setTimeout(() => {            
             this.router.navigate(['/main']);
@@ -103,10 +114,11 @@ export class LoginComponent implements OnInit {
         err => {
           this.errorMessage = err.error.error;
           this.openSnackBar(this.errorMessage);
-          this.msgService.setMessage({
-            type: 'danger',
-            body: err.error.error
-          });
+
+          // this.msgService.setMessage({
+          //   type: 'danger',
+          //   body: err.error.error
+          // });
         }
       );
   }
