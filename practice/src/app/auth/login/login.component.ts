@@ -41,17 +41,11 @@ export class LoginComponent implements OnInit {
   ) {
   }
 
-  openSnackBar(message) {
-
-
+  openSnackBar(message, status) {
       this.snackBar.openFromComponent(SnackBarComponent, {
         duration: this.durationInSeconds * 1000,    
-        data: message   
+        data: { message, status }   
       });
-
-    // this.snackBar.open(message, '', {
-    //   // duration: this.durationInSeconds * 1000
-    // });
   }
 
 
@@ -99,7 +93,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => {
           this.successMessage = 'вы авторизовались'; 
-          this.openSnackBar(this.successMessage);
+          this.openSnackBar(this.successMessage, 'succes');
 
           // this.msgService.setMessage({
           //   type: 'success',
@@ -113,7 +107,7 @@ export class LoginComponent implements OnInit {
         },
         err => {
           this.errorMessage = err.error.error;
-          this.openSnackBar(this.errorMessage);
+          this.openSnackBar(this.errorMessage, 'error');
 
           // this.msgService.setMessage({
           //   type: 'danger',
