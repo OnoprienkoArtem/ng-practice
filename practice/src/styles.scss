@@ -93,11 +93,15 @@ router-outlet~* {
   color:#fff;
   text-transform: uppercase;
   text-align: center;
+  font-size: 0.8em;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
   &.error {
-    background: red;
+    background: #FF0000;
   }
-  &.error {
-    background: red;
+  &.success {
+    background: #008000;
   }
 }
 

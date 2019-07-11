@@ -23,13 +23,9 @@ export class LoginComponent implements OnInit {
   public films: Film[] = [];
   public imgUrl: string = this.localConfig.bigBackPath; 
   public backgrounds: string; 
-  public successMessage: string;
-
   public formSection: boolean = false;
-
   public loginForm: FormGroup;
-
-  durationInSeconds = 2;
+  private durationInSeconds = 2;
 
   constructor(
     private authService: AuthService,
@@ -43,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   openSnackBar(message, status) {
       this.snackBar.openFromComponent(SnackBarComponent, {
-        // duration: this.durationInSeconds * 1000,    
+        duration: this.durationInSeconds * 1000,    
         data: message,
         panelClass: status 
       });
@@ -74,8 +70,7 @@ export class LoginComponent implements OnInit {
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {       
         this.films = filmList.results.slice(0, 10); 
-        this.backgrounds = filmList.results.slice(0, 5);           
-        console.log(this.films);  
+        this.backgrounds = filmList.results.slice(0, 5); 
       },
       err => console.log("error", err)
     )
@@ -83,37 +78,21 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.errorMessage = '';  
-    this.successMessage = ''; 
-
     if (this.loginForm.invalid) {      
       return;
     }      
     
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
-        () => {
-          this.successMessage = 'вы авторизовались'; 
-          this.openSnackBar(this.successMessage, 'succes');
-
-          // this.msgService.setMessage({
-          //   type: 'success',
-          //   body: `${this.loginForm.value.email}, Вы успешно вошли в систему. Добро пожаловать!`
-          // });
-
+        () => {          
+          this.openSnackBar('вы успешно авторизовались', 'success');
           this.formSection = true;
           setTimeout(() => {            
             this.router.navigate(['/main']);
           }, 2000);
         },
-        err => {
-          this.errorMessage = err.error.error;
-          this.openSnackBar(this.errorMessage, 'error');
-
-          // this.msgService.setMessage({
-          //   type: 'danger',
-          //   body: err.error.error
-          // });
+        err => {              
+          this.openSnackBar('ошибка авторизации', 'error'); 
         }
       );
   }
