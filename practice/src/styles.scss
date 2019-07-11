@@ -92,13 +92,18 @@ router-outlet~* {
 .mat-snack-bar-container {
   color:#fff;
   text-transform: uppercase;
-  font-weight: 700;
-  background: #323232;
+  text-align: center;
+  &.error {
+    background: red;
+  }
+  &.error {
+    background: red;
+  }
 }
 
-.mat-simple-snackbar { 
-  justify-content: center !important;
-}
+
+
+
 
 
 
