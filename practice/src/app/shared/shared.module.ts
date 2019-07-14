@@ -12,6 +12,7 @@ import { SpinerComponent } from '../shared/components/spiner/spiner.component';
 import { FilmDetailsComponent } from './components/film-details/film-details.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { ActorDetailsComponent } from './components/actor-details/actor-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
     SpinerComponent,
     FilmDetailsComponent,
     NotFoundComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    ActorDetailsComponent
   ],
   imports: [
     CommonModule,
