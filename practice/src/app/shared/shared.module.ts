@@ -36,7 +36,8 @@ import { ActorDetailsComponent } from './components/actor-details/actor-details.
     ActorItemComponent,
     SearchComponent,
     SpinerComponent,
-    FilmDetailsComponent
+    FilmDetailsComponent,
+    ActorDetailsComponent
   ],
   entryComponents: [
     SnackBarComponent

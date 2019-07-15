@@ -6,7 +6,11 @@
           <app-film-details [data]="film"></app-film-details>
         </ng-container>
         
-        <h2 *ngIf="!showDetails">Актер</h2>
+      
+        <ng-container *ngIf="!showDetails">
+          <app-actor-details [data]="film"></app-actor-details>
+        </ng-container>
+
       </div> 
   </div>
 </div>
