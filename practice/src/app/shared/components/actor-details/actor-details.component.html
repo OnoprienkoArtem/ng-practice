@@ -3,26 +3,13 @@
       <img src="{{imgUrl + actor.profile_path}}" alt="">
     </div>
     <div class='info'>
-      <!-- <h2>{{film.title}}</h2>
-      <p class='year'>{{film.release_date}}</p>
-      <p class="genre">Жанр:
-        <span *ngFor="let genre of film.genres">
-          <span>{{genre.name}} / </span>
+      <h2>{{actor.name}}</h2>
+      <p class='year'>{{actor.birthday}}</p>
+      <p class="genre">Место рождения:
+        <span>
+          <span>{{actor.place_of_birth}} / </span>
         </span>
       </p>
-      <p class="description">
-        {{ (film.overview.length > 700) ? (film.overview | slice:0:700) + '...' : (film.overview) }}</p>
-
-      <a class="homepage" [href]="film.homepage" target="_blank">{{film.homepage}}</a>
-      <p class="budget">Бюджет фильма: {{film.budget}}$ </p>
-
-      <div class="production_companies">
-        <span *ngFor="let production_companie of film.production_companies">
-          <img src="{{smallImgPath + production_companie.logo_path}}" alt="">
-        </span>
-      </div>
-      <div class="backdrop">
-        <img src="{{midBackPath + film.backdrop_path}}" alt="">
-      </div> -->
+      <p class="description">{{ actor.biography }}</p>      
     </div>
   </div>
