@@ -21,8 +21,7 @@ export class DetailsComponent implements OnInit {
   constructor(
     public filmsService: FilmService,
     private router: Router,
-    private route: ActivatedRoute,
-    private filmService: FilmService,
+    private route: ActivatedRoute,   
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) {}
 
@@ -45,16 +44,14 @@ export class DetailsComponent implements OnInit {
       this.filmsService.getActorById(this.id).subscribe(actor => {
         this.actor = actor;
         console.log(this.actor);
-        // if (this.film) {
-        //   this.spiner = false;
-        // }
+        if (this.film) {
+          this.spiner = false;
+        }
       });
 
     });
 
     this.showDetails =
-      this.filmsService.currentRoute === `/films/details/${this.id}`
-        ? true
-        : false;
+      this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;
   }
 }
