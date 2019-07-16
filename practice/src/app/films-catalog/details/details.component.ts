@@ -28,32 +28,31 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     if (this.filmsService.currentRoute === undefined) {
       this.router.navigate(["/main"]);
-    }
+    }   
 
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get("id");
+      this.id = +params.get("id");       
 
+      if (this.filmsService.currentRoute === `/films/details/${this.id}`) {
+        console.log(this.filmsService.currentRoute);    
+        this.filmsService.getFilmById(this.id).subscribe(film => {
+          this.film = film;          
+          if (this.film) {
+            this.spiner = false;
+          }
+        });
+      } else {
+        console.log(this.filmsService.currentRoute);    
+        this.filmsService.getActorById(this.id).subscribe(actor => {
+          this.actor = actor;
+          console.log(this.actor);
+          if (this.actor) {
+            this.spiner = false;
+          }
+        });
+      }
+    });    
 
-
-      // this.filmsService.getFilmById(this.id).subscribe(film => {
-      //   this.film = film;
-      //   // console.log(this.film);
-      //   if (this.film) {
-      //     this.spiner = false;
-      //   }
-      // });
-
-      this.filmsService.getActorById(this.id).subscribe(actor => {
-        this.actor = actor;
-        console.log(this.actor);
-        if (this.actor) {
-          this.spiner = false;
-        }
-      });
-
-    });
-
-    this.showDetails =
-      this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;
+    this.showDetails = this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;
   }
 }
