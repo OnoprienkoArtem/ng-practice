@@ -25,6 +25,9 @@ export class FilmService {
     return this.http.get(`${this.localConfig.personUrl}/popular${this.localConfig.params}&page=${page}`)
   }
 
+  getActorById(id?: number) {
+    return this.http.get(`${this.localConfig.personUrl}/${id}${this.localConfig.params}`)
+  }
 
 
 
@@ -54,6 +57,8 @@ export class FilmService {
   removeFromBookmark(id: number) {
     return this.http.delete(`${this.localConfig.localApiUrl}/films/${id}/bookmarks`);
   }
+
+
 
   public currentRouteValue: string;
 
