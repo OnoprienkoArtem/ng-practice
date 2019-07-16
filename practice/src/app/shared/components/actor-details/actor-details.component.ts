@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { LOCAL_CONFIG } from '../../../config/config-api';
+import { ApiConfig } from '../../../models/api';
 
 @Component({
   selector: 'app-actor-details',
@@ -7,9 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ActorDetailsComponent implements OnInit {
 
+  public imgUrl: string = this.localConfig.midImgPath; 
+  public midBackPath: string = this.localConfig.midBackPath; 
+  public smallImgPath: string = this.localConfig.smallImgPath;
+
    @Input('data') actor: any;
 
-  constructor() { }
+  constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
 
   ngOnInit() {
   }

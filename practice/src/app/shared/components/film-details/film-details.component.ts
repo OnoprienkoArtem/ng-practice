@@ -15,14 +15,10 @@ export class FilmDetailsComponent implements OnInit {
    
   @Input('data') film: any;
 
-  constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {
-    
-   
+  constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {  
   }
 
-  ngOnInit() {
-
-    
+  ngOnInit() {    
   }
 
 }

@@ -33,18 +33,20 @@ export class DetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");
 
-      this.filmsService.getFilmById(this.id).subscribe(film => {
-        this.film = film;
-        // console.log(this.film);
-        if (this.film) {
-          this.spiner = false;
-        }
-      });
+
+
+      // this.filmsService.getFilmById(this.id).subscribe(film => {
+      //   this.film = film;
+      //   // console.log(this.film);
+      //   if (this.film) {
+      //     this.spiner = false;
+      //   }
+      // });
 
       this.filmsService.getActorById(this.id).subscribe(actor => {
         this.actor = actor;
         console.log(this.actor);
-        if (this.film) {
+        if (this.actor) {
           this.spiner = false;
         }
       });

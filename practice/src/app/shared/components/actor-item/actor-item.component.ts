@@ -23,7 +23,7 @@ export class ActorItemComponent implements OnInit {
   }
 
   getDetails() { 
-    this.router.navigate(['/films/details', this.actor.id]);
+    this.router.navigate(['/actors/details', this.actor.id]);
     this.router.events.subscribe((event: any) => {        
       if (event instanceof NavigationEnd) this.filmsService.currentRoute = event.url;
     });
