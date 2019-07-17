@@ -13,12 +13,12 @@ p {
     margin-bottom: 0;
 }
 
-.cards div:first-child {
+.cards > div:first-child {
   width: 45%;
   display: flex;
 }
 
-.cards >div:last-child {
+.cards > div:last-child {
   width: 55%;
 }
 
@@ -28,20 +28,7 @@ p {
   object-fit: cover;
 }
 
-.foto {
-  position: relative;
-  .btn-back {
-    position: absolute;
-    top: 2%;
-    left: 3.5%;
-    opacity: .2;
-    cursor: pointer;
-    transition: opacity .5s;
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
+
 
 
 .info {
@@ -51,10 +38,35 @@ p {
     display: flex;
     flex-direction: column;  
 
-    h2 {
+    .name {
+      display: flex;
+      align-items: center;
+      h2 {
         margin: 0;
         font-size: 2vw;
+      }
+      div {
+        margin-left: 10px;
+        width: 50px !important;
+        height: 50px;
+        .popularity {
+          position: absolute;  
+          background: #f4f4f4;
+          border-radius: 50%;
+          label {
+            position: absolute;
+            font-size: .6em;
+            font-weight: 500;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+          }      
+        }
+      }
+
     }
+
+
 
     .year {
         span {
@@ -65,22 +77,7 @@ p {
         }
     }
 
-    .popularity {
-      position: absolute;
-      right: 3.5%;
-      width: 60px !important;
-      height: 60px;
-      background: #f4f4f4;
-      border-radius: 50%;
-      label {
-        position: absolute;
-        font-size: .6em;
-        font-weight: 500;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-      }
-    }
+
 
     .place_of_birth {
         font-weight: 100;
@@ -89,6 +86,17 @@ p {
     .biography {
         font-size: .8em;
     }
+
+  .btn-back {
+    position: absolute;    
+    right: 3.5%;
+    opacity: .2;
+    cursor: pointer;
+    transition: opacity .5s;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 
