@@ -4,12 +4,15 @@
     </div>
     <div class='info'>
       <h2>{{actor.name}}</h2>
-      <p class='year'>{{actor.birthday}}</p>
-      <p class="genre">Место рождения:
-        <span>
-          <span>{{actor.place_of_birth}} / </span>
-        </span>
+      <p class='year'>Дата рождения:
+        <span>{{actor.birthday}}</span>        
       </p>
-      <p class="description">{{ actor.biography }}</p>      
+      <p class='year' *ngIf="actor.deathday" >Дата смерти:
+        <span>{{actor.deathday}}</span>        
+      </p>
+      <p class="place_of_birth">Место рождения:        
+          <span>{{actor.place_of_birth}}</span>       
+      </p>
+      <p class="biography">{{ actor.biography }}</p>      
     </div>
   </div>
