@@ -3,6 +3,15 @@
       <img src="{{imgUrl + actor.profile_path}}" alt="">
     </div>
     <div class='info'>
+      <div class="popularity">
+        <label>{{actor.popularity}}</label>
+        <mat-progress-spinner
+            class="example-margin"
+            [color]="color"
+            [mode]="mode"
+            [value]="actor.popularity">            
+        </mat-progress-spinner>
+      </div>
       <h2>{{actor.name}}</h2>
       <p class='year'>Дата рождения:
         <span>{{actor.birthday}}</span>        

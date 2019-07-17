@@ -106,6 +106,22 @@ router-outlet~* {
 }
 
 
+.popularity {
+  .mat-progress-spinner {
+    width: 100% !important;
+    height: 100% !important;
+    svg {
+      width: 100% !important;
+      height: 100% !important;
+       circle {
+        stroke: #46454b;
+        stroke-width: 12% !important;
+      }
+    }
+  }
+}
+
+
 
 
 

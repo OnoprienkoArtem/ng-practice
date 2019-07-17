@@ -12,6 +12,9 @@ export class ActorDetailsComponent implements OnInit {
   public imgUrl: string = this.localConfig.midImgPath; 
   public midBackPath: string = this.localConfig.midBackPath; 
   public smallImgPath: string = this.localConfig.smallImgPath;
+  color = 'primary';
+  mode = 'determinate';
+  // value = 50;
 
    @Input('data') actor: any;
 

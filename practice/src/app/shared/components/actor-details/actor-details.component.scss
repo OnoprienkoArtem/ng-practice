@@ -42,12 +42,28 @@ p {
 
     .year {
         span {
-            font-size: .8em;
+            font-size: 1.1em;
             font-weight: 900;
             margin: .25em 0;
             color: silver;
         }
+    }
 
+    .popularity {
+      position: absolute;
+      right: 3.5%;
+      width: 60px !important;
+      height: 60px;
+      background: #f4f4f4;
+      border-radius: 50%;
+      label {
+        position: absolute;
+        font-size: .6em;
+        font-weight: 500;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
     }
 
     .place_of_birth {
