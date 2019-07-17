@@ -28,6 +28,22 @@ p {
   object-fit: cover;
 }
 
+.foto {
+  position: relative;
+  .btn-back {
+    position: absolute;
+    top: 2%;
+    left: 3.5%;
+    opacity: .2;
+    cursor: pointer;
+    transition: opacity .5s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+
 .info {
     padding: 2%;
     position: relative;
