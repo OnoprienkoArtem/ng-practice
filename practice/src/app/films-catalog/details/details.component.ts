@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Film } from '../../models/film';
-
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 
@@ -18,6 +17,8 @@ export class DetailsComponent implements OnInit {
   public film: any;
   public actor: any;
 
+  public currentActorsPage: number;
+
   constructor(
     public filmsService: FilmService,
     private router: Router,
@@ -28,7 +29,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     if (this.filmsService.currentRoute === undefined) {
       this.router.navigate(["/main"]);
-    }   
+    } 
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");       
@@ -43,11 +44,11 @@ export class DetailsComponent implements OnInit {
       } else {         
         this.filmsService.getActorById(this.id).subscribe(actor => {
           this.actor = actor;
-          console.log(this.actor);
+          // console.log(this.actor);
           if (this.actor) {
             this.spiner = false;
           }
-        });
+        });      
       }
     });    
 

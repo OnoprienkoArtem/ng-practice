@@ -42,6 +42,7 @@ export class ActorsListComponent implements OnInit {
     this.pages++;    
     this.getOnePagePopularActors(this.pages); 
     this.isDisabledActorsBtn = this.pages === this.totalPages ? true : false;
+    this.filmsService.currentActorsPage(this.pages);
   } 
 
   // searchDataByActors(dataSearch) {

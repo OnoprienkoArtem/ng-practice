@@ -2,13 +2,32 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LOCAL_CONFIG } from '../config/config-api';
 import { ApiConfig } from '../models/api';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmService {
 
+  public actorsPage: number;
+  private state$ = new Subject<number>();
+
+
+
   constructor(private http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {}
+
+
+  public currentActorsPage(page) {
+    this.actorsPage = page;
+    this.state$.next(this.actorsPage);
+  }
+
+  public getState(): Observable<number> {
+    return this.state$.asObservable();
+  }
+
+
+
 
 
   getPopularFilms(page?: number) {

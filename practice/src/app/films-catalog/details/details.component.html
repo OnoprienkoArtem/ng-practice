@@ -4,9 +4,7 @@
       <div>     
         <ng-container *ngIf="showDetails">                 
           <app-film-details [data]="film"></app-film-details>
-        </ng-container>
-        
-      
+        </ng-container>      
         <ng-container *ngIf="!showDetails">
           <app-actor-details [data]="actor"></app-actor-details>          
         </ng-container>
