@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { LOCAL_CONFIG } from '../../../config/config-api';
 import { ApiConfig } from '../../../models/api';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-actor-details',
@@ -18,9 +19,19 @@ export class ActorDetailsComponent implements OnInit {
 
    @Input('data') actor: any;
 
-  constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
+  constructor(
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    private router: Router
+    ) { }
 
   ngOnInit() {
+  }
+
+
+  backOnAllActor() {
+    console.log('eee');
+
+    this.router.navigate(["/actors"]);
   }
 
 }

@@ -33,16 +33,14 @@ export class DetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");       
 
-      if (this.filmsService.currentRoute === `/films/details/${this.id}`) {
-        console.log(this.filmsService.currentRoute);    
+      if (this.filmsService.currentRoute === `/films/details/${this.id}`) {         
         this.filmsService.getFilmById(this.id).subscribe(film => {
           this.film = film;          
           if (this.film) {
             this.spiner = false;
           }
         });
-      } else {
-        console.log(this.filmsService.currentRoute);    
+      } else {         
         this.filmsService.getActorById(this.id).subscribe(actor => {
           this.actor = actor;
           console.log(this.actor);
