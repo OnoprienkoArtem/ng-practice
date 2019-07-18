@@ -23,12 +23,6 @@ export class ActorsListComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.currentPage = +params.get("currentActorsPage"); 
-      console.log(this.currentPage);
-
-     })
-
     this.getOnePagePopularActors(this.pages);
   }
 
@@ -52,7 +46,8 @@ export class ActorsListComponent implements OnInit {
     this.isDisabledActorsBtn = this.pages === this.totalPages ? true : false;
 
 
-    // this.filmsService.currentActorsPage(this.pages);
+    this.filmsService.currentActorsPage(this.pages);
+
     this.filmsService.currentPageActors = this.pages;
   } 
 

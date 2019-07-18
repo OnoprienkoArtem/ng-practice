@@ -33,17 +33,13 @@ export class ActorDetailsComponent implements OnInit {
   ngOnInit() {  
 
     this.currentActorsPage = this.filmsService.currentPageActors; 
-    console.log(this.currentActorsPage);
-    // this.filmsService.getState().subscribe((page: any) => {           
-    //   this.currentActorsPage = page; 
-    //   console.log('in', this.currentActorsPage);
-    // });
-    // console.log('out', this.currentActorsPage);    
+
+    
   }
 
 
   backOnAllActor() {  
-    // console.log('out', this.currentActorsPage);
+    
     this.router.navigate(["/actors"]);
     
   }
