@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: "app-details",
@@ -17,7 +18,7 @@ export class DetailsComponent implements OnInit {
   public film: any;
   public actor: any;
 
-  public currentActorsPage: number;
+ 
 
   constructor(
     public filmsService: FilmService,
@@ -29,7 +30,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     if (this.filmsService.currentRoute === undefined) {
       this.router.navigate(["/main"]);
-    } 
+    }  
+
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");       

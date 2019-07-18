@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { LOCAL_CONFIG } from '../../../config/config-api';
 import { ApiConfig } from '../../../models/api';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FilmService } from '../../../services/film.service';
 
 @Component({
@@ -17,9 +17,12 @@ export class ActorDetailsComponent implements OnInit {
   public smallImgPath: string = this.localConfig.smallImgPath;  
   mode = 'determinate';
 
-  public currentActorsPage;
+  public currentActorsPage: number;
 
   @Input('data') actor: any;
+
+  public actors;
+ 
 
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -27,34 +30,20 @@ export class ActorDetailsComponent implements OnInit {
     public filmsService: FilmService,
     ) { }
 
-  ngOnInit() {
-    this.getPage();
+  ngOnInit() {  
 
-  }
-
-  public actors;
-
-
-  getPage() {
-    this.filmsService.getState().subscribe((n) => {
-      console.log(n);
-      return this.currentActorsPage = n;      
-    });
-  }
-
-  backOnAllActor() {
-
-
-    // this.filmsService.getPopularActors(1).subscribe(
-    //   (actorsList: any) => {
-    //     // console.log(actorsList);       
-    //     this.actors = actorsList.results;     
-    //   }    
-    // ) 
-
-    // console.log(this.actors);
+    this.currentActorsPage = this.filmsService.currentPageActors; 
     console.log(this.currentActorsPage);
-    console.log(this.getPage());
+    // this.filmsService.getState().subscribe((page: any) => {           
+    //   this.currentActorsPage = page; 
+    //   console.log('in', this.currentActorsPage);
+    // });
+    // console.log('out', this.currentActorsPage);    
+  }
+
+
+  backOnAllActor() {  
+    // console.log('out', this.currentActorsPage);
     this.router.navigate(["/actors"]);
     
   }

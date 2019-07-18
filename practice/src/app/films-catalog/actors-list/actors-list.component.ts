@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Actor } from '../../models/actor';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-actors-list',
@@ -15,12 +16,19 @@ export class ActorsListComponent implements OnInit {
   public spiner: boolean = true;
   public isDisabledActorsBtn: boolean = false;
 
-  constructor(public filmsService: FilmService) {
+  currentPage: number;
 
-
-   }
+  constructor(public filmsService: FilmService,
+  private route: ActivatedRoute,) {
+  }
 
   ngOnInit() {
+     this.route.paramMap.subscribe((params: ParamMap) => {
+      this.currentPage = +params.get("currentActorsPage"); 
+      console.log(this.currentPage);
+
+     })
+
     this.getOnePagePopularActors(this.pages);
   }
 
@@ -40,9 +48,12 @@ export class ActorsListComponent implements OnInit {
 
   nextActorsPage() {
     this.pages++;    
-    this.getOnePagePopularActors(this.pages); 
+    this.getOnePagePopularActors(this.pages);    
     this.isDisabledActorsBtn = this.pages === this.totalPages ? true : false;
-    this.filmsService.currentActorsPage(this.pages);
+
+
+    // this.filmsService.currentActorsPage(this.pages);
+    this.filmsService.currentPageActors = this.pages;
   } 
 
   // searchDataByActors(dataSearch) {

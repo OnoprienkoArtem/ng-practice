@@ -9,7 +9,7 @@ import { Subject, Observable } from 'rxjs';
 })
 export class FilmService {
 
-  public actorsPage: number;
+  public actorsPage: number = 1;
   private state$ = new Subject<number>();
 
 
@@ -24,6 +24,18 @@ export class FilmService {
 
   public getState(): Observable<number> {
     return this.state$.asObservable();
+  }
+
+  
+
+  public currentPage: number = 1;
+
+  set currentPageActors(value: number) {
+    this.currentPage = value;
+  }
+
+  get currentPageActors() {
+    return this.currentPage;
   }
 
 
