@@ -28,20 +28,15 @@ export class ActorDetailsComponent implements OnInit {
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
     private router: Router,
     public filmsService: FilmService,
-    ) { }
+  ) { }
 
-  ngOnInit() {  
-
-    this.currentActorsPage = this.filmsService.currentPageActors; 
-
-    
+  ngOnInit() { 
+    this.currentActorsPage = this.filmsService.currentPageActors;     
   }
 
 
-  backOnAllActor() {  
-    
-    this.router.navigate(["/actors"]);
-    
+  backOnAllActor() {      
+    this.router.navigate(["/actors"]);    
   }
 
 }

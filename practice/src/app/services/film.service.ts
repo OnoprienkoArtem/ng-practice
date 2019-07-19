@@ -28,7 +28,7 @@ export class FilmService {
 
   
 
-  public currentPage: number = 1;
+  public currentPage: number;
 
   set currentPageActors(value: number) {
     this.currentPage = value;
