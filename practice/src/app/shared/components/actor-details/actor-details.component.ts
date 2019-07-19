@@ -31,7 +31,7 @@ export class ActorDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() { 
-    this.currentActorsPage = this.filmsService.currentPageActors;     
+    
   }
 
 
