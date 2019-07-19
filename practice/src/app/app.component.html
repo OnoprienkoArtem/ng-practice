@@ -9,9 +9,13 @@
           mat-button 
           *ngFor="let link of links" 
           [routerLink]="link.path" 
-          [routerLinkActive]="link.active">       
+          [routerLinkActive]="link.active"
+          (click)="clearPageCounter(link.page)">       
           <span>{{link.label}}</span>
         </a>
+        <!-- <a mat-button routerLink="/main" routerLinkActive="button-active">Главная</a>
+        <a mat-button routerLink="/films" routerLinkActive="button-active">Все фильмы</a>
+        <a mat-button routerLink="/actors" routerLinkActive="button-active" (click)="clearPageCounter()">Все актеры</a> -->
       </div>
 
        <app-search></app-search>

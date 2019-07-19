@@ -17,11 +17,8 @@ export class ActorDetailsComponent implements OnInit {
   public smallImgPath: string = this.localConfig.smallImgPath;  
   mode = 'determinate';
 
-  public currentActorsPage: number;
 
-  @Input('data') actor: any;
-
-  public actors;
+  @Input('data') actor: any; 
  
 
   constructor(

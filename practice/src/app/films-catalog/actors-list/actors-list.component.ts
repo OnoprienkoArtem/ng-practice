@@ -12,7 +12,7 @@ export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
   private totalPages: number;
-  private pages: number = this.filmsService.currentPageActors;
+  private pages: number;
   public spiner: boolean = true;
   public isDisabledActorsBtn: boolean = false;
 
@@ -25,6 +25,7 @@ export class ActorsListComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.filmsService.currentPageActors);
+    this.pages = this.filmsService.currentPageActors
     this.getOnePagePopularActors(this.pages);
   }
 

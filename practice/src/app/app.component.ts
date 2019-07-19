@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { fadeAnimation } from './animations';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { FilmService } from './services/film.service';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +15,16 @@ export class AppComponent {
   isLogin = true;
   currentRoute: string;
 
-  constructor(private authService: AuthService, public router: Router) {}
+  constructor(
+    private authService: AuthService, 
+    public router: Router,
+    public filmsService: FilmService
+  ) {}
 
   links: any[] = [
-    { path: '/main', label: 'Главная', active: 'button-active' },
-    { path: '/films', label: 'Все фильмы', active: 'button-active' },
-    { path: '/actors', label: 'Все актеры', active: 'button-active' }
+    { path: '/main', label: 'Главная', active: 'button-active', page: 'main' },
+    { path: '/films', label: 'Все фильмы', active: 'button-active', page: 'films' },
+    { path: '/actors', label: 'Все актеры', active: 'button-active', page: 'currentPageActors' }
   ];
 
   ngOnInit() {
@@ -36,6 +41,10 @@ export class AppComponent {
   logout() {           
     // this.isLogin = false;
     this.authService.logout();
+  }
+
+  clearPageCounter(page) {
+    this.filmsService[page] = 1;
   }
 
 
