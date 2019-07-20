@@ -26,7 +26,16 @@ export class ActorsListComponent implements OnInit {
   ngOnInit() {
     console.log(this.filmsService.currentPageActors);
     this.pages = this.filmsService.currentPageActors
-    this.getOnePagePopularActors(this.pages);
+    this.getOnePagePopularActors(this.pages); 
+
+
+    this.filmsService.getPopularActors().subscribe(
+      (actorsList: any) => {
+        console.log('without page ---> ', actorsList);
+ 
+      },
+      err => console.log("error", err)
+    )
   }
 
   getOnePagePopularActors(page) {
@@ -49,6 +58,10 @@ export class ActorsListComponent implements OnInit {
     this.isDisabledActorsBtn = this.pages === this.totalPages ? true : false; 
     this.filmsService.currentPageActors = this.pages;
   } 
+
+  firstPage() {
+    this.getOnePagePopularActors(1); 
+  }
 
   // searchDataByActors(dataSearch) {
   //   this.actors = this.actorsClone;

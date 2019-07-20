@@ -7,8 +7,16 @@
       </app-actor-item>
 
       <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-        <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>Показать
-          еще</button>
+        <button   
+          mat-raised-button 
+          color="primary" 
+          (click)="nextActorsPage()" 
+          [disabled]='isDisabledActorsBtn'
+        >
+          Показать еще
+        </button>
+
+        <button mat-raised-button (click)="firstPage()">первая страница</button>
       </div> 
   </div>
 </div>
