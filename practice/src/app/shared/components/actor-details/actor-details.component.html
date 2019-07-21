@@ -16,13 +16,13 @@
           </div>
         </div>
       </div>     
-      <p class='year'>Дата рождения:
+      <p class='year' *ngIf="actor.birthday">Дата рождения:
         <span>{{actor.birthday}}</span>        
       </p>
-      <p class='year' *ngIf="actor.deathday" >Дата смерти:
+      <p class='year' *ngIf="actor.deathday">Дата смерти:
         <span>{{actor.deathday}}</span>        
       </p>
-      <p class="place_of_birth">Место рождения:        
+      <p class="place_of_birth" *ngIf="actor.place_of_birth">Место рождения:        
           <span>{{actor.place_of_birth}}</span>       
       </p>
       <p class="biography">{{ actor.biography }}</p>    
