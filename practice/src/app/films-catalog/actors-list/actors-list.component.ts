@@ -11,12 +11,18 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
-  private totalPages: number;
-  private pages: number;
+  public totalPages: number;
+  public pages: number;
   public spiner: boolean = true;
   public isDisabledActorsBtn: boolean = false;
 
   currentPage: number;
+
+  public totalResalt: number;
+  public pageCount: number; 
+
+
+
 
   constructor(
     public filmsService: FilmService,
@@ -24,7 +30,7 @@ export class ActorsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.filmsService.currentPageActors);
+    // console.log(this.filmsService.currentPageActors);
     this.pages = this.filmsService.currentPageActors
     this.getOnePagePopularActors(this.pages); 
 
@@ -41,9 +47,11 @@ export class ActorsListComponent implements OnInit {
   getOnePagePopularActors(page) {
     this.filmsService.getPopularActors(page).subscribe(
       (actorsList: any) => {
-        // console.log(actorsList);
+        console.log(actorsList);
+        this.pageCount = actorsList.page;
         this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
+        this.totalResalt = actorsList.total_results;
         if (this.actors) {
           this.spiner = false;
         }
@@ -56,7 +64,7 @@ export class ActorsListComponent implements OnInit {
     this.pages++;    
     this.getOnePagePopularActors(this.pages);    
     this.isDisabledActorsBtn = this.pages === this.totalPages ? true : false; 
-    this.filmsService.currentPageActors = this.pages;
+    this.filmsService.currentPageActors = this.pageCount;
   } 
 
   firstPage() {

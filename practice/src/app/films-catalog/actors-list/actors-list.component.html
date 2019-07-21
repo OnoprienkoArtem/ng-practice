@@ -1,6 +1,13 @@
 <div *ngIf="!spiner" class="cards-section">
 
+        <div class="cards-header" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+        <h2>{{totalResalt}} актеров</h2>  
+        <p>Страница: {{pageCount}} из {{totalPages}}</p>
+      </div>
+
   <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+
+
     
       <app-actor-item class="actor-item mb-2em" fxFlex="17%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="actor"
         *ngFor="let actor of actors">
