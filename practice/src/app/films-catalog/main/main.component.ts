@@ -29,7 +29,7 @@ export class MainComponent implements OnInit {
         console.log('token', token);
         console.log('request_token', token.request_token);
 
-        this.filmsService.bindingTokenWithAccount(token.request_token).subscribe(
+        this.filmsService.bindingTokenWithAccount(token.request_token, 'artemo', 'cinemaart').subscribe(
           res => console.log(res)
         );
 

@@ -32,8 +32,8 @@ export class FilmService {
     return this.http.get(`https://api.themoviedb.org/3/authentication/token/new?api_key=f7ce96b08789255f247db434150c7493`);
   }
 
-  bindingTokenWithAccount(requst_token: string) {
-    return this.http.get(`https://api.themoviedb.org/3/authentication/token/validate_with_login?username=artemo&password=cinemaart&request_token=${requst_token}&api_key=f7ce96b08789255f247db434150c7493`);
+  bindingTokenWithAccount(requst_token: string, username: string, password: string) {
+    return this.http.get(`https://api.themoviedb.org/3/authentication/token/validate_with_login?username=${username}&password=${password}&request_token=${requst_token}&api_key=f7ce96b08789255f247db434150c7493`);
   }
 
   getSession(requst_token: string) {
