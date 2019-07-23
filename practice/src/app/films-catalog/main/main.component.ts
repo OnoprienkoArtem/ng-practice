@@ -23,6 +23,30 @@ export class MainComponent implements OnInit {
   constructor(private filmsService: FilmService, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
 
   ngOnInit() {
+
+    this.filmsService.getToken().subscribe(
+      (token: any) => {
+        console.log('token', token);
+        console.log('request_token', token.request_token);
+        this.filmsService.bindingTokenWithAccount(token.request_token).subscribe(
+          res => {
+            console.log(res);
+          }
+        );
+
+        this.filmsService.getSession(token.request_token).subscribe(
+          res => {
+            console.log(res);
+            
+          }
+        );
+
+
+      }
+    ),
+
+
+
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         this.filmsClone = filmList.results;

@@ -24,6 +24,21 @@ export class FilmService {
   get currentPageActors() {
     return this.currentPage || 1;
   }
+  
+
+
+
+  getToken() {
+    return this.http.get(`https://api.themoviedb.org/3/authentication/token/new?api_key=f7ce96b08789255f247db434150c7493`);
+  }
+
+  bindingTokenWithAccount(requst_token: string) {
+    return this.http.get(`https://api.themoviedb.org/3/authentication/token/validate_with_login?username=artemo&password=cinemaart&request_token=${requst_token}&api_key=f7ce96b08789255f247db434150c7493`);
+  }
+
+  getSession(requst_token: string) {
+    return this.http.get(`https://api.themoviedb.org/3/authentication/session/new?api_key=f7ce96b08789255f247db434150c7493&request_token=${requst_token}`);
+  }
 
 
 
