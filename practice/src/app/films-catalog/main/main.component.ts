@@ -29,18 +29,20 @@ export class MainComponent implements OnInit {
         console.log('token', token);
         console.log('request_token', token.request_token);
         this.filmsService.bindingTokenWithAccount(token.request_token).subscribe(
-          res => {
-            console.log(res);
-          }
+          res => console.log(res)
         );
 
         this.filmsService.getSession(token.request_token).subscribe(
-          res => {
+          (res: any) => {
             console.log(res);
-            
+
+            this.filmsService.getUserData(res.session_id).subscribe(
+              res => {
+                console.log(res);
+              }
+            );            
           }
         );
-
 
       }
     ),
