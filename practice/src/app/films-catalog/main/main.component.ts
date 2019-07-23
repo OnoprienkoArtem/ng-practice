@@ -28,17 +28,24 @@ export class MainComponent implements OnInit {
       (token: any) => {
         console.log('token', token);
         console.log('request_token', token.request_token);
+
         this.filmsService.bindingTokenWithAccount(token.request_token).subscribe(
           res => console.log(res)
         );
 
         this.filmsService.getSession(token.request_token).subscribe(
-          (res: any) => {
-            console.log(res);
+          (session: any) => {
+            console.log(session);
 
-            this.filmsService.getUserData(res.session_id).subscribe(
-              res => {
-                console.log(res);
+            this.filmsService.getUserData(session.session_id).subscribe(
+              (user: any) => {
+                console.log(user);
+
+                this.filmsService.addFilmToFavorite(user.id, session.session_id, "movie", 351286, true).subscribe(
+                  res => {
+                    console.log(res);
+                  }
+                );
               }
             );            
           }
