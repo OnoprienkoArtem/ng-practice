@@ -46,6 +46,13 @@ export class MainComponent implements OnInit {
                     console.log(res);
                   }
                 );
+
+                this.filmsService.getListOfFavotitesFilms(user.id, session.session_id).subscribe(
+                  listFavorites => {
+                    console.log(listFavorites);
+                  }
+                );
+
               }
             );            
           }
