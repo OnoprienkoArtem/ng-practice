@@ -11,6 +11,7 @@ import { ApiConfig } from '../../models/api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SnackBarComponent } from '../../shared/components/snack-bar/snack-bar.component';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
-        Validators.email
+        // Validators.email
       ]),
       password: new FormControl("", [
         Validators.required,
@@ -83,19 +84,21 @@ export class LoginComponent implements OnInit {
       return;
     }      
     
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
-      .subscribe(
-        () => {          
-          this.openSnackBar('вы успешно авторизовались', 'success');
-          this.formSection = true;
-          setTimeout(() => {            
-            this.router.navigate(['/main']);
-          }, 2000);
-        },
-        err => {              
-          this.openSnackBar('ошибка авторизации', 'error'); 
-        }
-      );
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+    
+    // .subscribe(
+    //     (res) => {  
+    //       console.log(res);        
+    //       this.openSnackBar('вы успешно авторизовались', 'success');
+    //       this.formSection = true;
+    //       setTimeout(() => {            
+    //         this.router.navigate(['/main']);
+    //       }, 2000);
+    //     },
+    //     err => {              
+    //       this.openSnackBar('ошибка авторизации', 'error'); 
+    //     }
+    //   );
   }
 
   get f() {
