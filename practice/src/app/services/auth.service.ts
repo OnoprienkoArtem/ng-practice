@@ -25,13 +25,8 @@ export class AuthService {
   public message: boolean;
   private state$ = new Subject<boolean>()
 
-  public successMessage() {
-    this.message = true;
-    this.state$.next(this.message);
-  }
-
-  public errorMessage() {
-    this.message = false;
+  public messageAction(value) {
+    this.message = value;
     this.state$.next(this.message);
   }
 
@@ -68,7 +63,7 @@ export class AuthService {
             if (authentication.success) {            
               localStorage.setItem('auth_token', token.request_token);
               this.loggedIn = true;
-              this.successMessage();
+              this.messageAction(true);
               setTimeout(() => {            
                 this.router.navigate(['/main']);
               }, 2000);
@@ -77,7 +72,7 @@ export class AuthService {
           },
           (err) => {
             console.log(err.ok);
-            this.errorMessage();
+            this.messageAction(false);
           }
         )
       }
