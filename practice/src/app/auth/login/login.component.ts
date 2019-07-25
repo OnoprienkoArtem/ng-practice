@@ -85,6 +85,16 @@ export class LoginComponent implements OnInit {
     }      
     
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+
+    
+
+    this.authService.getState().subscribe((n) => {
+      if (n) {
+        this.openSnackBar('вы успешно авторизовались', 'success');
+      } else {
+        this.openSnackBar('ошибка авторизации', 'error'); 
+      }
+    });
     
     // .subscribe(
     //     (res) => {  
