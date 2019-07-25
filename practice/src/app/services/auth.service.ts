@@ -53,6 +53,9 @@ export class AuthService {
             if (authentication.success) {            
               localStorage.setItem('auth_token', token.request_token);
               this.loggedIn = true;
+              setTimeout(() => {            
+                this.router.navigate(['/main']);
+              }, 2000);
             }
 
           }
