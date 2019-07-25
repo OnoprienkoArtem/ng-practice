@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { retry, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +28,10 @@ export class AuthService {
     return this.http.get(`https://api.themoviedb.org/3/authentication/token/new?api_key=f7ce96b08789255f247db434150c7493`);
   }
 
+  bindingTokenWithAccount(requst_token: string, username: string, password: string) {
+    return this.http.get(`https://api.themoviedb.org/3/authentication/token/validate_with_login?username=${username}&password=${password}&request_token=${requst_token}&api_key=f7ce96b08789255f247db434150c7493`);
+  }
+
   login(username: string, password: string) {   
     console.log(username, password);
         //     this.filmsService.bindingTokenWithAccount(token.request_token, 'artemo', 'cinemaart').subscribe(
@@ -41,22 +46,21 @@ export class AuthService {
       (token: any) => {
         console.log(token.request_token);
 
-        return this.http.get(`https://api.themoviedb.org/3/authentication/token/validate_with_login?username=${username}&password=${password}&request_token=${token.request_token}&api_key=f7ce96b08789255f247db434150c7493`)
-          .subscribe(
-            ((authentication: any) => {
-              console.log(authentication.success);
-
-            if (authentication) {            
-              // localStorage.setItem('auth_token', res.token);
-              //     this.loggedIn = true;
+        this.bindingTokenWithAccount(token.request_token, username, password).subscribe(
+          (authentication: any) => {
+            console.log(authentication.success);
+  
+            if (authentication.success) {            
+              localStorage.setItem('auth_token', token.request_token);
+              this.loggedIn = true;
             }
 
-            })
-          )
-
-
+          }
+        )
       }
     )
+
+    
 
 
     // return this.http.post(`${this.authUrl}/login`, { username, password })
@@ -72,6 +76,9 @@ export class AuthService {
     //     }),
     //   );
   }
+
+
+
 
   logout() {
     this.loggedIn = false;
