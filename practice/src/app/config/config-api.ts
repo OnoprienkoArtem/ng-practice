@@ -3,7 +3,7 @@ import { ApiConfig } from '../models/api';
 
 export const staticPath = {
     apiUrl: "https://api.themoviedb.org/3",
-    apiKey: 'f7ce96b08789255f247db434150c7493',
+    apiKey: '0994e7679a856150aadcecf7de489bce',
     imgPath: 'https://image.tmdb.org/t/p',
     localApiUrl: 'http://localhost:3000',
 }

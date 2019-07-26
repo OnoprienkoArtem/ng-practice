@@ -19,14 +19,14 @@ import { Subject, Observable } from 'rxjs';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // credentials = { username: '', password: '' };
-  errorMessage = '';
+
   public films: Film[] = [];
   public imgUrl: string = this.localConfig.bigBackPath; 
   public backgrounds: string; 
   public formSection: boolean = false;
   public loginForm: FormGroup;
   private durationInSeconds = 2;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -46,21 +46,11 @@ export class LoginComponent implements OnInit {
       });
   }
 
-
-
-
   ngOnInit() {  
     this.loginForm = new FormGroup({
-      email: new FormControl("", [
-        Validators.required,
-        // Validators.email
-      ]),
-      password: new FormControl("", [
-        Validators.required,
-        // Validators.minLength(8)
-      ])
+      name: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required)
     });
-
 
     const isLogin = this.authService.isLoggedIn();
 
@@ -83,37 +73,22 @@ export class LoginComponent implements OnInit {
       return;
     }      
     
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password);    
+    this.authService.login(this.loginForm.value.name, this.loginForm.value.password);    
 
     this.msgService.getState().subscribe(res => {
       let message = res ? ['вы успешно авторизовались', 'success'] : ['ошибка авторизации', 'error'];     
       this.openSnackBar(message[0], message[1]); 
-    });
-    
-    // .subscribe(
-    //     (res) => {  
-    //       console.log(res);        
-    //       this.openSnackBar('вы успешно авторизовались', 'success');
-    //       this.formSection = true;
-    //       setTimeout(() => {            
-    //         this.router.navigate(['/main']);
-    //       }, 2000);
-    //     },
-    //     err => {              
-    //       this.openSnackBar('ошибка авторизации', 'error'); 
-    //     }
-    //   );
+    });    
+
   }
 
   get f() {
     return this.loginForm.controls;
   }
 
-  public getEmailErrorMessage() {  
-      if (this.f.email.hasError("required")) {
+  public getNameErrorMessage() {  
+      if (this.f.name.hasError("required")) {
         return "Пожалуйста, заполните это поле!";
-      } else if (this.f.email.hasError("email")) {
-        return "Не валидный Email."
       } else {
         return "";
       }
