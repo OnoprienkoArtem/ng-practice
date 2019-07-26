@@ -13,6 +13,7 @@ export const localConfig: ApiConfig = {
     tokenUrl: `${staticPath.apiUrl}/authentication/token/new`,
     authenticationUrl: `${staticPath.apiUrl}/authentication/token/validate_with_login`,
     sessionUrl: `${staticPath.apiUrl}authentication/session/new`,
+    accountUrl: `${staticPath.apiUrl}/account`,
 
     movieUrl: `${staticPath.apiUrl}/movie`,
     searchUrl: `${staticPath.apiUrl}/search`,

@@ -39,13 +39,8 @@ export class AuthService {
   }
 
   getUserData(session_id: string) {
-    return this.http.get(`https://api.themoviedb.org/3/account?api_key=f7ce96b08789255f247db434150c7493&session_id=${session_id}`);
+    return this.http.get(`${this.localConfig.accountUrl}?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
   }
-
-
-
-
-
 
   login(username: string, password: string) {   
     this.getToken().subscribe(

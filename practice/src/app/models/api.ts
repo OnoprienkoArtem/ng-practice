@@ -3,6 +3,7 @@ export class ApiConfig {
     tokenUrl: string;
     authenticationUrl: string;
     sessionUrl: string;
+    accountUrl: string;
     localApiUrl: string;
     movieUrl: string;
     searchUrl: string;

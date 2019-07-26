@@ -3,17 +3,15 @@ import { fadeAnimation } from './animations';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { FilmService } from './services/film.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [fadeAnimation]
 })
-export class AppComponent {
-  title = 'movie-app';
-  isLogin = true;
-  currentRoute: string;
+export class AppComponent { 
+  public isLogin = true;
+  private currentRoute: string;
 
   constructor(
     private authService: AuthService, 
@@ -34,18 +32,18 @@ export class AppComponent {
           this.currentRoute = event.url;
           this.isLogin = this.currentRoute === '/login' ? false : true;               
         }
-      });
+      }
+    );
+
     
   }
 
-  logout() {           
-    // this.isLogin = false;
+  logout() {  
     this.authService.logout();
   }
 
   clearPageCounter(page) {
     this.filmsService[page] = 1;
   }
-
 
 }
