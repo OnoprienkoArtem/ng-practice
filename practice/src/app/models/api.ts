@@ -1,4 +1,8 @@
 export class ApiConfig { 
+    apiKey: string;
+    tokenUrl: string;
+    authenticationUrl: string;
+    sessionUrl: string;
     localApiUrl: string;
     movieUrl: string;
     searchUrl: string;

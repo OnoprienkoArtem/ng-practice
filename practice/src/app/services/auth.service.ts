@@ -27,17 +27,30 @@ export class AuthService {
   }
 
   getToken() {
-    return this.http.get(`https://api.themoviedb.org/3/authentication/token/new?api_key=f7ce96b08789255f247db434150c7493`);
+    return this.http.get(`${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`);
   }
 
-  bindingTokenWithAccount(requst_token: string, username: string, password: string) {
-    return this.http.get(`https://api.themoviedb.org/3/authentication/token/validate_with_login?username=${username}&password=${password}&request_token=${requst_token}&api_key=f7ce96b08789255f247db434150c7493`);
+  authenticationToken(requst_token: string, username: string, password: string) {
+    return this.http.get(`${this.localConfig.authenticationUrl}?username=${username}&password=${password}&request_token=${requst_token}&api_key=${this.localConfig.apiKey}`);
   }
+
+  getSession(requst_token: string) {
+    return this.http.get(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}&request_token=${requst_token}`);
+  }
+
+  getUserData(session_id: string) {
+    return this.http.get(`https://api.themoviedb.org/3/account?api_key=f7ce96b08789255f247db434150c7493&session_id=${session_id}`);
+  }
+
+
+
+
+
 
   login(username: string, password: string) {   
     this.getToken().subscribe(
       (token: any) => { 
-        this.bindingTokenWithAccount(token.request_token, username, password).subscribe(
+        this.authenticationToken(token.request_token, username, password).subscribe(
           (authentication: any) => { 
             if (authentication.success) {            
               localStorage.setItem('auth_token', token.request_token);

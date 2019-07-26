@@ -9,7 +9,11 @@ export const staticPath = {
 }
 
 export const localConfig: ApiConfig = {
-    localApiUrl: staticPath.localApiUrl,
+    apiKey: staticPath.apiKey,
+    tokenUrl: `${staticPath.apiUrl}/authentication/token/new`,
+    authenticationUrl: `${staticPath.apiUrl}/authentication/token/validate_with_login`,
+    sessionUrl: `${staticPath.apiUrl}authentication/session/new`,
+
     movieUrl: `${staticPath.apiUrl}/movie`,
     searchUrl: `${staticPath.apiUrl}/search`,
     personUrl: `${staticPath.apiUrl}/person`,
@@ -19,6 +23,8 @@ export const localConfig: ApiConfig = {
     midImgPath: `${staticPath.imgPath}/w500`,
     midBackPath: `${staticPath.imgPath}/w780`,
     bigBackPath: `${staticPath.imgPath}/w1280`,
+
+    localApiUrl: staticPath.localApiUrl,
     favoriteApiUrl:`${staticPath.localApiUrl}/films/favorites`,
     bookmarkApiUrl: `${staticPath.localApiUrl}/films/bookmarks`,
 }

@@ -28,21 +28,11 @@ export class FilmService {
 
 
 
-  getToken() {
-    return this.http.get(`https://api.themoviedb.org/3/authentication/token/new?api_key=f7ce96b08789255f247db434150c7493`);
-  }
 
-  bindingTokenWithAccount(requst_token: string, username: string, password: string) {
-    return this.http.get(`https://api.themoviedb.org/3/authentication/token/validate_with_login?username=${username}&password=${password}&request_token=${requst_token}&api_key=f7ce96b08789255f247db434150c7493`);
-  }
 
-  getSession(requst_token: string) {
-    return this.http.get(`https://api.themoviedb.org/3/authentication/session/new?api_key=f7ce96b08789255f247db434150c7493&request_token=${requst_token}`);
-  }
 
-  getUserData(session_id: string) {
-    return this.http.get(`https://api.themoviedb.org/3/account?api_key=f7ce96b08789255f247db434150c7493&session_id=${session_id}`);
-  }
+
+
 
   addFilmToFavorite(user_id, session_id, type, id, favorite) {
     return this.http.post(`https://api.themoviedb.org/3/account/${user_id}/favorite?api_key=f7ce96b08789255f247db434150c7493&session_id=${session_id}`, {media_type: type, media_id: id, favorite: favorite});
