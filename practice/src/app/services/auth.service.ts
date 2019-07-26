@@ -22,12 +22,11 @@ export class AuthService {
   }
 
 
-  public message: boolean;
+ 
   private state$ = new Subject<boolean>()
 
-  public messageAction(value) {
-    this.message = value;
-    this.state$.next(this.message);
+  public messageAction(value) {   
+    this.state$.next(value);
   }
 
   public getState(): Observable<boolean> {
