@@ -61,7 +61,7 @@ export class AuthService {
               this.messagesService.messageAction(true);
               setTimeout(() => {            
                 this.router.navigate(['/main']);
-              }, 2000);
+              }, 2200);
             }
 
           },

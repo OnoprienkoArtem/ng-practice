@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   public backgrounds: string; 
   public formSection: boolean = false;
   public loginForm: FormGroup;
-  private durationInSeconds = 1.5;
+  private durationInSeconds = 2;
   constructor(
     private authService: AuthService,
     private router: Router,
