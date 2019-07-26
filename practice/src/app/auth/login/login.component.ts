@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
   public backgrounds: string; 
   public formSection: boolean = false;
   public loginForm: FormGroup;
-  private durationInSeconds = 2;
-
+  private durationInSeconds = 1.5;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -86,7 +85,7 @@ export class LoginComponent implements OnInit {
     
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password);    
 
-    this.authService.getState().subscribe(res => {
+    this.msgService.getState().subscribe(res => {
       let message = res ? ['вы успешно авторизовались', 'success'] : ['ошибка авторизации', 'error'];     
       this.openSnackBar(message[0], message[1]); 
     });

@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { retry, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
+import { MessagesService } from './messages.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,10 @@ export class AuthService {
   private authUrl = 'https://reqres.in/api';
   private loggedIn = false;
 
-  constructor(private http: HttpClient, public router: Router) {   
+  constructor(
+    private http: HttpClient, 
+    public router: Router,
+    public messagesService: MessagesService) {   
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -22,16 +27,7 @@ export class AuthService {
   }
 
 
- 
-  private state$ = new Subject<boolean>()
 
-  public messageAction(value) {   
-    this.state$.next(value);
-  }
-
-  public getState(): Observable<boolean> {
-    return this.state$.asObservable();
-  }
 
 
 
@@ -62,7 +58,7 @@ export class AuthService {
             if (authentication.success) {            
               localStorage.setItem('auth_token', token.request_token);
               this.loggedIn = true;
-              this.messageAction(true);
+              this.messagesService.messageAction(true);
               setTimeout(() => {            
                 this.router.navigate(['/main']);
               }, 2000);
@@ -71,7 +67,7 @@ export class AuthService {
           },
           (err) => {
             console.log(err.ok);
-            this.messageAction(false);
+            this.messagesService.messageAction(false);
           }
         )
       }

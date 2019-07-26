@@ -1,31 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Message } from '../models/message';
+import { Subject, Observable } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessagesService {
 
-  private messages$ = new Subject<Message>();
-  private submit$ = new Subject<boolean>();
+  private state$ = new Subject<boolean>()
 
   constructor() { }
-  
 
-  getMessages() {
-    return this.messages$.asObservable();
+  public messageAction(value) {   
+    this.state$.next(value);
   }
 
-  setMessage(msg: Message) {
-    this.messages$.next(msg);
+  public getState(): Observable<boolean> {
+    return this.state$.asObservable();
   }
 
-  getSubmit() {
-    return this.submit$.asObservable();
-  }
-
-  submit(confirmation = true) {
-    this.submit$.next(confirmation);
-  }
 }
