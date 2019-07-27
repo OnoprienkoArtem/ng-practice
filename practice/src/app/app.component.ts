@@ -33,7 +33,7 @@ export class AppComponent {
           this.currentRoute = event.url;
           this.isLogin = this.currentRoute === '/login' ? false : true;     
           if (this.isLogin) {            
-            this.username = this.authService.userData.username;            
+            this.username = localStorage.getItem('user_name');;            
           }
          
         }

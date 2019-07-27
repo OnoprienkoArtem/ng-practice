@@ -27,16 +27,6 @@ export class AuthService {
     return this.loggedIn;
   }
 
-  set userData(data) {
-    this.user = data;
-  }
-
-  get userData() {
-    return this.user;
-  }
-
-
-
   getToken() {
     return this.http.get(`${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`);
   }
@@ -75,7 +65,7 @@ export class AuthService {
                     (user: any) => {       
                       console.log(user);
                       console.log(user.username);                      
-                      this.userData = user;
+                      localStorage.setItem('user_name', user.username);
                     },
                     err => console.log("error", err)
                   )
@@ -98,7 +88,8 @@ export class AuthService {
   logout() {
     this.loggedIn = false;
     this.router.navigate(['/login']); 
-    localStorage.removeItem('auth_token');      
+    localStorage.removeItem('auth_token');  
+    localStorage.removeItem('user_name');      
   }
 }
 
