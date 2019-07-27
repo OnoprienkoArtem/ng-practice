@@ -13,11 +13,14 @@
           (click)="clearPageCounter(link.page)">       
           <span>{{link.label}}</span>
         </a>
-        <a routerLinkActive="button-active" routerLink="/favorites" mat-button class="favorites" matBadge="15" matBadgeColor="warn">
-         <span>Избранные</span>
-       <!--     <div>
-            <span>12</span>
-          </div> -->
+        <a 
+          routerLinkActive="button-active" 
+          routerLink="/favorites" 
+          mat-button 
+          class="favorites" 
+          [matBadge]="totalResult" 
+          matBadgeColor="warn">
+         <span>Мои избранные</span>  
         </a>        
       </div>
       <app-search></app-search>         

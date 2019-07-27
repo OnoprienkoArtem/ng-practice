@@ -23,8 +23,8 @@ export class AppComponent {
 
   links: any[] = [
     { path: '/main', label: 'Главная', active: 'button-active', page: 'main' },
-    { path: '/films', label: 'Все фильмы', active: 'button-active', page: 'films' },
-    { path: '/actors', label: 'Все актеры', active: 'button-active', page: 'currentPageActors' }    
+    { path: '/films', label: 'Фильмы', active: 'button-active', page: 'films' },
+    { path: '/actors', label: 'Актеры', active: 'button-active', page: 'currentPageActors' }    
   ];
 
   ngOnInit() {
@@ -36,13 +36,12 @@ export class AppComponent {
           if (this.isLogin) {            
             this.username = localStorage.getItem('user_name');
 
-            console.log(localStorage.getItem('user_id'));
-            console.log(localStorage.getItem('session_id'));
-
-            this.filmsService.getListOfFavotitesFilms(localStorage.getItem('user_id'), localStorage.getItem('session_id'))
-            .subscribe (
-              (res: any) => {
-                console.log(res);
+            const userId = localStorage.getItem('user_id');
+            const sessionId = localStorage.getItem('session_id');
+            
+            this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe (
+              (res: any) => {          
+                this.totalResult = res.total_results;
               }
 
             )
