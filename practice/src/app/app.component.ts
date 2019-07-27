@@ -35,6 +35,15 @@ export class AppComponent {
       }
     );
 
+   
+
+    this.authService.getSession(localStorage.getItem('auth_token')).subscribe(
+      (session: any) => {       
+       console.log(session);
+      },
+      err => console.log("error", err)
+    )
+
     
   }
 

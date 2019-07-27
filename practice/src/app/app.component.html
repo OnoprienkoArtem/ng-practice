@@ -1,24 +1,33 @@
 <mat-toolbar *ngIf="isLogin" class="header">
   <mat-toolbar-row fxLayout="row wrap" fxLayoutAlign="space-between center">
-    <div class="logo-wrapp" routerLink="/main">
-      <img src="assets/logo.jpg" alt="">
-    </div> 
     <div fxLayout="row wrap" fxLayoutAlign="center center">
-      <div class="nav-section">
-        <a 
-          mat-button 
-          *ngFor="let link of links" 
-          [routerLink]="link.path" 
-          [routerLinkActive]="link.active"
-          (click)="clearPageCounter(link.page)">       
-          <span>{{link.label}}</span>
-        </a>
-        <!-- <a mat-button routerLink="/main" routerLinkActive="button-active">Главная</a>
-        <a mat-button routerLink="/films" routerLinkActive="button-active">Все фильмы</a>
-        <a mat-button routerLink="/actors" routerLinkActive="button-active" (click)="clearPageCounter()">Все актеры</a> -->
-      </div>
+      <div class="logo-wrapp" routerLink="/main">
+        <img src="assets/logo.jpg" alt="">
+      </div> 
+      <!-- <div> -->
+        <div class="nav-section">
+          <a 
+            mat-button 
+            *ngFor="let link of links" 
+            [routerLink]="link.path" 
+            [routerLinkActive]="link.active"
+            (click)="clearPageCounter(link.page)">       
+            <span>{{link.label}}</span>
+          </a>
+        
+        </div>
 
-       <app-search></app-search>
+        <app-search></app-search>
+
+        
+      <!-- </div> -->
+
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
+ 
+
+       
 
        <button mat-raised-button class="loguot" (click)="logout()" >Выйти</button>
     </div>
