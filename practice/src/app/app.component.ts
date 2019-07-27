@@ -13,6 +13,7 @@ export class AppComponent {
   public isLogin = true;
   private currentRoute: string;
   public username: string;
+  public totalResult: number;
 
   constructor(
     private authService: AuthService, 
@@ -23,8 +24,7 @@ export class AppComponent {
   links: any[] = [
     { path: '/main', label: 'Главная', active: 'button-active', page: 'main' },
     { path: '/films', label: 'Все фильмы', active: 'button-active', page: 'films' },
-    { path: '/actors', label: 'Все актеры', active: 'button-active', page: 'currentPageActors' },
-    // { path: '/actors', label: 'Избранные', active: 'button-active', page: 'currentPageActors' }
+    { path: '/actors', label: 'Все актеры', active: 'button-active', page: 'currentPageActors' }    
   ];
 
   ngOnInit() {
@@ -34,12 +34,27 @@ export class AppComponent {
           this.currentRoute = event.url;
           this.isLogin = this.currentRoute === '/login' ? false : true;     
           if (this.isLogin) {            
-            this.username = localStorage.getItem('user_name');;            
+            this.username = localStorage.getItem('user_name');
+
+            console.log(localStorage.getItem('user_id'));
+            console.log(localStorage.getItem('session_id'));
+
+            this.filmsService.getListOfFavotitesFilms(localStorage.getItem('user_id'), localStorage.getItem('session_id'))
+            .subscribe (
+              (res: any) => {
+                console.log(res);
+              }
+
+            )
+
           }
          
         }
       }
     );
+
+
+
 
   //  console.log(localStorage.getItem('user_name'));
     // console.log(this.authService.userData);

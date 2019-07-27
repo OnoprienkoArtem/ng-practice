@@ -43,6 +43,8 @@ export class AuthService {
     return this.http.get(`${this.localConfig.accountUrl}?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
   }
 
+
+
   login(username: string, password: string) {   
     this.getToken().subscribe(
       (token: any) => { 
@@ -60,11 +62,12 @@ export class AuthService {
               this.getSession(token.request_token).subscribe(
                 (session: any) => {       
                   console.log(session);
-          
+                  localStorage.setItem('session_id', session.session_id);
                   this.getUserData(session.session_id).subscribe(
                     (user: any) => {   
                       console.log(user);   
                       localStorage.setItem('user_name', user.username);
+                      localStorage.setItem('user_id', user.id);
                     },
                     err => console.log("error", err)
                   )
@@ -87,8 +90,10 @@ export class AuthService {
   logout() {
     this.loggedIn = false;
     this.router.navigate(['/login']); 
-    localStorage.removeItem('auth_token');  
-    localStorage.removeItem('user_name');      
+    localStorage.removeItem('auth_token'); 
+    localStorage.removeItem('session_id');  
+    localStorage.removeItem('user_name'); 
+    localStorage.removeItem('user_id'); 
   }
 }
 
