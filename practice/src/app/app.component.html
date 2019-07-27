@@ -25,7 +25,11 @@
     </div>
 
     <div fxLayout="row wrap" fxLayoutAlign="center center">
-      <span>ArtemO</span>
+      <div>
+        <span class="avatar">{{ username | slice:0:1 }}</span>
+        <span class="username">{{username}}</span>
+      </div>
+      
       <button mat-raised-button class="loguot" (click)="logout()">Выйти</button>
     </div>
    

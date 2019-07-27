@@ -12,7 +12,7 @@ import { FilmService } from './services/film.service';
 export class AppComponent { 
   public isLogin = true;
   private currentRoute: string;
-
+  public username: string;
 
   constructor(
     private authService: AuthService, 
@@ -32,13 +32,10 @@ export class AppComponent {
         if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
           this.isLogin = this.currentRoute === '/login' ? false : true;     
-          if (this.isLogin) {
-            console.log(this.authService.userData);
+          if (this.isLogin) {            
+            this.username = this.authService.userData.username;            
           }
          
-            
-           
-              
         }
       }
     );
