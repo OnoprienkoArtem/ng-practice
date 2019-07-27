@@ -12,6 +12,7 @@ import { ApiConfig } from '../models/api';
 export class AuthService {
  
   private loggedIn = false;
+  public user: any;
 
   constructor(
     private http: HttpClient, 
@@ -25,6 +26,16 @@ export class AuthService {
   isLoggedIn() {
     return this.loggedIn;
   }
+
+  set userData(data) {
+    this.user = data;
+  }
+
+  get userData() {
+    return this.user;
+  }
+
+
 
   getToken() {
     return this.http.get(`${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`);
@@ -54,6 +65,26 @@ export class AuthService {
               setTimeout(() => {            
                 this.router.navigate(['/main']);
               }, 2200);
+
+          
+              this.getSession(token.request_token).subscribe(
+                (session: any) => {       
+                  console.log(session);
+          
+                  this.getUserData(session.session_id).subscribe(
+                    (user: any) => {       
+                      console.log(user);
+                      console.log(user.username);                      
+                      this.userData = user;
+                    },
+                    err => console.log("error", err)
+                  )
+                },
+                err => console.log("error", err)
+              )
+
+
+
             }
           },
           err => {           
@@ -67,7 +98,7 @@ export class AuthService {
   logout() {
     this.loggedIn = false;
     this.router.navigate(['/login']); 
-    localStorage.removeItem('auth_token');    
+    localStorage.removeItem('auth_token');      
   }
 }
 

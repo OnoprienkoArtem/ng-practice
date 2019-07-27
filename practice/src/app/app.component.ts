@@ -13,6 +13,7 @@ export class AppComponent {
   public isLogin = true;
   private currentRoute: string;
 
+
   constructor(
     private authService: AuthService, 
     public router: Router,
@@ -30,19 +31,22 @@ export class AppComponent {
       (event: any) => {
         if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
-          this.isLogin = this.currentRoute === '/login' ? false : true;               
+          this.isLogin = this.currentRoute === '/login' ? false : true;     
+          if (this.isLogin) {
+            console.log(this.authService.userData);
+          }
+         
+            
+           
+              
         }
       }
     );
 
-   
+  //  console.log(localStorage.getItem('user_name'));
+    // console.log(this.authService.userData);
+    
 
-    this.authService.getSession(localStorage.getItem('auth_token')).subscribe(
-      (session: any) => {       
-       console.log(session);
-      },
-      err => console.log("error", err)
-    )
 
     
   }
