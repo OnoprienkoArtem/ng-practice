@@ -62,9 +62,8 @@ export class AuthService {
                   console.log(session);
           
                   this.getUserData(session.session_id).subscribe(
-                    (user: any) => {       
-                      console.log(user);
-                      console.log(user.username);                      
+                    (user: any) => {   
+                      console.log(user);   
                       localStorage.setItem('user_name', user.username);
                     },
                     err => console.log("error", err)

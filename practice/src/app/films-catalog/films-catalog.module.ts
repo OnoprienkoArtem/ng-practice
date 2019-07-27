@@ -9,6 +9,7 @@ import { MaterialModule } from '../material/material.module';
 import { FilmsListComponent } from './films-list/films-list.component';
 import { MainComponent } from './main/main.component';
 import { ActorsListComponent } from './actors-list/actors-list.component';
+import { FavoritesListComponent } from './favorites-list/favorites-list.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 
 import { RouterModule } from '@angular/router';
@@ -21,7 +22,8 @@ import { DetailsComponent } from './details/details.component';
     MainComponent, 
     ActorsListComponent, 
     SearchResultComponent, 
-    DetailsComponent
+    DetailsComponent, 
+    FavoritesListComponent
   ],
   imports: [
     CommonModule,
