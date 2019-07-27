@@ -32,8 +32,8 @@ export class FilmsListComponent implements OnInit {
       (filmList: any) => { 
         this.totalPages = filmList.total_pages;       
         this.films = filmList.results;
-        this.getFavorite();
-        this.getBookmark();
+        // this.getFavorite();
+        // this.getBookmark();
         if (this.films) {
           this.spiner = false;
         }
@@ -50,6 +50,8 @@ export class FilmsListComponent implements OnInit {
     this.getBookmark();
   }
 
+
+
   private getFavorite() {    
     this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {         
       const favoriteList = favorites.map(favorite => favorite._id);      
@@ -60,16 +62,31 @@ export class FilmsListComponent implements OnInit {
   }
 
   public addFilmToFavorit(id: number) { 
-    const favoriteFilms = this.films.find(item => {
-      return item.id === id;
-    });
+    console.log(id);
 
-    if (favoriteFilms.isFavorite) {     
-      this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
-    } else {     
-      this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
-    }           
+    const userId = localStorage.getItem('user_id');
+    const sessionId = localStorage.getItem('session_id');
+
+
+    this.filmsService.addFilmToFavorite(userId, sessionId, "movie", id, true).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+
+    // const favoriteFilms = this.films.find(item => {
+    //   return item.id === id;
+    // });
+
+    // if (favoriteFilms.isFavorite) {     
+    //   this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
+    // } else {     
+    //   this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
+    // }           
   }
+
+
+
 
   private getBookmark() {
     this.filmsService.getBookmark(this.films.map(item => item.id)).subscribe((bookmarks: Array<Bookmark>) => {

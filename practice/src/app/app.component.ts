@@ -38,10 +38,11 @@ export class AppComponent {
 
             const userId = localStorage.getItem('user_id');
             const sessionId = localStorage.getItem('session_id');
-            
+
             this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe (
-              (res: any) => {          
-                this.totalResult = res.total_results;
+              (favorites: any) => {    
+                console.log(favorites);
+                this.totalResult = favorites.total_results;
               }
 
             )
