@@ -9,7 +9,6 @@ import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 import { SnackBarComponent } from '../../shared/components/snack-bar/snack-bar.component';
 import { Subject, Observable } from 'rxjs';
 
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
   public formSection: boolean = false;
   public loginForm: FormGroup;
   private durationInSeconds = 2;
-  hide = true;
+  public hide = true;
 
   constructor(
     private authService: AuthService,

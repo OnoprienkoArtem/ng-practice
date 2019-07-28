@@ -36,11 +36,15 @@ export class AuthService {
   }
 
   getSession(requst_token: string) {
-    return this.http.get(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}&request_token=${requst_token}`);
+    return this.http.get(`${this.localConfig.sessionUrl}/new?api_key=${this.localConfig.apiKey}&request_token=${requst_token}`);
   }
 
   getUserData(session_id: string) {
     return this.http.get(`${this.localConfig.accountUrl}?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
+  }
+
+  removeSession() {
+    return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`);
   }
 
 
@@ -54,6 +58,7 @@ export class AuthService {
               localStorage.setItem('auth_token', token.request_token);
               this.loggedIn = true;
               this.messagesService.messageAction(true);
+
               setTimeout(() => {            
                 this.router.navigate(['/main']);
               }, 2200);
@@ -62,6 +67,7 @@ export class AuthService {
                 (session: any) => {       
                   console.log(session);
                   localStorage.setItem('session_id', session.session_id);
+
                   this.getUserData(session.session_id).subscribe(
                     (user: any) => {   
                       console.log(user);   
@@ -83,11 +89,19 @@ export class AuthService {
 
   logout() {
     this.loggedIn = false;
+
+    this.removeSession().subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+
     this.router.navigate(['/login']); 
     localStorage.removeItem('auth_token'); 
     localStorage.removeItem('session_id');  
     localStorage.removeItem('user_name'); 
     localStorage.removeItem('user_id'); 
+
   }
 }
 

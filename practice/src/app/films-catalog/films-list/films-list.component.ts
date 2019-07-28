@@ -74,10 +74,8 @@ export class FilmsListComponent implements OnInit {
       res => {
         console.log(res);
         this.getFavorite();
-
-        const userId = localStorage.getItem('user_id');
-        const sessionId = localStorage.getItem('session_id');
-        this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe (
+ 
+        this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
           (favorites: any) => {               
             this.filmsService.changefavoriteNumber(favorites.total_results);
           }

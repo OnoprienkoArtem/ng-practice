@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-favorites-list',
@@ -15,7 +16,11 @@ export class FavoritesListComponent implements OnInit {
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
 
-  constructor(public filmsService: FilmService) { }
+
+  constructor(
+    public filmsService: FilmService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getOnePagePopularFilms(this.page);
@@ -25,32 +30,18 @@ export class FavoritesListComponent implements OnInit {
 
     const userId = localStorage.getItem('user_id');
     const sessionId = localStorage.getItem('session_id');
-    this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe((favorites: any) => {                    
-        // this.filmsService.changefavoriteNumber(favorites.total_results);
+    this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe((favorites: any) => {   
         console.log(favorites);
         this.totalPages = favorites.total_pages;       
         this.films = favorites.results;  
         if (this.films) {
           this.spiner = false;
         }
+        if (this.totalPages === favorites.total_pages) {
+          this.isDisabledFilmsBtn = true;
+        }
       }
-    )
-            
-    // this.filmsService.getPopularFilms(page).subscribe(
-    //   (filmList: any) => { 
-    //     this.totalPages = filmList.total_pages;       
-    //     this.films = filmList.results;
-
-    //     // this.getFavorite();
-       
-
-    //     if (this.films) {
-    //       this.spiner = false;
-    //     }
-    //   },
-    //   err => console.log("error", err)
-    // )
-    
+    )    
   }
 
   public nextFilmsPage() {   
