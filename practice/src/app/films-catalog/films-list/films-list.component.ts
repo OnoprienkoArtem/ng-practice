@@ -70,19 +70,41 @@ export class FilmsListComponent implements OnInit {
   }
 
   public addFilmToFavorit(id: number) {  
-    this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, true).subscribe(
-      res => {
-        console.log(res);
-        this.getFavorite();
- 
-        this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
-          (favorites: any) => {               
-            this.filmsService.changefavoriteNumber(favorites.total_results);
-          }
-        )
+    const favoriteFilms = this.films.find(item => {
+      return item.id === id;
+    });
 
-      }
-    );          
+    if (favoriteFilms.isFavorite) {
+      this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, false).subscribe(
+        res => {
+          console.log(res);
+          this.getFavorite();
+   
+          this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
+            (favorites: any) => {               
+              this.filmsService.changefavoriteNumber(favorites.total_results);
+            }
+          )
+  
+        }
+      ); 
+    } else {
+      this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, true).subscribe(
+        res => {
+          console.log(res);
+          this.getFavorite();
+   
+          this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
+            (favorites: any) => {               
+              this.filmsService.changefavoriteNumber(favorites.total_results);
+            }
+          )
+  
+        }
+      ); 
+    }
+
+         
   }
 
 

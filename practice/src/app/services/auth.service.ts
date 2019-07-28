@@ -43,8 +43,9 @@ export class AuthService {
     return this.http.get(`${this.localConfig.accountUrl}?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
   }
 
-  removeSession() {
-    return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`);
+  removeSession(httpParams) {
+    let options = { params: httpParams };
+    return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, options);
   }
 
 
@@ -90,7 +91,7 @@ export class AuthService {
   logout() {
     this.loggedIn = false;
 
-    this.removeSession().subscribe(
+    this.removeSession(localStorage.getItem('session_id')).subscribe(
       res => {
         console.log(res);
       }
