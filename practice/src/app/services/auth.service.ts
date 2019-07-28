@@ -57,7 +57,6 @@ export class AuthService {
               setTimeout(() => {            
                 this.router.navigate(['/main']);
               }, 2200);
-
           
               this.getSession(token.request_token).subscribe(
                 (session: any) => {       
@@ -74,14 +73,9 @@ export class AuthService {
                 },
                 err => console.log("error", err)
               )
-
-
-
             }
           },
-          err => {           
-            this.messagesService.messageAction(false);
-          }
+          err => this.messagesService.messageAction(false)          
         )
       }
     ) 
