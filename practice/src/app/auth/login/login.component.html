@@ -29,12 +29,13 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Пароль" formControlName="password">
+          <input matInput placeholder="Пароль" formControlName="password" [type]="hide ? 'password' : 'text'">
+
           <mat-error *ngIf="f.password.invalid">{{getErrorMessageForPassword()}} </mat-error>
         </mat-form-field>
 
       </div>
-      <button mat-raised-button color="accent">Войти</button>
+      <button class="enter-btn" mat-raised-button color="accent">Войти</button>
     </form>
   </mat-card>
 

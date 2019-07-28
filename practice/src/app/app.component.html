@@ -18,7 +18,7 @@
           routerLink="/favorites" 
           mat-button 
           class="favorites" 
-          [matBadge]="totalResult" 
+          [matBadge]="totalResult$ | async" 
           matBadgeColor="warn">
          <span>Мои избранные</span>  
         </a>        

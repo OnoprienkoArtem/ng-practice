@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   public formSection: boolean = false;
   public loginForm: FormGroup;
   private durationInSeconds = 2;
+  hide = true;
 
   constructor(
     private authService: AuthService,

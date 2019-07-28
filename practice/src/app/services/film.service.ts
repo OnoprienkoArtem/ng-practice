@@ -9,10 +9,17 @@ import { Subject, Observable } from 'rxjs';
 })
 export class FilmService {
 
+  private favoriteNumber$ = new Subject<number>();
 
-  constructor(private http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {}
+  constructor(private http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {} 
 
+  public changefavoriteNumber(value) {   
+    this.favoriteNumber$.next(value);
+  }
 
+  public getfavoriteNumber(): Observable<number> {
+    return this.favoriteNumber$.asObservable();
+  }
   
 
   public currentPage: number;

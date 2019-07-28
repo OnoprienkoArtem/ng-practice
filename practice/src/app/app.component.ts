@@ -3,6 +3,7 @@ import { fadeAnimation } from './animations';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { FilmService } from './services/film.service';
+import { Subject, Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +14,7 @@ export class AppComponent {
   public isLogin = true;
   private currentRoute: string;
   public username: string;
-  public totalResult: number;
+  public totalResult$: Observable<number>;;
 
   constructor(
     private authService: AuthService, 
@@ -38,25 +39,16 @@ export class AppComponent {
 
             const userId = localStorage.getItem('user_id');
             const sessionId = localStorage.getItem('session_id');
-
-            this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe (
-              (favorites: any) => {    
-                console.log(favorites);
-                this.totalResult = favorites.total_results;
+            this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe((favorites: any) => {                    
+                this.filmsService.changefavoriteNumber(favorites.total_results);  
               }
-
-            )
-
-          }
-         
+            ) 
+          }         
         }
       }
     );
 
-  
-
-
-    
+    this.totalResult$ = this.filmsService.getfavoriteNumber();       
   }
 
   logout() {  
