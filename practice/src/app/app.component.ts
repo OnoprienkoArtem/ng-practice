@@ -53,12 +53,7 @@ export class AppComponent {
       }
     );
 
-
-
-
-  //  console.log(localStorage.getItem('user_name'));
-    // console.log(this.authService.userData);
-    
+  
 
 
     

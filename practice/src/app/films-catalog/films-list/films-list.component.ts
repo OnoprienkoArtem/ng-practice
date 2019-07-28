@@ -18,7 +18,8 @@ export class FilmsListComponent implements OnInit {
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
  
-  
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
     
   
   constructor(public filmsService: FilmService) { }
@@ -32,8 +33,10 @@ export class FilmsListComponent implements OnInit {
       (filmList: any) => { 
         this.totalPages = filmList.total_pages;       
         this.films = filmList.results;
-        // this.getFavorite();
-        // this.getBookmark();
+
+        this.getFavorite();
+       
+
         if (this.films) {
           this.spiner = false;
         }
@@ -52,25 +55,27 @@ export class FilmsListComponent implements OnInit {
 
 
 
-  private getFavorite() {    
-    this.filmsService.getFavorite(this.films.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {         
-      const favoriteList = favorites.map(favorite => favorite._id);      
-      this.films.map(item => {
-        item.isFavorite = favoriteList.indexOf(item.id) > -1;
-      })
-    })  
+  private getFavorite() { 
+    this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
+      (favoriteFilms: any) => {
+        let favorites = [];
+        favoriteFilms.results.map(item => { 
+          favorites.push(item.id); 
+          this.films.map(item => {
+            item.isFavorite = favorites.indexOf(item.id) > -1;
+          })
+        })
+      }
+    ) 
   }
 
   public addFilmToFavorit(id: number) { 
-    console.log(id);
+    
 
-    const userId = localStorage.getItem('user_id');
-    const sessionId = localStorage.getItem('session_id');
-
-
-    this.filmsService.addFilmToFavorite(userId, sessionId, "movie", id, true).subscribe(
+    this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, true).subscribe(
       res => {
         console.log(res);
+        this.getFavorite();
       }
     );
 

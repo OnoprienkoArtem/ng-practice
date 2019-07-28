@@ -38,6 +38,8 @@ export class FilmService {
     return this.http.post(`https://api.themoviedb.org/3/account/${user_id}/favorite?api_key=0994e7679a856150aadcecf7de489bce&session_id=${session_id}`, {media_type: type, media_id: id, favorite: favorite});
   }
 
+
+
   getListOfFavotitesFilms(user_id, session_id) {
     return this.http.get(`https://api.themoviedb.org/3/account/${user_id}/favorite/movies?api_key=0994e7679a856150aadcecf7de489bce&session_id=${session_id}`);
   }
