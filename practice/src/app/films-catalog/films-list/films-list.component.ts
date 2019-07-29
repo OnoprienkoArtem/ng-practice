@@ -69,7 +69,7 @@ export class FilmsListComponent implements OnInit {
     ) 
   }
 
-  markFavorite() {}
+  // markFavorite() {}
 
   public addFilmToFavorit(id: number) {  
     const favoriteFilms = this.films.find(item => {
@@ -77,33 +77,34 @@ export class FilmsListComponent implements OnInit {
     });
 
     if (favoriteFilms.isFavorite) {
-      this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, false).subscribe(
-        res => {
-          console.log(res);
-          this.getFavorite();
+      // this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, false).subscribe(
+      //   res => {
+      //     console.log(res);
+      //     this.getFavorite();
    
-          this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
-            (favorites: any) => {               
-              this.filmsService.changefavoriteNumber(favorites.total_results);
-            }
-          )
+      //     this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
+      //       (favorites: any) => {               
+      //         this.filmsService.changefavoriteNumber(favorites.total_results);
+      //       }
+      //     )
   
-        }
-      ); 
+      //   }
+      // ); 
     } else {
-      this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, true).subscribe(
-        res => {
-          console.log(res);
-          this.getFavorite();
+      
+      // this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, true).subscribe(
+      //   res => {
+      //     console.log(res);
+      //     this.getFavorite();
    
-          this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
-            (favorites: any) => {               
-              this.filmsService.changefavoriteNumber(favorites.total_results);
-            }
-          )
+      //     this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
+      //       (favorites: any) => {               
+      //         this.filmsService.changefavoriteNumber(favorites.total_results);
+      //       }
+      //     )
   
-        }
-      ); 
+      //   }
+      // ); 
     }
 
          

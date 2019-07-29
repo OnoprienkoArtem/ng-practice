@@ -11,6 +11,11 @@ export class FilmService {
 
   private favoriteNumber$ = new Subject<number>();
 
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
+
+
+
   constructor(private http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {} 
 
   public changefavoriteNumber(value) {   
@@ -53,8 +58,22 @@ export class FilmService {
 
 
 
-
-
+  markFavorite(id, value) {
+      this.addFilmToFavorite(this.userId, this.sessionId, "movie", id, value).subscribe(
+        res => {
+          console.log(res);
+       
+   
+          this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
+            (favorites: any) => {       
+                      
+              this.changefavoriteNumber(favorites.total_results);
+            }
+          )
+  
+        }
+      );
+    }
 
 
 
