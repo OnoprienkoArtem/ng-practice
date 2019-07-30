@@ -35,7 +35,7 @@ export class FilmsListComponent implements OnInit {
         this.totalPages = filmList.total_pages;       
         this.films = filmList.results;
 
-        // this.getFavorite();
+        this.filmsService.getFavoriteFilms(this.films);
        
 
         if (this.films) {

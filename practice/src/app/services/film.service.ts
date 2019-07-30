@@ -58,12 +58,8 @@ export class FilmService {
 
 
 
-  markFavorite(id, value, films) {
-      this.addFilmToFavorite(this.userId, this.sessionId, "movie", id, value).subscribe(
-        res => {
-          console.log(res);
-
-          this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
+  getFavoriteFilms(films) {
+              this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
             (favoriteFilms: any) => {
               let favorites = [];
               favoriteFilms.results.map(item => { 
@@ -74,7 +70,17 @@ export class FilmService {
               })
             }
           ) 
-       
+  }
+
+
+
+  markFavorite(id, value, films) {
+      this.addFilmToFavorite(this.userId, this.sessionId, "movie", id, value).subscribe(
+        res => {
+          console.log(res);
+
+
+       this.getFavoriteFilms(films);
    
           this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
             (favorites: any) => {       
