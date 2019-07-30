@@ -58,10 +58,22 @@ export class FilmService {
 
 
 
-  markFavorite(id, value) {
+  markFavorite(id, value, films) {
       this.addFilmToFavorite(this.userId, this.sessionId, "movie", id, value).subscribe(
         res => {
           console.log(res);
+
+          this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
+            (favoriteFilms: any) => {
+              let favorites = [];
+              favoriteFilms.results.map(item => { 
+                favorites.push(item.id); 
+                films.map(item => {
+                  item.isFavorite = favorites.indexOf(item.id) > -1;
+                })
+              })
+            }
+          ) 
        
    
           this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (

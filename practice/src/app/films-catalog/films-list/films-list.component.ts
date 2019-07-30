@@ -35,7 +35,7 @@ export class FilmsListComponent implements OnInit {
         this.totalPages = filmList.total_pages;       
         this.films = filmList.results;
 
-        this.getFavorite();
+        // this.getFavorite();
        
 
         if (this.films) {
@@ -50,25 +50,25 @@ export class FilmsListComponent implements OnInit {
     this.page++;
     this.getOnePagePopularFilms(this.page);
     this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false; 
-    this.getFavorite();
+    // this.getFavorite();
     // this.getBookmark();
   }
 
 
 
-  private getFavorite() { 
-    this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
-      (favoriteFilms: any) => {
-        let favorites = [];
-        favoriteFilms.results.map(item => { 
-          favorites.push(item.id); 
-          this.films.map(item => {
-            item.isFavorite = favorites.indexOf(item.id) > -1;
-          })
-        })
-      }
-    ) 
-  }
+  // private getFavorite() { 
+    // this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
+    //   (favoriteFilms: any) => {
+    //     let favorites = [];
+    //     favoriteFilms.results.map(item => { 
+    //       favorites.push(item.id); 
+    //       this.films.map(item => {
+    //         item.isFavorite = favorites.indexOf(item.id) > -1;
+    //       })
+    //     })
+    //   }
+    // ) 
+  // }
 
   // markFavorite() {}
 
@@ -78,8 +78,8 @@ export class FilmsListComponent implements OnInit {
     });
 
     if (favoriteFilms.isFavorite) {
-      this.filmsService.markFavorite(id, false);
-     
+      this.filmsService.markFavorite(id, false, this.films);
+      // this.getFavorite();
 
       // this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, false).subscribe(
       //   res => {
@@ -95,7 +95,8 @@ export class FilmsListComponent implements OnInit {
       //   }
       // ); 
     } else {
-      
+      this.filmsService.markFavorite(id, true, this.films);
+      // this.getFavorite();
       // this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, true).subscribe(
       //   res => {
       //     console.log(res);
