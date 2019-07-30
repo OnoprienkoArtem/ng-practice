@@ -66,8 +66,8 @@ export class FilmService {
    
           this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe (
             (favorites: any) => {       
-                      
-              this.changefavoriteNumber(favorites.total_results);
+
+              return this.changefavoriteNumber(favorites.total_results);
             }
           )
   

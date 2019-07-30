@@ -4,6 +4,7 @@ import { Film } from '../../models/film';
 
 import { Favorite } from '../../models/favorites';
 import { Bookmark } from '../../models/bookmark';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-films-list',
@@ -77,6 +78,9 @@ export class FilmsListComponent implements OnInit {
     });
 
     if (favoriteFilms.isFavorite) {
+      this.filmsService.markFavorite(id, false);
+     
+
       // this.filmsService.addFilmToFavorite(this.userId, this.sessionId, "movie", id, false).subscribe(
       //   res => {
       //     console.log(res);
