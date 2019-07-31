@@ -76,6 +76,8 @@ export class FilmService {
 
 
 
+
+
   getFavoriteFilms(films) {
     this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
       (favoriteFilms: any) => {
@@ -104,6 +106,10 @@ export class FilmService {
   }
 
 
+
+  getFavorite(filmIds: Array<number>) {
+    return this.http.get(`${this.localConfig.favoriteApiUrl}?filmIds=${filmIds.join(',')}`);
+  }
 
 
 

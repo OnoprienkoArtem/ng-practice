@@ -58,8 +58,9 @@ export class SearchResultComponent implements OnInit {
         this.searchItems = res.results;
         this.totalResalt = res.total_results;
         this.totalPages = res.total_pages;
-        this.getFavorite();
-        this.getBookmark();
+
+        this.filmsService.getFavoriteFilms(this.searchItems);
+       
         if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
         if (this.searchItems) {
           this.spiner = false;
@@ -97,26 +98,7 @@ export class SearchResultComponent implements OnInit {
     }
   }
 
-  private getBookmark() {
-    this.filmsService.getBookmark(this.searchItems.map(item => item.id)).subscribe((bookmarks: Array<Bookmark>) => {
-      const bookedList = bookmarks.map(bookmark => bookmark._id);
-      this.searchItems.map(item => {
-        item.isBooked = bookedList.indexOf(item.id) > -1;
-      })
-    })
-  }
 
-  public addFilmToBookmark(id: number) {
-    const bookmarkFilms = this.searchItems.find(item => {
-      return item.id === id;
-    });
-
-    if (bookmarkFilms.isBooked) {
-      this.filmsService.removeFromBookmark(id).subscribe(() => this.getBookmark());
-    } else {
-      this.filmsService.addToBookmark(id).subscribe(() => this.getBookmark());
-    }
-  }
 
 
 
