@@ -50,27 +50,12 @@ export class FilmsListComponent implements OnInit {
     this.page++;
     this.getOnePagePopularFilms(this.page);
     this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false; 
-    // this.getFavorite();
-    // this.getBookmark();
+ 
   }
 
 
 
-  // private getFavorite() { 
-    // this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
-    //   (favoriteFilms: any) => {
-    //     let favorites = [];
-    //     favoriteFilms.results.map(item => { 
-    //       favorites.push(item.id); 
-    //       this.films.map(item => {
-    //         item.isFavorite = favorites.indexOf(item.id) > -1;
-    //       })
-    //     })
-    //   }
-    // ) 
-  // }
 
-  // markFavorite() {}
 
   public addFilmToFavorit(id: number) {  
     const favoriteFilms = this.films.find(item => {
@@ -117,31 +102,6 @@ export class FilmsListComponent implements OnInit {
 
 
 
-
-  // private getBookmark() {
-  //   this.filmsService.getBookmark(this.films.map(item => item.id)).subscribe((bookmarks: Array<Bookmark>) => {
-  //     const bookedList = bookmarks.map(bookmark => bookmark._id);
-  //     this.films.map(item => {
-  //       item.isBooked = bookedList.indexOf(item.id) > -1;
-  //     })
-  //   })
-  // }
-
-  // public addFilmToBookmark(id: number) {  
-  //   const bookmarkFilms = this.films.find(item => {
-  //     return item.id === id;
-  //   });
-
-  //   if (bookmarkFilms.isBooked) {
-  //     this.filmsService.removeFromBookmark(id).subscribe(() => this.getBookmark());
-  //   } else {
-  //     this.filmsService.addToBookmark(id).subscribe(() => this.getBookmark());
-  //   }
-  // }
-
-  ngOnDestroy() {
-   
-  }
 
 
 }

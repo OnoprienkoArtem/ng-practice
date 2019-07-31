@@ -134,17 +134,7 @@ export class FilmService {
 
 
 
-  getBookmark(filmIds: Array<number>) {
-    return this.http.get(`${this.localConfig.bookmarkApiUrl}?filmIds=${filmIds.join(',')}`);
-  }
 
-  addToBookmark(id: number) {
-    return this.http.post(this.localConfig.bookmarkApiUrl, { filmId: id });
-  }
-
-  removeFromBookmark(id: number) {
-    return this.http.delete(`${this.localConfig.localApiUrl}/films/${id}/bookmarks`);
-  }
 
 
 
