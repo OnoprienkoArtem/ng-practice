@@ -13,7 +13,6 @@ import { Bookmark } from '../../models/bookmark';
   styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent implements OnInit {
-
   public spiner: boolean = true;
   public searchItems: any[] = [];
   public imgUrl: string = this.localConfig.midImgPath;
@@ -21,18 +20,18 @@ export class SearchResultComponent implements OnInit {
   public isDisabledActorsBtn: boolean = false;
   public searchFor: string;
 
-  constructor(    
+  constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
     private router: Router,
     public searchServic: SearchService,
     public filmsService: FilmService
-  ) { }
+  ) {}
 
-  pageCount: number = 1; 
+  pageCount: number = 1;
   totalPages: number;
 
-  ngOnInit() {    
-    if (!this.searchServic.search.searchValue) this.router.navigate(['/main']); 
+  ngOnInit() {
+    if (!this.searchServic.search.searchValue) this.router.navigate(['/main']);
 
     switch (this.searchServic.search.currentRoute) {
       case '/films':
@@ -40,16 +39,20 @@ export class SearchResultComponent implements OnInit {
         break;
       case '/actors':
         this.typeOfSearch('person');
-        break;        
+        break;
       default:
         this.typeOfSearch('multi');
         break;
     }
   }
 
-  typeOfSearch(type) {    
+  typeOfSearch(type) {
     this.searchFor = type;
-    this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount);   
+    this.getSearchedList(
+      this.searchFor,
+      this.searchServic.search.searchValue,
+      this.pageCount
+    );
   }
 
   getSearchedList(searchFor, searchValue, page) {
@@ -60,46 +63,46 @@ export class SearchResultComponent implements OnInit {
         this.totalPages = res.total_pages;
 
         this.filmsService.getFavoriteFilms(this.searchItems);
-       
+
         if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
         if (this.searchItems) {
           this.spiner = false;
         }
       },
-      err => console.log("error", err)
-    )
+      err => console.log('error', err)
+    );
   }
 
   nextPage() {
-    this.pageCount++; 
-    if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;    
-    this.getSearchedList(this.searchFor, this.searchServic.search.searchValue, this.pageCount);
+    this.pageCount++;
+    if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
+    this.getSearchedList(
+      this.searchFor,
+      this.searchServic.search.searchValue,
+      this.pageCount
+    );
   }
-
 
   private getFavorite() {
-    this.filmsService.getFavorite(this.searchItems.map(item => item.id)).subscribe((favorites: Array<Favorite>) => {
-      const favoriteList = favorites.map(favorite => favorite._id);
-      this.searchItems.map(item => {
-        item.isFavorite = favoriteList.indexOf(item.id) > -1;
-      })
-    })
+    this.filmsService
+      .getFavorite(this.searchItems.map(item => item.id))
+      .subscribe((favorites: Array<Favorite>) => {
+        const favoriteList = favorites.map(favorite => favorite._id);
+        this.searchItems.map(item => {
+          item.isFavorite = favoriteList.indexOf(item.id) > -1;
+        });
+      });
   }
 
-  public addFilmToFavorit(id: number) {
-    const favoriteFilms = this.searchItems.find(item => {
-      return item.id === id;
-    });
+  // public addFilmToFavorit(id: number) {
+  //   const favoriteFilms = this.searchItems.find(item => {
+  //     return item.id === id;
+  //   });
 
-    if (favoriteFilms.isFavorite) {
-      this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
-    } else {
-      this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
-    }
-  }
-
-
-
-
-
+  //   if (favoriteFilms.isFavorite) {
+  //     this.filmsService.removeFromFavorite(id).subscribe(() => this.getFavorite());
+  //   } else {
+  //     this.filmsService.addToFavorite(id).subscribe(() => this.getFavorite());
+  //   }
+  // }
 }

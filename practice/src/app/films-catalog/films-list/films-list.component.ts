@@ -12,63 +12,50 @@ import { Subscriber } from 'rxjs';
   styleUrls: ['./films-list.component.scss']
 })
 export class FilmsListComponent implements OnInit {
-  
   private totalPages: number;
   private page: number = 1;
   public spiner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
- 
+
   private userId = localStorage.getItem('user_id');
   private sessionId = localStorage.getItem('session_id');
-    
-  
-  constructor(public filmsService: FilmService) { }
 
-  ngOnInit() { 
+  constructor(public filmsService: FilmService) {}
+
+  ngOnInit() {
     this.getOnePagePopularFilms(this.page);
   }
 
   getOnePagePopularFilms(page) {
     this.filmsService.getPopularFilms(page).subscribe(
-      (filmList: any) => { 
-        this.totalPages = filmList.total_pages;       
+      (filmList: any) => {
+        this.totalPages = filmList.total_pages;
         this.films = filmList.results;
 
         this.filmsService.getFavoriteFilms(this.films);
-       
 
         if (this.films) {
           this.spiner = false;
         }
       },
-      err => console.log("error", err)
-    )
+      err => console.log('error', err)
+    );
   }
 
-  public nextFilmsPage() {   
+  public nextFilmsPage() {
     this.page++;
     this.getOnePagePopularFilms(this.page);
-    this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false; 
- 
+    this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false;
   }
 
-
-
-
-
-  public addFilmToFavorit(id: number) {  
+  public addFilmToFavorit(id: number) {
     const favoriteFilms = this.films.find(item => item.id === id);
 
     if (favoriteFilms.isFavorite) {
       this.filmsService.markFavorite(id, false, this.films);
     } else {
       this.filmsService.markFavorite(id, true, this.films);
-    }         
+    }
   }
-
-
-
-
-
 }
