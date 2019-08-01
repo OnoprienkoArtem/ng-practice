@@ -8,18 +8,16 @@ import { ApiConfig } from '../models/api';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
- 
   private loggedIn = false;
   public user: any;
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     public router: Router,
     public messagesService: MessagesService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
-    ) {   
+  ) {
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -28,7 +26,9 @@ export class AuthService {
   }
 
   getToken() {
-    return this.http.get(`${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`);
+    return this.http.get(
+      `${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`
+    );
   }
 
   authenticationToken(requst_token: string, username: string, password: string) {
@@ -48,63 +48,59 @@ export class AuthService {
     return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, options);
   }
 
+  login(username: string, password: string) {
+    this.getToken().subscribe((token: any) => {
+      this.authenticationToken(
+        token.request_token,
+        username,
+        password
+      ).subscribe(
+        (authentication: any) => {
+          if (authentication.success) {
+            localStorage.setItem('auth_token', token.request_token);
+            this.loggedIn = true;
+            this.messagesService.messageAction(true);
 
+            setTimeout(() => {
+              this.router.navigate(['/main']);
+            }, 2200);
 
-  login(username: string, password: string) {   
-    this.getToken().subscribe(
-      (token: any) => { 
-        this.authenticationToken(token.request_token, username, password).subscribe(
-          (authentication: any) => { 
-            if (authentication.success) {            
-              localStorage.setItem('auth_token', token.request_token);
-              this.loggedIn = true;
-              this.messagesService.messageAction(true);
+            this.getSession(token.request_token).subscribe(
+              (session: any) => {
+                console.log(session);
+                localStorage.setItem('session_id', session.session_id);
 
-              setTimeout(() => {            
-                this.router.navigate(['/main']);
-              }, 2200);
-          
-              this.getSession(token.request_token).subscribe(
-                (session: any) => {       
-                  console.log(session);
-                  localStorage.setItem('session_id', session.session_id);
-
-                  this.getUserData(session.session_id).subscribe(
-                    (user: any) => {   
-                      console.log(user);   
-                      localStorage.setItem('user_name', user.username);
-                      localStorage.setItem('user_id', user.id);
-                    },
-                    err => console.log("error", err)
-                  )
-                },
-                err => console.log("error", err)
-              )
-            }
-          },
-          err => this.messagesService.messageAction(false)          
-        )
-      }
-    ) 
+                this.getUserData(session.session_id).subscribe(
+                  (user: any) => {
+                    console.log(user);
+                    localStorage.setItem('user_name', user.username);
+                    localStorage.setItem('user_id', user.id);
+                  },
+                  err => console.log('error', err)
+                );
+              },
+              err => console.log('error', err)
+            );
+          }
+        },
+        err => this.messagesService.messageAction(false)
+      );
+    });
   }
 
   logout() {
     this.loggedIn = false;
 
-    this.removeSession(localStorage.getItem('session_id')).subscribe(
-      res => {
-        console.log(res);
-      }
-    );
+    this.removeSession(localStorage.getItem('session_id')).subscribe(res => {
+      console.log(res);
+    });
 
-    this.router.navigate(['/login']); 
-    localStorage.removeItem('auth_token'); 
-    localStorage.removeItem('session_id');  
-    localStorage.removeItem('user_name'); 
-    localStorage.removeItem('user_id'); 
-
+    this.router.navigate(['/login']);
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('session_id');
+    localStorage.removeItem('user_name');
+    localStorage.removeItem('user_id');
   }
 }
-
 
 // 'artemo', 'cinemaart'
