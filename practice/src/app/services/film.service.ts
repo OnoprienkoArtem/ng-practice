@@ -47,11 +47,11 @@ export class FilmService {
   // http
 
   addFilmToFavorite(user_id, session_id, type, id, favorite) {
-    return this.http.post(`${this.localConfig.accountUrl}${user_id}/favorite?api_key=${this.localConfig.apiKey}&session_id=${session_id}`, { media_type: type, media_id: id, favorite: favorite });
+    return this.http.post(`${this.localConfig.accountUrl}/${user_id}/favorite?api_key=${this.localConfig.apiKey}&session_id=${session_id}`, { media_type: type, media_id: id, favorite: favorite });
   }
 
   getListOfFavotitesFilms(user_id, session_id) {
-    return this.http.get(`${this.localConfig.accountUrl}${user_id}/favorite/movies?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
+    return this.http.get(`${this.localConfig.accountUrl}/${user_id}/favorite/movies?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
   }
 
   getPopularFilms(page?: number) {
