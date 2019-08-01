@@ -12,36 +12,18 @@ export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
   public totalPages: number;
-  public pages: number;
   public spiner: boolean = true;
   public isDisabledActorsBtn: boolean = false;
-
-  currentPage: number;
-
   public totalResalt: number;
-  public pageCount: number; 
-
-
-
+  public pageCount: number;
 
   constructor(
     public filmsService: FilmService,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute, ) {
   }
 
   ngOnInit() {
-    // console.log(this.filmsService.currentPageActors);
-    this.pages = this.filmsService.currentPageActors
-    this.getOnePagePopularActors(this.pages); 
-
-
-    this.filmsService.getPopularActors().subscribe(
-      (actorsList: any) => {
-        console.log('without page ---> ', actorsList);
- 
-      },
-      err => console.log("error", err)
-    )
+    this.getOnePagePopularActors(this.filmsService.currentPageActors);
   }
 
   getOnePagePopularActors(page) {
@@ -52,23 +34,25 @@ export class ActorsListComponent implements OnInit {
         this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
         this.totalResalt = actorsList.total_results;
+
         if (this.actors) {
           this.spiner = false;
         }
       },
       err => console.log("error", err)
-    ) 
+    )
   }
 
   nextActorsPage() {
-    this.pages++;    
-    this.getOnePagePopularActors(this.pages);    
-    this.isDisabledActorsBtn = this.pages === this.totalPages ? true : false; 
-    this.filmsService.currentPageActors = this.pages;
-  } 
+    this.pageCount++;
+    this.getOnePagePopularActors(this.pageCount);
+    this.isDisabledActorsBtn = this.pageCount === this.totalPages ? true : false;
+    this.filmsService.currentPageActors = this.pageCount;
+  }
 
   firstPage() {
-    this.getOnePagePopularActors(1); 
+    this.filmsService.currentPageActors = 1;
+    this.getOnePagePopularActors(1);
   }
 
   // searchDataByActors(dataSearch) {
