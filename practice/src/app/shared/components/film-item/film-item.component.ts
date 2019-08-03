@@ -12,27 +12,42 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class FilmItemComponent implements OnInit {
 
-  public imgUrl: string = this.localConfig.midImgPath; 
+  public imgUrl: string = this.localConfig.midImgPath;
   public currentRoute: string;
 
   @Input('data') film: Film;
   @Input('favorites') favorites;
   @Output() updateListOfFavorite = new EventEmitter<number>();
-  @Output() updateListOfBooked = new EventEmitter<number>();  
+  @Output() updateListOfBooked = new EventEmitter<number>();
 
   constructor(
-    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig, 
-    public filmsService: FilmService, 
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    public filmsService: FilmService,
     private router: Router
   ) { }
 
   ngOnInit() {
 
+    this.router.events.subscribe((event: any) => {
+      console.log(event);
+      if (event instanceof NavigationEnd) {
+        // console.log(event.url);
+        this.filmsService.currentRoute = event.url;
+        this.filmsService.changeRoute(event.url);
+      }
+    });
+    this.filmsService.getCurrentRoute().subscribe(
+      res => {
+        console.log(res);
+      }
+    );
 
-    
+
+
+
   }
 
-  addToFavorites() {   
+  addToFavorites() {
     this.updateListOfFavorite.emit(this.film.id);
   }
 
@@ -40,9 +55,9 @@ export class FilmItemComponent implements OnInit {
     this.updateListOfBooked.emit(this.film.id);
   }
 
-  getDetails() { 
+  getDetails() {
     this.router.navigate(['/films/details', this.film.id]);
-    this.router.events.subscribe((event: any) => {        
+    this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) this.filmsService.currentRoute = event.url;
     });
   }

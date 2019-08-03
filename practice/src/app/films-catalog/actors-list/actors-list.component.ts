@@ -12,9 +12,9 @@ export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
   public totalPages: number;
-  public spiner: boolean = true;
+  public spinner: boolean = true;
   public isDisabledActorsBtn: boolean = false;
-  public totalResalt: number;
+  public totalResult: number;
   public pageCount: number;
 
   constructor(
@@ -33,10 +33,10 @@ export class ActorsListComponent implements OnInit {
         this.pageCount = actorsList.page;
         this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
-        this.totalResalt = actorsList.total_results;
+        this.totalResult = actorsList.total_results;
 
         if (this.actors) {
-          this.spiner = false;
+          this.spinner = false;
         }
       },
       err => console.log("error", err)

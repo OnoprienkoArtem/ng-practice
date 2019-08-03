@@ -12,7 +12,7 @@ export class FavoritesListComponent implements OnInit {
 
   private totalPages: number;
   private page: number = 1;
-  public spiner: boolean = true;
+  public spinner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
 
@@ -24,30 +24,32 @@ export class FavoritesListComponent implements OnInit {
 
   ngOnInit() {
     this.getOnePagePopularFilms(this.page);
+
+
   }
 
   getOnePagePopularFilms(page) {
 
     const userId = localStorage.getItem('user_id');
     const sessionId = localStorage.getItem('session_id');
-    this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe((favorites: any) => {   
-        console.log(favorites);
-        this.totalPages = favorites.total_pages;       
-        this.films = favorites.results;  
-        if (this.films) {
-          this.spiner = false;
-        }
-        if (this.totalPages === favorites.total_pages) {
-          this.isDisabledFilmsBtn = true;
-        }
+    this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe((favorites: any) => {
+      console.log(favorites);
+      this.totalPages = favorites.total_pages;
+      this.films = favorites.results;
+      if (this.films) {
+        this.spinner = false;
       }
-    )    
+      if (this.totalPages === favorites.total_pages) {
+        this.isDisabledFilmsBtn = true;
+      }
+    }
+    )
   }
 
-  public nextFilmsPage() {   
+  public nextFilmsPage() {
     this.page++;
     this.getOnePagePopularFilms(this.page);
-    this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false;  
+    this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false;
   }
 
 }

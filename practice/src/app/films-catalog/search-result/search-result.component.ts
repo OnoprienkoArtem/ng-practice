@@ -23,17 +23,17 @@ export class SearchResultComponent implements OnInit {
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
     private router: Router,
-    public searchServic: SearchService,
+    public searchService: SearchService,
     public filmsService: FilmService
-  ) {}
+  ) { }
 
   pageCount: number = 1;
   totalPages: number;
 
   ngOnInit() {
-    if (!this.searchServic.search.searchValue) this.router.navigate(['/main']);
+    if (!this.searchService.search.searchValue) this.router.navigate(['/main']);
 
-    switch (this.searchServic.search.currentRoute) {
+    switch (this.searchService.search.currentRoute) {
       case '/films':
         this.typeOfSearch('movie');
         break;
@@ -50,13 +50,13 @@ export class SearchResultComponent implements OnInit {
     this.searchFor = type;
     this.getSearchedList(
       this.searchFor,
-      this.searchServic.search.searchValue,
+      this.searchService.search.searchValue,
       this.pageCount
     );
   }
 
   getSearchedList(searchFor, searchValue, page) {
-    this.searchServic.getSearchFilms(searchFor, searchValue, page).subscribe(
+    this.searchService.getSearchFilms(searchFor, searchValue, page).subscribe(
       (res: any) => {
         this.searchItems = res.results;
         this.totalResalt = res.total_results;
@@ -78,7 +78,7 @@ export class SearchResultComponent implements OnInit {
     if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
     this.getSearchedList(
       this.searchFor,
-      this.searchServic.search.searchValue,
+      this.searchService.search.searchValue,
       this.pageCount
     );
   }
