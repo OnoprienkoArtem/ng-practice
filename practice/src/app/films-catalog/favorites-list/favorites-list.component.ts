@@ -25,6 +25,10 @@ export class FavoritesListComponent implements OnInit {
   ngOnInit() {
     this.getOnePagePopularFilms(this.page);
 
+    console.log('in favorites', this.filmsService.currentRoute);
+
+
+
 
   }
 

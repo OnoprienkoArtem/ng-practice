@@ -28,19 +28,7 @@ export class FilmItemComponent implements OnInit {
 
   ngOnInit() {
 
-    this.router.events.subscribe((event: any) => {
-      console.log(event);
-      if (event instanceof NavigationEnd) {
-        // console.log(event.url);
-        this.filmsService.currentRoute = event.url;
-        this.filmsService.changeRoute(event.url);
-      }
-    });
-    this.filmsService.getCurrentRoute().subscribe(
-      res => {
-        console.log(res);
-      }
-    );
+
 
 
 

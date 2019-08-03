@@ -12,30 +12,29 @@ import { Subject } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
 
-  searchValue: string; 
+  searchValue: string;
   currentRoute: string;
   placeholder: string;
 
   constructor(
-    public filmsService: FilmService, 
+    public filmsService: FilmService,
     private router: Router,
     public searchServic: SearchService,
-    public activatedRoute: ActivatedRoute    
+    public activatedRoute: ActivatedRoute
   ) {
-    console.log(this.router.url);
-    
-   }
 
-  changeSearchValue() { 
-    if (!this.searchValue ) {    
-      this.router.navigate(['/main']);
-    } else {
-      this.router.navigate(['/search-result']);  
-      this.searchServic.search = { searchValue: this.searchValue, currentRoute: this.currentRoute };
-    }    
   }
 
-  setPlaseholder(path) {
+  changeSearchValue() {
+    if (!this.searchValue) {
+      this.router.navigate(['/main']);
+    } else {
+      this.router.navigate(['/search-result']);
+      this.searchServic.search = { searchValue: this.searchValue, currentRoute: this.currentRoute };
+    }
+  }
+
+  setPlaceholder(path) {
     switch (path) {
       case '/films':
         this.placeholder = 'Поиск фильмов'
@@ -52,13 +51,13 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(
       (event: any) => {
-      if (event instanceof NavigationEnd) {  
-        this.currentRoute = event.url;
-        this.setPlaseholder(this.currentRoute);        
-      }      
-    });
+        if (event instanceof NavigationEnd) {
+          this.currentRoute = event.url;
+          this.setPlaceholder(this.currentRoute);
+        }
+      });
 
- 
+
   }
 
 }

@@ -10,22 +10,24 @@ import { Subject, Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   animations: [fadeAnimation]
 })
-export class AppComponent { 
+export class AppComponent {
   public isLogin = true;
   private currentRoute: string;
   public username: string;
-  public totalResult$: Observable<number>;;
+  public totalResult$: Observable<number>;
+  private userId: string = localStorage.getItem('user_id');
+  private sessionId: string = localStorage.getItem('session_id');
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     public router: Router,
     public filmsService: FilmService
-  ) {}
+  ) { }
 
   links: any[] = [
     { path: '/main', label: 'Главная', active: 'button-active', page: 'main' },
     { path: '/films', label: 'Фильмы', active: 'button-active', page: 'films' },
-    { path: '/actors', label: 'Актеры', active: 'button-active', page: 'currentPageActors' }    
+    { path: '/actors', label: 'Актеры', active: 'button-active', page: 'currentPageActors' }
   ];
 
   ngOnInit() {
@@ -33,25 +35,28 @@ export class AppComponent {
       (event: any) => {
         if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
-          this.isLogin = this.currentRoute === '/login' ? false : true;     
-          if (this.isLogin) {            
-            this.username = localStorage.getItem('user_name');
 
-            const userId = localStorage.getItem('user_id');
-            const sessionId = localStorage.getItem('session_id');
-            this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe((favorites: any) => {                    
-                this.filmsService.changefavoriteNumber(favorites.total_results);  
-              }
-            ) 
-          }         
+          console.log('in app', this.currentRoute);
+
+          this.filmsService.currentRoute = this.currentRoute;
+
+
+          this.isLogin = this.currentRoute === '/login' ? false : true;
+          if (this.isLogin) {
+            this.username = localStorage.getItem('user_name');
+            this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
+              this.filmsService.changefavoriteNumber(favorites.total_results);
+            }
+            )
+          }
         }
       }
     );
 
-    this.totalResult$ = this.filmsService.getfavoriteNumber();       
+    this.totalResult$ = this.filmsService.getfavoriteNumber();
   }
 
-  logout() {  
+  logout() {
     this.authService.logout();
   }
 

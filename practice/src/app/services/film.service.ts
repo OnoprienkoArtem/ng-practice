@@ -9,9 +9,6 @@ import { Subject, Observable } from 'rxjs';
 })
 export class FilmService {
   private favoriteNumber$ = new Subject<number>();
-
-  private currentRoute$ = new Subject<string>();
-
   private userId = localStorage.getItem('user_id');
   private sessionId = localStorage.getItem('session_id');
   public currentPage: number;
@@ -21,16 +18,6 @@ export class FilmService {
     private http: HttpClient,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
-
-
-  public changeRoute(value) {
-    this.currentRoute$.next(value);
-  }
-
-  public getCurrentRoute(): Observable<string> {
-    return this.currentRoute$.asObservable();
-  }
-
 
 
   public changefavoriteNumber(value) {
