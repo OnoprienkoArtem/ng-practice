@@ -8,11 +8,12 @@
         <p class="description">
             {{ film.overview.length > 180 ? (film.overview | slice: 0:180) + '...' : film.overview }}
         </p>
-        <mat-card-actions *ngIf="favorites">
-            <button mat-icon-button *ngIf="!film.isBooked; else booked" (click)="addToBooked()">
-        <i class="material-icons">bookmark_border</i>
-      </button>
-
+        <mat-card-actions>
+            <ng-container *ngIf="favorites">
+                <button mat-icon-button *ngIf="!film.isBooked; else booked" (click)="addToBooked()">
+          <i class="material-icons">bookmark_border</i>
+        </button>
+            </ng-container>
             <ng-template #booked>
                 <button mat-icon-button (click)="addToBooked()" color="primary">
           <i class="material-icons">bookmark</i>
