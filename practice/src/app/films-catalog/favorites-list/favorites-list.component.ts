@@ -15,9 +15,8 @@ export class FavoritesListComponent implements OnInit {
   public spinner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
-  public buttons: boolean;
-
-
+  
+  
   constructor(
     public filmsService: FilmService,
     private router: Router
@@ -26,11 +25,6 @@ export class FavoritesListComponent implements OnInit {
   ngOnInit() {
     this.getOnePagePopularFilms(this.page);
 
-
-
-    if (this.filmsService.currentRoute)) {
-      this.buttons = false;
-    }
 
 
   }

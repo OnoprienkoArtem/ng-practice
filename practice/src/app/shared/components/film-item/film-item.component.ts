@@ -16,7 +16,7 @@ export class FilmItemComponent implements OnInit {
   public currentRoute: string;
 
   @Input('data') film: Film;
-  @Input('favorites') favorites;
+  
   @Output() updateListOfFavorite = new EventEmitter<number>();
   @Output() updateListOfBooked = new EventEmitter<number>();
 
@@ -28,10 +28,13 @@ export class FilmItemComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.filmsService.currentRoute);
 
+    if (this.filmsService.currentRoute) {
+      
+    }
 
-
-
+    
 
   }
 
