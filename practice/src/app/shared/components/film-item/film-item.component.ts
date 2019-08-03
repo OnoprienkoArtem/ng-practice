@@ -14,9 +14,9 @@ export class FilmItemComponent implements OnInit {
 
   public imgUrl: string = this.localConfig.midImgPath;
   public currentRoute: string;
+  public favorites: boolean = true;
 
-  @Input('data') film: Film;
-  
+  @Input('data') film: Film;  
   @Output() updateListOfFavorite = new EventEmitter<number>();
   @Output() updateListOfBooked = new EventEmitter<number>();
 
@@ -30,11 +30,9 @@ export class FilmItemComponent implements OnInit {
 
     console.log(this.filmsService.currentRoute);
 
-    if (this.filmsService.currentRoute) {
-      
-    }
-
-    
+    if (this.filmsService.currentRoute === '/favorites') {
+      this.favorites = false;
+    }    
 
   }
 
