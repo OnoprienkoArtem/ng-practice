@@ -35,12 +35,7 @@ export class AppComponent {
       (event: any) => {
         if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
-
-          console.log('in app', this.currentRoute);
-
           this.filmsService.currentRoute = this.currentRoute;
-
-
           this.isLogin = this.currentRoute === '/login' ? false : true;
           if (this.isLogin) {
             this.username = localStorage.getItem('user_name');
