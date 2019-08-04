@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {       
         this.films = filmList.results.slice(0, 10); 
-        this.backgrounds = filmList.results.slice(0, 5); 
+        this.backgrounds = filmList.results.slice(0, 4); 
       },
       err => console.log("error", err)
     )
