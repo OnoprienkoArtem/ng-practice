@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MessagesService } from './messages.service';
 import { LOCAL_CONFIG } from '../config/config-api';
 import { ApiConfig } from '../models/api';
+import { Subject, Observable } from 'rxjs';
+import { concatMap, mergeMap, pipe, tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +28,7 @@ export class AuthService {
   }
 
   getToken() {
-    return this.http.get(
-      `${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`
-    );
+    return this.http.get(`${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`);
   }
 
   authenticationToken(requst_token: string, username: string, password: string) {
@@ -48,45 +48,57 @@ export class AuthService {
     return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, options);
   }
 
+  // login(username: string, password: string) {
+    
+  //   this.getToken().subscribe((token: any) => {
+  //     console.log(token);
+
+  //     this.authenticationToken(token.request_token, username, password).subscribe((authentication: any) => {
+  //       console.log(authentication);
+
+  //       if (authentication.success) {
+  //         localStorage.setItem('auth_token', token.request_token);
+  //         this.loggedIn = true;
+  //         this.messagesService.messageAction(true);
+
+  //         setTimeout(() => {
+  //           this.router.navigate(['/main']);
+  //         }, 2200);
+
+  //         this.getSession(token.request_token).subscribe(
+  //             (session: any) => {
+  //               console.log(session);
+  //               localStorage.setItem('session_id', session.session_id);
+
+  //               this.getUserData(session.session_id).subscribe(
+  //                 (user: any) => {
+  //                   console.log(user);
+  //                   localStorage.setItem('user_name', user.username);
+  //                   localStorage.setItem('user_id', user.id);
+  //                 },
+  //                 err => console.log('error', err)
+  //               );
+  //             },
+  //             err => console.log('error', err)
+  //           );
+  //         }
+  //       },
+  //       err => this.messagesService.messageAction(false)
+  //     );
+  //   });
+  // }
+  
+
   login(username: string, password: string) {
-    this.getToken().subscribe((token: any) => {
-      this.authenticationToken(
-        token.request_token,
-        username,
-        password
-      ).subscribe(
-        (authentication: any) => {
-          if (authentication.success) {
-            localStorage.setItem('auth_token', token.request_token);
-            this.loggedIn = true;
-            this.messagesService.messageAction(true);
 
-            setTimeout(() => {
-              this.router.navigate(['/main']);
-            }, 2200);
 
-            this.getSession(token.request_token).subscribe(
-              (session: any) => {
-                console.log(session);
-                localStorage.setItem('session_id', session.session_id);
 
-                this.getUserData(session.session_id).subscribe(
-                  (user: any) => {
-                    console.log(user);
-                    localStorage.setItem('user_name', user.username);
-                    localStorage.setItem('user_id', user.id);
-                  },
-                  err => console.log('error', err)
-                );
-              },
-              err => console.log('error', err)
-            );
-          }
-        },
-        err => this.messagesService.messageAction(false)
-      );
-    });
+
+  
   }
+
+
+
 
   logout() {
     this.loggedIn = false;
