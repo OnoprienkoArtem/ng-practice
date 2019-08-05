@@ -87,13 +87,30 @@ export class AuthService {
   //     );
   //   });
   // }
-  
 
   login(username: string, password: string) {
+    
+    this.getToken()
+      .pipe(mergeMap((token: any) => { 
+        console.log(token);          
+
+          return this.authenticationToken(token.request_token, username, password).pipe(map((authentication: any) => {
+            console.log(authentication);
+
+            return this.getSession(token.request_token).pipe(map((session: any) => {
+              console.log(session);
+
+            }))
+
+
+          
+          }))
+      }))
 
 
 
-
+      .subscribe(authentication => console.log(authentication)),
+      err => console.log(err);
   
   }
 
