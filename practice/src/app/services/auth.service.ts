@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessagesService } from './messages.service';
 import { LOCAL_CONFIG } from '../config/config-api';
 import { ApiConfig } from '../models/api';
+import { delay } from 'rxjs/internal/operators';
 import { Subject, Observable, interval } from 'rxjs';
 import { concatMap, mergeMap, pipe, tap, map, debounceTime } from 'rxjs/operators';
 
@@ -94,17 +95,15 @@ export class AuthService {
       .pipe(concatMap((token: any) => { 
         console.log(token);                   
 
-        return this.authenticationToken(token.request_token, username, password).pipe(concatMap((authentication: any) => {
+        return this.authenticationToken(token.request_token, username, password).pipe(delay(2200), concatMap((authentication: any) => {
           console.log(authentication);
 
           if (authentication.success) {
             localStorage.setItem('auth_token', token.request_token);
             this.loggedIn = true;
-            this.messagesService.messageAction(true);
-
-            // setTimeout(() => {
-              this.router.navigate(['/main']);
-            // }, 2200);
+            this.messagesService.messageAction(true);           
+            this.router.navigate(['/main']);
+          } 
 
           return this.getSession(token.request_token).pipe(concatMap((session: any) => {
             console.log(session);
@@ -117,8 +116,12 @@ export class AuthService {
 
 
             }))
+
+            
           })) 
-          }         
+
+         
+
         }))
       }))
 
