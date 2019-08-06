@@ -15,8 +15,8 @@ export class AppComponent {
   private currentRoute: string;
   public username: string;
   public totalResult$: Observable<number>;
-  private userId: string = localStorage.getItem('user_id');
-  private sessionId: string = localStorage.getItem('session_id');
+  private userId: string;
+  private sessionId: string;
 
   constructor(
     private authService: AuthService,
@@ -30,19 +30,24 @@ export class AppComponent {
     { path: '/actors', label: 'Актеры', active: 'button-active', page: 'currentPageActors' }
   ];
 
-  ngOnInit() {
+  ngOnInit() {  
+
     this.router.events.subscribe(
       (event: any) => {
         if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
           this.filmsService.currentRoute = this.currentRoute;
           this.isLogin = this.currentRoute === '/login' ? false : true;
+          
           if (this.isLogin) {
             this.username = localStorage.getItem('user_name');
+
+            this.userId = localStorage.getItem('user_id');
+            this.sessionId = localStorage.getItem('session_id');
+
             this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
               this.filmsService.changefavoriteNumber(favorites.total_results);
-            }
-            )
+            })
           }
         }
       }

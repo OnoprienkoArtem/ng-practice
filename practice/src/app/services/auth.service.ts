@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { MessagesService } from './messages.service';
 import { LOCAL_CONFIG } from '../config/config-api';
 import { ApiConfig } from '../models/api';
-import { Subject, Observable } from 'rxjs';
-import { concatMap, mergeMap, pipe, tap, map } from 'rxjs/operators';
+import { Subject, Observable, interval } from 'rxjs';
+import { concatMap, mergeMap, pipe, tap, map, debounceTime } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -91,25 +91,43 @@ export class AuthService {
   login(username: string, password: string) {
     
     this.getToken()
-      .pipe(mergeMap((token: any) => { 
-        console.log(token);          
+      .pipe(concatMap((token: any) => { 
+        console.log(token);                   
 
-          return this.authenticationToken(token.request_token, username, password).pipe(map((authentication: any) => {
-            console.log(authentication);
+        return this.authenticationToken(token.request_token, username, password).pipe(concatMap((authentication: any) => {
+          console.log(authentication);
 
-            return this.getSession(token.request_token).pipe(map((session: any) => {
-              console.log(session);
+          if (authentication.success) {
+            localStorage.setItem('auth_token', token.request_token);
+            this.loggedIn = true;
+            this.messagesService.messageAction(true);
+
+            // setTimeout(() => {
+              this.router.navigate(['/main']);
+            // }, 2200);
+
+          return this.getSession(token.request_token).pipe(concatMap((session: any) => {
+            console.log(session);
+            localStorage.setItem('session_id', session.session_id);
+
+            return this.getUserData(session.session_id).pipe(map((user: any) => {
+              console.log(user);
+              localStorage.setItem('user_name', user.username);
+              localStorage.setItem('user_id', user.id);
+
 
             }))
-
-
-          
-          }))
+          })) 
+          }         
+        }))
       }))
 
+      .subscribe(user => {
+        console.log(user)
+  
 
 
-      .subscribe(authentication => console.log(authentication)),
+      }),
       err => console.log(err);
   
   }
