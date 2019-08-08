@@ -144,15 +144,14 @@ export class AuthService {
 
 
 
-
   login(username: string, password: string) {
     
     return this.getToken().pipe(
       concatMap((token: any) => { 
         console.log(token);     
-        return this.authenticationToken(token.request_token, username, password);
-      }),
-   
+        return this.authenticationToken(token.request_token, username, password);                
+      }), 
+
       concatMap((token: any) => {
         console.log(token);
         return this.getSession(token.request_token);
