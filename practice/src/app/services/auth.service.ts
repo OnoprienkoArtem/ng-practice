@@ -149,22 +149,35 @@ export class AuthService {
     return this.getToken().pipe(
       concatMap((token: any) => { 
         console.log(token);     
-        return this.authenticationToken(token.request_token, username, password);                
+        return this.authenticationToken(token.request_token, username, password);              
       }), 
-
+      
       concatMap((token: any) => {
         console.log(token);
-        return this.getSession(token.request_token);
-      }),      
+        localStorage.setItem('auth_token', token.request_token);
+        
 
+        return this.getSession(token.request_token);
+      }),  
+
+      delay(2200), 
       concatMap((session: any) => {
         console.log(session);
+        if (session.success) { 
+          localStorage.setItem('session_id', session.session_id);        
+          this.loggedIn = true;
+          this.messagesService.messageAction(true);           
+          this.router.navigate(['/main']);
+        }
         return this.getUserData(session.session_id);  
+
       })
 
     ) 
-    .subscribe(res => {
-      console.log('result', res)
+    .subscribe((user: any) => {
+      console.log('result', user)
+      localStorage.setItem('user_name', user.username);
+      localStorage.setItem('user_id', user.id);
     }) 
   }
 
