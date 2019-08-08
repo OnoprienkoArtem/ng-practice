@@ -155,30 +155,34 @@ export class AuthService {
       concatMap((token: any) => {
         console.log(token);
         localStorage.setItem('auth_token', token.request_token);
-        
-
         return this.getSession(token.request_token);
       }),  
-
-      delay(2200), 
+     
       concatMap((session: any) => {
         console.log(session);
         if (session.success) { 
           localStorage.setItem('session_id', session.session_id);        
           this.loggedIn = true;
-          this.messagesService.messageAction(true);           
-          this.router.navigate(['/main']);
+          this.messagesService.messageAction(true); 
         }
-        return this.getUserData(session.session_id);  
+        return this.getUserData(session.session_id).pipe(
+          delay(2200),
+          tap((user: any) => {
+            console.log(user);
+            if (session.success) { 
+              localStorage.setItem('user_name', user.username);
+              localStorage.setItem('user_id', user.id);
+              this.router.navigate(['/main']);
 
+            }
+          })
+        );  
       })
-
     ) 
-    .subscribe((user: any) => {
-      console.log('result', user)
-      localStorage.setItem('user_name', user.username);
-      localStorage.setItem('user_id', user.id);
-    }) 
+    // .subscribe((user: any) => {
+    //   console.log('result', user)
+    
+    // }) 
   }
 
   
