@@ -38,10 +38,9 @@ export class AppComponent {
           this.currentRoute = event.url;
           this.filmsService.currentRoute = this.currentRoute;
           this.isLogin = this.currentRoute === '/login' ? false : true;
-          
+
           if (this.isLogin) {
             this.username = localStorage.getItem('user_name');
-
             this.userId = localStorage.getItem('user_id');
             this.sessionId = localStorage.getItem('session_id');
 

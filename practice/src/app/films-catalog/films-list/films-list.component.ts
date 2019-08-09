@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 
-import { Favorite } from '../../models/favorites';
-import { Bookmark } from '../../models/bookmark';
-import { Subscriber } from 'rxjs';
-
 @Component({
   selector: 'app-films-list',
   templateUrl: './films-list.component.html',
@@ -17,7 +13,6 @@ export class FilmsListComponent implements OnInit {
   public spiner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
-
   private userId = localStorage.getItem('user_id');
   private sessionId = localStorage.getItem('session_id');
 
@@ -32,9 +27,7 @@ export class FilmsListComponent implements OnInit {
       (filmList: any) => {
         this.totalPages = filmList.total_pages;
         this.films = filmList.results;
-
         this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
-
         if (this.films) {
           this.spiner = false;
         }

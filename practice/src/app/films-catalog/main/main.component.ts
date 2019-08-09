@@ -23,46 +23,6 @@ export class MainComponent implements OnInit {
   constructor(private filmsService: FilmService, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
 
   ngOnInit() {
-
-    // this.filmsService.getToken().subscribe(
-    //   (token: any) => {
-    //     console.log('token', token);
-    //     console.log('request_token', token.request_token);
-
-    //     this.filmsService.bindingTokenWithAccount(token.request_token, 'artemo', 'cinemaart').subscribe(
-    //       res => console.log(res)
-    //     );
-
-    //     this.filmsService.getSession(token.request_token).subscribe(
-    //       (session: any) => {
-    //         console.log(session);
-
-    //         this.filmsService.getUserData(session.session_id).subscribe(
-    //           (user: any) => {
-    //             console.log(user);
-
-    //             this.filmsService.addFilmToFavorite(user.id, session.session_id, "movie", 351286, true).subscribe(
-    //               res => {
-    //                 console.log(res);
-    //               }
-    //             );
-
-    //             this.filmsService.getListOfFavotitesFilms(user.id, session.session_id).subscribe(
-    //               listFavorites => {
-    //                 console.log(listFavorites);
-    //               }
-    //             );
-
-    //           }
-    //         );            
-    //       }
-    //     );
-
-    //   }
-    // ),
-
-
-
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         this.filmsClone = filmList.results;
@@ -74,11 +34,11 @@ export class MainComponent implements OnInit {
       err => console.log("error", err)
     ),
     
-      this.filmsService.getPopularActors().subscribe(
-        (actorsList: any) => {
-          this.actorsClone = actorsList.results;
-          this.actors = this.actorsClone.slice(0, 6);
-          if (this.actorsClone) {
+    this.filmsService.getPopularActors().subscribe(
+      (actorsList: any) => {
+        this.actorsClone = actorsList.results;
+        this.actors = this.actorsClone.slice(0, 6);
+        if (this.actorsClone) {
           this.spiner = false;
         }
       },
