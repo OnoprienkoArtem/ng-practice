@@ -24,6 +24,8 @@ export class FilmsListComponent implements OnInit {
   constructor(public filmsService: FilmService) {}
 
   ngOnInit() {
+    console.log('userId', this.userId);
+    console.log('sessionId', this.sessionId);
     this.getOnePagePopularFilms(this.page);
   }
 

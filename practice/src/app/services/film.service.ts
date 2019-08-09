@@ -9,8 +9,8 @@ import { Subject, Observable } from 'rxjs';
 })
 export class FilmService {
   private favoriteNumber$ = new Subject<number>();
-  private userId = localStorage.getItem('user_id');
-  private sessionId = localStorage.getItem('session_id');
+  public userId = localStorage.getItem('user_id');
+  public sessionId = localStorage.getItem('session_id');
   public currentPage: number;
   public currentRouteValue: string;
 
@@ -78,6 +78,7 @@ export class FilmService {
   getFavoriteFilms(films) {
     console.log('userId => in main', this.userId);
     console.log('sessionId => in main', this.sessionId);
+
     this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
       (favoriteFilms: any) => {
         let favorites = [];
@@ -92,20 +93,16 @@ export class FilmService {
   }
 
   markFavorite(id, value, films) {
-    this.addFilmToFavorite(
-      this.userId,
-      this.sessionId,
-      'movie',
-      id,
-      value
-    ).subscribe(res => {
-      this.getFavoriteFilms(films);
-      this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
-        (favorites: any) => {
-          return this.changefavoriteNumber(favorites.total_results);
-        }
-      );
-    });
+    this.addFilmToFavorite(this.userId, this.sessionId, 'movie', id, value)
+      .subscribe(res => {
+        this.getFavoriteFilms(films);
+        this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
+          (favorites: any) => {
+            return this.changefavoriteNumber(favorites.total_results);
+          }
+        );
+      }
+    );
   }
 
   getFavorite(filmIds: Array<number>) {
