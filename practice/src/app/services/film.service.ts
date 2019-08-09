@@ -76,6 +76,8 @@ export class FilmService {
   }
 
   getFavoriteFilms(films) {
+    console.log('userId => in main', this.userId);
+    console.log('sessionId => in main', this.sessionId);
     this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
       (favoriteFilms: any) => {
         let favorites = [];

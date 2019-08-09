@@ -179,10 +179,10 @@ export class AuthService {
         );  
       })
     ) 
-    // .subscribe((user: any) => {
-    //   console.log('result', user)
+    .subscribe((user: any) => {
+      console.log('result', user)
     
-    // }) 
+    }) 
   }
 
   
