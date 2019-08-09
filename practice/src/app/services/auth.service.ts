@@ -144,20 +144,17 @@ export class AuthService {
 
 
 
-  login(username: string, password: string) {
-    
+  login(username: string, password: string) {    
     return this.getToken().pipe(
       concatMap((token: any) => { 
         console.log(token);     
         return this.authenticationToken(token.request_token, username, password);              
-      }), 
-      
+      }),       
       concatMap((token: any) => {
         console.log(token);
         localStorage.setItem('auth_token', token.request_token);
         return this.getSession(token.request_token);
-      }),  
-     
+      }),       
       concatMap((session: any) => {
         console.log(session);
         if (session.success) { 
@@ -173,14 +170,13 @@ export class AuthService {
               localStorage.setItem('user_name', user.username);
               localStorage.setItem('user_id', user.id);
               this.router.navigate(['/main']);
-
             }
           })
         );  
       })
     ) 
     .subscribe((user: any) => {      
-      console.log('result', user)    
+      console.log('user', user)    
     },
       err => this.messagesService.messageAction(false)
     ) 

@@ -75,11 +75,8 @@ export class FilmService {
     return this.http.get(`${this.localConfig.personUrl}/${id}${this.localConfig.params}`);
   }
 
-  getFavoriteFilms(films) {
-    console.log('userId => in main', this.userId);
-    console.log('sessionId => in main', this.sessionId);
-
-    this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
+  getFavoriteFilms(films, userId, sessionId) { 
+    this.getListOfFavotitesFilms(userId, sessionId).subscribe(
       (favoriteFilms: any) => {
         let favorites = [];
         favoriteFilms.results.map(item => {
@@ -92,11 +89,11 @@ export class FilmService {
     );
   }
 
-  markFavorite(id, value, films) {
-    this.addFilmToFavorite(this.userId, this.sessionId, 'movie', id, value)
+  markFavorite(id, value, films, userId, sessionId) {
+    this.addFilmToFavorite(userId, sessionId, 'movie', id, value)
       .subscribe(res => {
-        this.getFavoriteFilms(films);
-        this.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe(
+        this.getFavoriteFilms(films, userId, sessionId);
+        this.getListOfFavotitesFilms(userId, sessionId).subscribe(
           (favorites: any) => {
             return this.changefavoriteNumber(favorites.total_results);
           }

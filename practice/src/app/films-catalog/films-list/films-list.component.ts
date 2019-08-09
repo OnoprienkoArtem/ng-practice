@@ -24,8 +24,6 @@ export class FilmsListComponent implements OnInit {
   constructor(public filmsService: FilmService) {}
 
   ngOnInit() {
-    console.log('userId', this.userId);
-    console.log('sessionId', this.sessionId);
     this.getOnePagePopularFilms(this.page);
   }
 
@@ -35,7 +33,7 @@ export class FilmsListComponent implements OnInit {
         this.totalPages = filmList.total_pages;
         this.films = filmList.results;
 
-        this.filmsService.getFavoriteFilms(this.films);
+        this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
 
         if (this.films) {
           this.spiner = false;
@@ -55,9 +53,9 @@ export class FilmsListComponent implements OnInit {
     const favoriteFilms = this.films.find(item => item.id === id);
 
     if (favoriteFilms.isFavorite) {
-      this.filmsService.markFavorite(id, false, this.films);
+      this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);
     } else {
-      this.filmsService.markFavorite(id, true, this.films);
+      this.filmsService.markFavorite(id, true, this.films, this.userId, this.sessionId);
     }
   }
 }
