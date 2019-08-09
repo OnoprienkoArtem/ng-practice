@@ -90,60 +90,6 @@ export class AuthService {
   // }
 
 
-
-
-  // login(username: string, password: string) {
-    
-  //   this.getToken()
-  //     .pipe(
-  //       concatMap((token: any) => { 
-  //       console.log(token);                   
-
-  //       return this.authenticationToken(token.request_token, username, password)
-  //         .pipe(
-  //           delay(2200), 
-  //           concatMap((authentication: any) => {
-  //             console.log(authentication);
-
-  //             if (authentication.success) {
-  //               localStorage.setItem('auth_token', token.request_token);
-  //               this.loggedIn = true;
-  //               this.messagesService.messageAction(true);           
-  //               this.router.navigate(['/main']);
-  //             } 
-
-  //             return this.getSession(token.request_token)
-  //               .pipe(
-  //                 concatMap((session: any) => {
-  //                   console.log(session);
-  //                   localStorage.setItem('session_id', session.session_id);
-
-  //                   return this.getUserData(session.session_id)
-  //                     .pipe(
-  //                       map((user: any) => {
-  //                         console.log(user);
-  //                         localStorage.setItem('user_name', user.username);
-  //                         localStorage.setItem('user_id', user.id);
-  //                       })
-  //                     )
-            
-  //                 })
-  //               )       
-
-  //           })
-  //         )
-
-  //     })
-  //   )
-
-  //   .subscribe(res => {
-  //     console.log(res)
-  //   }),
-  //   err => console.log(err);  
-  // }
-
-
-
   login(username: string, password: string) {    
     return this.getToken().pipe(
       concatMap((token: any) => { 
@@ -181,13 +127,6 @@ export class AuthService {
       err => this.messagesService.messageAction(false)
     ) 
   }
-
-  
-   
-  
-
-
-
 
   logout() {
     this.loggedIn = false;
