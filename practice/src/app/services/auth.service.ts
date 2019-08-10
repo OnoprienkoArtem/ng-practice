@@ -49,46 +49,6 @@ export class AuthService {
     return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, options);
   }
 
-  // login(username: string, password: string) {
-    
-  //   this.getToken().subscribe((token: any) => {
-  //     console.log(token);
-
-  //     this.authenticationToken(token.request_token, username, password).subscribe((authentication: any) => {
-  //       console.log(authentication);
-
-  //       if (authentication.success) {
-  //         localStorage.setItem('auth_token', token.request_token);
-  //         this.loggedIn = true;
-  //         this.messagesService.messageAction(true);
-
-  //         setTimeout(() => {
-  //           this.router.navigate(['/main']);
-  //         }, 2200);
-
-  //         this.getSession(token.request_token).subscribe(
-  //             (session: any) => {
-  //               console.log(session);
-  //               localStorage.setItem('session_id', session.session_id);
-
-  //               this.getUserData(session.session_id).subscribe(
-  //                 (user: any) => {
-  //                   console.log(user);
-  //                   localStorage.setItem('user_name', user.username);
-  //                   localStorage.setItem('user_id', user.id);
-  //                 },
-  //                 err => console.log('error', err)
-  //               );
-  //             },
-  //             err => console.log('error', err)
-  //           );
-  //         }
-  //       },
-  //       err => this.messagesService.messageAction(false)
-  //     );
-  //   });
-  // }
-
 
   login(username: string, password: string) {    
     return this.getToken().pipe(
@@ -127,6 +87,7 @@ export class AuthService {
       err => this.messagesService.messageAction(false)
     ) 
   }
+
 
   logout() {
     this.loggedIn = false;
