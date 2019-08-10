@@ -68,4 +68,9 @@ export class DetailsComponent implements OnInit {
 
     this.showDetails = this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;
   }
+
+
+
+
+  
 }
