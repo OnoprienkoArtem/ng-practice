@@ -19,6 +19,8 @@ export class SearchResultComponent implements OnInit {
   public totalResalt: number;
   public isDisabledActorsBtn: boolean = false;
   public searchFor: string;
+  private userId: string;
+  private sessionId: string;
 
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -62,7 +64,10 @@ export class SearchResultComponent implements OnInit {
         this.totalResalt = res.total_results;
         this.totalPages = res.total_pages;
 
-        this.filmsService.getFavoriteFilms(this.searchItems);
+        this.userId = localStorage.getItem('user_id');
+        this.sessionId = localStorage.getItem('session_id');
+
+        this.filmsService.getFavoriteFilms(this.searchItems, this.userId, this.sessionId);
 
         if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
         if (this.searchItems) {

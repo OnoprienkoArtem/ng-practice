@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { ActorService } from '../../services/actor.service';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { Actor } from '../../models/actor';
@@ -20,7 +21,11 @@ export class MainComponent implements OnInit {
   public actors: Actor[] = [];
   private actorsClone: any[] = [];
 
-  constructor(private filmsService: FilmService, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
+  constructor(
+    private filmsService: FilmService, 
+    public actorService: ActorService,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
+    ) { }
 
   ngOnInit() {
     this.filmsService.getPopularFilms().subscribe(
@@ -34,7 +39,7 @@ export class MainComponent implements OnInit {
       err => console.log("error", err)
     ),
     
-    this.filmsService.getPopularActors().subscribe(
+    this.actorService.getPopularActors().subscribe(
       (actorsList: any) => {
         this.actorsClone = actorsList.results;
         this.actors = this.actorsClone.slice(0, 6);

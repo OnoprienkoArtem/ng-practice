@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FilmService } from '../../services/film.service';
+import { ActorService } from '../../services/actor.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
@@ -22,6 +23,7 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     public filmsService: FilmService,
+    public actorService: ActorService,
     private router: Router,
     private route: ActivatedRoute,   
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
@@ -44,7 +46,7 @@ export class DetailsComponent implements OnInit {
           }
         });
       } else {         
-        this.filmsService.getActorById(this.id).subscribe(actor => {
+        this.actorService.getActorById(this.id).subscribe(actor => {
           this.actor = actor;
           // console.log(this.actor);
           if (this.actor) {

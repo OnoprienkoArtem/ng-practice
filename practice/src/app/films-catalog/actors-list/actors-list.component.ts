@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FilmService } from '../../services/film.service';
+import { ActorService } from '../../services/actor.service';
 import { Actor } from '../../models/actor';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -18,16 +18,16 @@ export class ActorsListComponent implements OnInit {
   public pageCount: number;
 
   constructor(
-    public filmsService: FilmService,
+    public actorService: ActorService,
     private route: ActivatedRoute, ) {
   }
 
   ngOnInit() {
-    this.getOnePagePopularActors(this.filmsService.currentPageActors);
+    this.getOnePagePopularActors(this.actorService.currentPageActors);
   }
 
   getOnePagePopularActors(page) {
-    this.filmsService.getPopularActors(page).subscribe(
+    this.actorService.getPopularActors(page).subscribe(
       (actorsList: any) => {
         console.log(actorsList);
         this.pageCount = actorsList.page;
@@ -47,11 +47,11 @@ export class ActorsListComponent implements OnInit {
     this.pageCount++;
     this.getOnePagePopularActors(this.pageCount);
     this.isDisabledActorsBtn = this.pageCount === this.totalPages ? true : false;
-    this.filmsService.currentPageActors = this.pageCount;
+    this.actorService.currentPageActors = this.pageCount;
   }
 
   firstPage() {
-    this.filmsService.currentPageActors = 1;
+    this.actorService.currentPageActors = 1;
     this.getOnePagePopularActors(1);
   }
 

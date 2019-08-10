@@ -10,8 +10,7 @@ import { Subject, Observable } from 'rxjs';
 export class FilmService {
   private favoriteNumber$ = new Subject<number>();
   public userId = localStorage.getItem('user_id');
-  public sessionId = localStorage.getItem('session_id');
-  public currentPage: number;
+  public sessionId = localStorage.getItem('session_id'); 
   public currentRouteValue: string;
 
   constructor(
@@ -26,15 +25,6 @@ export class FilmService {
 
   public getfavoriteNumber(): Observable<number> {
     return this.favoriteNumber$.asObservable();
-  }
-
-
-  set currentPageActors(value: number) {
-    this.currentPage = value;
-  }
-
-  get currentPageActors() {
-    return this.currentPage || 1;
   }
 
 
@@ -67,13 +57,9 @@ export class FilmService {
     return this.http.get(`${this.localConfig.movieUrl}/${id}${this.localConfig.params}`);
   }
 
-  getPopularActors(page?: number) {
-    return this.http.get(`${this.localConfig.personUrl}/popular${this.localConfig.params}&page=${page}`);
-  }
 
-  getActorById(id?: number) {
-    return this.http.get(`${this.localConfig.personUrl}/${id}${this.localConfig.params}`);
-  }
+
+
 
   getFavoriteFilms(films, userId, sessionId) { 
     this.getListOfFavotitesFilms(userId, sessionId).subscribe(
