@@ -17,9 +17,8 @@ export class ActorDetailsComponent implements OnInit {
   public smallImgPath: string = this.localConfig.smallImgPath;  
   mode = 'determinate';
 
-
   @Input('data') actor: any; 
- 
+  @Input('actorKnownFor') actorKnownFor: any;  
 
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -28,7 +27,7 @@ export class ActorDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() { 
-    
+    console.log(this.actorKnownFor);
   }
 
 

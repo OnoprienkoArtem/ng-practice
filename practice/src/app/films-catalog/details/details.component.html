@@ -6,7 +6,7 @@
           <app-film-details [data]="film"></app-film-details>
         </ng-container>      
         <ng-container *ngIf="!showDetails">
-          <app-actor-details [data]="actor"></app-actor-details>          
+          <app-actor-details [data]="actor" [actorKnownFor]="actorKnownFor"></app-actor-details>          
         </ng-container>
       </div> 
   </div>

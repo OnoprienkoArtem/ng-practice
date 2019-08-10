@@ -1,6 +1,6 @@
 .cards {
     background: #fff;
-    display: flex;
+   
     border-radius: 4px;
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2),
                 0 1px 1px 0 rgba(0, 0, 0, .14),
@@ -8,18 +8,21 @@
     width: 80%;
     margin: auto;
     min-width: 1000px;
+    section {
+      display: flex;
+    }
 }
 
 p {
     margin-bottom: 0;
 }
 
-.cards > div:first-child {
+.foto {
   width: 45%;
   display: flex;
 }
 
-.cards > div:last-child {
+.info {
   width: 55%;
 }
 

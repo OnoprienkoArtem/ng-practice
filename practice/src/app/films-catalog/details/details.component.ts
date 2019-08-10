@@ -6,6 +6,7 @@ import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { Observable, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: "app-details",
@@ -17,9 +18,8 @@ export class DetailsComponent implements OnInit {
   public showDetails: boolean;
   public id: number;
   public film: any;
-  public actor: any;
-
- 
+  public actor: any; 
+  public actorKnownFor: any;
 
   constructor(
     public filmsService: FilmService,
@@ -48,11 +48,21 @@ export class DetailsComponent implements OnInit {
       } else {         
         this.actorService.getActorById(this.id).subscribe(actor => {
           this.actor = actor;
-          // console.log(this.actor);
+          console.log(this.actor);
           if (this.actor) {
             this.spiner = false;
           }
-        });      
+        }); 
+
+        this.actorService.getPopularActors(this.actorService.currentPageActors).pipe(
+          tap((res: any) => {  
+            this.actorKnownFor = res.results.find(item => item.id === this.id);  
+            console.log(this.actorKnownFor);
+          })
+        ).subscribe(
+          (actorsList: any) => console.log('in subscribe', actorsList),
+          err => console.log("error", err)
+        )
       }
     });    
 
