@@ -18,7 +18,7 @@ export class ActorDetailsComponent implements OnInit {
   mode = 'determinate';
 
   @Input('data') actor: any; 
-  @Input('actorKnownFor') actorKnownFor: any;  
+  @Input() actorKnownFor: any;  
 
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,

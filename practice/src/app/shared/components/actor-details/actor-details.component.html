@@ -38,11 +38,30 @@
 
     </section>
     <section>
-      <div *ngFor="let item of actor.also_known_as">
-        <div></div>
+      <!-- <div *ngFor="let item of actorKnownFor.known_for">
+        <div>{{ item.title }}</div>
+        <div class="foto">
+          <img src="{{imgUrl + item.poster_path}}" alt="">
+        </div>
+
+      </div> -->
+
+  <div class="cards-known-for" *ngFor="let item of actorKnownFor.known_for">
+    <div>
+        <img src="{{ imgUrl + item.poster_path }}" alt="" />
+    </div>
+    <div class="info">
+        <h2>{{ item.title }}</h2>
+        <p class="year">{{ item.release_date }}</p>
+        <p class="description">
+            {{ item.overview.length > 180 ? (item.overview | slice: 0:180) + '...' : item.overview }}
+        </p>
+
+    </div>
+</div>
 
 
-      </div>
+
     </section>
 
 

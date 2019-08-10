@@ -6,10 +6,11 @@
                 0 1px 1px 0 rgba(0, 0, 0, .14),
                 0 1px 3px 0 rgba(0, 0, 0, .12);
     width: 80%;
-    margin: auto;
+    margin: 50px auto;
     min-width: 1000px;
     section {
       display: flex;
+      justify-content: space-evenly;
     }
 }
 
@@ -126,3 +127,62 @@ p {
   margin-bottom: 0;
   text-align: center;
 }
+
+
+
+
+
+
+
+
+
+.cards-known-for {
+    background: #fff;
+    display: flex;
+    border-radius: 4px;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+    height: 200px;
+    margin: 10px 0;
+    width: 32%;
+
+    & div:first-child {
+        width: 45%;
+        display: flex;
+    }
+
+    & div:last-child {
+        width: 55%;
+    }
+
+    .cards img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .info {
+        padding: 2%;
+        position: relative;
+        text-align: left;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 1vw;
+    }
+
+    .year {
+        font-size: .8em;
+        font-weight: 900;
+        margin: .25em 0;
+        color: silver;
+    }
+
+    .description {
+        font-size: 9px;
+    }
+
+
+
+}
+
