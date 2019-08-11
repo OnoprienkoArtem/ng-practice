@@ -1,7 +1,5 @@
   <div class='cards'>
-    <section>
-
-   
+    <section>   
       <div class="foto">
         <img src="{{imgUrl + actor.profile_path}}" alt="">
       </div>
@@ -39,31 +37,16 @@
       </div>
 
     </section>
-    <section>
-      <!-- <div *ngFor="let item of actorKnownFor.known_for">
-        <div>{{ item.title }}</div>
-        <div class="foto">
-          <img src="{{imgUrl + item.poster_path}}" alt="">
-        </div>
-
-      </div> -->
-
-  <div class="cards-known-for" *ngFor="let item of actorKnownFor.known_for">
-    <div>
-        <img src="{{ imgUrl + item.poster_path }}" alt="" />
-    </div>
-    <div class="info">
-        <h2>{{ item.title }}</h2>
-        <p class="year">{{ item.release_date }}</p>
-        <p class="description">
-            {{ item.overview.length > 180 ? (item.overview | slice: 0:180) + '...' : item.overview }}
-        </p>
-
-    </div>
-</div>
-
-
-
+    <section class="cards-known-for">
+      <app-film-item 
+        class="" 
+        fxFlex="32%" 
+        fxFlex.lt-md="45%" 
+        fxFlex.lt-sm="100%" 
+        [data]="film"             
+        *ngFor="let film of actorKnownFor.known_for"
+      >
+      </app-film-item>
     </section>
 
 
