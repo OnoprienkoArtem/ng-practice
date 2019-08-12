@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { LOCAL_CONFIG } from '../../../config/config-api';
 import { ApiConfig } from '../../../models/api';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-film-details',
@@ -15,10 +16,16 @@ export class FilmDetailsComponent implements OnInit {
    
   @Input('data') film: any;
 
-  constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {  
-  }
+  constructor(
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    private _location: Location
+    ) {}
 
   ngOnInit() {    
+  }
+
+  backOnAllActor() {      
+    this._location.back();        
   }
 
 }
