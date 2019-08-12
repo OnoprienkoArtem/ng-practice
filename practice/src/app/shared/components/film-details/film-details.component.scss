@@ -32,6 +32,25 @@
     flex-direction: column;
     justify-content: space-around;
 
+      .popularity-circle {
+        margin-left: 10px;
+        width: 50px !important;
+        height: 50px;
+        .popularity {
+          position: absolute;  
+          background: #f4f4f4;
+          border-radius: 50%;
+          label {
+            position: absolute;
+            font-size: .6em;
+            font-weight: 500;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+          }      
+        }
+      }
+
         h2 {
             margin: 0;
             font-size: 2vw;
@@ -119,3 +138,5 @@
       opacity: 1;
     }
   }
+
+

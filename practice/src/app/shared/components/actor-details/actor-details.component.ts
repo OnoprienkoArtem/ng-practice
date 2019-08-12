@@ -16,7 +16,7 @@ export class ActorDetailsComponent implements OnInit {
   public imgUrl: string = this.localConfig.midImgPath; 
   public midBackPath: string = this.localConfig.midBackPath; 
   public smallImgPath: string = this.localConfig.smallImgPath;  
-  mode = 'determinate';
+  public mode = 'determinate';
 
   @Input('data') actor: any; 
   @Input() actorKnownFor: any;  

@@ -13,6 +13,8 @@ export class FilmDetailsComponent implements OnInit {
   public imgUrl: string = this.localConfig.midImgPath; 
   public midBackPath: string = this.localConfig.midBackPath; 
   public smallImgPath: string = this.localConfig.smallImgPath;
+  public mode = 'determinate';
+  
    
   @Input('data') film: any;
 
@@ -22,6 +24,7 @@ export class FilmDetailsComponent implements OnInit {
     ) {}
 
   ngOnInit() {    
+    console.log(this.film);
   }
 
   backOnAllActor() {      

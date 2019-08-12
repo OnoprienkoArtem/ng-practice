@@ -2,8 +2,19 @@
     <div>
       <img src="{{imgUrl + film.poster_path}}" alt="">
     </div>
-    <div class='info'>
+    <div class='info'>      
       <h2>{{film.title}}</h2>
+      
+          <div class="popularity-circle">
+            <div class="popularity">
+              <label>{{film.vote_average}}</label>
+              <mat-progress-spinner
+                  class="example-margin"
+                  [mode]="mode"
+                  [value]="film.vote_average">            
+              </mat-progress-spinner>
+            </div>
+          </div>
       <p class='year'>{{film.release_date}}</p>
       <p class="genre">Жанр:
         <span *ngFor="let genre of film.genres">

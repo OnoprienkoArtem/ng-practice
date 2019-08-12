@@ -29,6 +29,7 @@ export class FilmItemComponent implements OnInit {
   ngOnInit() {
 
     console.log(this.filmsService.currentRoute);
+    
 
     if (this.filmsService.currentRoute === '/favorites') {
       this.favorites = false;
