@@ -4,6 +4,7 @@ import { ApiConfig } from '../../../models/api';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { FilmService } from '../../../services/film.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-actor-details',
@@ -24,6 +25,7 @@ export class ActorDetailsComponent implements OnInit {
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
     private router: Router,
     public filmsService: FilmService,
+    private _location: Location
   ) { }
 
   ngOnInit() { 
@@ -32,7 +34,7 @@ export class ActorDetailsComponent implements OnInit {
 
 
   backOnAllActor() {      
-    this.router.navigate(["/actors"]);    
+    this._location.back();        
   }
 
 }
