@@ -5,8 +5,10 @@
       </div>
       
       <div class='info'>
+        
         <div class="name">
           <h2>{{actor.name}}</h2>
+
           <div>
             <div class="popularity">
               <label>{{actor.popularity}}</label>
@@ -17,7 +19,9 @@
               </mat-progress-spinner>
             </div>
           </div>
+
         </div>     
+
         <p class='year' *ngIf="actor.birthday">Дата рождения:
           <span>{{actor.birthday}}</span>        
         </p>

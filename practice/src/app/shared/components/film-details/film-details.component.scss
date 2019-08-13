@@ -9,12 +9,12 @@
     margin: auto;
 }
 
-.cards div:first-child {
+.cards > div:first-child {
   width: 45%;
   display: flex;
 }
 
-.cards >div:last-child {
+.cards > div:last-child {
   width: 55%;
 }
 
@@ -32,14 +32,26 @@
     flex-direction: column;
     justify-content: space-around;
 
-      .popularity-circle {
-        margin-left: 10px;
+    .title {
+      
+      width: 90%;
+      display: flex;
+      align-items: center;
+      h2 {
+          margin: 0;
+          font-size: 1.6vw;
+      }
+
+      div {
+        position: relative;
+        margin-left: 20px;
         width: 50px !important;
         height: 50px;
         .popularity {
           position: absolute;  
           background: #f4f4f4;
           border-radius: 50%;
+          right: 0;
           label {
             position: absolute;
             font-size: .6em;
@@ -50,11 +62,10 @@
           }      
         }
       }
+    }
 
-        h2 {
-            margin: 0;
-            font-size: 2vw;
-        }
+
+
 
         .year {
             font-size: 1.2em;
@@ -130,7 +141,7 @@
   .btn-back {
     position: absolute;    
     right: 3.5%;
-    top: 2.5%;
+    top: 3%;
     opacity: .2;
     cursor: pointer;
     transition: opacity .5s;
