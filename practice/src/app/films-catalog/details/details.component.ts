@@ -38,7 +38,14 @@ export class DetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");       
 
-      if (this.filmsService.currentRoute === `/films/details/${this.id}`) {         
+      if (this.filmsService.currentRoute === `/films/details/${this.id}`) {  
+
+        this.filmsService.getVideoById(this.id).subscribe(film => {
+          console.log(film);
+          // this.film = film;          
+      
+        });    
+
         this.filmsService.getFilmById(this.id).subscribe(film => {
           this.film = film;          
           if (this.film) {

@@ -5,16 +5,16 @@
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2),
     0 1px 1px 0 rgba(0, 0, 0, .14),
     0 1px 3px 0 rgba(0, 0, 0, .12);
-    width: 90%;
-    margin: auto;
+  width: 90%;
+  margin: auto;
 }
 
-.cards > div:first-child {
+.cards>div:first-child {
   width: 45%;
   display: flex;
 }
 
-.cards > div:last-child {
+.cards>div:last-child {
   width: 55%;
 }
 
@@ -25,100 +25,96 @@
 }
 
 .info {
-    padding: 2%;
-    position: relative;
-    text-align: left;
+  padding: 2%;
+  position: relative;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .title {
+
+    width: 90%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
 
-    .title {
-      
-      width: 90%;
-      display: flex;
-      align-items: center;
-      h2 {
-          margin: 0;
-          font-size: 1.6vw;
-      }
+    h2 {
+      margin: 0;
+      font-size: 1.6vw;
+    }
 
-      div {
-        position: relative;
-        margin-left: 20px;
-        width: 50px !important;
-        height: 50px;
-        .popularity {
-          position: absolute;  
-          background: #f4f4f4;
-          border-radius: 50%;
-          right: 0;
-          label {
-            position: absolute;
-            font-size: .6em;
-            font-weight: 500;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-          }      
+    div {
+      position: relative;
+      margin-left: 20px;
+      width: 50px !important;
+      height: 50px;
+
+      .popularity {
+        position: absolute;
+        background: #f4f4f4;
+        border-radius: 50%;
+        right: 0;
+
+        label {
+          position: absolute;
+          font-size: .6em;
+          font-weight: 500;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 50%;
         }
       }
     }
+  }
 
+  .year {
+    font-size: 1.2em;
+    font-weight: 900;
+    margin: .25em 0;
+    color: silver;
+  }
 
+  .genre {
+    font-weight: 100;
+  }
 
+  .description {
+    font-size: .7em;
+  }
 
-        .year {
-            font-size: 1.2em;
-            font-weight: 900;
-            margin: .25em 0;
-            color: silver;
-        }
+  .budget {
+    font-weight: 300;
+    text-transform: uppercase;
+  }
 
-        .genre {
-            font-weight: 100;
-        }
+  .backdrop {
+    // height: 100%;
+  }
 
-        .description {
-            font-size: .7em;
-        }
+  .homepage {
+    font-size: .8em;
+  }
 
-        .budget {
-            font-weight: 300;
-            text-transform: uppercase;
-        }
+  .production_companies {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
 
-        .backdrop {
-            // height: 100%;
-        }
+    span {
+      margin: auto;
+      height: 75px;
+      width: 125px;
 
-        .homepage {
-            font-size: .8em;
-        }
+      img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+      }
+    }
 
-        .production_companies {
-            display: flex;   
-            margin-bottom: 20px;
-            justify-content: center;
-            span {    
-                margin: auto;           
-                height: 75px;
-                width: 125px;
-                img {
-                    object-fit: contain;
-                    height: 100%;
-                    width: 100%;
-                }
-            }
-
-        }
+  }
 
 }
-
-
-
-
-
-
 
 .btn-block {
   width: 100% !important;
@@ -128,8 +124,6 @@
   display: flex;
 }
 
-
-
 .mat-card-actions {
   position: absolute;
   bottom: 0;
@@ -138,16 +132,15 @@
   text-align: center;
 }
 
-  .btn-back {
-    position: absolute;    
-    right: 3.5%;
-    top: 3%;
-    opacity: .2;
-    cursor: pointer;
-    transition: opacity .5s;
-    &:hover {
-      opacity: 1;
-    }
+.btn-back {
+  position: absolute;
+  right: 3.5%;
+  top: 3%;
+  opacity: .2;
+  cursor: pointer;
+  transition: opacity .5s;
+
+  &:hover {
+    opacity: 1;
   }
-
-
+}
