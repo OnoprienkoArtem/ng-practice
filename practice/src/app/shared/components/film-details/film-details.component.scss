@@ -16,13 +16,20 @@
   margin-bottom: 20px;
 }
 
-.cards > section:first-child div:first-child {
+.cards > section:first-child > div:first-child {
   width: 45%;
   display: flex;
 }
 
-.cards > section:first-child div:last-child {
+.cards > section:first-child > div:last-child {
   width: 55%;
+  .btn-block {
+    width: 100% !important;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    display: flex;
+  }
 }
 
 .cards img {
@@ -123,13 +130,7 @@
 
 }
 
-.btn-block {
-  width: 100% !important;
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  display: flex;
-}
+
 
 .mat-card-actions {
   position: absolute;
@@ -149,5 +150,20 @@
 
   &:hover {
     opacity: 1;
+  }
+}
+
+.actors {
+  padding: 25px;
+}
+.treiler {
+  padding: 25px;
+  .frame {
+    display: flex;
+    iframe {
+      margin: auto;
+      width: 900px;
+      height: 500px;
+    }
   }
 }

@@ -3,7 +3,7 @@
     <div>
       <div>     
         <ng-container *ngIf="showDetails">                 
-          <app-film-details [data]="film"></app-film-details>
+          <app-film-details [data]="film" [video]="video" [cast]="cast"></app-film-details>
         </ng-container>      
         <ng-container *ngIf="!showDetails">
           <app-actor-details [data]="actor" [actorKnownFor]="actorKnownFor"></app-actor-details>   

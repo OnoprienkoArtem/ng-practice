@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MessagesService } from './messages.service';
 import { LOCAL_CONFIG } from '../config/config-api';
@@ -44,9 +44,13 @@ export class AuthService {
     return this.http.get(`${this.localConfig.accountUrl}?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
   }
 
-  removeSession(httpParams) {
-    let options = { params: httpParams };
-    return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, options);
+  removeSession(httpParams) {   
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }), 
+      body: httpParams
+    }; 
+
+    return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, httpOptions);
   }
 
 
@@ -92,7 +96,9 @@ export class AuthService {
   logout() {
     this.loggedIn = false;
 
-    this.removeSession(localStorage.getItem('session_id')).subscribe(res => {
+    const sesionId = localStorage.getItem('session_id');
+
+    this.removeSession({session_id: sesionId}).subscribe(res => {
       console.log(res);
     });
 

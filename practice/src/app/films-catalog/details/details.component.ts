@@ -20,6 +20,9 @@ export class DetailsComponent implements OnInit {
   public film: any;
   public actor: any; 
   public actorKnownFor: any;
+  public video: any;
+  public cast: any;
+
 
   constructor(
     public filmsService: FilmService,
@@ -40,10 +43,14 @@ export class DetailsComponent implements OnInit {
 
       if (this.filmsService.currentRoute === `/films/details/${this.id}`) {  
 
-        this.filmsService.getVideoById(this.id).subscribe(film => {
-          console.log(film);
-          // this.film = film;          
-      
+        this.filmsService.getCastById(this.id).subscribe((cast: any) => {
+          console.log(cast);
+          this.cast = cast.cast; 
+        });
+
+        this.filmsService.getVideoById(this.id).subscribe((video: any) => {
+          console.log(video);
+          this.video = video.results; 
         });    
 
         this.filmsService.getFilmById(this.id).subscribe(film => {

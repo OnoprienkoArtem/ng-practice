@@ -62,6 +62,10 @@ export class FilmService {
     return this.http.get(`${this.localConfig.movieUrl}/${id}/videos${this.localConfig.params}`);
   }
 
+  getCastById(id?: number) {
+    return this.http.get(`${this.localConfig.movieUrl}/${id}/credits${this.localConfig.params}`);
+  }
+
 
 
 
