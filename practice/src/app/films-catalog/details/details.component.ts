@@ -22,6 +22,7 @@ export class DetailsComponent implements OnInit {
   public actorKnownFor: any;
   public video: any;
   public cast: any;
+  public crew: any;
 
 
   constructor(
@@ -46,6 +47,7 @@ export class DetailsComponent implements OnInit {
         this.filmsService.getCastById(this.id).subscribe((cast: any) => {
           console.log(cast);
           this.cast = cast.cast; 
+          this.crew = cast.crew;
         });
 
         this.filmsService.getVideoById(this.id).subscribe((video: any) => {
@@ -59,7 +61,8 @@ export class DetailsComponent implements OnInit {
             this.spiner = false;
           }
         });
-      } else {         
+      } else {  
+
         this.actorService.getActorById(this.id).subscribe(actor => {
           this.actor = actor;
           console.log(this.actor);
