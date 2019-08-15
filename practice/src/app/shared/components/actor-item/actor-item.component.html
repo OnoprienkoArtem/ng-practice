@@ -2,7 +2,7 @@
   <div class="name">
     <h2>{{actor.name}}</h2>
     <p *ngIf="actor.character" >({{actor.character}})</p>
-
+    <p *ngIf="actor.department" >({{actor.department}})</p> 
   </div>        
   <div class="img-wrapp">
     <ng-container *ngIf="actor.profile_path; else notImg">
