@@ -1,6 +1,8 @@
 <div class='card' (click)="getDetails()">
   <div class="name">
     <h2>{{actor.name}}</h2>
+    <p *ngIf="actor.character" >({{actor.character}})</p>
+
   </div>        
   <div class="img-wrapp">
     <ng-container *ngIf="actor.profile_path; else notImg">
