@@ -6,7 +6,7 @@ import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { Observable, Subscription, forkJoin } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: "app-details",
@@ -45,13 +45,13 @@ export class DetailsComponent implements OnInit {
       if (this.filmsService.currentRoute === `/films/details/${this.id}`) {  
 
         forkJoin(
-          this.filmsService.getCastById(this.id),
+          this.filmsService.getCastById(this.id).pipe(map((cast: any) => cast.cast )),
           this.filmsService.getVideoById(this.id)
         ).subscribe((res: any) => {
           console.log(res);      
         });
 
-        
+
 
         this.filmsService.getCastById(this.id).subscribe((cast: any) => {
           console.log(cast);
