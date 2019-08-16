@@ -44,6 +44,8 @@ export class DetailsComponent implements OnInit {
 
       if (this.filmsService.currentRoute === `/films/details/${this.id}`) {  
 
+        
+
         this.filmsService.getCastById(this.id).subscribe((cast: any) => {
           console.log(cast);
           this.cast = cast.cast; 
