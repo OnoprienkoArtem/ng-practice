@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, forkJoin } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -43,6 +43,13 @@ export class DetailsComponent implements OnInit {
       this.id = +params.get("id");       
 
       if (this.filmsService.currentRoute === `/films/details/${this.id}`) {  
+
+        forkJoin(
+          this.filmsService.getCastById(this.id),
+          this.filmsService.getVideoById(this.id)
+        ).subscribe((res: any) => {
+          console.log(res);      
+        });
 
         
 
