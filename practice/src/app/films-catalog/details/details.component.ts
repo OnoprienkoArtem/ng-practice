@@ -23,7 +23,7 @@ export class DetailsComponent implements OnInit {
   public video: any;
   public cast: any;
   public crew: any;
-
+  public __id : number;
 
   constructor(
     public filmsService: FilmService,
@@ -37,7 +37,11 @@ export class DetailsComponent implements OnInit {
     if (this.filmsService.currentRoute === undefined) {
       this.router.navigate(["/main"]);
     }  
+    // this.route.paramMap.subscribe((params: ParamMap) => { 
+    //   this.id = +params.get("id"); 
+    // });  
 
+    // console.log(this.__id);
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");       
@@ -45,9 +49,9 @@ export class DetailsComponent implements OnInit {
       if (this.filmsService.currentRoute === `/films/details/${this.id}`) { 
 
         // forkJoin(
-        //   this.filmsService.getCastById(this.id),
-        //   this.filmsService.getVideoById(this.id),
-        //   this.filmsService.getFilmById(this.id)
+        //   this.filmsService.getCastById(this.__id),
+        //   this.filmsService.getVideoById(this.__id),
+        //   this.filmsService.getFilmById(this.__id)
         // ).subscribe((res: any) => {
         //   this.film = res;    
 
@@ -63,34 +67,34 @@ export class DetailsComponent implements OnInit {
 
 
 
-        let cast = this.filmsService.getCastById(this.id).pipe(tap(res => res));
-        let video = this.filmsService.getVideoById(this.id).pipe(tap(res => res));
-        let film = this.filmsService.getFilmById(this.id).pipe(tap(res => res));
+        // let cast = this.filmsService.getCastById(this.__id).pipe(tap(res => res));
+        // let video = this.filmsService.getVideoById(this.__id).pipe(tap(res => res));
+        // let film = this.filmsService.getFilmById(this.__id).pipe(tap(res => res));
 
-        this.film = forkJoin([cast, video, film]).subscribe(results => {
-          return results;
-          console.log('--------------->', results);
+        // this.film = forkJoin([cast, video, film]).subscribe(results => {
+        //   return results;
+        //   console.log('--------------->', results);
+        // });
+
+
+
+        this.filmsService.getCastById(this.id).subscribe((cast: any) => {
+          // console.log(cast);
+          this.cast = cast.cast; 
+          this.crew = cast.crew;
         });
 
+        this.filmsService.getVideoById(this.id).subscribe((video: any) => {
+          // console.log(video);
+          this.video = video.results; 
+        });    
 
-
-        // this.filmsService.getCastById(this.id).subscribe((cast: any) => {
-        //   console.log(cast);
-        //   this.cast = cast.cast; 
-        //   this.crew = cast.crew;
-        // });
-
-        // this.filmsService.getVideoById(this.id).subscribe((video: any) => {
-        //   console.log(video);
-        //   this.video = video.results; 
-        // });    
-
-        // this.filmsService.getFilmById(this.id).subscribe(film => {            
-        //   this.film = film;          
-        //   if (this.film) {
-        //     this.spiner = false;
-        //   }
-        // });
+        this.filmsService.getFilmById(this.id).subscribe(film => {            
+          this.film = film;          
+          if (this.film) {
+            this.spiner = false;
+          }
+        });
        
       } else {  
 
