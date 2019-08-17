@@ -6,7 +6,7 @@ import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { Observable, Subscription, forkJoin } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, switchMap, concatMap } from 'rxjs/operators';
 
 @Component({
   selector: "app-details",
@@ -37,17 +37,47 @@ export class DetailsComponent implements OnInit {
     if (this.filmsService.currentRoute === undefined) {
       this.router.navigate(["/main"]);
     }  
-    // this.route.paramMap.subscribe((params: ParamMap) => { 
-    //   this.id = +params.get("id"); 
-    // });  
 
-    // console.log(this.__id);
+    this.__id = this.route.snapshot.params.id;
+
+    console.log('__id', +this.__id);
+
+
+    return this.route.paramMap.pipe(
+      concatMap((params: ParamMap) => {  
+        this.id = +params.get("id");
+        return this.filmsService.getCastById(this.id);
+      }),
+      concatMap((params: ParamMap) => {  
+        this.id = +params.get("id");
+        return this.filmsService.getVideoById(this.id).pipe(
+          tap(res => res)
+        );
+      })
+
+
+    ).subscribe((res: any) => {
+      // this.film = res;
+      console.log(res);  
+    });  
+
+    
+
+
+
+
+
+
+
+
+
+
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");       
 
       if (this.filmsService.currentRoute === `/films/details/${this.id}`) { 
-
+          
         // forkJoin(
         //   this.filmsService.getCastById(this.__id),
         //   this.filmsService.getVideoById(this.__id),
@@ -78,23 +108,23 @@ export class DetailsComponent implements OnInit {
 
 
 
-        this.filmsService.getCastById(this.id).subscribe((cast: any) => {
-          // console.log(cast);
-          this.cast = cast.cast; 
-          this.crew = cast.crew;
-        });
+        // this.filmsService.getCastById(this.id).subscribe((cast: any) => {
+        //   // console.log(cast);
+        //   this.cast = cast.cast; 
+        //   this.crew = cast.crew;
+        // });
 
-        this.filmsService.getVideoById(this.id).subscribe((video: any) => {
-          // console.log(video);
-          this.video = video.results; 
-        });    
+        // this.filmsService.getVideoById(this.id).subscribe((video: any) => {
+        //   // console.log(video);
+        //   this.video = video.results; 
+        // });    
 
-        this.filmsService.getFilmById(this.id).subscribe(film => {            
-          this.film = film;          
-          if (this.film) {
-            this.spiner = false;
-          }
-        });
+        // this.filmsService.getFilmById(this.id).subscribe(film => {            
+        //   this.film = film;          
+        //   if (this.film) {
+        //     this.spiner = false;
+        //   }
+        // });
        
       } else {  
 
