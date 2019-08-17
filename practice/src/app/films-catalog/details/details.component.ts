@@ -42,34 +42,44 @@ export class DetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get("id");       
 
-      if (this.filmsService.currentRoute === `/films/details/${this.id}`) {  
+      if (this.filmsService.currentRoute === `/films/details/${this.id}`) { 
 
         forkJoin(
-          this.filmsService.getCastById(this.id).pipe(map((cast: any) => cast.cast )),
-          this.filmsService.getVideoById(this.id)
+          this.filmsService.getCastById(this.id),
+          this.filmsService.getVideoById(this.id),
+          this.filmsService.getFilmById(this.id)
         ).subscribe((res: any) => {
-          console.log(res);      
+          this.film = res;    
+
+          // {
+          //   people: res[0],
+          //   trailer: res[1],
+          //   deteils: res[2]
+          // }
+          console.log(res); 
+          console.log(this.film);   
         });
 
 
 
-        this.filmsService.getCastById(this.id).subscribe((cast: any) => {
-          console.log(cast);
-          this.cast = cast.cast; 
-          this.crew = cast.crew;
-        });
+        // this.filmsService.getCastById(this.id).subscribe((cast: any) => {
+        //   console.log(cast);
+        //   this.cast = cast.cast; 
+        //   this.crew = cast.crew;
+        // });
 
-        this.filmsService.getVideoById(this.id).subscribe((video: any) => {
-          console.log(video);
-          this.video = video.results; 
-        });    
+        // this.filmsService.getVideoById(this.id).subscribe((video: any) => {
+        //   console.log(video);
+        //   this.video = video.results; 
+        // });    
 
-        this.filmsService.getFilmById(this.id).subscribe(film => {
+        this.filmsService.getFilmById(this.id).subscribe(film => {            
           this.film = film;          
           if (this.film) {
             this.spiner = false;
           }
         });
+       
       } else {  
 
         this.actorService.getActorById(this.id).subscribe(actor => {
