@@ -44,20 +44,32 @@ export class DetailsComponent implements OnInit {
 
       if (this.filmsService.currentRoute === `/films/details/${this.id}`) { 
 
-        forkJoin(
-          this.filmsService.getCastById(this.id),
-          this.filmsService.getVideoById(this.id),
-          this.filmsService.getFilmById(this.id)
-        ).subscribe((res: any) => {
-          this.film = res;    
+        // forkJoin(
+        //   this.filmsService.getCastById(this.id),
+        //   this.filmsService.getVideoById(this.id),
+        //   this.filmsService.getFilmById(this.id)
+        // ).subscribe((res: any) => {
+        //   this.film = res;    
 
-          // {
-          //   people: res[0],
-          //   trailer: res[1],
-          //   deteils: res[2]
-          // }
-          console.log(res); 
-          console.log(this.film);   
+        //   // {
+        //   //   people: res[0],
+        //   //   trailer: res[1],
+        //   //   deteils: res[2]
+        //   // }
+        //   console.log(res); 
+        //   console.log(this.film);   
+        // });
+
+
+
+
+        let cast = this.filmsService.getCastById(this.id).pipe(tap(res => res));
+        let video = this.filmsService.getVideoById(this.id).pipe(tap(res => res));
+        let film = this.filmsService.getFilmById(this.id).pipe(tap(res => res));
+
+        this.film = forkJoin([cast, video, film]).subscribe(results => {
+          return results;
+          console.log('--------------->', results);
         });
 
 
@@ -73,12 +85,12 @@ export class DetailsComponent implements OnInit {
         //   this.video = video.results; 
         // });    
 
-        this.filmsService.getFilmById(this.id).subscribe(film => {            
-          this.film = film;          
-          if (this.film) {
-            this.spiner = false;
-          }
-        });
+        // this.filmsService.getFilmById(this.id).subscribe(film => {            
+        //   this.film = film;          
+        //   if (this.film) {
+        //     this.spiner = false;
+        //   }
+        // });
        
       } else {  
 
