@@ -23,7 +23,7 @@ export class DetailsComponent implements OnInit {
   public video: any;
   public cast: any;
   public crew: any;
-  public __id : number;
+  
 
   constructor(
     public filmsService: FilmService,
@@ -38,9 +38,9 @@ export class DetailsComponent implements OnInit {
       this.router.navigate(["/main"]);
     }  
 
-    this.__id = this.route.snapshot.params.id;
+    this.id = this.route.snapshot.params.id;
 
-    console.log('__id', +this.__id);
+    console.log('__id', +this.id);
 
   
 
@@ -50,44 +50,44 @@ export class DetailsComponent implements OnInit {
     // this.route.paramMap.subscribe((params: ParamMap) => {
     //   this.id = +params.get("id");       
 
-      if (this.filmsService.currentRoute === `/films/details/${this.__id}`) { 
+      if (this.filmsService.currentRoute === `/films/details/${this.id}`) { 
 
-        console.log('__id', +this.__id);
+        console.log('__id', +this.id);
+
           
-        // forkJoin(
-        //   this.filmsService.getCastById(this.__id),
-        //   this.filmsService.getVideoById(this.__id),
-        //   this.filmsService.getFilmById(this.__id)
-        // ).subscribe((res: any) => {
-        //   return this.film = res;    
-        //   // {
-        //   //   people: res[0],
-        //   //   trailer: res[1],
-        //   //   deteils: res[2]
-        //   // }
-        //   console.log(res); 
-        //   console.log(this.film);   
-        // });
+        forkJoin(
+          this.filmsService.getCastById(this.id),
+          this.filmsService.getVideoById(this.id).pipe(map((res: any) => res.results)),
+          this.filmsService.getFilmById(this.id)
+        ).subscribe((res: any) => {
+          this.film = {
+            people: res[0],
+            trailer: res[1],
+            deteils: res[2]
+          }
+
+          if (this.film) this.spiner = false;       
+        });
         
 
             
 
-        let people = this.filmsService.getCastById(this.__id);
-        let trailer = this.filmsService.getVideoById(this.__id).pipe(map((res: any) => res.results));
-        let deteils = this.filmsService.getFilmById(this.__id);
+        // let people = this.filmsService.getCastById(this.__id);
+        // let trailer = this.filmsService.getVideoById(this.__id).pipe(map((res: any) => res.results));
+        // let deteils = this.filmsService.getFilmById(this.__id);
 
-        forkJoin(people, trailer, deteils).subscribe(results => {            
-          this.film = {
-            people: results[0],
-            trailer: results[1],
-            deteils: results[2]
-          }; 
+        // forkJoin(people, trailer, deteils).subscribe(results => {            
+        //   this.film = {
+        //     people: results[0],
+        //     trailer: results[1],
+        //     deteils: results[2]
+        //   }; 
 
-          if (this.film) {
-            this.spiner = false;
-          }
-          console.log(this.film);  
-        });
+        //   if (this.film) {
+        //     this.spiner = false;
+        //   }
+        //   console.log(this.film);  
+        // });
 
 
 
@@ -155,7 +155,7 @@ export class DetailsComponent implements OnInit {
       }
     // });    
 
-    this.showDetails = this.filmsService.currentRoute === `/films/details/${this.__id}` ? true : false;
+    this.showDetails = this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;
   }
 
 
