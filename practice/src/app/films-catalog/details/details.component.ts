@@ -43,48 +43,26 @@ export class DetailsComponent implements OnInit {
     console.log('__id', +this.__id);
 
 
-    return this.route.paramMap.pipe(
-      concatMap((params: ParamMap) => {  
-        this.id = +params.get("id");
-        return this.filmsService.getCastById(this.id);
-      }),
-      concatMap((params: ParamMap) => {  
-        this.id = +params.get("id");
-        return this.filmsService.getVideoById(this.id).pipe(
-          tap(res => res)
-        );
-      })
-
-
-    ).subscribe((res: any) => {
-      // this.film = res;
-      console.log(res);  
-    });  
+    
 
     
 
 
 
 
+    // this.route.paramMap.subscribe((params: ParamMap) => {
+    //   this.id = +params.get("id");       
 
+      if (this.filmsService.currentRoute === `/films/details/${this.__id}`) { 
 
-
-
-
-
-
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get("id");       
-
-      if (this.filmsService.currentRoute === `/films/details/${this.id}`) { 
+        console.log('__id', +this.__id);
           
         // forkJoin(
         //   this.filmsService.getCastById(this.__id),
         //   this.filmsService.getVideoById(this.__id),
         //   this.filmsService.getFilmById(this.__id)
         // ).subscribe((res: any) => {
-        //   this.film = res;    
-
+        //   return this.film = res;    
         //   // {
         //   //   people: res[0],
         //   //   trailer: res[1],
@@ -93,38 +71,64 @@ export class DetailsComponent implements OnInit {
         //   console.log(res); 
         //   console.log(this.film);   
         // });
+        
 
+       
 
+      
 
+        // let cast = this.filmsService.getCastById(this.__id);
+        // let video = this.filmsService.getVideoById(this.__id);
+        // let film = this.filmsService.getFilmById(this.__id);
 
-        // let cast = this.filmsService.getCastById(this.__id).pipe(tap(res => res));
-        // let video = this.filmsService.getVideoById(this.__id).pipe(tap(res => res));
-        // let film = this.filmsService.getFilmById(this.__id).pipe(tap(res => res));
-
-        // this.film = forkJoin([cast, video, film]).subscribe(results => {
-        //   return results;
-        //   console.log('--------------->', results);
+        // forkJoin([cast, video, film]).subscribe(
+        //   results => {
+        //   this.film = results; 
+        //   console.log(results);         
         // });
 
 
 
-        // this.filmsService.getCastById(this.id).subscribe((cast: any) => {
+        // this.filmsService.getCastById(this.__id).subscribe((cast: any) => {
         //   // console.log(cast);
         //   this.cast = cast.cast; 
         //   this.crew = cast.crew;
         // });
 
-        // this.filmsService.getVideoById(this.id).subscribe((video: any) => {
+        // this.filmsService.getVideoById(this.__id).subscribe((video: any) => {
         //   // console.log(video);
         //   this.video = video.results; 
         // });    
 
-        // this.filmsService.getFilmById(this.id).subscribe(film => {            
+        // this.filmsService.getFilmById(this.__id).subscribe(film => {            
         //   this.film = film;          
         //   if (this.film) {
         //     this.spiner = false;
         //   }
         // });
+
+
+
+        
+        // return this.filmsService.getCastById(this.__id).pipe(
+        //   concatMap(res => {
+        //     console.log(res)
+        //     return this.filmsService.getVideoById(this.__id)
+        //   }),
+        //   concatMap(res => {
+        //     console.log(res)
+        //     return this.filmsService.getFilmById(this.__id).pipe(map(
+        //       res => res
+        //     ))
+        //   })         
+        
+        // ).subscribe(res => {            
+        //   console.log(res); 
+        // });
+
+
+
+
        
       } else {  
 
@@ -146,9 +150,9 @@ export class DetailsComponent implements OnInit {
           err => console.log("error", err)
         )
       }
-    });    
+    // });    
 
-    this.showDetails = this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;
+    this.showDetails = this.filmsService.currentRoute === `/films/details/${this.__id}` ? true : false;
   }
 
 

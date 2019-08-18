@@ -1,16 +1,15 @@
 <div *ngIf="!spiner" class="cards-section">
-  <div>
     <div>
-      <div>     
-        <ng-container *ngIf="showDetails">                 
-          <app-film-details [data]="film"></app-film-details>
-        </ng-container>      
-        <ng-container *ngIf="!showDetails">
-          <app-actor-details [data]="actor" [actorKnownFor]="actorKnownFor"></app-actor-details>  
-        </ng-container>
-      </div> 
-  </div>
-</div>
+        <div>
+            <div>
+                <ng-container *ngIf="showDetails">
+                    <app-film-details [data]="film"></app-film-details>
+                </ng-container>
+                <ng-container *ngIf="!showDetails">
+                    <app-actor-details [data]="actor" [actorKnownFor]="actorKnownFor"></app-actor-details>
+                </ng-container>
+            </div>
+        </div>
+    </div>
 
-<app-spiner *ngIf="spiner"></app-spiner>
-
+    <app-spiner *ngIf="spiner"></app-spiner>

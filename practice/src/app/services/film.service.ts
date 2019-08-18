@@ -2,7 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LOCAL_CONFIG } from '../config/config-api';
 import { ApiConfig } from '../models/api';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, forkJoin } from 'rxjs';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class FilmService {
 
   constructor(
     private http: HttpClient,
-    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    private route: ActivatedRoute, 
   ) { }
 
 
@@ -67,6 +69,16 @@ export class FilmService {
   }
 
 
+  getInformationAboutFilm(id) {   
+    let cast = this.getCastById(id);
+    let video = this.getVideoById(id);
+    let film = this.getFilmById(id);
+
+    forkJoin([cast, video, film]).subscribe(results => {      
+      console.log(results);    
+      return results; 
+    });
+  }
 
 
 
