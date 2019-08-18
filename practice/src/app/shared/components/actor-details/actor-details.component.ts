@@ -19,7 +19,7 @@ export class ActorDetailsComponent implements OnInit {
   public mode = 'determinate';
 
   @Input('data') actor: any; 
-  @Input() actorKnownFor: any;  
+  // @Input() actorKnownFor: any;  
 
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -29,7 +29,7 @@ export class ActorDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() { 
-    console.log(this.actorKnownFor);
+    console.log(this.actor);
   }
 
 
