@@ -5,8 +5,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Film } from '../../models/film';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
-import { Observable, Subscription, forkJoin } from 'rxjs';
-import { tap, map, switchMap, concatMap } from 'rxjs/operators';
+import { Observable, Subscription, forkJoin, of } from 'rxjs';
+import { tap, map, switchMap, concatMap, delay } from 'rxjs/operators';
 
 @Component({
   selector: "app-details",
@@ -73,19 +73,16 @@ export class DetailsComponent implements OnInit {
         // });
         
 
-       
+            
 
-      
+        let cast = this.filmsService.getCastById(this.__id);
+        let video = this.filmsService.getVideoById(this.__id);
+        let film = this.filmsService.getFilmById(this.__id);
 
-        // let cast = this.filmsService.getCastById(this.__id);
-        // let video = this.filmsService.getVideoById(this.__id);
-        // let film = this.filmsService.getFilmById(this.__id);
-
-        // forkJoin([cast, video, film]).subscribe(
-        //   results => {
-        //   this.film = results; 
-        //   console.log(results);         
-        // });
+        forkJoin(cast, video, film).subscribe(results => {            
+          this.film = results; 
+          console.log(this.film);  
+        });
 
 
 

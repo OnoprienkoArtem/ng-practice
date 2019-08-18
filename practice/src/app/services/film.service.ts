@@ -69,17 +69,6 @@ export class FilmService {
   }
 
 
-  getInformationAboutFilm(id) {   
-    let cast = this.getCastById(id);
-    let video = this.getVideoById(id);
-    let film = this.getFilmById(id);
-
-    forkJoin([cast, video, film]).subscribe(results => {      
-      console.log(results);    
-      return results; 
-    });
-  }
-
 
 
   getFavoriteFilms(films, userId, sessionId) { 
