@@ -42,10 +42,7 @@ export class DetailsComponent implements OnInit {
 
     console.log('__id', +this.__id);
 
-
-    
-
-    
+  
 
 
 
@@ -75,14 +72,23 @@ export class DetailsComponent implements OnInit {
 
             
 
-        let cast = this.filmsService.getCastById(this.__id);
-        let video = this.filmsService.getVideoById(this.__id);
-        let film = this.filmsService.getFilmById(this.__id);
+        let people = this.filmsService.getCastById(this.__id);
+        let trailer = this.filmsService.getVideoById(this.__id).pipe(map((res: any) => res.results));
+        let deteils = this.filmsService.getFilmById(this.__id);
 
-        forkJoin(cast, video, film).subscribe(results => {            
-          this.film = results; 
+        forkJoin(people, trailer, deteils).subscribe(results => {            
+          this.film = {
+            people: results[0],
+            trailer: results[1],
+            deteils: results[2]
+          }; 
+
+          if (this.film) {
+            this.spiner = false;
+          }
           console.log(this.film);  
         });
+
 
 
 
