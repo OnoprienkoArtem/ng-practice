@@ -74,15 +74,26 @@ export class DetailsComponent implements OnInit {
       forkJoin(
         this.actorService.getActorById(this.id),
         this.actorService.getPopularActors(this.actorService.currentPageActors)
-        // .pipe(
-        //   map((res: any) => {  
-        //     console.log(res);
-        //     res.results.find(item => item.id === this.id);              
-        //   })
-        // )      
+        .pipe(
+          tap((res: any) => {  
+            console.log(res.results);
+
+            this.actorKnownFor = res.results.find(item => {
+              item.id === this.id
+              return item.id
+            }
+            );     
+                   
+          })
+        )      
       ).subscribe((res: any) => {
-        console.log(res);
-        this.actor = res;
+       console.log(this.actorKnownFor);  
+        this.actor = {
+          deteils: res[0],
+          knownFor: this.actorKnownFor
+        }
+        console.log(this.actor);
+
         this.spinerOff(this.actor);     
       }); 
       }
