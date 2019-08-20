@@ -1,29 +1,29 @@
 <div class='cards'>
     <section>
         <div class="foto">
-            <img src="{{imgUrl + actor.profile_path}}" alt="">
+            <img src="{{imgUrl + actor[0].profile_path}}" alt="">
         </div>
 
         <div class='info'>
 
             <div class="name">
-                <h2>{{actor.name}}</h2>
+                <h2>{{actor[0].name}}</h2>
 
                 <div>
                     <div class="popularity">
-                        <label>{{actor.popularity}}</label>
-                        <mat-progress-spinner class="example-margin" [mode]="mode" [value]="actor.popularity">
+                        <label>{{actor[0].popularity}}</label>
+                        <mat-progress-spinner class="example-margin" [mode]="mode" [value]="actor[0].popularity">
                         </mat-progress-spinner>
                     </div>
                 </div>
 
             </div>
 
-            <p class='year' *ngIf="actor.birthday">Дата рождения:
-                <span>{{actor.birthday}}</span>
+            <p class='year' *ngIf="actor[0].birthday">Дата рождения:
+                <span>{{actor[0].birthday}}</span>
             </p>
-            <p class='year' *ngIf="actor.deathday">Дата смерти:
-                <span>{{actor.deathday}}</span>
+            <p class='year' *ngIf="actor[0].deathday">Дата смерти:
+                <span>{{actor[0].deathday}}</span>
             </p>
             <p class="place_of_birth" *ngIf="actor.place_of_birth">Место рождения:
                 <span>{{actor.place_of_birth}}</span>
