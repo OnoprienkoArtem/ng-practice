@@ -18,30 +18,30 @@ export class DetailsComponent implements OnInit {
   public showDetails: boolean;
   public id: number;
   public film: any;
-  public actor: any; 
+  public actor: any;
   public actorKnownFor: any;
   public video: any;
   public cast: any;
   public crew: any;
-  
+
 
   constructor(
     public filmsService: FilmService,
     public actorService: ActorService,
     private router: Router,
-    private route: ActivatedRoute,   
+    private route: ActivatedRoute,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.filmsService.currentRoute === undefined) {
       this.router.navigate(["/main"]);
-    }  
+    }
 
     this.id = this.route.snapshot.params.id;
 
-    if (this.filmsService.currentRoute === `/films/details/${this.id}`) {  
-          
+    if (this.filmsService.currentRoute === `/films/details/${this.id}`) {
+
       forkJoin(
         this.filmsService.getCastById(this.id),
         this.filmsService.getVideoById(this.id).pipe(map((res: any) => res.results)),
@@ -52,60 +52,60 @@ export class DetailsComponent implements OnInit {
           trailer: res[1],
           deteils: res[2]
         }
-        this.spinerOff(this.film);     
-      });  
-       
-      } else {  
+        this.spinerOff(this.film);
+      });
 
-        // this.actorService.getActorById(this.id).subscribe(actor => {
-        //   this.actor = actor;
-        //   console.log(this.actor);
-        //   this.spinerOff(this.actor);       
-        // }); 
+    } else {
 
-        // this.actorService.getPopularActors(this.actorService.currentPageActors).pipe(
-        //   tap((res: any) => {  
-        //     this.actorKnownFor = res.results.find(item => item.id === this.id);  
-        //     console.log(this.actorKnownFor);
-        //   })
-        // ).subscribe((actorsList: any) => console.log('in subscribe', actorsList))
+      // this.actorService.getActorById(this.id).subscribe(actor => {
+      //   this.actor = actor;
+      //   console.log(this.actor);
+      //   this.spinerOff(this.actor);       
+      // }); 
+
+      // this.actorService.getPopularActors(this.actorService.currentPageActors).pipe(
+      //   tap((res: any) => {  
+      //     this.actorKnownFor = res.results.find(item => item.id === this.id);  
+      //     console.log(this.actorKnownFor);
+      //   })
+      // ).subscribe((actorsList: any) => console.log('in subscribe', actorsList))
 
 
       forkJoin(
         this.actorService.getActorById(this.id),
         this.actorService.getPopularActors(this.actorService.currentPageActors)
-        // .pipe(
-        //   tap((result: any) => {  
-        //     console.log(result.results);
-
-        //     result.results.find(item => item.id === this.id);     
-                
-        //   })
-        // )      
+          .pipe(
+            tap((result: any) => {
+              this.actorKnownFor = result.results.find(item => {
+                item.id === this.id;
+                return item.id
+              });
+            })
+          )
       ).subscribe((res: any) => {
-       console.log(res[1]);  
+        console.log(this.actorKnownFor);
         this.actor = {
           deteils: res[0],
-          knownFor: res[1].results
+          knownFor: this.actorKnownFor
         }
         console.log(this.actor);
 
-        this.spinerOff(this.actor);     
-      }); 
-      }
-   
+        this.spinerOff(this.actor);
+      });
+    }
+
 
     this.showDetails = this.filmsService.currentRoute === `/films/details/${this.id}` ? true : false;
   }
 
 
   public spinerOff(obj) {
-    if (obj){
-      this.spiner = false;  
-    } 
+    if (obj) {
+      this.spiner = false;
+    }
   }
 
 
 
-  
+
 }
