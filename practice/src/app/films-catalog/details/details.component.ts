@@ -75,15 +75,14 @@ export class DetailsComponent implements OnInit {
         this.actorService.getActorById(this.id),
         this.actorService.getPopularActors(this.actorService.currentPageActors)
           .pipe(
-            tap((result: any) => {
-              this.actorKnownFor = result.results.find(item => {
-                item.id === this.id;
-                return item.id
-              });
+            map((result: any) => {
+              console.log(result);
+              console.log(this.id);
+              return result.results.find(item => item.id == this.id);
             })
           )
       ).subscribe((res: any) => {
-        console.log(this.actorKnownFor);
+        console.log(res[1]);
         this.actor = {
           deteils: res[0],
           knownFor: this.actorKnownFor
