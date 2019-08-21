@@ -1,48 +1,48 @@
 <div class="cards">
-    <div>
-        <img src="{{ imgUrl + film.poster_path }}" alt="" />
-    </div>
-    <div class="info">
-        <h2>{{ film.title }}</h2>
-        <p class="year">{{ film.release_date }}</p>
-        <p class="description" *ngIf="favorites; else favorite">
-            {{ film.overview.length > 180 ? (film.overview | slice: 0:180) + '...' : film.overview }}
-        </p>
-        <ng-template #favorite>
-            <p class="description">
-                {{ film.overview.length > 250 ? (film.overview | slice: 0:250) + '...' : film.overview }}
-            </p>
-        </ng-template>
+  <div>
+    <img src="{{ imgUrl + film.poster_path }}" alt="" />
+  </div>
+  <div class="info">
+    <h2>{{ film.title }}</h2>
+    <p class="year">{{ film.release_date }}</p>
+    <p class="description" *ngIf="favorites; else favorite">
+      {{ film.overview.length > 180 ? (film.overview | slice: 0:180) + '...' : film.overview }}
+    </p>
+    <ng-template #favorite>
+      <p class="description">
+        {{ film.overview.length > 250 ? (film.overview | slice: 0:250) + '...' : film.overview }}
+      </p>
+    </ng-template>
 
-        <mat-card-actions>
+    <mat-card-actions>
 
-            <ng-container *ngIf="favorites">
-                <button mat-icon-button *ngIf="!film.isBooked; else booked" (click)="addToBooked()">
+      <ng-container *ngIf="favorites">
+        <button mat-icon-button *ngIf="!film.isBooked; else booked" (click)="addToBooked()">
           <i class="material-icons">bookmark_border</i>
         </button>
 
-                <ng-template #booked>
-                    <button mat-icon-button (click)="addToBooked()" color="primary">
+        <ng-template #booked>
+          <button mat-icon-button (click)="addToBooked()" color="primary">
             <i class="material-icons">bookmark</i>
           </button>
-                </ng-template>
-            </ng-container>
+        </ng-template>
+      </ng-container>
 
-            <a mat-icon-button (click)="getDetails()">
-                <i class="material-icons">menu</i>
-            </a>
+      <a mat-icon-button (click)="getDetails()">
+        <i class="material-icons">menu</i>
+      </a>
 
-            <ng-container *ngIf="favorites">
-                <button mat-icon-button *ngIf="!film.isFavorite; else marked" (click)="addToFavorites()">
+      <ng-container *ngIf="favorites">
+        <button mat-icon-button *ngIf="!film.isFavorite; else marked" (click)="addToFavorites()">
           <i class="material-icons">favorite_border</i>
         </button>
-                <ng-template #marked>
-                    <button mat-icon-button (click)="addToFavorites()" color="warn">
+        <ng-template #marked>
+          <button mat-icon-button (click)="addToFavorites()" color="warn">
             <i class="material-icons">favorite</i>
           </button>
-                </ng-template>
-            </ng-container>
+        </ng-template>
+      </ng-container>
 
-        </mat-card-actions>
-    </div>
+    </mat-card-actions>
+  </div>
 </div>
