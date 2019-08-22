@@ -11,13 +11,13 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class FilmService {
   private favoriteNumber$ = new Subject<number>();
   public userId = localStorage.getItem('user_id');
-  public sessionId = localStorage.getItem('session_id'); 
+  public sessionId = localStorage.getItem('session_id');
   public currentRouteValue: string;
 
   constructor(
     private http: HttpClient,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
   ) { }
 
 
@@ -59,6 +59,10 @@ export class FilmService {
     return this.http.get(`${this.localConfig.movieUrl}/${id}${this.localConfig.params}`);
   }
 
+  getGenreFilm() {
+    return this.http.get(`https://api.themoviedb.org/3/genre/movie/list${this.localConfig.params}`);
+  }
+
   // ******
   getVideoById(id?: number) {
     return this.http.get(`${this.localConfig.movieUrl}/${id}/videos${this.localConfig.params}`);
@@ -71,7 +75,7 @@ export class FilmService {
 
 
 
-  getFavoriteFilms(films, userId, sessionId) { 
+  getFavoriteFilms(films, userId, sessionId) {
     this.getListOfFavotitesFilms(userId, sessionId).subscribe(
       (favoriteFilms: any) => {
         let favorites = [];
@@ -95,7 +99,7 @@ export class FilmService {
           }
         );
       }
-    );
+      );
   }
 
   getFavorite(filmIds: Array<number>) {
