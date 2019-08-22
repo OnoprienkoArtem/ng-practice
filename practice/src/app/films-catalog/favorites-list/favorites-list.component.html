@@ -1,14 +1,15 @@
 <div *ngIf="!spiner" class="cards-section">
-    <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
-        <app-film-item class="mb-2em" fxFlex="30%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="film" (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">
-        </app-film-item>
+  <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+    <app-film-item class="film-item" fxFlex="31%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="film"
+      (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">
+    </app-film-item>
 
-        <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-            <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]="isDisabledFilmsBtn">
+    <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
+      <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]="isDisabledFilmsBtn">
         Показать еще
       </button>
-        </div>
     </div>
+  </div>
 </div>
 
 <app-spiner *ngIf="spiner"></app-spiner>

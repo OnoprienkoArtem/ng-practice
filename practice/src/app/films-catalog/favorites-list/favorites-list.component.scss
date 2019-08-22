@@ -1,10 +1,14 @@
 .cards-section {
   .cards {
     margin: 30px auto;
-    max-width: 1100px;
+    max-width: 1200px;
+
+    .film-item {
+      margin-bottom: 20px;
+    }
   }
 }
 
-button { 
+button {
   margin: auto;
 }
