@@ -3,15 +3,15 @@
   display: flex;
   border-radius: 4px;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
-  height: 275px;
+  height: 280px;
 }
 
-.cards div:first-child {
+.cards>div:first-child {
   width: 50%;
   display: flex;
 }
 
-.cards div:last-child {
+.cards>div:last-child {
   width: 50%;
 }
 
@@ -25,6 +25,10 @@
   padding: 2%;
   position: relative;
   text-align: left;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 h2 {
@@ -52,10 +56,13 @@ h2 {
 }
 
 .mat-card-actions {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
   width: 100%;
-  margin: 0;
-  text-align: center;
+  // margin: 0;
+  // text-align: center;
+  display: flex;
+  justify-content: space-between;
+
 }

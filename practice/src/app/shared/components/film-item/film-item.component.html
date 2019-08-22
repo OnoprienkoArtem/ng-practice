@@ -3,30 +3,40 @@
     <img src="{{ imgUrl + film.poster_path }}" alt="" />
   </div>
   <div class="info">
-    <h2>{{ film.title }}</h2>
-    <p class="year">{{ film.release_date }}</p>
-    <p class="description" *ngIf="favorites; else favorite">
-      {{ film.overview.length > 180 ? (film.overview | slice: 0:180) + '...' : film.overview }}
-    </p>
-    <ng-template #favorite>
-      <p class="description">
-        {{ film.overview.length > 250 ? (film.overview | slice: 0:250) + '...' : film.overview }}
+
+    <div>
+      <h2>{{ film.title }}</h2>
+      <p class="year">{{ film.release_date | date: 'dd MMMM yyyy' }}</p>
+      <!-- <p class="genre">Жанр:
+        <span *ngFor="let genre of film.deteils.genres">
+          <span>{{genre.name}} / </span>
+        </span>
+      </p> -->
+
+      <p class="description" *ngIf="favorites; else favorite">
+        {{ film.overview.length > 300 ? (film.overview | slice: 0:300) + '...' : film.overview }}
       </p>
-    </ng-template>
+
+      <ng-template #favorite>
+        <p class="description">
+          {{ film.overview.length > 300 ? (film.overview | slice: 0:300) + '...' : film.overview }}
+        </p>
+      </ng-template>
+    </div>
+
 
     <mat-card-actions>
 
-      <ng-container *ngIf="favorites">
+      <!-- <ng-container *ngIf="favorites">
         <button mat-icon-button *ngIf="!film.isBooked; else booked" (click)="addToBooked()">
           <i class="material-icons">bookmark_border</i>
         </button>
-
         <ng-template #booked>
           <button mat-icon-button (click)="addToBooked()" color="primary">
             <i class="material-icons">bookmark</i>
           </button>
         </ng-template>
-      </ng-container>
+      </ng-container> -->
 
       <a mat-icon-button (click)="getDetails()">
         <i class="material-icons">menu</i>
