@@ -118,7 +118,7 @@ router-outlet~* {
       height: 100% !important;
 
       circle {
-        stroke: #46454b;
+        stroke: rgb(70, 69, 75);
         stroke-width: 12% !important;
       }
     }
@@ -129,7 +129,8 @@ router-outlet~* {
   .mat-progress-spinner {
     svg {
       circle {
-        stroke-width: 25% !important;
+        stroke: rgba(70, 69, 75, .25);
+        stroke-width: 20% !important;
       }
     }
   }
