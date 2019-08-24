@@ -40,8 +40,9 @@ export class DetailsComponent implements OnInit {
 
     this.id = this.route.snapshot.params.id;
 
-    if (this.filmsService.currentRoute === `/films/details/${this.id}`) {
+    console.log(this.id);
 
+    if (this.filmsService.currentRoute === `/films/details/${this.id}`) {
       forkJoin(
         this.filmsService.getCastById(this.id),
         this.filmsService.getVideoById(this.id).pipe(map((res: any) => res.results)),
@@ -56,21 +57,6 @@ export class DetailsComponent implements OnInit {
       });
 
     } else {
-
-      // this.actorService.getActorById(this.id).subscribe(actor => {
-      //   this.actor = actor;
-      //   console.log(this.actor);
-      //   this.spinerOff(this.actor);       
-      // }); 
-
-      // this.actorService.getPopularActors(this.actorService.currentPageActors).pipe(
-      //   tap((res: any) => {  
-      //     this.actorKnownFor = res.results.find(item => item.id === this.id);  
-      //     console.log(this.actorKnownFor);
-      //   })
-      // ).subscribe((actorsList: any) => console.log('in subscribe', actorsList))
-
-
       forkJoin(
         this.actorService.getActorById(this.id),
         this.actorService.getPopularActors(this.actorService.currentPageActors)
