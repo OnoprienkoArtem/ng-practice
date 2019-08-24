@@ -5,7 +5,22 @@
   <div class="info">
 
     <div>
-      <h2>{{ film.title }}</h2>
+
+      <div class="title">
+        <h2>{{ film.title }}</h2>
+
+        <div class="popularity-circle">
+          <div class="popularity width-sircle-25">
+            <!--  {{film.deteils.vote_average}} -->
+            <label>10</label>
+            <mat-progress-spinner class="example-margin" [mode]="mode" [value]="5">
+            </mat-progress-spinner>
+          </div>
+        </div>
+
+      </div>
+
+
       <p class="year">{{ film.release_date | date: 'dd MMMM yyyy' }}</p>
       <!-- <p class="genre">Жанр:
         <span *ngFor="let genre of film.genre_ids">
@@ -14,12 +29,12 @@
       </p> -->
 
       <p class="description" *ngIf="favorites; else favorite">
-        {{ film.overview.length > 300 ? (film.overview | slice: 0:300) + '...' : film.overview }}
+        {{ film.overview.length > 200 ? (film.overview | slice: 0:200) + '...' : film.overview }}
       </p>
 
       <ng-template #favorite>
         <p class="description">
-          {{ film.overview.length > 300 ? (film.overview | slice: 0:300) + '...' : film.overview }}
+          {{ film.overview.length > 200 ? (film.overview | slice: 0:200) + '...' : film.overview }}
         </p>
       </ng-template>
     </div>

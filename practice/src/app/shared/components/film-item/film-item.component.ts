@@ -15,6 +15,7 @@ export class FilmItemComponent implements OnInit {
   public imgUrl: string = this.localConfig.midImgPath;
   public currentRoute: string;
   public favorites: boolean = true;
+  public mode = 'determinate';
 
   @Input('data') film: Film;
   @Output() updateListOfFavorite = new EventEmitter<number>();
