@@ -30,7 +30,8 @@ export class FilmItemComponent implements OnInit {
 
     console.log(this.film);
 
-    console.log(this.filmsService.currentRoute);
+
+    // console.log(this.filmsService.currentRoute);
 
 
     if (this.filmsService.currentRoute === '/favorites') {
