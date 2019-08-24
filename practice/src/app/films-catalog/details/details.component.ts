@@ -57,11 +57,15 @@ export class DetailsComponent implements OnInit {
       });
 
     } else {
+
+
       forkJoin(
         this.actorService.getActorById(this.id),
         this.actorService.getPopularActors(this.actorService.currentPageActors)
           .pipe(map((result: any) => result.results.find(item => item.id == this.id)))
       ).subscribe((res: any) => {
+
+        console.log(res[0]);
         console.log(res[1]);
         this.actor = {
           deteils: res[0],
