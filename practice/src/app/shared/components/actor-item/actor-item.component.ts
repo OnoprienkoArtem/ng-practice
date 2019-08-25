@@ -4,6 +4,7 @@ import { LOCAL_CONFIG } from '../../../config/config-api';
 import { ApiConfig } from '../../../models/api';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { FilmService } from '../../../services/film.service';
+import { ActorService } from '../../../services/actor.service';
 @Component({
   selector: 'app-actor-item',
   templateUrl: './actor-item.component.html',
@@ -13,15 +14,18 @@ export class ActorItemComponent implements OnInit {
 
   imgUrl: string = this.localConfig.midImgPath;
 
-
-
-  @Input('data') actor: Actor;
+  @Input('data') actor: any;
 
   constructor(@Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    public actorService: ActorService,
     public filmsService: FilmService,
     private router: Router) { }
 
   ngOnInit() {
+
+    // console.log(this.actor);
+    // console.log(this.actor.known_for);
+    this.actorService.knownFor = this.actor.known_for;
   }
 
   getDetails() {

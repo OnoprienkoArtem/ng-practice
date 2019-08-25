@@ -10,6 +10,8 @@ import { Subject, Observable } from 'rxjs';
 export class ActorService {
 
   public currentPage: number;
+  // public knownForValue$ = new Subject<any>();
+  public knownForValue = new Subject<any>();
 
   constructor(
     private http: HttpClient,
@@ -23,6 +25,29 @@ export class ActorService {
   get currentPageActors() {
     return this.currentPage || 1;
   }
+
+
+  // set and get know_for value
+
+  // public setKnownFor(value) {
+  //   this.knownForValue$.next(value);
+  // }
+
+  // public getKnownFor(): Observable<boolean> {
+  //   return this.knownForValue$.asObservable();
+  // }
+
+  set knownFor(value: any) {
+    this.knownForValue = value;
+  }
+
+  get knownFor() {
+    return this.knownForValue;
+  }
+
+
+
+
 
   getPopularActors(page?: number) {
     return this.http.get(`${this.localConfig.personUrl}/popular${this.localConfig.params}&page=${page}`);

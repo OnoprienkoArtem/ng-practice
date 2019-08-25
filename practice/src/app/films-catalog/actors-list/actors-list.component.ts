@@ -34,7 +34,6 @@ export class ActorsListComponent implements OnInit {
         this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
         this.totalResult = actorsList.total_results;
-
         if (this.actors) {
           this.spinner = false;
         }
