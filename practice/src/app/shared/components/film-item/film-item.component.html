@@ -68,6 +68,13 @@
         </ng-template>
       </ng-container>
 
+
+      <ng-container *ngIf="!favorites">
+        <button mat-icon-button (click)="addToFavorites()">
+          <i class="material-icons">delete_forever</i>
+        </button>
+      </ng-container>
+
     </mat-card-actions>
   </div>
 </div>

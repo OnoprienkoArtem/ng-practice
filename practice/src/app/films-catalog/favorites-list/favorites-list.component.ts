@@ -15,8 +15,10 @@ export class FavoritesListComponent implements OnInit {
   public spinner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
-  
-  
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
+
+
   constructor(
     public filmsService: FilmService,
     private router: Router
@@ -26,14 +28,10 @@ export class FavoritesListComponent implements OnInit {
     this.getOnePagePopularFilms(this.page);
 
 
-
   }
 
   getOnePagePopularFilms(page) {
-
-    const userId = localStorage.getItem('user_id');
-    const sessionId = localStorage.getItem('session_id');
-    this.filmsService.getListOfFavotitesFilms(userId, sessionId).subscribe((favorites: any) => {
+    this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
       console.log(favorites);
       this.totalPages = favorites.total_pages;
       this.films = favorites.results;
@@ -52,5 +50,17 @@ export class FavoritesListComponent implements OnInit {
     this.getOnePagePopularFilms(this.page);
     this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false;
   }
+
+  public addFilmToFavorit(id: number) {
+    // const favoriteFilms = this.films.find(item => item.id === id);
+
+
+    this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);
+    // this.getOnePagePopularFilms(this.page);
+    // console.log(this.films);
+
+  }
+
+
 
 }
