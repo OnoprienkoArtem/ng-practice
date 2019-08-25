@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { LOCAL_CONFIG } from '../../../config/config-api';
 import { ApiConfig } from '../../../models/api';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -17,9 +17,12 @@ export class ActorDetailsComponent implements OnInit {
   public midBackPath: string = this.localConfig.midBackPath;
   public smallImgPath: string = this.localConfig.smallImgPath;
   public mode = 'determinate';
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
 
   @Input('data') actor: any;
   // @Input() actorKnownFor: any;  
+  @Output() updateListOfFavorite = new EventEmitter<number>();
 
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -30,10 +33,20 @@ export class ActorDetailsComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.actor);
+    this.filmsService.getFavoriteFilms(this.actor.knownFor.known_for, this.userId, this.sessionId);
   }
 
+  public addFilmToFavorit(id: number) {
+    const favoriteFilms = this.actor.knownFor.known_for.find(item => item.id === id);
 
-  backOnAllActor() {
+    if (favoriteFilms.isFavorite) {
+      this.filmsService.markFavorite(id, false, this.actor.knownFor.known_for, this.userId, this.sessionId);
+    } else {
+      this.filmsService.markFavorite(id, true, this.actor.knownFor.known_for, this.userId, this.sessionId);
+    }
+  }
+
+  public backOnAllActor() {
     this._location.back();
   }
 

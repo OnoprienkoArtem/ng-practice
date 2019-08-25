@@ -38,7 +38,8 @@ export class FilmItemComponent implements OnInit {
 
   }
 
-  addToFavorites() {
+  addToFavorites(e) {
+    console.log(e);
     this.updateListOfFavorite.emit(this.film.id);
   }
 

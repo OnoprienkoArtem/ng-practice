@@ -34,7 +34,7 @@ export class FilmDetailsComponent implements OnInit {
     console.log(this.film);
 
     this.film.people.cast.map(item => {
-      console.log(item.id);
+      // console.log(item.id);
 
 
     })

@@ -44,7 +44,7 @@
   </section>
   <section class="cards-known-for" *ngIf="actor.knownFor">
     <app-film-item fxFlex="32%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="film"
-      *ngFor="let film of actor.knownFor.known_for">
+      *ngFor="let film of actor.knownFor.known_for" (updateListOfFavorite)="addFilmToFavorit($event)">
     </app-film-item>
   </section>
 
