@@ -27,22 +27,35 @@ export class FavoritesListComponent implements OnInit {
   ngOnInit() {
     this.getOnePagePopularFilms(this.page);
 
-
   }
 
   getOnePagePopularFilms(page) {
+
     this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
-      console.log(favorites);
+      console.log(favorites.results);
+
+      this.filmsService.getFavoriteFilmsList().subscribe(
+        res => {
+          this.films = res;
+          console.log(res);
+        }
+      );
+
+
       this.totalPages = favorites.total_pages;
       this.films = favorites.results;
+
       if (this.films) {
         this.spinner = false;
       }
       if (this.totalPages === favorites.total_pages) {
         this.isDisabledFilmsBtn = true;
       }
-    }
-    )
+    })
+
+
+
+
   }
 
   public nextFilmsPage() {
@@ -57,7 +70,15 @@ export class FavoritesListComponent implements OnInit {
 
     this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);
     // this.getOnePagePopularFilms(this.page);
+    this.filmsService.getFavoriteFilmsList().subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+    // this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
     // console.log(this.films);
+
+
 
   }
 

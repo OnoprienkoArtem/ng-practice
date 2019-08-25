@@ -39,6 +39,16 @@ export class FilmService {
   }
 
 
+  favoriteList$ = new Subject<any>();
+
+  setFavoriteFilmsList(value: any) {
+    this.favoriteList$.next(value);
+  }
+
+  getFavoriteFilmsList(): Observable<any> {
+    return this.favoriteList$.asObservable();
+  }
+
 
 
   // http
@@ -73,10 +83,8 @@ export class FilmService {
   }
 
 
-
-
   getFavoriteFilms(films, userId, sessionId) {
-    this.getListOfFavotitesFilms(userId, sessionId).subscribe(
+    return this.getListOfFavotitesFilms(userId, sessionId).subscribe(
       (favoriteFilms: any) => {
         let favorites = [];
         favoriteFilms.results.map(item => {
@@ -95,6 +103,11 @@ export class FilmService {
         this.getFavoriteFilms(films, userId, sessionId);
         this.getListOfFavotitesFilms(userId, sessionId).subscribe(
           (favorites: any) => {
+
+
+            this.setFavoriteFilmsList(favorites.results);
+
+
             return this.changefavoriteNumber(favorites.total_results);
           }
         );

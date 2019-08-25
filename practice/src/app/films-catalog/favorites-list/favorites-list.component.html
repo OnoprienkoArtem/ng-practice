@@ -1,4 +1,4 @@
-<div *ngIf="!spiner" class="cards-section">
+<div class="cards-section">
   <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
     <app-film-item class="film-item" fxFlex="31%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="film"
       (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">
@@ -12,4 +12,4 @@
   </div>
 </div>
 
-<app-spiner *ngIf="spiner"></app-spiner>
+<!-- <app-spiner *ngIf="spinner"></app-spiner> -->
