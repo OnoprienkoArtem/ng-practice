@@ -1,4 +1,17 @@
 <div *ngIf="!spiner" class="cards-section">
+
+  <div class="btn-back" fxLayout="row wrap" fxLayoutAlign="end" fxLayoutAlign.lt-sm="center">
+    <button mat-stroked-button (click)="firstPage()">в начало</button>
+  </div>
+
+  <div class="cards-header" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+    <h2> {{totalResult}} фильмов</h2>
+    <div>
+      <p>Страница: {{page}} из {{totalPages}}</p>
+      <!-- <button mat-raised-button (click)="firstPage()">в начало</button> -->
+    </div>
+  </div>
+
   <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
     <app-film-item class="film-item" fxFlex="31%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="film"
       (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">

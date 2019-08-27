@@ -10,6 +10,7 @@ import { Film } from '../../models/film';
 export class FilmsListComponent implements OnInit {
   private totalPages: number;
   private page: number = 1;
+  public totalResult: number;
   public spiner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
@@ -26,7 +27,10 @@ export class FilmsListComponent implements OnInit {
 
     this.filmsService.getPopularFilms(page).subscribe(
       (filmList: any) => {
+        console.log(filmList);
         this.totalPages = filmList.total_pages;
+        this.page = filmList.page;
+        this.totalResult = filmList.total_results;
         this.films = filmList.results;
         this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
 
