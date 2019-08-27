@@ -17,6 +17,8 @@ export class FilmItemComponent implements OnInit {
   public favorites: boolean = true;
   public mode = 'determinate';
 
+  hide: boolean = false;
+
   @Input('data') film: Film;
   @Output() updateListOfFavorite = new EventEmitter<number>();
   @Output() updateListOfBooked = new EventEmitter<number>();
@@ -39,7 +41,11 @@ export class FilmItemComponent implements OnInit {
   }
 
   addToFavorites() {
+    if (this.filmsService.currentRoute === '/favorites') {
+      this.hide = true;
+    }
     this.updateListOfFavorite.emit(this.film.id);
+
   }
 
   addToBooked() {
@@ -48,6 +54,7 @@ export class FilmItemComponent implements OnInit {
 
   getDetails() {
     this.router.navigate(['/films/details', this.film.id]);
+
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) this.filmsService.currentRoute = event.url;
     });

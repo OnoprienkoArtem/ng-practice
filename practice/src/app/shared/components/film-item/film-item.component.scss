@@ -97,3 +97,8 @@ h2 {
     }
   }
 }
+
+.hideCards {
+  opacity: 0;
+  transition: all 1s;
+}
