@@ -1,7 +1,6 @@
 <div *ngIf="!spiner" class="cards-section">
   <div>
     <div>
-
       <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
         <h2>Популярные фильмы</h2>
         <button mat-stroked-button routerLink="/films">Посмотреть все фильмы</button>
@@ -14,7 +13,6 @@
         </mat-card>
       </div>
     </div>
-
     <div>
       <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
         <h2>Популярные актеры</h2>
@@ -28,9 +26,7 @@
         </mat-card>
       </div>
     </div>
-
   </div>
-
 </div>
 
 <app-spiner *ngIf="spiner"></app-spiner>
