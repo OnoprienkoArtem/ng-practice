@@ -1,6 +1,6 @@
 .cards-section {
   .cards {
-    margin: 30px auto;
+    margin: 0 auto;
     max-width: 1200px;
 
     .film-item {
@@ -11,4 +11,23 @@
 
 button {
   margin: auto;
+}
+
+.cards-header {
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    p {
+      padding-top: 5px;
+    }
+
+    button {
+      margin-left: 20px;
+    }
+  }
 }

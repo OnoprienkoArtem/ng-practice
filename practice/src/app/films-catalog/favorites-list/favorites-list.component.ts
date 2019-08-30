@@ -10,8 +10,9 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
 })
 export class FavoritesListComponent implements OnInit {
 
-  private totalPages: number;
-  private page: number = 1;
+  public totalPages: number;
+  public totalResult: number;
+  public page: number = 1;
   public spinner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
@@ -30,10 +31,7 @@ export class FavoritesListComponent implements OnInit {
   }
 
   getOnePagePopularFilms(page) {
-
     this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
-      console.log(favorites.results);
-
       this.filmsService.getFavoriteFilmsList().subscribe(
         res => {
           this.films = res;
@@ -41,20 +39,18 @@ export class FavoritesListComponent implements OnInit {
         }
       );
 
-
+      this.totalResult = favorites.total_results;
       this.totalPages = favorites.total_pages;
       this.films = favorites.results;
 
       if (this.films) {
         this.spinner = false;
       }
+
       if (this.totalPages === favorites.total_pages) {
         this.isDisabledFilmsBtn = true;
       }
     })
-
-
-
 
   }
 
@@ -78,10 +74,6 @@ export class FavoritesListComponent implements OnInit {
     // this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
     // console.log(this.films);
 
-
-
   }
-
-
 
 }

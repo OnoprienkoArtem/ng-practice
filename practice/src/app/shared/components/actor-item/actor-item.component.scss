@@ -1,35 +1,37 @@
-.card {  
+.card {
   background: #fff;
   border-radius: 4px;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 
-							0 1px 1px 0 rgba(0, 0, 0, .14), 
-							0 1px 3px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2),
+    0 1px 1px 0 rgba(0, 0, 0, .14),
+    0 1px 3px 0 rgba(0, 0, 0, .12);
   min-height: 290px;
   display: flex;
   flex-direction: column;
-	transition: all .5s;
-	cursor: pointer;
+  transition: all .5s;
+  cursor: pointer;
 
-	&:hover {
-		transition: all .5s;
-		transform: translate(-1px, -1px);
-		box-shadow: 2px 4px 12px 5px rgba(0, 0, 0, .2),
-								4px 6px 12px 0px rgba(0, 0, 0, .14),
-								6px 8px 12px 0px rgba(0, 0, 0, .12);
-	}
+  &:hover {
+    transition: all .5s;
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 4px 12px 5px rgba(0, 0, 0, .2),
+      4px 6px 12px 0px rgba(0, 0, 0, .14),
+      6px 8px 12px 0px rgba(0, 0, 0, .12);
+  }
 
-  .name {    
+  .name {
     text-align: center;
-    margin: auto;    
+    margin: auto;
     height: 40px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+
     h2 {
       font-size: 12px !important;
       margin: 0;
     }
+
     p {
       font-size: 10px;
       margin: 0;
@@ -40,7 +42,7 @@
     margin: auto;
     padding: 7px;
     padding-top: 0;
-    height: 250px;
+    height: 300px;
 
     img {
       width: 100%;
@@ -60,10 +62,10 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+
   img {
-  	width: 75% !important;
+    width: 75% !important;
     height: 75% !important;
     object-fit: contain !important;
   }
 }
-
