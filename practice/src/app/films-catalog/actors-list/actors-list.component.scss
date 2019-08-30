@@ -1,15 +1,18 @@
 .cards-section {
   .cards {
-    margin: 30px auto;
-    max-width: 1100px;
+    margin: 0 auto;
+    max-width: 1200px;
+
+    .actor-item {
+      margin-bottom: 30px;
+    }
   }
 }
 
 .cards-header {
   padding: 0 32px;
   margin: 0 auto;
-  max-width: 1100px;
-  margin-bottom: 10px;
+  max-width: 1200px;
 
   div {
     display: flex;
@@ -28,6 +31,10 @@
 .btn-back {
   padding: 0 32px;
   margin: 0 auto;
-  max-width: 1100px;
+  max-width: 1200px;
   margin-top: 30px;
+}
+
+.btn-section {
+  margin: 10px 0 40px;
 }
