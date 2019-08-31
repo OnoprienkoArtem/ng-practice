@@ -13,6 +13,7 @@ import { FilmDetailsComponent } from './components/film-details/film-details.com
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { ActorDetailsComponent } from './components/actor-details/actor-details.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ActorDetailsComponent } from './components/actor-details/actor-details.
     FilmDetailsComponent,
     NotFoundComponent,
     SnackBarComponent,
-    ActorDetailsComponent
+    ActorDetailsComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
