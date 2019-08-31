@@ -1,1 +1,49 @@
-.pagination {}
+:host {
+  flex: 0 0 30px;
+  display: flex;
+
+  .pagination {
+    width: 100%;
+    position: relative;
+    flex: 1;
+    background: grey;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .description {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      left: 20%;
+
+      .page-counts {
+        margin-right: 20% * 2;
+      }
+    }
+
+    .numbers {
+      display: block;
+      text-align: center;
+      flex: 1;
+
+      button {
+        flex: 0 0 auto;
+        outline: none;
+        border: 0;
+        padding: 0 (20% / 2);
+        background: transparent;
+        cursor: pointer;
+
+        &.active {
+        //   @extend .h6;
+        }
+
+        &.disabled {
+        //   @extend .link-disabled;
+          color: lightgrey;
+        }
+      }
+    }
+  }
+}

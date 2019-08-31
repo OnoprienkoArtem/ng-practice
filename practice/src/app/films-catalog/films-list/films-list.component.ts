@@ -17,6 +17,12 @@ export class FilmsListComponent implements OnInit {
   private userId = localStorage.getItem('user_id');
   private sessionId = localStorage.getItem('session_id');
 
+
+  // loading = false;
+  total = 10;
+  pagePag = 1;
+  limit = 20;
+
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() {
@@ -40,10 +46,6 @@ export class FilmsListComponent implements OnInit {
       },
       err => console.log('error', err)
     );
-
-
-
-
   }
 
   public nextFilmsPage() {
@@ -61,4 +63,27 @@ export class FilmsListComponent implements OnInit {
       this.filmsService.markFavorite(id, true, this.films, this.userId, this.sessionId);
     }
   }
+
+
+
+
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getOnePagePopularFilms(this.page);
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getOnePagePopularFilms(this.page);
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getOnePagePopularFilms(this.page);
+  }
+
+
+
+
 }
