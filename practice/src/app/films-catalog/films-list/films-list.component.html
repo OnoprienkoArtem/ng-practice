@@ -20,6 +20,12 @@
       <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]='isDisabledFilmsBtn'>Показать
         еще</button>
     </div>
+
+    <!-- [count]="someCountVar" [page]="somePageVar" [perPage]="somePerPageVar" [pagesToShow]="5"
+    [loading]="someLoadingVar" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)" -->
+
+    <app-pagination></app-pagination>
+
   </div>
 
 

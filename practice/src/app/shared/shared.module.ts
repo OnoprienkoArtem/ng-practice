@@ -39,7 +39,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     SearchComponent,
     SpinerComponent,
     FilmDetailsComponent,
-    ActorDetailsComponent
+    ActorDetailsComponent,
+    PaginationComponent
   ],
   entryComponents: [
     SnackBarComponent
