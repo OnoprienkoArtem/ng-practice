@@ -21,7 +21,7 @@ export class FilmsListComponent implements OnInit {
   // loading = false;
   public total = 10;
   public pagePag: number;
-  public limit = 20;
+  public limit = 1;
 
   constructor(public filmsService: FilmService) { }
 
@@ -42,7 +42,7 @@ export class FilmsListComponent implements OnInit {
         // for pagination
         this.total = filmList.total_pages;
         this.pagePag = filmList.page;
-
+       
 
         this.page = filmList.page;
         this.totalResult = filmList.total_results;
@@ -71,6 +71,10 @@ export class FilmsListComponent implements OnInit {
     } else {
       this.filmsService.markFavorite(id, true, this.films, this.userId, this.sessionId);
     }
+  }
+
+  firstPage() {
+    this.getOnePagePopularFilms(1);
   }
 
 

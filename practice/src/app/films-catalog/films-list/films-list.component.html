@@ -24,11 +24,11 @@
     <div class="pagination-section">
 
       <app-pagination 
+        (firstPageEmit)="firstPage($event)"
         (goPage)="goToPage($event)"
         (goNext)="onNext()"
         (goPrev)="onPrev()"
         [pagesToShow]="10"
-        
         [page]="pagePag"
         [perPage]="limit"
         [count]="total">

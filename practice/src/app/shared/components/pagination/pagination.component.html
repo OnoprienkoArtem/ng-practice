@@ -4,13 +4,25 @@
     <span class="page-totals">{{ totalPages() }} pages</span>
   </div> -->
   <div class="numbers">
+
+    <button class="link" (click)="firstPage()" [disabled]="page === 1 || loading"
+      [ngClass]="{ 'disabled': page === 1 || loading }">
+      <i class="material-icons">first_page</i>
+    </button>
+
     <button class="link" (click)="onPrev()" [disabled]="page === 1 || loading"
-      [ngClass]="{ 'disabled': page === 1 || loading }">&lt; Prev</button>
+      [ngClass]="{ 'disabled': page === 1 || loading }">
+      <i class="material-icons">chevron_left</i>
+    </button>
 
     <button *ngFor="let pageNum of getPages()" (click)="onPage(pageNum)"
       [ngClass]="{'active': pageNum === page, 'disabled': loading}">{{ pageNum }}</button>
 
     <button class="link" (click)="onNext(true)" [disabled]="lastPage() || loading"
-      [ngClass]="{ 'disabled': lastPage() || loading }">Next &gt;</button>
+      [ngClass]="{ 'disabled': lastPage() || loading }">
+      <i class="material-icons">chevron_right</i>
+    </button>
+
+
   </div>
 </div>
