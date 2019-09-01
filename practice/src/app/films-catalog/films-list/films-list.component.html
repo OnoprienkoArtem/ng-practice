@@ -21,15 +21,21 @@
         еще</button>
     </div>
 
-    <app-pagination 
-      (goPage)="goToPage($event)"
-      (goNext)="onNext()"
-      (goPrev)="onPrev()"
-      [pagesToShow]="3"
-      [page]="pagePag"
-      [perPage]="limit"
-      [count]="total">
-    </app-pagination>
+    <div class="pagination-section">
+
+      <app-pagination 
+        (goPage)="goToPage($event)"
+        (goNext)="onNext()"
+        (goPrev)="onPrev()"
+        [pagesToShow]="10"
+        [page]="pagePag"
+        [perPage]="limit"
+        [count]="total">
+      </app-pagination>
+
+    </div>
+
+
 
   </div>
 

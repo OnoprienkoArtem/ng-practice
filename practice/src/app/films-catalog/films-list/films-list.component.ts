@@ -20,7 +20,7 @@ export class FilmsListComponent implements OnInit {
 
   // loading = false;
   total = 10;
-  pagePag = 1;
+  pagePag = 5;
   limit = 20;
 
   constructor(public filmsService: FilmService) { }
@@ -35,6 +35,9 @@ export class FilmsListComponent implements OnInit {
       (filmList: any) => {
         console.log(filmList);
         this.totalPages = filmList.total_pages;
+
+        this.total = filmList.total_pages;
+
         this.page = filmList.page;
         this.totalResult = filmList.total_results;
         this.films = filmList.results;
