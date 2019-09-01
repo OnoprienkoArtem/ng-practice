@@ -20,6 +20,8 @@ export class PaginationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    
   }
 
   // getMin(): number {

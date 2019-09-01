@@ -19,14 +19,16 @@ export class FilmsListComponent implements OnInit {
 
 
   // loading = false;
-  total = 10;
-  pagePag = 5;
-  limit = 20;
+  public total = 10;
+  public pagePag: number;
+  public limit = 20;
 
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() {
     this.getOnePagePopularFilms(this.page);
+
+    console.log(this.pagePag);
   }
 
   getOnePagePopularFilms(page) {
@@ -36,7 +38,11 @@ export class FilmsListComponent implements OnInit {
         console.log(filmList);
         this.totalPages = filmList.total_pages;
 
+
+        // for pagination
         this.total = filmList.total_pages;
+        this.pagePag = filmList.page;
+
 
         this.page = filmList.page;
         this.totalResult = filmList.total_results;
