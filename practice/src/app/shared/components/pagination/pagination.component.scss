@@ -1,6 +1,8 @@
 
 
   .pagination {
+
+
     width: 100%;
     position: relative;
     flex: 1;
@@ -29,7 +31,8 @@
         flex: 0 0 auto;
         outline: none;
         border: 0;
-        // padding: 0 (20% / 2);
+              font-family: 'Montserrat',
+              sans-serif;
         background: transparent;
         cursor: pointer;
 
@@ -42,7 +45,7 @@
         }
 
         &.disabled {
-        //   @extend .link-disabled;
+        
           color: lightgrey;
         }
       }
