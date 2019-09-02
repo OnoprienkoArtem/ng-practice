@@ -25,6 +25,7 @@
 
       <app-pagination 
         (firstPageEmit)="firstPage($event)"
+        (lastPageEmit)="lastPage($event)"
         (goPage)="goToPage($event)"
         (goNext)="onNext()"
         (goPrev)="onPrev()"

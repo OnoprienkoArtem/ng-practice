@@ -77,6 +77,10 @@ export class FilmsListComponent implements OnInit {
     this.getOnePagePopularFilms(1);
   }
 
+  lastPage() {
+    this.getOnePagePopularFilms(500);
+  }
+
 
 
 

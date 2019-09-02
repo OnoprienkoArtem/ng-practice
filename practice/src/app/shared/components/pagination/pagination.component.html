@@ -18,9 +18,14 @@
     <button *ngFor="let pageNum of getPages()" (click)="onPage(pageNum)"
       [ngClass]="{'active': pageNum === page, 'disabled': loading}">{{ pageNum }}</button>
 
-    <button class="link" (click)="onNext(true)" [disabled]="lastPage() || loading"
-      [ngClass]="{ 'disabled': lastPage() || loading }">
+    <button class="link" (click)="onNext(true)" [disabled]="page === 500 || loading"
+      [ngClass]="{ 'disabled': page === 500 || loading }">
       <i class="material-icons">chevron_right</i>
+    </button>
+
+    <button class="link" (click)="lastPage()" [disabled]="page === 500 || loading"
+          [ngClass]="{ 'disabled': page === 500 || loading }">
+          <i class="material-icons">last_page</i>
     </button>
 
 
