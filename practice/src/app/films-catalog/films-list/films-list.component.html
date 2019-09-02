@@ -1,47 +1,28 @@
 <div *ngIf="!spiner" class="cards-section">
-
-  <!-- <div class="btn-back" fxLayout="row wrap" fxLayoutAlign="end" fxLayoutAlign.lt-sm="center">
-    <button mat-stroked-button (click)="firstPage()">в начало</button>
-  </div> -->
-
   <div class="cards-header" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
     <h2>{{totalResult}} фильмов</h2>
     <div>
       <p>Страница: {{page}} из {{totalPages}}</p>
     </div>
   </div>
-
   <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
     <app-film-item class="film-item" fxFlex="31%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="film"
       (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">
     </app-film-item>
-
-    <!-- <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-      <button mat-raised-button color="primary" (click)="nextFilmsPage()" [disabled]='isDisabledFilmsBtn'>Показать
-        еще</button>
-    </div> -->
-
     <div class="pagination-section">
-
       <app-pagination 
         (firstPageEmit)="firstPage($event)"
         (lastPageEmit)="lastPage($event)"
         (goPage)="goToPage($event)"
         (goNext)="onNext()"
         (goPrev)="onPrev()"
-        [pagesToShow]="10"
+        [pagesToShow]="9"
         [page]="pagePag"
         [perPage]="limit"
         [count]="total">
       </app-pagination>
-
     </div>
-
-
-
   </div>
-
-
 </div>
 
 <app-spiner *ngIf="spiner"></app-spiner>
