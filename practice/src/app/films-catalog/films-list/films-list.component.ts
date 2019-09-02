@@ -18,7 +18,7 @@ export class FilmsListComponent implements OnInit {
   private sessionId = localStorage.getItem('session_id');
 
 
-  // loading = false;
+ 
   public total = 10;
   public pagePag: number;
   public limit = 1;
