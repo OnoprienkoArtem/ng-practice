@@ -32,6 +32,7 @@ export class FavoritesListComponent implements OnInit {
 
   getOnePagePopularFilms(page) {
     this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
+      console.log(favorites);
       this.filmsService.getFavoriteFilmsList().subscribe(
         res => {
           this.films = res;
