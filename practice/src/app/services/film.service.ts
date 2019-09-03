@@ -13,6 +13,7 @@ export class FilmService {
   public userId = localStorage.getItem('user_id');
   public sessionId = localStorage.getItem('session_id');
   public currentRouteValue: string;
+  public currentPage: number;
 
   constructor(
     private http: HttpClient,
@@ -28,6 +29,17 @@ export class FilmService {
   public getfavoriteNumber(): Observable<number> {
     return this.favoriteNumber$.asObservable();
   }
+  
+
+
+  set currentPageFilms(value: number) {
+    this.currentPage = value;
+  }
+
+  get currentPageFilms() {
+    return this.currentPage || 1;
+  }
+
 
 
   set currentRoute(value: any) {
@@ -103,16 +115,12 @@ export class FilmService {
         this.getFavoriteFilms(films, userId, sessionId);
         this.getListOfFavotitesFilms(userId, sessionId).subscribe(
           (favorites: any) => {
-
-
             this.setFavoriteFilmsList(favorites.results);
-
-
             return this.changefavoriteNumber(favorites.total_results);
           }
         );
       }
-      );
+    );
   }
 
   getFavorite(filmIds: Array<number>) {
