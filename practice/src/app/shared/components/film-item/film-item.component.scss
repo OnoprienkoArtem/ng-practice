@@ -33,19 +33,20 @@
 
 h2 {
   margin: 0;
-  font-size: 1vw;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .year {
-  font-size: .7vw;
-  font-weight: 900;
+  font-size: 10px;
+  font-style: italic;
   margin: .25em 0;
   color: #58575d;
   text-align: right;
 }
 
 .description {
-  font-size: .7em;
+  font-size: 10px;
 }
 
 .btn-block {
