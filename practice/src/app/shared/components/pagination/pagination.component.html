@@ -2,7 +2,7 @@
   <div class="numbers">
     <button 
       class="link" 
-      (click)="firstPage()" 
+      (click)="onPage(1)"
       [disabled]="page === 1"
       [ngClass]="{ 'disabled': page === 1 }">
       <i class="material-icons">first_page</i>
@@ -29,7 +29,7 @@
     </button>
     <button 
       class="link" 
-      (click)="lastPage()" 
+      (click)="onPage(500)"
       [disabled]="page === 500"
       [ngClass]="{ 'disabled': page === 500}">
       <i class="material-icons">last_page</i>

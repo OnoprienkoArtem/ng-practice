@@ -10,9 +10,7 @@
       (updateListOfFavorite)="addFilmToFavorit($event)" *ngFor="let film of films">
     </app-film-item>
     <div class="pagination-section">
-      <app-pagination 
-        (firstPageEmit)="firstPage($event)"
-        (lastPageEmit)="lastPage($event)"
+      <app-pagination         
         (goPage)="goToPage($event)"
         (goNext)="onNext()"
         (goPrev)="onPrev()"

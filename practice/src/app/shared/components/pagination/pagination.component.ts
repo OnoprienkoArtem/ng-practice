@@ -51,13 +51,13 @@ export class PaginationComponent implements OnInit {
   }
 
 
-  firstPage() {
-    this.firstPageEmit.emit();
-  }
+  // firstPage() {
+  //   this.firstPageEmit.emit();
+  // }
 
-  lastPage() {
-    this.lastPageEmit.emit();
-  }
+  // lastPage() {
+  //   this.lastPageEmit.emit();
+  // }
 
 
 

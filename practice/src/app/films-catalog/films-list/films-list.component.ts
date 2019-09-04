@@ -15,10 +15,7 @@ export class FilmsListComponent implements OnInit {
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
   private userId = localStorage.getItem('user_id');
-  private sessionId = localStorage.getItem('session_id');
-
-
- 
+  private sessionId = localStorage.getItem('session_id'); 
   public total = 10;
   public pagePag: number;
   public limit = 1;
@@ -27,8 +24,6 @@ export class FilmsListComponent implements OnInit {
 
   ngOnInit() {
     this.getOnePagePopularFilms(this.filmsService.currentPageFilms);
-
-    console.log(this.pagePag);
   }
 
   getOnePagePopularFilms(page) {
@@ -51,8 +46,6 @@ export class FilmsListComponent implements OnInit {
     );
   }
 
-
-
   public addFilmToFavorit(id: number) {
     const favoriteFilms = this.films.find(item => item.id === id);
 
@@ -63,37 +56,20 @@ export class FilmsListComponent implements OnInit {
     }
   }
 
-
-
-
-  firstPage() {
-    this.getOnePagePopularFilms(1);
-    this.filmsService.currentPageFilms = 1;
-  }
-
-  lastPage() {
-    this.getOnePagePopularFilms(500);
-    this.filmsService.currentPageFilms = 500;
-  }
-
-  goToPage(page: number): void {   
+  public goToPage(page: number): void {   
     this.getOnePagePopularFilms(page);
     this.filmsService.currentPageFilms = page;
   }
 
-  onNext(): void {
+  public onNext(): void {
     this.page++;
     this.getOnePagePopularFilms(this.page);
     this.filmsService.currentPageFilms = this.page;
   }
 
-  onPrev(): void {
+  public onPrev(): void {
     this.page--;
     this.getOnePagePopularFilms(this.page);
     this.filmsService.currentPageFilms = this.page;
   }
-
-
-
-
 }
