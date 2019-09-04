@@ -26,7 +26,7 @@ export class FilmsListComponent implements OnInit {
   constructor(public filmsService: FilmService) { }
 
   ngOnInit() {
-    this.getOnePagePopularFilms(this.page);
+    this.getOnePagePopularFilms(this.filmsService.currentPageFilms);
 
     console.log(this.pagePag);
   }
@@ -57,11 +57,11 @@ export class FilmsListComponent implements OnInit {
     );
   }
 
-  public nextFilmsPage() {
-    this.page++;
-    this.getOnePagePopularFilms(this.page);
-    this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false;
-  }
+  // public nextFilmsPage() {
+  //   this.page++;
+  //   this.getOnePagePopularFilms(this.page);
+  //   this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false;
+  // }
 
   public addFilmToFavorit(id: number) {
     const favoriteFilms = this.films.find(item => item.id === id);
@@ -73,31 +73,34 @@ export class FilmsListComponent implements OnInit {
     }
   }
 
+
+
+
   firstPage() {
     this.getOnePagePopularFilms(1);
+    this.filmsService.currentPageFilms = 1;
   }
 
   lastPage() {
     this.getOnePagePopularFilms(500);
+    this.filmsService.currentPageFilms = 500;
   }
 
-
-
-
-
-  goToPage(n: number): void {
-    this.page = n;
-    this.getOnePagePopularFilms(this.page);
+  goToPage(page: number): void {   
+    this.getOnePagePopularFilms(page);
+    this.filmsService.currentPageFilms = page;
   }
 
   onNext(): void {
     this.page++;
     this.getOnePagePopularFilms(this.page);
+    this.filmsService.currentPageFilms = this.page;
   }
 
   onPrev(): void {
     this.page--;
     this.getOnePagePopularFilms(this.page);
+    this.filmsService.currentPageFilms = this.page;
   }
 
 
