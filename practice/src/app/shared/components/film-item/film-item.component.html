@@ -3,60 +3,27 @@
     <img src="{{ imgUrl + film.poster_path }}" alt="" />
   </div>
   <div class="info">
-
     <div>
-
       <div class="title">
         <h2>{{ film.title }}</h2>
-
         <div class="popularity-circle">
           <div class="popularity width-sircle-25">
-
             <label>{{film.vote_average}}</label>
             <mat-progress-spinner class="example-margin" [mode]="mode" [value]="film.vote_average * 10">
             </mat-progress-spinner>
           </div>
         </div>
-
       </div>
-
-
       <p class="year">{{ film.release_date | date: 'MMMM d, y' : 'ru' }}</p>
-      <!-- <p class="genre">Жанр:
-        <span *ngFor="let genre of film.genre_ids">
-          <span>{{genre}} / </span>
-        </span>
-      </p> -->
-
-      <p class="description" *ngIf="favorites; else favorite">
+      <p class="description">
         {{ film.overview.length > 200 ? (film.overview | slice: 0:200) + '...' : film.overview }}
       </p>
 
-      <ng-template #favorite>
-        <p class="description">
-          {{ film.overview.length > 200 ? (film.overview | slice: 0:200) + '...' : film.overview }}
-        </p>
-      </ng-template>
     </div>
-
-
     <mat-card-actions>
-
-      <!-- <ng-container *ngIf="favorites">
-        <button mat-icon-button *ngIf="!film.isBooked; else booked" (click)="addToBooked()">
-          <i class="material-icons">bookmark_border</i>
-        </button>
-        <ng-template #booked>
-          <button mat-icon-button (click)="addToBooked()" color="primary">
-            <i class="material-icons">bookmark</i>
-          </button>
-        </ng-template>
-      </ng-container> -->
-
       <a mat-icon-button (click)="getDetails()">
         <i class="material-icons">menu</i>
       </a>
-
       <ng-container *ngIf="favorites">
         <button mat-icon-button *ngIf="!film.isFavorite; else marked" (click)="addToFavorites()">
           <i class="material-icons">favorite_border</i>
@@ -67,14 +34,11 @@
           </button>
         </ng-template>
       </ng-container>
-
-
       <ng-container *ngIf="!favorites">
         <button mat-icon-button (click)="addToFavorites()">
           <i class="material-icons">delete_forever</i>
         </button>
       </ng-container>
-
     </mat-card-actions>
   </div>
 </div>
