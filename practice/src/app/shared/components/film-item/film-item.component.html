@@ -18,7 +18,6 @@
       <p class="description">
         {{ film.overview.length > 200 ? (film.overview | slice: 0:200) + '...' : film.overview }}
       </p>
-
     </div>
     <mat-card-actions>
       <a mat-icon-button (click)="getDetails()">

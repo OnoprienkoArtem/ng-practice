@@ -8,16 +8,18 @@ import { Film } from '../../models/film';
   styleUrls: ['./films-list.component.scss']
 })
 export class FilmsListComponent implements OnInit {
-  private totalPages: number;
-  private page: number = 1;
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id'); 
+
+  public totalPages: number;
+  public page: number = 1;
   public totalResult: number;
   public spiner: boolean = true;
   public isDisabledFilmsBtn: boolean = false;
   public films: Film[] = [];
-  private userId = localStorage.getItem('user_id');
-  private sessionId = localStorage.getItem('session_id'); 
-  public total = 10;
-  public pagePag: number;
+  public total: number;
+  
+
   public limit = 1;
 
   constructor(public filmsService: FilmService) { }
@@ -31,7 +33,7 @@ export class FilmsListComponent implements OnInit {
       (filmList: any) => {   
         // for pagination
         this.total = filmList.total_pages;
-        this.pagePag = filmList.page;       
+           
         // films list
         this.totalPages = filmList.total_pages;
         this.page = filmList.page;

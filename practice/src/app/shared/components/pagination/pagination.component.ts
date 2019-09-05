@@ -9,34 +9,22 @@ export class PaginationComponent implements OnInit {
 
   @Input() page: number; // the current page
   @Input() count: number; // how many total items there are in all pages
-  @Input() perPage: number; // how many items we want to show per page
-  @Input() pagesToShow: number; // how many pages between next/prev
+ 
   @Input() loading: boolean; // check if content is being loaded
+
+  @Input() perPage: number; // how many items we want to show per page
+
 
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();
   @Output() goPage = new EventEmitter<number>();
-  @Output() firstPageEmit = new EventEmitter<number>();
-  @Output() lastPageEmit = new EventEmitter<number>();
+  
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-    
-  }
 
-  // getMin(): number {
-  //   return ((this.perPage * this.page) - this.perPage) + 1;
-  // }
-
-  // getMax(): number {
-  //   let max = this.perPage * this.page;
-  //   if (max > this.count) {
-  //     max = this.count;
-  //   }
-  //   return max;
-  // }
 
   onPage(n: number): void {
     this.goPage.emit(n);
@@ -51,29 +39,25 @@ export class PaginationComponent implements OnInit {
   }
 
 
-  // firstPage() {
-  //   this.firstPageEmit.emit();
-  // }
 
-  // lastPage() {
-  //   this.lastPageEmit.emit();
-  // }
-
-
-
-  // totalPages(): number {
-  //   return Math.ceil(this.count / this.perPage) || 0;
-  // }
-
-  // lastPage(): boolean {
-  //   return this.perPage * this.page > this.count;
-  // }
 
   getPages(): number[] {
+    console.log(this.count);
+    console.log(this.perPage);
+
     const c = Math.ceil(this.count / this.perPage);
+
+    console.log(c);
+
+
     const p = this.page || 1;
-    const pagesToShow = this.pagesToShow || 9;
+
+
+    const pagesToShow = 9;
+
+
     const pages: number[] = [];
+    
     pages.push(p);
     const times = pagesToShow - 1;
     for (let i = 0; i < times; i++) {
@@ -89,6 +73,7 @@ export class PaginationComponent implements OnInit {
       }
     }
     pages.sort((a, b) => a - b);
+    console.log(pages);
     return pages;
   }
 
