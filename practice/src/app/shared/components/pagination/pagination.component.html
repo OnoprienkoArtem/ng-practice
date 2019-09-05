@@ -1,4 +1,4 @@
-<div class="pagination" *ngIf="count > 0">
+<div class="pagination" *ngIf="totalPages > 0">
   <div class="numbers">
     <button 
       class="link" 
@@ -22,7 +22,7 @@
     </button>
     <button 
       class="link" 
-      (click)="onNext(true)" 
+      (click)="onNext()" 
       [disabled]="page === 500"
       [ngClass]="{ 'disabled': page === 500}">
       <i class="material-icons">chevron_right</i>

@@ -8,13 +8,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class PaginationComponent implements OnInit {
 
   @Input() page: number; // the current page
-  @Input() count: number; // how many total items there are in all pages
- 
-  @Input() loading: boolean; // check if content is being loaded
-
-  @Input() perPage: number; // how many items we want to show per page
-
-
+  @Input() totalPages: number; // how many total items there are in all pages
+  
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();
   @Output() goPage = new EventEmitter<number>();
@@ -34,46 +29,29 @@ export class PaginationComponent implements OnInit {
     this.goPrev.emit(true);
   }
 
-  onNext(next: boolean): void {
-    this.goNext.emit(next);
+  onNext(): void {
+    this.goNext.emit(true);
   }
 
-
-
-
   getPages(): number[] {
-    console.log(this.count);
-    console.log(this.perPage);
-
-    const c = Math.ceil(this.count / this.perPage);
-
-    console.log(c);
-
-
-    const p = this.page || 1;
-
-
+    const page = this.page || 1;
     const pagesToShow = 9;
-
-
     const pages: number[] = [];
-    
-    pages.push(p);
-    const times = pagesToShow - 1;
-    for (let i = 0; i < times; i++) {
+
+    pages.push(page);    
+
+    for (let i = 0; i < pagesToShow - 1; i++) {
       if (pages.length < pagesToShow) {
         if (Math.min.apply(null, pages) > 1) {
           pages.push(Math.min.apply(null, pages) - 1);
         }
-      }
-      if (pages.length < pagesToShow) {
-        if (Math.max.apply(null, pages) < c) {
+        if (Math.max.apply(null, pages) < this.totalPages) {
           pages.push(Math.max.apply(null, pages) + 1);
         }
-      }
+      }   
     }
-    pages.sort((a, b) => a - b);
-    console.log(pages);
+
+    pages.sort((a, b) => a - b);   
     return pages;
   }
 

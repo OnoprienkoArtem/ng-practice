@@ -15,12 +15,13 @@ export class FilmsListComponent implements OnInit {
   public page: number = 1;
   public totalResult: number;
   public spiner: boolean = true;
-  public isDisabledFilmsBtn: boolean = false;
+
+  
   public films: Film[] = [];
-  public total: number;
+ 
   
 
-  public limit = 1;
+ 
 
   constructor(public filmsService: FilmService) { }
 
@@ -30,11 +31,7 @@ export class FilmsListComponent implements OnInit {
 
   getOnePagePopularFilms(page) {
     this.filmsService.getPopularFilms(page).subscribe(
-      (filmList: any) => {   
-        // for pagination
-        this.total = filmList.total_pages;
-           
-        // films list
+      (filmList: any) => {    
         this.totalPages = filmList.total_pages;
         this.page = filmList.page;
         this.totalResult = filmList.total_results;

@@ -13,11 +13,9 @@
       <app-pagination         
         (goPage)="goToPage($event)"
         (goNext)="onNext()"
-        (goPrev)="onPrev()"
-      
-        [page]="page"
-        [perPage]="limit"
-        [count]="total">
+        (goPrev)="onPrev()"      
+        [page]="page"      
+        [totalPages]="totalPages">
       </app-pagination>
     </div>
   </div>
