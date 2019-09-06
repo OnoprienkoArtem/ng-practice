@@ -7,33 +7,30 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
 
-  @Input() page: number; // the current page
-  @Input() totalPages: number; // how many total items there are in all pages
+  @Input() page: number; 
+  @Input() totalPages: number;
   
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();
-  @Output() goPage = new EventEmitter<number>();
-  
+  @Output() goPage = new EventEmitter<number>();  
 
   constructor() { }
 
   ngOnInit() {}
 
-
-
-  onPage(n: number): void {
-    this.goPage.emit(n);
+  public onPage(page: number): void {
+    this.goPage.emit(page);
   }
 
-  onPrev(): void {
+  public onPrev(): void {
     this.goPrev.emit(true);
   }
 
-  onNext(): void {
+  public onNext(): void {
     this.goNext.emit(true);
   }
 
-  getPages(): number[] {
+  public getPages(): number[] {
     const page = this.page || 1;
     const pagesToShow = 9;
     const pages: number[] = [];
