@@ -56,7 +56,7 @@
             *ngFor="let actor of film.people.crew"></app-actor-item>
         </div>
       </mat-tab>
-      <mat-tab label="Трейлеры">
+      <mat-tab label="Трейлеры" *ngIf="film.trailer.length !== 0">
         <div class="treiler" *ngFor="let video of film.trailer">
           <h2>{{ video.name }}</h2>
           <div class="frame">

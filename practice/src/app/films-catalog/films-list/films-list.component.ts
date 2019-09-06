@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
-
 @Component({
   selector: 'app-films-list',
   templateUrl: './films-list.component.html',
@@ -15,13 +14,7 @@ export class FilmsListComponent implements OnInit {
   public page: number = 1;
   public totalResult: number;
   public spiner: boolean = true;
-
-  
-  public films: Film[] = [];
- 
-  
-
- 
+  public films: Film[] = []; 
 
   constructor(public filmsService: FilmService) { }
 
@@ -29,7 +22,7 @@ export class FilmsListComponent implements OnInit {
     this.getOnePagePopularFilms(this.filmsService.currentPageFilms);
   }
 
-  getOnePagePopularFilms(page) {
+  public getOnePagePopularFilms(page) {
     this.filmsService.getPopularFilms(page).subscribe(
       (filmList: any) => {    
         this.totalPages = filmList.total_pages;
