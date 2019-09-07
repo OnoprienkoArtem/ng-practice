@@ -12,11 +12,11 @@ export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
   public spinner: boolean = true;
-  
+
   public totalPages: number;
   public isDisabledActorsBtn: boolean = false;
   public totalResult: number;
-  public pageCount: number;
+  public page: number;
 
   constructor(
     public actorService: ActorService,
@@ -31,7 +31,7 @@ export class ActorsListComponent implements OnInit {
     this.actorService.getPopularActors(page).subscribe(
       (actorsList: any) => {
         console.log(actorsList);
-        this.pageCount = actorsList.page;
+        this.page = actorsList.page;
         this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
         this.totalResult = actorsList.total_results;
@@ -44,16 +44,25 @@ export class ActorsListComponent implements OnInit {
     )
   }
 
-  nextActorsPage() {
-    this.pageCount++;
-    this.getOnePagePopularActors(this.pageCount);
-    this.isDisabledActorsBtn = this.pageCount === this.totalPages ? true : false;
-    this.actorService.currentPageActors = this.pageCount;
+
+
+
+
+  public goToPage(page: number): void {
+    this.getOnePagePopularActors(page);
+    this.actorService.currentPageActors = page;
   }
 
-  firstPage() {
-    this.actorService.currentPageActors = 1;
-    this.getOnePagePopularActors(1);
+  public onNext(): void {
+    this.page++;
+    this.getOnePagePopularActors(this.page);
+    this.actorService.currentPageActors = this.page;
+  }
+
+  public onPrev(): void {
+    this.page--;
+    this.getOnePagePopularActors(this.page);
+    this.actorService.currentPageActors = this.page;
   }
 
 
