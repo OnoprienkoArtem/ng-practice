@@ -1,28 +1,36 @@
-<div *ngIf="!spiner" class="cards-section">
-
-  <div class="btn-back" fxLayout="row wrap" fxLayoutAlign="end" fxLayoutAlign.lt-sm="center">
-    <button mat-stroked-button (click)="firstPage()">в начало</button>
-  </div>
-
+<div *ngIf="!spinner" class="cards-section">
   <div class="cards-header" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
     <h2>{{totalResult}} актеров</h2>
     <div>
-      <p>Страница: {{pageCount}} из {{totalPages}}</p>
-      <!-- <button mat-raised-button (click)="firstPage()">в начало</button> -->
+      <p>Страница: {{pageCount}} из {{totalPages}}</p>     
     </div>
   </div>
 
   <div class="cards" fxLayout="row wrap" fxLayoutAlign="space-evenly start">
-    <app-actor-item class="actor-item" fxFlex="17%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" [data]="actor"
-      *ngFor="let actor of actors">
+    <app-actor-item
+      class="actor-item" 
+      fxFlex="17%" 
+      fxFlex.lt-md="45%" 
+      fxFlex.lt-sm="100%" 
+      [data]="actor"
+      *ngFor="let actor of actors"
+    >
     </app-actor-item>
 
-    <div class="row btn-section" fxLayout="row" fxLayoutAlign="center">
-      <button mat-raised-button color="primary" (click)="nextActorsPage()" [disabled]='isDisabledActorsBtn'>
-        Показать еще
-      </button>
+    <div class="pagination-section">
+      <app-pagination 
+        (goPage)="goToPage($event)" 
+        (goNext)="onNext()" 
+        (goPrev)="onPrev()" 
+        [page]="page"
+        [totalPages]="totalPages"
+      >
+      </app-pagination>
     </div>
+
+
+
   </div>
 </div>
 
-<app-spiner *ngIf="spiner"></app-spiner>
+<app-spiner *ngIf="spinner"></app-spiner>

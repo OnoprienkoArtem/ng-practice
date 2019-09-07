@@ -11,8 +11,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class ActorsListComponent implements OnInit {
 
   public actors: Actor[] = [];
-  public totalPages: number;
   public spinner: boolean = true;
+  
+  public totalPages: number;
   public isDisabledActorsBtn: boolean = false;
   public totalResult: number;
   public pageCount: number;
@@ -34,6 +35,7 @@ export class ActorsListComponent implements OnInit {
         this.totalPages = actorsList.total_pages;
         this.actors = actorsList.results;
         this.totalResult = actorsList.total_results;
+
         if (this.actors) {
           this.spinner = false;
         }
@@ -54,17 +56,6 @@ export class ActorsListComponent implements OnInit {
     this.getOnePagePopularActors(1);
   }
 
-  // searchDataByActors(dataSearch) {
-  //   this.actors = this.actorsClone;
-  //   if (dataSearch.length > 2) {
-  //     this.actors = this.actors.filter(actor => actor.name.toLowerCase().includes(dataSearch.toLowerCase()));
-  //     this.isDisabledActorsBtn = true;
-  //   } else {
-  //     this.isDisabledActorsBtn = false;
-  //     if (this.actors.length === this.actorsClone.length) {
-  //       this.isDisabledActorsBtn = true;
-  //     }
-  //   }
-  // }
+
 
 }

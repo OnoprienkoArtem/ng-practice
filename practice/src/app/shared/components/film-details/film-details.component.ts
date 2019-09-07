@@ -18,9 +18,7 @@ export class FilmDetailsComponent implements OnInit {
 
 
   @Input('data') film: any;
-  // @Input('video') videos: any;
-  // @Input('cast') casts: any;
-  // @Input('crew') crews: any;
+
 
   public youtubePath: string = 'https://www.youtube.com/embed/';
 
