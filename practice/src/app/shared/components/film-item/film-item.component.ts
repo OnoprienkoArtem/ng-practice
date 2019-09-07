@@ -48,9 +48,7 @@ export class FilmItemComponent implements OnInit {
 
   }
 
-  addToBooked() {
-    this.updateListOfBooked.emit(this.film.id);
-  }
+ 
 
   getDetails() {
     this.router.navigate(['/films/details', this.film.id]);

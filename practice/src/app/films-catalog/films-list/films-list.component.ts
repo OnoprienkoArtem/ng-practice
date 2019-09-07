@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
+
 @Component({
   selector: 'app-films-list',
   templateUrl: './films-list.component.html',
@@ -40,6 +41,8 @@ export class FilmsListComponent implements OnInit {
 
   public addFilmToFavorit(id: number) {
     const favoriteFilms = this.films.find(item => item.id === id);
+
+    console.log(favoriteFilms);
 
     if (favoriteFilms.isFavorite) {
       this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);

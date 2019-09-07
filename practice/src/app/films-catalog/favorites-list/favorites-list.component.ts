@@ -55,15 +55,10 @@ export class FavoritesListComponent implements OnInit {
 
   }
 
-  public nextFilmsPage() {
-    this.page++;
-    this.getOnePagePopularFilms(this.page);
-    this.isDisabledFilmsBtn = this.page === this.totalPages ? true : false;
-  }
+
 
   public addFilmToFavorit(id: number) {
     // const favoriteFilms = this.films.find(item => item.id === id);
-
 
     this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);
     // this.getOnePagePopularFilms(this.page);
