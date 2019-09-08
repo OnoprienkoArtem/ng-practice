@@ -32,8 +32,7 @@ export class AppComponent {
   ];
 
   ngOnInit() {  
-    this.router.events.subscribe(
-      (event: any) => {
+    this.router.events.subscribe((event: any) => {
         if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
           this.filmsService.currentRoute = this.currentRoute;

@@ -1,6 +1,6 @@
 <div *ngIf="!spinner" class="cards-section">
   <div class="cards-header" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-    <h2>{{totalResult}} фильмов</h2>
+    <h2>{{totalResult$ | async}} фильмов</h2>
     <div>
       <p>Страница: {{page}} из {{totalPages}}</p>
     </div>

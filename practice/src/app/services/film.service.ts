@@ -10,6 +10,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class FilmService {
   private favoriteNumber$ = new Subject<number>();
+  public favoriteList$ = new Subject<any>();
   public userId = localStorage.getItem('user_id');
   public sessionId = localStorage.getItem('session_id');
   public currentRouteValue: string;
@@ -62,13 +63,13 @@ export class FilmService {
   }
 
 
-  public favoriteList$ = new Subject<any>();
+ 
 
-  setFavoriteFilmsList(value: any) {
+  public setFavoriteFilmsList(value: any) {
     this.favoriteList$.next(value);
   }
 
-  getFavoriteFilmsList(): Observable<any> {
+  public getFavoriteFilmsList(): Observable<any> {
     return this.favoriteList$.asObservable();
   }
 

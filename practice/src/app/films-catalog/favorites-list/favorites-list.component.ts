@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-favorites-list',
@@ -13,7 +14,7 @@ export class FavoritesListComponent implements OnInit {
   private sessionId = localStorage.getItem('session_id');
 
   public totalPages: number;
-  public totalResult: number;
+  public totalResult$: Observable<number>; 
   public page: number;
   public spinner: boolean = true; 
   public films: Film[] = [];
@@ -24,48 +25,37 @@ export class FavoritesListComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
-    console.log(this.filmsService.currentPageFavorites);
+  ngOnInit() {   
     this.getOnePagePopularFilms(this.filmsService.currentPageFavorites);
+    this.totalResult$ = this.filmsService.getfavoriteNumber();
   }
 
-  getOnePagePopularFilms(page) {
+  public getOnePagePopularFilms(page) {
     this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId, page).subscribe((favorites: any) => {
       console.log(favorites);
 
       this.filmsService.getFavoriteFilmsList().subscribe(res => this.films = res);
 
       this.page = favorites.page;
-      this.totalResult = favorites.total_results;
+      this.filmsService.changefavoriteNumber(favorites.total_results);
       this.totalPages = favorites.total_pages;
       this.films = favorites.results;
 
       if (this.films) {
         this.spinner = false;
-      }
-
+      }        
     })
-
+    this.totalResult$ = this.filmsService.getfavoriteNumber(); 
   }
-
-
 
   public removeFilmFromFavorit(id: number) {
-    // const favoriteFilms = this.films.find(item => item.id === id);
-
     this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);
-    // this.getOnePagePopularFilms(this.page);
-    this.filmsService.getFavoriteFilmsList().subscribe(
-      res => {
+  
+    this.filmsService.getFavoriteFilmsList().subscribe(res => {
         console.log(res);
       }
-    );
-   
-    // this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
-    // console.log(this.films);
-
+    );    
   }
-
 
   public goToPage(page: number): void {
     this.getOnePagePopularFilms(page);
