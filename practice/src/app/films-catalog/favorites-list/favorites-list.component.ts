@@ -57,7 +57,7 @@ export class FavoritesListComponent implements OnInit {
 
 
 
-  public addFilmToFavorit(id: number) {
+  public removeFilmFromFavorit(id: number) {
     // const favoriteFilms = this.films.find(item => item.id === id);
 
     this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);

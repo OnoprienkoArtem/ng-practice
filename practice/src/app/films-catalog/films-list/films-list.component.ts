@@ -41,6 +41,8 @@ export class FilmsListComponent implements OnInit {
 
   public addFilmToFavorit(id: number) {
     const favoriteFilms = this.films.find(item => item.id === id);
+    
+    console.log(this.films);
 
     console.log(favoriteFilms);
 

@@ -45,7 +45,6 @@ export class FilmItemComponent implements OnInit {
       this.hide = true;
     }
     this.updateListOfFavorite.emit(this.film.id);
-
   }
 
  

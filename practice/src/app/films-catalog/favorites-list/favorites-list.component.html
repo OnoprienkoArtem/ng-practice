@@ -12,7 +12,7 @@
       fxFlex.lt-md="45%" 
       fxFlex.lt-sm="100%" 
       [data]="film"
-      (updateListOfFavorite)="addFilmToFavorit($event)" 
+      (updateListOfFavorite)="removeFilmFromFavorit($event)"
       *ngFor="let film of films">
     </app-film-item>
   </div>
