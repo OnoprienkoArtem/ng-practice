@@ -12,9 +12,8 @@ export class FavoritesListComponent implements OnInit {
 
   public totalPages: number;
   public totalResult: number;
-  public page: number = 1;
-  public spinner: boolean = true;
-  public isDisabledFilmsBtn: boolean = false;
+  public page: number;
+  public spinner: boolean = true; 
   public films: Film[] = [];
   private userId = localStorage.getItem('user_id');
   private sessionId = localStorage.getItem('session_id');
@@ -26,20 +25,16 @@ export class FavoritesListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getOnePagePopularFilms(this.page);
-
+    this.getOnePagePopularFilms(this.filmsService.currentPageFavorites);
   }
 
   getOnePagePopularFilms(page) {
-    this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
+    this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId, page).subscribe((favorites: any) => {
       console.log(favorites);
-      this.filmsService.getFavoriteFilmsList().subscribe(
-        res => {
-          this.films = res;
-          console.log(res);
-        }
-      );
 
+      this.filmsService.getFavoriteFilmsList().subscribe(res => this.films = res);
+
+      this.page = favorites.page;
       this.totalResult = favorites.total_results;
       this.totalPages = favorites.total_pages;
       this.films = favorites.results;
@@ -48,9 +43,7 @@ export class FavoritesListComponent implements OnInit {
         this.spinner = false;
       }
 
-      if (this.totalPages === favorites.total_pages) {
-        this.isDisabledFilmsBtn = true;
-      }
+
     })
 
   }
@@ -70,6 +63,24 @@ export class FavoritesListComponent implements OnInit {
     // this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
     // console.log(this.films);
 
+  }
+
+
+  public goToPage(page: number): void {
+    this.getOnePagePopularFilms(page);
+    this.filmsService.currentPageFavorites = page;
+  }
+
+  public onNext(): void {
+    this.page++;
+    this.getOnePagePopularFilms(this.page);
+    this.filmsService.currentPageFavorites = this.page;
+  }
+
+  public onPrev(): void {
+    this.page--;
+    this.getOnePagePopularFilms(this.page);
+    this.filmsService.currentPageFavorites = this.page;
   }
 
 }

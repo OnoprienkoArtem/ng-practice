@@ -23,15 +23,15 @@
     <button 
       class="link" 
       (click)="onNext()" 
-      [disabled]="page === 500"
-      [ngClass]="{ 'disabled': page === 500}">
+      [disabled]="page === totalPages"
+      [ngClass]="{ 'disabled': page === totalPages}">
       <i class="material-icons">chevron_right</i>
     </button>
     <button 
       class="link" 
-      (click)="onPage(500)"
-      [disabled]="page === 500"
-      [ngClass]="{ 'disabled': page === 500}">
+      (click)="onPage(totalPages)"
+      [disabled]="page === totalPages"
+      [ngClass]="{ 'disabled': page === totalPages}">
       <i class="material-icons">last_page</i>
     </button>
   </div>

@@ -11,12 +11,13 @@ import { Subject, Observable } from 'rxjs';
   animations: [fadeAnimation]
 })
 export class AppComponent {
+  private userId: string = localStorage.getItem('user_id');
+  private sessionId: string = localStorage.getItem('session_id');
+
   public isLogin = true;
   private currentRoute: string;
   public username: string;
-  public totalResult$: Observable<number>;
-  private userId: string;
-  private sessionId: string;
+  public totalResult$: Observable<number>; 
 
   constructor(
     private authService: AuthService,
@@ -31,7 +32,6 @@ export class AppComponent {
   ];
 
   ngOnInit() {  
-
     this.router.events.subscribe(
       (event: any) => {
         if (event instanceof NavigationEnd) {
@@ -41,10 +41,8 @@ export class AppComponent {
 
           if (this.isLogin) {
             this.username = localStorage.getItem('user_name');
-            this.userId = localStorage.getItem('user_id');
-            this.sessionId = localStorage.getItem('session_id');
 
-            this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId).subscribe((favorites: any) => {
+            this.filmsService.getListOfFavotitesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
               this.filmsService.changefavoriteNumber(favorites.total_results);
             })
           }

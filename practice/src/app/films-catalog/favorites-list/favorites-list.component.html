@@ -15,6 +15,15 @@
       (updateListOfFavorite)="removeFilmFromFavorit($event)"
       *ngFor="let film of films">
     </app-film-item>
+    <div class="pagination-section">
+      <app-pagination         
+        (goPage)="goToPage($event)"
+        (goNext)="onNext()"
+        (goPrev)="onPrev()"      
+        [page]="page"      
+        [totalPages]="totalPages">
+      </app-pagination>
+    </div>
   </div>
 </div>
 

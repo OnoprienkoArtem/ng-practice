@@ -30,7 +30,7 @@ export class FilmsListComponent implements OnInit {
         this.page = filmList.page;
         this.totalResult = filmList.total_results;
         this.films = filmList.results;
-        this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
+        this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);       
         if (this.films) {
           this.spiner = false;
         }
@@ -40,9 +40,7 @@ export class FilmsListComponent implements OnInit {
   }
 
   public addFilmToFavorit(id: number) {
-    const favoriteFilms = this.films.find(item => item.id === id);
-    
-    console.log(this.films);
+    const favoriteFilms = this.films.find(item => item.id === id); 
 
     console.log(favoriteFilms);
 
