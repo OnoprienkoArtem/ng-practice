@@ -40,7 +40,7 @@ export class FilmService {
   get currentPageFilms() {
     return this.currentPage || 1;
   }
-  
+
 
 
   set currentPageFavorites(value: number) {
@@ -107,7 +107,7 @@ export class FilmService {
 
 
   getFavoriteFilms(films, userId, sessionId) {
-    return this.getListOfFavotitesFilms(userId, sessionId, 1).subscribe((favoriteFilms: any) => {
+    return this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favoriteFilms: any) => {
         let favorites = [];
         favoriteFilms.results.map(item => {
           favorites.push(item.id);
@@ -122,7 +122,7 @@ export class FilmService {
   markFavorite(id, value, films, userId, sessionId) {
     this.addFilmToFavorite(userId, sessionId, 'movie', id, value).subscribe(res => { 
       this.getFavoriteFilms(films, userId, sessionId);
-      this.getListOfFavotitesFilms(userId, sessionId, 1).subscribe((favorites: any) => {       
+      this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favorites: any) => {       
         this.setFavoriteFilmsList(favorites.results);
         return this.changefavoriteNumber(favorites.total_results);
       });

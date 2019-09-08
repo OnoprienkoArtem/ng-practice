@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Film } from '../../models/film';
-import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites-list',
@@ -9,14 +9,14 @@ import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router
   styleUrls: ['./favorites-list.component.scss']
 })
 export class FavoritesListComponent implements OnInit {
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
 
   public totalPages: number;
   public totalResult: number;
   public page: number;
   public spinner: boolean = true; 
   public films: Film[] = [];
-  private userId = localStorage.getItem('user_id');
-  private sessionId = localStorage.getItem('session_id');
 
 
   constructor(
@@ -25,6 +25,7 @@ export class FavoritesListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.filmsService.currentPageFavorites);
     this.getOnePagePopularFilms(this.filmsService.currentPageFavorites);
   }
 
@@ -43,7 +44,6 @@ export class FavoritesListComponent implements OnInit {
         this.spinner = false;
       }
 
-
     })
 
   }
@@ -60,6 +60,7 @@ export class FavoritesListComponent implements OnInit {
         console.log(res);
       }
     );
+   
     // this.filmsService.getFavoriteFilms(this.films, this.userId, this.sessionId);
     // console.log(this.films);
 
