@@ -2,8 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LOCAL_CONFIG } from '../config/config-api';
 import { ApiConfig } from '../models/api';
-import { Subject, Observable, forkJoin } from 'rxjs';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Subject, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,15 @@ export class FilmService {
   public getfavoriteNumber(): Observable<number> {
     return this.favoriteNumber$.asObservable();
   }
-  
+
+
+  public setFavoriteFilmsList(value: any) {
+    this.favoriteList$.next(value);
+  }
+
+  public getFavoriteFilmsList(): Observable<any> {
+    return this.favoriteList$.asObservable();
+  }  
 
 
   set currentPageFilms(value: number) {
@@ -43,7 +51,6 @@ export class FilmService {
   }
 
 
-
   set currentPageFavorites(value: number) {
     this.currentValuePageFavorites = value;
   }
@@ -53,7 +60,6 @@ export class FilmService {
   }
 
 
-
   set currentRoute(value: any) {
     this.currentRouteValue = value;
   }
@@ -61,18 +67,7 @@ export class FilmService {
   get currentRoute() {
     return this.currentRouteValue;
   }
-
-
  
-
-  public setFavoriteFilmsList(value: any) {
-    this.favoriteList$.next(value);
-  }
-
-  public getFavoriteFilmsList(): Observable<any> {
-    return this.favoriteList$.asObservable();
-  }
-
 
 
   // http
@@ -130,7 +125,5 @@ export class FilmService {
     });
   }
 
-  // getFavorite(filmIds: Array<number>) {
-  //   return this.http.get(`${this.localConfig.favoriteApiUrl}?filmIds=${filmIds.join(',')}`);
-  // }
+
 }
