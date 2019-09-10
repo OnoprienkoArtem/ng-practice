@@ -15,7 +15,7 @@ export class FilmsListComponent implements OnInit {
   public page: number = 1;
   public totalResult: number;
   public spiner: boolean = true;
-  public films: Film[] = []; 
+  public films: Film[] = [];  
 
   constructor(public filmsService: FilmService) { }
 
@@ -41,10 +41,16 @@ export class FilmsListComponent implements OnInit {
     );
   }
 
+
+
   public addFilmToFavorit(id: number) {
     const favoriteFilms = this.films.find(item => item.id === id); 
 
-    // console.log(favoriteFilms);
+
+
+    
+
+   
 
     if (favoriteFilms.isFavorite) {
       this.filmsService.markFavorite(id, false, this.films, this.userId, this.sessionId);

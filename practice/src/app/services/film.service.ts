@@ -108,21 +108,59 @@ export class FilmService {
         let favorites = [];
         favoriteFilms.results.map(item => {          
           favorites.push(item.id);
-          films.map(item => {            
-            item.isFavorite = favorites.indexOf(item.id) > -1;
-          });
+          // films.map(item => {            
+          //   item.isFavorite = favorites.indexOf(item.id) > -1;
+          // });          
         });
+
+      console.log(favorites);
       }
     );
   }
 
+
+  
+  
   markFavorite(id, value, films, userId, sessionId) {
     this.addFilmToFavorite(userId, sessionId, 'movie', id, value).subscribe(res => { 
       this.getFavoriteFilms(films, userId, sessionId);
-      this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favorites: any) => {  
+      
+      this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favorites: any) => { 
+
+        // console.log(favorites.total_pages); 
+        let favoriteList = [];     
+        for (let index = 1; index <= favorites.total_pages; index++) {  
+          this.getListOfFavotitesFilms(userId, sessionId, index).subscribe((favorites: any) => { 
+
+            favorites.results.map(item => { 
+              favoriteList.push(item.id);              
+            })
+            console.log(favoriteList);
+
+            films.map(item => {
+     
+      
+                item.isFavorite = favoriteList.indexOf(item.id) > -1;
+            }); 
+
+ 
+          })
+          
+        }
+
+ 
+
+        
+
+
+        
+
+
         this.setFavoriteFilmsList(favorites.results);
         this.changefavoriteNumber(favorites.total_results);
       });
+
+      
     });
   }
 
