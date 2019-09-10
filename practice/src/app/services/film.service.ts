@@ -102,65 +102,28 @@ export class FilmService {
   }
 
 
+  // Get number of all favorite list and check mark items
   getFavoriteFilms(films, userId, sessionId) {
-    return this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favoriteFilms: any) => {
-      console.log(favoriteFilms);
-        let favorites = [];
-        favoriteFilms.results.map(item => {          
-          favorites.push(item.id);
-          // films.map(item => {            
-          //   item.isFavorite = favorites.indexOf(item.id) > -1;
-          // });          
-        });
+    //  Get number of all favorites list
+    this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favorites: any) => {     
+      let favoriteList = [];
+      // Get each page favorites
+      for (let i = 1; i <= favorites.total_pages; i++) {
+        this.getListOfFavotitesFilms(userId, sessionId, i).subscribe((favorites: any) => {
 
-      console.log(favorites);
+          favorites.results.map(item => favoriteList.push(item.id));
+          films.map(item => item.isFavorite = favoriteList.indexOf(item.id) > -1);
+        })
       }
-    );
-  }
+      this.setFavoriteFilmsList(favorites.results);
+      this.changefavoriteNumber(favorites.total_results);
+    });    
+  }  
 
-
-  
-  
+  // Mark film items as favorite
   markFavorite(id, value, films, userId, sessionId) {
     this.addFilmToFavorite(userId, sessionId, 'movie', id, value).subscribe(res => { 
-      this.getFavoriteFilms(films, userId, sessionId);
-      
-      this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favorites: any) => { 
-
-        // console.log(favorites.total_pages); 
-        let favoriteList = [];     
-        for (let index = 1; index <= favorites.total_pages; index++) {  
-          this.getListOfFavotitesFilms(userId, sessionId, index).subscribe((favorites: any) => { 
-
-            favorites.results.map(item => { 
-              favoriteList.push(item.id);              
-            })
-            console.log(favoriteList);
-
-            films.map(item => {
-     
-      
-                item.isFavorite = favoriteList.indexOf(item.id) > -1;
-            }); 
-
- 
-          })
-          
-        }
-
- 
-
-        
-
-
-        
-
-
-        this.setFavoriteFilmsList(favorites.results);
-        this.changefavoriteNumber(favorites.total_results);
-      });
-
-      
+      this.getFavoriteFilms(films, userId, sessionId); 
     });
   }
 
