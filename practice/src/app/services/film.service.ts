@@ -4,6 +4,7 @@ import { LOCAL_CONFIG } from '../config/config-api';
 import { ApiConfig } from '../models/api';
 import { Subject, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { mergeMap, tap, map, debounceTime, concatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -104,7 +105,7 @@ export class FilmService {
 
   // Get number of all favorite list and check mark items
   getFavoriteFilms(films, userId, sessionId) {
-    //  Get number of all favorites list
+    // Get number of all favorites list
     this.getListOfFavotitesFilms(userId, sessionId, this.currentPageFavorites).subscribe((favorites: any) => {     
       let favoriteList = [];
       // Get each page favorites
@@ -117,7 +118,7 @@ export class FilmService {
       }
       this.setFavoriteFilmsList(favorites.results);
       this.changefavoriteNumber(favorites.total_results);
-    });    
+    });  
   }  
 
   // Mark film items as favorite
