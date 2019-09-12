@@ -111,8 +111,9 @@ export class FilmService {
       // Get each page favorites
       for (let i = 1; i <= favorites.total_pages; i++) {
         this.getListOfFavotitesFilms(userId, sessionId, i).subscribe((favorites: any) => {
-
+          // Add favorites id to array favoriteList
           favorites.results.map(item => favoriteList.push(item.id));
+          // Define which films are marked as favorites
           films.map(item => item.isFavorite = favoriteList.indexOf(item.id) > -1);
         })
       }
