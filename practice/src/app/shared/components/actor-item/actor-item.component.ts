@@ -23,7 +23,7 @@ export class ActorItemComponent implements OnInit {
 
   ngOnInit() {
 
-    // console.log(this.actor);
+    // console.log('actor in actor-items', this.actor);
     // console.log(this.actor.known_for);
     this.actorService.knownFor = this.actor.known_for;
   }

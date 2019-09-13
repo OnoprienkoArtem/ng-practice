@@ -32,8 +32,10 @@ export class ActorDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.actor);
-    this.filmsService.getFavoriteFilms(this.actor.knownFor.known_for, this.userId, this.sessionId);
+    console.log('actor details', this.actor);
+
+    // console.log(this.actor.knownFor.known_for);
+    // this.filmsService.getFavoriteFilms(this.actor.knownFor.known_for, this.userId, this.sessionId);
   }
 
   public addFilmToFavorit(id: number) {

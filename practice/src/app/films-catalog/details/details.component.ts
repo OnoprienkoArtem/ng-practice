@@ -68,13 +68,13 @@ export class DetailsComponent implements OnInit {
         this.actorService.getPopularActors(this.actorService.currentPageActors)
           .pipe(map((result: any) => result.results.find(item => item.id == this.id)))
       ).subscribe((res: any) => {
-        // console.log(res[0]);
-        // console.log(res[1]);
+        console.log(res[0]);
+        console.log(res[1]);
         this.actor = {
           deteils: res[0],
           knownFor: res[1]
         }
-        // console.log(this.actor);
+        console.log(this.actor);
 
         this.spinerOff(this.actor);
       });
