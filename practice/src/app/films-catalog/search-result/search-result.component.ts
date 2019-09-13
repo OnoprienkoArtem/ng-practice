@@ -13,14 +13,15 @@ import { Bookmark } from '../../models/bookmark';
   styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent implements OnInit {
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
   public spiner: boolean = true;
   public searchItems: any[] = [];
   public imgUrl: string = this.localConfig.midImgPath;
   public totalResalt: number;
   public isDisabledActorsBtn: boolean = false;
   public searchFor: string;
-  private userId: string;
-  private sessionId: string;
+
 
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
@@ -38,6 +39,9 @@ export class SearchResultComponent implements OnInit {
     switch (this.searchService.search.currentRoute) {
       case '/films':
         this.typeOfSearch('movie');
+        break;
+      case '/favorites':
+        this.typeOfSearch('favorites');
         break;
       case '/actors':
         this.typeOfSearch('person');
@@ -63,13 +67,10 @@ export class SearchResultComponent implements OnInit {
         this.searchItems = res.results;
         this.totalResalt = res.total_results;
         this.totalPages = res.total_pages;
-
-        this.userId = localStorage.getItem('user_id');
-        this.sessionId = localStorage.getItem('session_id');
-
         this.filmsService.getFavoriteFilms(this.searchItems, this.userId, this.sessionId);
 
         if (this.pageCount === this.totalPages) this.isDisabledActorsBtn = true;
+        
         if (this.searchItems) {
           this.spiner = false;
         }

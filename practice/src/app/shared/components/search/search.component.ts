@@ -42,6 +42,9 @@ export class SearchComponent implements OnInit {
       case '/actors':
         this.placeholder = 'Поиск актеров'
         break;
+      case '/favorites':
+        this.placeholder = 'Поиск в избранном'
+        break;
       default:
         this.placeholder = 'Поиск ...'
         break;
