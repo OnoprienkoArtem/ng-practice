@@ -89,16 +89,16 @@ export class SearchResultComponent implements OnInit {
     );
   }
 
-  private getFavorite() {
-    this.filmsService
-      .getFavorite(this.searchItems.map(item => item.id))
-      .subscribe((favorites: Array<Favorite>) => {
-        const favoriteList = favorites.map(favorite => favorite._id);
-        this.searchItems.map(item => {
-          item.isFavorite = favoriteList.indexOf(item.id) > -1;
-        });
-      });
-  }
+  // private getFavorite() {
+  //   this.filmsService
+  //     .getFavorite(this.searchItems.map(item => item.id))
+  //     .subscribe((favorites: Array<Favorite>) => {
+  //       const favoriteList = favorites.map(favorite => favorite._id);
+  //       this.searchItems.map(item => {
+  //         item.isFavorite = favoriteList.indexOf(item.id) > -1;
+  //       });
+  //     });
+  // }
 
   // public addFilmToFavorit(id: number) {
   //   const favoriteFilms = this.searchItems.find(item => {
