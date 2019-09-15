@@ -5,8 +5,8 @@
         <h2>Популярные фильмы</h2>
         <button mat-stroked-button routerLink="/films">Посмотреть все фильмы</button>
       </div>
-      <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-        <mat-card class="mb-2em" fxFlex="15%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" *ngFor="let film of films">
+      <div class="wrap-mat-card" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+        <mat-card class="mb-2em film-mat-card" fxFlex="15%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%" *ngFor="let film of films">
           <div>
             <img src="{{imgUrl + film.poster_path}}" alt="">
           </div>
@@ -18,14 +18,13 @@
         <h2>Популярные актеры</h2>
         <button mat-stroked-button routerLink="/actors">Посмотреть всех актеров</button>
       </div>
-      <div fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
-        <mat-card class="mb-2em flipper" fxFlex="15%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%"
+      <div class="wrap-mat-card" fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutAlign.lt-sm="center">
+        <mat-card class="mb-2em flipper  film-mat-card" fxFlex="15%" fxFlex.lt-md="45%" fxFlex.lt-sm="100%"
           *ngFor="let actor of actors">
           <div class="front">
             <img src="{{imgUrl + actor.profile_path}}" alt="">
-          </div>  
-
-          <div class="back">
+          </div> 
+          <div class="back not-img">
             <img src="assets/logo.jpg" alt="">
           </div>        
         </mat-card>     

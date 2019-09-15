@@ -30,7 +30,7 @@ export class MainComponent implements OnInit {
     this.filmsService.getPopularFilms().subscribe(
       (filmList: any) => {
         this.filmsClone = filmList.results;
-        this.films = this.filmsClone.slice(0, 6);
+        this.films = this.filmsClone.slice(0, 7);
         if (this.filmsClone) {
           this.spiner = false;
         }

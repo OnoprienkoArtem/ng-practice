@@ -4,6 +4,15 @@
   border-radius: 4px;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
   height: 280px;
+  transition: all .5s;
+
+    &:hover {
+      transition: all .5s;
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 4px 12px 5px rgba(0, 0, 0, .2),
+        4px 6px 12px 0px rgba(0, 0, 0, .14),
+        6px 8px 12px 0px rgba(0, 0, 0, .12);
+    }
 }
 
 .cards>div:first-child {

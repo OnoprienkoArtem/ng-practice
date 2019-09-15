@@ -6,10 +6,10 @@
     max-width: 1250px;
 
     >div {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
 
       >div:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 40px;
       }
     }
 
@@ -19,14 +19,61 @@
   }
 }
 
+.film-mat-card {
+  position: absolute;
+}
+
+.film-mat-card:nth-child(1) {
+         left: 18%;
+         top: 25%;
+}
+
+.film-mat-card:nth-child(2) {
+      left: 5%;
+      top: 20%;
+      transform: rotate(5deg);
+}
+
+.film-mat-card:nth-child(3) {
+           left: 32%;
+           top: 27%;
+           transform: rotate(-5deg);
+}
+
+.film-mat-card:nth-child(4) {
+        left: 45%;
+        top: 19%;
+         transform: rotate(2deg);
+}
+
+.film-mat-card:nth-child(5) {
+        left: 57%;
+        top: 10%;
+        transform: rotate(3deg);
+
+}
+
+.film-mat-card:nth-child(6) {
+             left: 80%;
+             top: 20%;
+          transform: rotate(5deg);
+}
+
+.film-mat-card:nth-child(7) {
+        left: 67%;
+        top: 26%;
+        transform: rotate(20deg);
+}
+
+.wrap-mat-card {
+    height: 300px;
+}
+
 .mat-card {
   padding: .5%;
   margin: 0;
   height: 280px;
-  transform: rotateY(180deg);
- 
-
-
+  // transform: rotateY(180deg);
 
   div {
     width: 100%;
@@ -40,38 +87,64 @@
   }
 }
 
-.mat-card:nth-child(1) {
-  animation: rotateY .5s .5s ease forwards;
-}
+.not-img {
+  width: 100%;
+  height: 100%;
+  background: #fdfffa;
+  border: 1px solid rgba(68, 68, 73, .1);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 
-.mat-card:nth-child(2) {
-  animation: rotateY 1s .5s ease forwards;
-}
-
-.mat-card:nth-child(3) {
-  animation: rotateY 1.5s .5s ease forwards;
-}
-
-.mat-card:nth-child(4) {
-  animation: rotateY 2s .5s ease forwards;
-}
-
-.mat-card:nth-child(5) {
-  animation: rotateY 2.5s .5s ease forwards;
-}
-
-.mat-card:nth-child(6) {
-  animation: rotateY 3s .5s ease forwards;
-}
-
-@keyframes rotateY {
-  to {
-    transform: rotateY(0);
+  img {
+    width: 75% !important;
+    height: 75% !important;
+    object-fit: contain !important;
   }
 }
 
+.mat-card:nth-child(1) {
+  animation: rotateY .5s 2s ease forwards;
+}
+
+.mat-card:nth-child(2) {
+  animation: rotateY .5s 2.2s ease forwards;
+}
+
+.mat-card:nth-child(3) {
+  animation: rotateY .5s 2.4s ease forwards;
+}
+
+.mat-card:nth-child(4) {
+  animation: rotateY .5s 2.6s ease forwards;
+}
+
+.mat-card:nth-child(5) {
+  animation: rotateY .5s 2.8s ease forwards;
+}
+
+.mat-card:nth-child(6) {
+  animation: rotateY .5s 3s ease forwards;
+}
+
+.mat-card:nth-child(7) {
+  animation: rotateY .5s 3.2s ease forwards;
+}
+
+// @keyframes rotateY {
+//   to {
+//     transform: rotateY(0);
+//   }
+// }
+
 button {
   margin: auto 0;
+      padding: 0 10px;
+      line-height: 25px;
+          font-size: 12px;
+
 }
 
 
@@ -79,49 +152,22 @@ button {
 
 
 
-/* весь контейнер поддерживает перспективу */
-.flip-container {
-  perspective: 1000;
+
+
+.flipper { 
+  transform-style: preserve-3d;  
 }
 
-/* переверните сторону при проведении мышью */
-.flip-container:hover .flipper,
-.flip-container.hover .flipper {
+.back {
   transform: rotateY(180deg);
-}
-
-.flip-container,
-.front,
-.back {
-  width: 320px;
-  height: 480px;
-  border: 1px solid black;
-}
-
-/* здесь находится скорость перевертывания */
-.flipper {
-  transition: 0.6s;
-  transform-style: preserve-3d;
-
-  position: relative;
-}
-
-/* скройте обратную сторону во время переворота */
-.front,
-.back {
   backface-visibility: hidden;
-
   position: absolute;
   top: 0;
   left: 0;
 }
 
-/* лицевая сторона размещена над обратной */
-.front {
-  z-index: 2;
-}
 
-/* обратная, изначально скрытая сторона */
-.back {
-  transform: rotateY(180deg);
-}
+// .front {
+//   z-index: 2;
+// }
+
