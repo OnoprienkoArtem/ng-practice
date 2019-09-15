@@ -41,7 +41,7 @@ export class MainComponent implements OnInit {
       this.actorService.getPopularActors().subscribe(
         (actorsList: any) => {
           this.actorsClone = actorsList.results;
-          this.actors = this.actorsClone.slice(0, 6);
+          this.actors = this.actorsClone.slice(0, 7);
           if (this.actorsClone) {
             this.spiner = false;
           }

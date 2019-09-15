@@ -4,12 +4,13 @@
   >div {
     margin: auto;
     max-width: 1250px;
+    width: 100%;
 
     >div {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
 
       >div:first-child {
-        margin-bottom: 40px;
+        margin-bottom: 25px;
       }
     }
 
@@ -19,54 +20,150 @@
   }
 }
 
-.film-mat-card {
+.film-mat-card,
+.actor-mat-card {
   position: absolute;
 }
 
 .film-mat-card:nth-child(1) {
-         left: 18%;
-         top: 25%;
+  left: 13%;
+  top: 15%;
 }
 
 .film-mat-card:nth-child(2) {
-      left: 5%;
-      top: 20%;
-      transform: rotate(5deg);
+  left: 0%;
+  top: 0%;
+  transform: rotate(5deg);
 }
 
 .film-mat-card:nth-child(3) {
-           left: 32%;
-           top: 27%;
-           transform: rotate(-5deg);
+  left: 27%;
+  top: 22%;
+  transform: rotate(-5deg);
 }
 
 .film-mat-card:nth-child(4) {
-        left: 45%;
-        top: 19%;
-         transform: rotate(2deg);
+  left: 41%;
+  top: 9%;
+  transform: rotate(2deg);
 }
 
 .film-mat-card:nth-child(5) {
-        left: 57%;
-        top: 10%;
-        transform: rotate(3deg);
-
+  left: 55%;
+  top: -15%;
+  transform: rotate(5deg);
 }
 
 .film-mat-card:nth-child(6) {
-             left: 80%;
-             top: 20%;
-          transform: rotate(5deg);
+  left: 83%;
+  top: 10%;
+  transform: rotate(7deg);
 }
 
 .film-mat-card:nth-child(7) {
-        left: 67%;
-        top: 26%;
-        transform: rotate(20deg);
+  left: 67%;
+  top: 20%;
+  transform: rotate(20deg);
 }
 
+
+
+.actor-mat-card:nth-child(1) {
+  left: 14%;
+  top: 10%;
+  transform: rotateY(180deg);
+  animation: rotate1 .5s 2.2s ease forwards;
+}
+
+@keyframes rotate1 {
+  to {
+    transform: rotateY(0);
+  }
+}
+
+.actor-mat-card:nth-child(2) {
+  left: 0%;
+  top: 2%;
+  animation: rotate2 .5s 2s ease forwards;
+  transform: rotateY(180deg) rotate(3deg);
+}
+
+@keyframes rotate2 {
+  to {
+    transform: rotateY(0) rotate(-3deg);
+  }
+}
+
+.actor-mat-card:nth-child(3) {
+  left: 29%;
+  top: -2%;
+  animation: rotate3 .5s 2.4s ease forwards;
+  transform: rotateY(180deg) rotate(4deg);
+}
+
+@keyframes rotate3 {
+  to {
+    transform: rotateY(0) rotate(-4deg);
+  }
+}
+
+.actor-mat-card:nth-child(4) {
+  left: 43%;
+  top: 9%;
+  animation: rotate4 .5s 2.6s ease forwards;
+  transform: rotateY(180deg) rotate(-1deg);
+}
+
+@keyframes rotate4 {
+  to {
+    transform: rotateY(0) rotate(1deg);
+  }
+}
+
+.actor-mat-card:nth-child(5) {
+  left: 57%;
+  top: -7%;
+  animation: rotate5 .5s 2.8s ease forwards;
+  transform: rotateY(180deg) rotate(-7deg);
+}
+
+@keyframes rotate5 {
+  to {
+    transform: rotateY(0) rotate(7deg);
+  }
+}
+
+.actor-mat-card:nth-child(6) {
+  left: 70%;
+  top: 0%;
+  animation: rotate6 .5s 3s ease forwards;
+  transform: rotateY(180deg) rotate(4deg);
+}
+
+@keyframes rotate6 {
+  to {
+    transform: rotateY(0) rotate(-4deg);
+  }
+}
+
+.actor-mat-card:nth-child(7) {
+  left: 84%;
+  top: 0%;
+  animation: rotate7 .5s 3.2s ease forwards;
+  transform: rotateY(180deg) rotate(11deg);
+}
+
+@keyframes rotate7 {
+  to {
+    transform: rotateY(0) rotate(-11deg);
+  }
+}
+
+
+
 .wrap-mat-card {
-    height: 300px;
+  height: 300px;
+  position: relative;
 }
 
 .mat-card {
@@ -105,45 +202,41 @@
   }
 }
 
-.mat-card:nth-child(1) {
-  animation: rotateY .5s 2s ease forwards;
-}
-
-.mat-card:nth-child(2) {
-  animation: rotateY .5s 2.2s ease forwards;
-}
-
-.mat-card:nth-child(3) {
-  animation: rotateY .5s 2.4s ease forwards;
-}
-
-.mat-card:nth-child(4) {
-  animation: rotateY .5s 2.6s ease forwards;
-}
-
-.mat-card:nth-child(5) {
-  animation: rotateY .5s 2.8s ease forwards;
-}
-
-.mat-card:nth-child(6) {
-  animation: rotateY .5s 3s ease forwards;
-}
-
-.mat-card:nth-child(7) {
-  animation: rotateY .5s 3.2s ease forwards;
-}
-
-// @keyframes rotateY {
-//   to {
-//     transform: rotateY(0);
-//   }
+// .mat-card:nth-child(1) {
+//   animation: rotateY .5s 2s ease forwards;
 // }
+
+// .mat-card:nth-child(2) {
+//   animation: rotateY .5s 2.2s ease forwards;
+// }
+
+// .mat-card:nth-child(3) {
+//   animation: rotateY .5s 2.4s ease forwards;
+// }
+
+// .mat-card:nth-child(4) {
+//   animation: rotateY .5s 2.6s ease forwards;
+// }
+
+// .mat-card:nth-child(5) {
+//   animation: rotateY .5s 2.8s ease forwards;
+// }
+
+// .mat-card:nth-child(6) {
+//   animation: rotateY .5s 3s ease forwards;
+// }
+
+// .mat-card:nth-child(7) {
+//   animation: rotateY .5s 3.2s ease forwards;
+// }
+
+
 
 button {
   margin: auto 0;
-      padding: 0 10px;
-      line-height: 25px;
-          font-size: 12px;
+  padding: 0 10px;
+  line-height: 25px;
+  font-size: 12px;
 
 }
 
@@ -154,8 +247,8 @@ button {
 
 
 
-.flipper { 
-  transform-style: preserve-3d;  
+.flipper {
+  transform-style: preserve-3d;
 }
 
 .back {
@@ -170,4 +263,3 @@ button {
 // .front {
 //   z-index: 2;
 // }
-
